@@ -1690,6 +1690,139 @@ def fig_7_5():
 
 
 # ---------------------------------------------------------------------------
+# 8장
+# ---------------------------------------------------------------------------
+
+def fig_8_1():
+    s = Svg(900, 400)
+    s.text(450, 30, "그림 8-1  타이머 카운터의 톱니파: 세고, 넘치고, 처음부터", 16, weight="bold")
+    x0, y0, w, h = 110, 300, 720, 210      # y0는 0의 y좌표
+    s.line(x0, y0, x0 + w + 20, y0, MUTED, 1.5, arrow=True)
+    s.line(x0, y0, x0, y0 - h - 30, MUTED, 1.5, arrow=True)
+    s.text(x0 + w + 20, y0 + 20, "시간", 12, "end", MUTED)
+    s.text(x0 - 10, y0 - h - 34, "CNT", 13, "end", INK, "bold")
+    s.text(x0 - 10, y0 + 4, "0", 12, "end", MUTED)
+    s.line(x0, y0 - h, x0 + w, y0 - h, ORANGE, 1.2, "5 4")
+    s.text(x0 - 10, y0 - h + 4, "ARR", 12, "end", ORANGE, "bold")
+    period = 160
+    s.line(x0, y0 - h * 0.45, x0 + w, y0 - h * 0.45, BLUE, 1.2, "5 4")
+    s.text(x0 - 10, y0 - h * 0.45 + 4, "CCR", 12, "end", BLUE, "bold")
+    pts = []
+    for k in range(4):
+        a = x0 + k * period
+        # 계단 모양 톱니파
+        steps = 16
+        for i in range(steps):
+            xa = a + i * period / steps
+            ya = y0 - h * i / (steps - 1)
+            pts.append(f"L{xa:.1f},{ya:.1f} L{xa + period / steps:.1f},{ya:.1f}")
+        # 업데이트 이벤트
+        ex = a + period
+        s.line(ex, y0 + 6, ex, y0 + 26, RED, 2)
+        s.poly([(ex, y0 + 6), (ex - 5, y0 + 15), (ex + 5, y0 + 15)], RED, RED, 1)
+        # 비교 일치
+        cx = a + period * 0.45
+        s.add(f'<circle cx="{cx:.1f}" cy="{y0 - h * 0.45:.1f}" r="5" fill="{BLUE}"/>')
+    s.path(f"M{x0},{y0} " + " ".join(pts), INK, 2)
+    s.text(x0 + period, y0 + 44, "업데이트 이벤트", 12, color=RED, weight="bold")
+    s.text(x0 + period, y0 + 60, "(오버플로, 인터럽트)", 11, color=RED)
+    s.text(x0 + period * 0.45 - 8, y0 - h * 0.45 - 16, "비교 일치", 11, "end", BLUE, "bold")
+    s.path(f"M{x0 + 2 * period},{y0 + 80} L{x0 + 3 * period},{y0 + 80}", LINE, 1.5)
+    s.line(x0 + 2 * period, y0 + 74, x0 + 2 * period, y0 + 86, LINE, 1.5)
+    s.line(x0 + 3 * period, y0 + 74, x0 + 3 * period, y0 + 86, LINE, 1.5)
+    s.text(x0 + 2.5 * period, y0 + 72, "한 주기 = (ARR + 1) 틱", 12, weight="bold")
+    s.save("ch08/fig8-1-counter-sawtooth.svg")
+
+
+def fig_8_2():
+    s = Svg(900, 330)
+    s.text(450, 30, "그림 8-2  프리스케일러와 오토리로드로 주기 만들기", 16, weight="bold")
+    s.box(30, 80, 150, 70, "타이머 클럭", "16 MHz", GREEN_BG, GREEN, 15)
+    s.box(240, 80, 190, 70, "프리스케일러", "÷ (PSC + 1)", BLUE_BG, BLUE, 15)
+    s.box(490, 80, 190, 70, "카운터", "0 → ARR, 다시 0", BLUE_BG, BLUE, 15)
+    s.box(740, 80, 130, 70, "업데이트", "인터럽트", ORANGE_BG, ORANGE, 15)
+    s.line(182, 115, 236, 115, LINE, 2, arrow=True)
+    s.line(432, 115, 486, 115, LINE, 2, arrow=True)
+    s.line(682, 115, 736, 115, LINE, 2, arrow=True)
+    s.text(209, 106, "16 MHz", 11, color=MUTED)
+    s.text(459, 106, "틱", 11, color=MUTED)
+    # 예시 계산
+    s.rect(30, 180, 840, 120, "#fafbfc", MUTED, 10, 1)
+    s.text(450, 206, "예: 16 MHz에서 2 Hz(0.5초마다) 인터럽트", 14, weight="bold")
+    s.text(60, 236, "PSC = 15999  →  16 MHz ÷ 16000 = 1 kHz  (틱 하나 = 1 ms)", 13, "start")
+    s.text(60, 260, "ARR = 499    →  1 kHz ÷ 500 = 2 Hz", 13, "start")
+    s.text(60, 284, "업데이트 주파수 = 타이머 클럭 ÷ ((PSC + 1) × (ARR + 1))", 13, "start", BLUE, "bold")
+    s.save("ch08/fig8-2-prescaler-arr.svg")
+
+
+def fig_8_3():
+    t = Timing(16, 46, 150, 70, "그림 8-3  듀티비에 따른 PWM 파형 (주기는 같다)")
+    for name, on in (("25%", 1), ("50%", 2), ("75%", 3)):
+        segs = []
+        for _ in range(4):
+            segs += [(on, "h", None, None), (4 - on, "l", None, None)]
+        t.signal(f"듀티 {name}", segs, sub="평균 전압 " + {"25%": "1.25 V", "50%": "2.5 V", "75%": "3.75 V"}[name])
+    t.note("span", row=0, t0=0, t1=4, label="주기 T", color=BLUE, below=False)
+    t.note("span", row=2, t0=4, t1=7, label="High 시간", color=ORANGE)
+    t.note("text", t=8, y=270, label="듀티비 = High 시간 ÷ 주기.  5 V 출력이면 평균 전압 = 5 V × 듀티비", size=12)
+    t.render("ch08/fig8-3-pwm-duty.svg", 60)
+
+
+def fig_8_4():
+    s = Svg(900, 400)
+    s.text(450, 30, "그림 8-4  서보 모터 제어 펄스 폭과 각도", 16, weight="bold")
+    cases = [(1.0, "0°", -90), (1.5, "90°", 0), (2.0, "180°", 90)]
+    x0, scale = 150, 26            # 1 ms = 26 px, 20 ms = 520 px
+    for i, (ms, ang, deg) in enumerate(cases):
+        y = 80 + i * 100
+        s.text(x0 - 20, y + 20, f"{ms} ms", 14, "end", weight="bold")
+        pw = ms * scale
+        s.path(f"M{x0 - 10},{y + 30} L{x0},{y + 30} L{x0},{y} L{x0 + pw},{y} L{x0 + pw},{y + 30} "
+               f"L{x0 + 20 * scale},{y + 30} L{x0 + 20 * scale},{y} L{x0 + 20 * scale + pw},{y} "
+               f"L{x0 + 20 * scale + pw},{y + 30} L{x0 + 20 * scale + 40},{y + 30}", INK, 2)
+        s.rect(x0, y, pw, 30, ORANGE_BG, "none", 0, 0)
+        # 서보 혼
+        import math
+        cx, cy = 820, y + 22
+        s.add(f'<circle cx="{cx}" cy="{cy}" r="26" fill="{GRAY_BG}" stroke="{LINE}" stroke-width="1.5"/>')
+        a = math.radians(deg - 90)
+        s.line(cx, cy, cx + 24 * math.cos(a), cy + 24 * math.sin(a), ORANGE, 5)
+        s.add(f'<circle cx="{cx}" cy="{cy}" r="4" fill="{LINE}"/>')
+        s.text(cx - 36, cy + 5, ang, 14, "end", ORANGE, "bold")
+    s.line(x0, 365, x0 + 20 * scale, 365, LINE, 1.5, both=True)
+    s.text(x0 + 10 * scale, 358, "주기 20 ms (50 Hz)", 12, weight="bold")
+    s.text(450, 390, "흔한 취미용 서보의 예. 실제 펄스 범위(예: 0.5~2.5 ms)와 각도는 제품마다 달라서 데이터시트로 확인한다", 11, color=MUTED)
+    s.save("ch08/fig8-4-servo.svg")
+
+
+def fig_8_5():
+    s = Svg(900, 400)
+    s.text(450, 30, "그림 8-5  입력 캡처로 펄스 폭 측정하기", 16, weight="bold")
+    x0, x1 = 140, 860
+    # 입력 신호
+    y = 80
+    s.text(x0 - 14, y + 20, "입력 핀", 13, "end", weight="bold")
+    r, f = 300, 560
+    s.path(f"M{x0},{y + 30} L{r},{y + 30} L{r},{y} L{f},{y} L{f},{y + 30} L{x1},{y + 30}", INK, 2)
+    # 카운터 (톱니 일부: 계속 증가)
+    yb, yt = 330, 150
+    s.text(x0 - 14, yt + 10, "CNT", 13, "end", weight="bold")
+    s.line(x0, yb, x1, yb, MUTED, 1.2)
+    s.path(f"M{x0},{yb - 20} L{x1},{yt + 10}", BLUE, 2)
+    def cnt_y(x):
+        return (yb - 20) + (x - x0) * ((yt + 10) - (yb - 20)) / (x1 - x0)
+    for x, lbl, val in ((r, "상승 에지에서 캡처", "CCR = 1200"), (f, "하강 에지에서 캡처", "CCR = 2700")):
+        s.line(x, y + 34, x, yb, RED, 1.2, "4 3")
+        s.add(f'<circle cx="{x}" cy="{cnt_y(x):.1f}" r="6" fill="{RED}"/>')
+        s.text(x + 10, cnt_y(x) + 22, val, 13, "start", RED, "bold")
+        s.text(x, y - 8, lbl, 12, color=RED)
+    s.line(r, yb + 20, f, yb + 20, ORANGE, 1.5, both=True)
+    s.text((r + f) / 2, yb + 40, "펄스 폭 = (2700 − 1200) 틱 = 1500 틱 = 1.5 ms (틱 1 µs일 때)", 13, weight="bold", color=ORANGE)
+    s.text(450, 392, "하드웨어가 에지 순간의 카운터 값을 CCR에 복사하므로, ISR이 늦게 실행되어도 측정값은 정확하다", 12, color=MUTED)
+    s.save("ch08/fig8-5-input-capture.svg")
+
+
+# ---------------------------------------------------------------------------
 # 14장 UART
 # ---------------------------------------------------------------------------
 

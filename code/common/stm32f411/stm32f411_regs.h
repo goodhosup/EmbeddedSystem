@@ -9,6 +9,7 @@
  *   - PWR_CR: RM0383 5.4절 "PWR registers"
  *   - SYSCFG: RM0383 7.2절 "SYSCFG registers"
  *   - EXTI: RM0383 10.3절 "EXTI registers"
+ *   - TIM2~TIM5: RM0383 13.4절 "TIM2 to TIM5 registers"
  *   - NVIC, SysTick, SCB: Cortex-M4 프로그래밍 매뉴얼(PM0214) 4장 "Core peripherals"
  *
  * 실무에서는 ST가 배포하는 CMSIS 디바이스 헤더(stm32f411xe.h)를 쓴다.
@@ -86,6 +87,10 @@ typedef struct {
 #define RCC_AHB1ENR_GPIOCEN (1u << 2)
 
 /* RCC_APB1ENR */
+#define RCC_APB1ENR_TIM2EN  (1u << 0)
+#define RCC_APB1ENR_TIM3EN  (1u << 1)
+#define RCC_APB1ENR_TIM4EN  (1u << 2)
+#define RCC_APB1ENR_TIM5EN  (1u << 3)
 #define RCC_APB1ENR_PWREN   (1u << 28)
 
 /* RCC_APB2ENR */
@@ -117,6 +122,14 @@ typedef struct {
 #define GPIOA ((GPIO_TypeDef *)0x40020000u)
 #define GPIOB ((GPIO_TypeDef *)0x40020400u)
 #define GPIOC ((GPIO_TypeDef *)0x40020800u)
+
+/* 핀을 대체 기능 af(0~15)로 설정한다 (MODER = 10, AFRL/AFRH에 번호) */
+static inline void gpio_set_af(GPIO_TypeDef *port, uint32_t pin, uint32_t af)
+{
+    port->MODER = (port->MODER & ~(3u << (pin * 2))) | (2u << (pin * 2));
+    port->AFR[pin >> 3] = (port->AFR[pin >> 3] & ~(0xFu << ((pin & 7u) * 4)))
+                        | (af << ((pin & 7u) * 4));
+}
 
 /* ---- FLASH 인터페이스 (0x4002 3C00) ---- */
 typedef struct {
@@ -164,10 +177,60 @@ typedef struct {
 
 #define EXTI ((EXTI_TypeDef *)0x40013C00u)
 
+
+/* ---- 범용 타이머 TIM2~TIM5 (TIM2 0x4000 0000, TIM3 0x4000 0400, TIM4 0x4000 0800, TIM5 0x4000 0C00) ---- */
+typedef struct {
+    __IO uint32_t CR1;         /* 0x00 */
+    __IO uint32_t CR2;         /* 0x04 */
+    __IO uint32_t SMCR;        /* 0x08 */
+    __IO uint32_t DIER;        /* 0x0C */
+    __IO uint32_t SR;          /* 0x10 (플래그: 0을 써서 지움) */
+    __IO uint32_t EGR;         /* 0x14 */
+    __IO uint32_t CCMR1;       /* 0x18 */
+    __IO uint32_t CCMR2;       /* 0x1C */
+    __IO uint32_t CCER;        /* 0x20 */
+    __IO uint32_t CNT;         /* 0x24 */
+    __IO uint32_t PSC;         /* 0x28 */
+    __IO uint32_t ARR;         /* 0x2C */
+    uint32_t      RESERVED0;   /* 0x30 (TIM1의 RCR 자리) */
+    __IO uint32_t CCR1;        /* 0x34 */
+    __IO uint32_t CCR2;        /* 0x38 */
+    __IO uint32_t CCR3;        /* 0x3C */
+    __IO uint32_t CCR4;        /* 0x40 */
+} TIM_TypeDef;
+
+#define TIM2 ((TIM_TypeDef *)0x40000000u)   /* 32비트 카운터 */
+#define TIM3 ((TIM_TypeDef *)0x40000400u)   /* 16비트 */
+#define TIM4 ((TIM_TypeDef *)0x40000800u)   /* 16비트 */
+#define TIM5 ((TIM_TypeDef *)0x40000C00u)   /* 32비트 */
+
+#define TIM_CR1_CEN         (1u << 0)
+#define TIM_CR1_ARPE        (1u << 7)
+#define TIM_DIER_UIE        (1u << 0)
+#define TIM_DIER_CC1IE      (1u << 1)
+#define TIM_SR_UIF          (1u << 0)
+#define TIM_SR_CC1IF        (1u << 1)
+#define TIM_SR_CC1OF        (1u << 9)
+#define TIM_EGR_UG          (1u << 0)
+
+/* CCMR1 채널 1: 출력 비교 모드 OC1M[6:4], 프리로드 OC1PE[3], 입력 선택 CC1S[1:0], 필터 IC1F[7:4] */
+#define TIM_CCMR1_CC1S_Msk    (3u << 0)
+#define TIM_CCMR1_CC1S_TI1    (1u << 0)
+#define TIM_CCMR1_OC1PE       (1u << 3)
+#define TIM_CCMR1_OC1M_Msk    (7u << 4)
+#define TIM_CCMR1_OC1M_PWM1   (6u << 4)
+#define TIM_CCMR1_IC1F_Msk    (0xFu << 4)
+
+/* CCER 채널 1: CC1E[0], CC1P[1], CC1NP[3] */
+#define TIM_CCER_CC1E       (1u << 0)
+#define TIM_CCER_CC1P       (1u << 1)
+#define TIM_CCER_CC1NP      (1u << 3)
+
 /* ---- 인터럽트 번호 (RM0383 10.1.3절 표, 7장에서 쓰는 것만) ---- */
 #define EXTI0_IRQn       6
 #define TIM2_IRQn       28
 #define TIM3_IRQn       29
+#define TIM4_IRQn       30
 #define USART2_IRQn     38
 #define EXTI15_10_IRQn  40
 
