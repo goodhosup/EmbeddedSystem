@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="440" viewBox="0 0 900 440" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 6-3  ODR 읽기-수정-쓰기와 BSRR 원자적 쓰기</text>
+  <text x="40.0" y="70.0" font-size="14" text-anchor="start" fill="#d64545" font-weight="bold">(가) GPIOA-&gt;ODR ^= (1u &lt;&lt; 5);  →  명령 세 개로 나뉜다</text>
+  <rect x="60.0" y="90.0" width="150.0" height="54.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="135.0" y="114.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">LDR</text>
+  <text x="135.0" y="133.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">ODR 읽기</text>
+  <text x="135.0" y="162.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">r3 = 0x0000</text>
+  <rect x="340.0" y="90.0" width="150.0" height="54.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="415.0" y="114.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">EOR</text>
+  <text x="415.0" y="133.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">5번 비트 반전</text>
+  <text x="415.0" y="162.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">r3 = 0x0020</text>
+  <rect x="620.0" y="90.0" width="150.0" height="54.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="695.0" y="114.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">STR</text>
+  <text x="695.0" y="133.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">ODR 쓰기</text>
+  <text x="695.0" y="162.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">r3 = 0x0020</text>
+  <line x1="212.0" y1="117.0" x2="338.0" y2="117.0" stroke="#334e68" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="492.0" y1="117.0" x2="618.0" y2="117.0" stroke="#334e68" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="225.0" y="175.0" width="100.0" height="50.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="275.0" y="197.0" font-size="13" text-anchor="middle" fill="#d9730d" font-weight="bold">인터럽트!</text>
+  <text x="275.0" y="214.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="normal">ODR 6번 = 1</text>
+  <path d="M240,173 L240,150 L212,150" stroke="#d9730d" stroke-width="1.5" fill="none" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <rect x="560.0" y="175.0" width="300.0" height="50.0" rx="8" fill="#fdecec" stroke="#d64545" stroke-width="1.5"/>
+  <text x="710.0" y="197.0" font-size="13" text-anchor="middle" fill="#d64545" font-weight="bold">ISR이 켠 6번 비트가 사라진다</text>
+  <text x="710.0" y="214.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">STR이 읽어 둔 옛 값(0x0000)을 바탕으로 쓰기 때문</text>
+  <text x="40.0" y="280.0" font-size="14" text-anchor="start" fill="#2f9e44" font-weight="bold">(나) GPIOA-&gt;BSRR = (1u &lt;&lt; 5);  →  쓰기 한 번</text>
+  <rect x="60.0" y="300.0" width="150.0" height="54.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="135.0" y="324.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">STR</text>
+  <text x="135.0" y="343.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">BSRR 쓰기</text>
+  <line x1="212.0" y1="327.0" x2="300.0" y2="327.0" stroke="#334e68" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="300.0" y="300.0" width="560.0" height="54.0" rx="8" fill="#ffffff" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="580.0" y="322.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">1을 쓴 비트만 바뀌고, 0을 쓴 비트는 그대로 둔다</text>
+  <text x="580.0" y="342.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">읽지 않으므로 끼어들 틈이 없다 (원자적)</text>
+  <rect x="60.0" y="375.0" width="400.0" height="34.0" rx="0" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.2"/>
+  <text x="260.0" y="397.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">BR15 … BR0 (비트 31:16) : 1을 쓰면 Low</text>
+  <rect x="460.0" y="375.0" width="400.0" height="34.0" rx="0" fill="#fdebd7" stroke="#d9730d" stroke-width="1.2"/>
+  <text x="660.0" y="397.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">BS15 … BS0 (비트 15:0) : 1을 쓰면 High</text>
+  <text x="450.0" y="430.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">같은 핀의 BS와 BR을 동시에 1로 쓰면 BS(High)가 우선한다 (RM0383 GPIO 절)</text>
+</svg>

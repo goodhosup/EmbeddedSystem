@@ -68,10 +68,13 @@
 ├── README.md             # 지금 보고 있는 문서
 ├── docs/
 │   ├── outline.md        # 전체 목차, 장별 내용과 그림 목록
-│   └── writing-guide.md  # 집필 규칙 (문체, 장 구성, 그림, 코드)
+│   ├── writing-guide.md  # 집필 규칙 (문체, 장 구성, 그림, 코드)
+│   └── publish-checklist.md  # 출판 전 확인 목록 (tools/checklist.py로 생성)
 ├── chapters/             # 본문 원고 (chNN-주제.md)
 ├── figures/              # 그림 (chNN/figN-M-주제.svg)
-├── tools/figgen.py       # 그림 생성 스크립트
+├── tools/
+│   ├── figgen.py         # 그림 생성 스크립트
+│   └── checklist.py      # [확인 필요] 표시 모음 생성
 ├── appendix/             # 부록 원고
 └── code/                 # 장별 예제 코드 (chNN-주제/)
 ```
@@ -85,5 +88,6 @@
 | 3 | 마이크로컨트롤러의 구조 | 초고 완료 |
 | 4 | 임베디드를 위한 C 언어 | 초고 완료 |
 | 5 | 개발 환경 구축: 아두이노에서 레지스터까지 | 초고 완료 |
+| 6 | GPIO: LED를 켜고 버튼을 읽다 | 초고 완료 |
 | 14~16 | UART, I2C, SPI | 샘플 그림 완료 |
 | 그 외 | | 목차 확정 후 집필 예정 |

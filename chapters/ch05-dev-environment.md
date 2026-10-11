@@ -189,7 +189,15 @@ make fuses BOARD=m128
 avrdude -c usbasp -p m128 -B 10 -U lfuse:w:0xFF:m -U hfuse:w:0xC9:m -U efuse:w:0xFF:m
 ```
 
-[확인 필요: 퓨즈 값은 키트의 크리스털과 데이터시트의 퓨즈 표로 다시 계산해 확인할 것]
+각 값의 비트를 풀어 보면 다음과 같습니다. 퓨즈 비트는 1이 꺼짐(unprogrammed), 0이 켜짐(programmed)입니다.
+
+| 퓨즈 | 공장 출하 값 | 이 책의 설정 | 설정의 비트 풀이 (상위 비트부터) |
+| --- | --- | --- | --- |
+| lfuse | 0xE1 | 0xFF | BODLEVEL 1, BODEN 1(BOD 꺼짐), SUT 11, CKSEL 1111(외부 크리스털. CKOPT와 함께 16 MHz까지) |
+| hfuse | 0x99 | 0xC9 | OCDEN 1, JTAGEN 1(JTAG 꺼짐), SPIEN 0(ISP 켜짐, **반드시 유지**), CKOPT 0(8 MHz를 넘는 크리스털에 필요), EESAVE 1, BOOTSZ 00, BOOTRST 1 |
+| efuse | 0xFD | 0xFF | M103C 1(ATmega103 호환 모드 꺼짐), WDTON 1(워치독 항상 켜기 꺼짐) |
+
+출처: ATmega128A 데이터시트, Memory Programming 장의 Fuse Bits 표. 공장 출하 값은 이 표의 기본값입니다. 여러분의 칩에서 읽은 값을 이 표와 비교해 기록해 두면, 문제가 생겼을 때 출하 상태로 되돌릴 수 있습니다.
 
 > ⚠️ 주의: 퓨즈는 이 책에서 가장 위험한 명령입니다. 특히 SPIEN 비트를 끄면 ISP로 다시는 접근할 수 없고, 고전압 병렬 프로그래머가 있어야 복구할 수 있습니다. 클럭 소스를 잘못 고르면 그 클럭이 들어올 때까지 칩과 통신할 수 없습니다. 퓨즈 값은 온라인 퓨즈 계산기와 데이터시트의 표로 두 번 확인하고, **바꾸기 전에 현재 값을 꼭 기록해 두세요.** 퓨즈에서 1은 "꺼짐(unprogrammed)", 0은 "켜짐(programmed)"이라는 반대 논리도 실수의 원인입니다.
 
@@ -276,7 +284,7 @@ $ arm-none-eabi-gdb build/ch05-blink.elf      # 데비안 패키지는 gdb-multi
 
 `print/x GPIOA->ODR`을 실행한 뒤 `next`로 `GPIOA->ODR ^= (1u << 5);` 줄을 지나고 다시 찍어 보세요. 5번 비트가 바뀌는 순간 보드의 LED도 함께 바뀝니다. 레지스터에 쓰는 일이 곧 하드웨어를 움직이는 일이라는 것을 디버거로 직접 확인하는 순간입니다. 23장에서 GDB와 디버깅 기법을 더 깊이 다룹니다.
 
-> ⚠️ 주의: 4장에서 PA13(SWDIO)과 PA14(SWCLK)의 모드를 바꾸면 디버거 연결이 끊긴다고 했습니다. 이런 프로그램이나 저전력 모드로 바로 들어가는 프로그램을 올리면, 다음 업로드 때 OpenOCD가 칩을 찾지 못합니다. 이때는 칩을 리셋 상태로 붙잡은 채 연결하는 **connect under reset** 방식을 씁니다. OpenOCD에서는 `-c "reset_config srst_only connect_assert_srst"`를 타깃 설정 뒤에 붙이고, STM32CubeProgrammer에서는 연결 모드를 "Under reset"으로 고릅니다. NUCLEO 보드는 ST-LINK의 리셋 선이 기본으로 타깃에 연결되어 있어서 이 방법이 동작합니다.
+> ⚠️ 주의: 4장에서 PA13(SWDIO)과 PA14(SWCLK)의 모드를 바꾸면 디버거 연결이 끊긴다고 했습니다. 이런 프로그램이나 저전력 모드로 바로 들어가는 프로그램을 올리면, 다음 업로드 때 OpenOCD가 칩을 찾지 못합니다. 이때는 칩을 리셋 상태로 붙잡은 채 연결하는 **connect under reset** 방식을 씁니다. OpenOCD에서는 `-c "reset_config srst_only srst_nogate connect_assert_srst"`를 타깃 설정 뒤에 붙이고, STM32CubeProgrammer에서는 연결 모드를 "Under reset"으로 고릅니다. NUCLEO 보드는 ST-LINK의 리셋 선이 기본으로 타깃에 연결되어 있어서 이 방법이 동작합니다.
 
 ## 5.7 ESP32: 아두이노 IDE에서 ESP-IDF로
 

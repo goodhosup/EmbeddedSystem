@@ -1300,6 +1300,213 @@ def fig_5_5():
 
 
 # ---------------------------------------------------------------------------
+# 6장
+# ---------------------------------------------------------------------------
+
+def fig_6_0():
+    s = Svg(880, 430)
+    s.text(440, 30, "그림 6-0  AVR 포트 레지스터 세 개(DDR, PORT, PIN)의 역할", 16, weight="bold")
+    # 레지스터 상자
+    s.box(40, 70, 170, 56, "DDRxn", "방향: 0 입력, 1 출력", BLUE_BG, BLUE, 14)
+    s.box(40, 150, 170, 56, "PORTxn", "출력 값 / 풀업 켜기", BLUE_BG, BLUE, 14)
+    s.box(40, 250, 170, 56, "PINxn", "핀 전압을 읽은 값", GREEN_BG, GREEN, 14)
+    # 출력 버퍼
+    s.poly([(330, 150), (330, 206), (380, 178)], "#ffffff", LINE, 2)
+    s.text(355, 230, "출력 버퍼", 11, color=MUTED)
+    s.line(212, 178, 328, 178, BLUE, 2.5, arrow=True)
+    s.line(212, 98, 355, 98, BLUE, 2)
+    s.line(355, 98, 355, 160, BLUE, 2, arrow=True)
+    s.text(285, 90, "버퍼를 켜고 끈다", 11, color=BLUE)
+    # 풀업
+    supply(s, 470, 70, "VCC")
+    resistor_v(s, 470, 70, 140, "내부 풀업")
+    s.rect(446, 140, 48, 24, "#ffffff", ORANGE, 4, 1.5)
+    s.text(470, 157, "스위치", 10, color=ORANGE)
+    s.line(470, 164, 470, 178, LINE, 2)
+    s.path("M212,166 L300,166 L300,128 L420,128 L420,152 L443,152", ORANGE, 1.5, arrow=True)
+    s.text(502, 157, "← DDR=0, PORT=1일 때만 닫힘", 11, "start", ORANGE)
+    # 핀 노드
+    s.line(382, 178, 640, 178, LINE, 2.5)
+    dot(s, 470, 178)
+    dot(s, 560, 178)
+    s.rect(640, 160, 60, 36, ORANGE_BG, ORANGE, 4, 2)
+    s.text(670, 184, "핀", 14, weight="bold")
+    # 입력 경로
+    s.line(560, 178, 560, 278, LINE, 2)
+    s.poly([(560, 278), (510, 258), (510, 298)], "#ffffff", LINE, 2)
+    s.text(535, 320, "슈미트 트리거 + 동기화", 11, color=MUTED)
+    s.line(508, 278, 214, 278, GREEN, 2.5, arrow=True)
+    # 표
+    tx, ty = 610, 240
+    hdr = ["DDR", "PORT", "핀 상태"]
+    ws = [50, 55, 160]
+    rows = [("0", "0", "입력, 떠 있음 (Hi-Z)"), ("0", "1", "입력, 내부 풀업"), ("1", "0", "출력 Low"), ("1", "1", "출력 High")]
+    x = tx
+    for h, w in zip(hdr, ws):
+        s.rect(x, ty, w, 26, GRAY_BG, LINE, 0, 1)
+        s.text(x + w / 2, ty + 18, h, 12, weight="bold")
+        x += w
+    for r, row in enumerate(rows):
+        x = tx
+        for v, w in zip(row, ws):
+            s.rect(x, ty + 26 * (r + 1), w, 26, "#ffffff", LINE, 0, 1)
+            s.text(x + w / 2, ty + 26 * (r + 1) + 18, v, 12)
+            x += w
+    s.text(440, 410, "PORT는 \"내가 쓴 값\", PIN은 \"핀에서 실제로 읽은 값\"이다. 출력 중에도 PIN으로 핀 전압을 읽을 수 있다", 12, color=MUTED)
+    s.save("ch06/fig6-0-avr-port-registers.svg")
+
+
+def fig_6_1():
+    s = Svg(900, 470)
+    s.text(450, 30, "그림 6-1  GPIO 핀 하나의 내부 구조 (STM32를 단순화)", 16, weight="bold")
+    s.rect(30, 50, 700, 400, "#fafbfc", MUTED, 12, 1.2)
+    s.text(60, 72, "칩 내부", 12, "start", MUTED)
+    # 출력 경로
+    s.box(50, 100, 140, 50, "ODR / BSRR", "출력 데이터", BLUE_BG, BLUE, 13)
+    s.box(50, 165, 140, 50, "주변장치 출력", "대체 기능 (AF)", ORANGE_BG, ORANGE, 13)
+    s.poly([(230, 105), (260, 120), (260, 195), (230, 210)], GRAY_BG)
+    s.text(245, 162, "MUX", 10, weight="bold")
+    s.line(192, 125, 228, 125, LINE, 2, arrow=True)
+    s.line(192, 190, 228, 190, LINE, 2, arrow=True)
+    s.text(245, 98, "MODER", 10, color=MUTED)
+    s.rect(290, 95, 140, 120, BLUE_BG, BLUE, 8, 1.5)
+    s.text(360, 118, "출력 드라이버", 13, weight="bold")
+    s.text(360, 142, "P-MOS (VDD 쪽)", 11)
+    s.text(360, 160, "N-MOS (GND 쪽)", 11)
+    s.text(360, 184, "OTYPER: 푸시풀/오픈드레인", 10, color=MUTED)
+    s.text(360, 200, "OSPEEDR: 속도", 10, color=MUTED)
+    s.line(262, 157, 286, 157, LINE, 2, arrow=True)
+    # 핀 노드
+    s.line(432, 157, 600, 157, LINE, 2.5)
+    s.line(600, 157, 600, 330, LINE, 2.5)
+    dot(s, 600, 250)
+    # 풀업/풀다운
+    supply(s, 520, 230, "VDD")
+    resistor_v(s, 520, 230, 290, None)
+    s.text(470, 268, "풀업", 11, color=MUTED)
+    s.line(520, 290, 520, 300, LINE, 2)
+    s.line(520, 300, 600, 300, LINE, 2)
+    s.text(560, 294, "PUPDR", 10, color=ORANGE)
+    # 보호 다이오드
+    s.rect(620, 200, 90, 100, "#ffffff", RED, 6, 1.2)
+    s.text(665, 225, "보호", 12, weight="bold", color=RED)
+    s.text(665, 243, "다이오드", 12, weight="bold", color=RED)
+    s.text(665, 265, "VDD · GND로", 10, color=MUTED)
+    s.text(665, 280, "전류를 흘림", 10, color=MUTED)
+    s.line(600, 250, 618, 250, RED, 1.5)
+    # 패드
+    s.line(600, 330, 760, 330, LINE, 2.5)
+    s.rect(760, 310, 80, 40, ORANGE_BG, ORANGE, 4, 2)
+    s.text(800, 336, "핀 (패드)", 13, weight="bold")
+    # 입력 경로
+    s.line(600, 330, 600, 390, LINE, 2)
+    s.poly([(560, 375), (560, 405), (530, 390)], "#ffffff", LINE, 2)
+    s.line(600, 390, 562, 390, LINE, 2)
+    s.text(545, 425, "슈미트 트리거", 11, color=MUTED)
+    s.line(528, 390, 194, 390, GREEN, 2.5, arrow=True)
+    s.box(50, 365, 140, 50, "IDR", "입력 데이터", GREEN_BG, GREEN, 13)
+    s.line(360, 390, 360, 302, ORANGE, 1.5, arrow=True)
+    s.box(290, 255, 140, 44, "주변장치 입력", "AF 입력 (RX 등)", ORANGE_BG, ORANGE, 12)
+    s.path("M600,350 L680,350 L680,420 L700,420", MUTED, 1.5, arrow=True)
+    s.text(640, 440, "아날로그 (ADC)", 11, color=MUTED)
+    s.text(450, 462, "출력은 MODER로 고른 경로가 드라이버를 움직이고, 입력은 모드와 상관없이 항상 IDR로 들어온다(아날로그 모드 제외)", 11, color=MUTED)
+    s.save("ch06/fig6-1-gpio-internal.svg")
+
+
+def fig_6_2():
+    s = Svg(900, 330)
+    s.text(450, 30, "그림 6-2  GPIOx_MODER의 비트 배치와 PA5 설정", 16, weight="bold")
+    x0, y0, w = 40, 90, 51
+    for pin in range(15, -1, -1):
+        i = 15 - pin
+        x = x0 + i * w
+        on = pin == 5
+        s.rect(x, y0, w, 40, ORANGE_BG if on else "#ffffff", ORANGE if on else LINE, 0, 2 if on else 1)
+        s.text(x + w / 2, y0 + 17, f"MODER{pin}", 10, weight="bold" if on else "normal")
+        s.text(x + w / 2, y0 + 33, "0 1" if on else "· ·", 11, color=INK if on else MUTED, weight="bold" if on else "normal")
+        s.text(x + 5, y0 - 6, str(pin * 2 + 1), 9, "start", MUTED)
+        s.text(x + w - 5, y0 - 6, str(pin * 2), 9, "end", MUTED)
+    s.text(x0, 66, "비트 번호 →", 11, "start", MUTED)
+    xm = x0 + 10 * w
+    s.path(f"M{xm + w / 2},{y0 + 42} L{xm + w / 2},{y0 + 70}", ORANGE, 1.5, arrow=True)
+    s.text(xm + w / 2, y0 + 88, "PA5 = 비트 11:10", 13, weight="bold", color=ORANGE)
+    rows = [("00", "입력 (리셋 기본값)"), ("01", "범용 출력"), ("10", "대체 기능 (AF)"), ("11", "아날로그")]
+    for i, (v, d) in enumerate(rows):
+        x = 60 + i * 205
+        s.rect(x, 210, 190, 40, BLUE_BG if v == "01" else "#ffffff", BLUE if v == "01" else LINE, 6, 1.2)
+        s.text(x + 20, 236, v, 14, "start", weight="bold")
+        s.text(x + 60, 236, d, 12, "start")
+    s.add(f'<text x="450" y="290" font-size="13" text-anchor="middle" fill="{INK}" xml:space="preserve" '
+          f'font-family="Consolas,\'D2Coding\',\'Noto Sans Mono\',monospace" font-weight="bold">'
+          f'GPIOA-&gt;MODER = (GPIOA-&gt;MODER &amp; ~(3u &lt;&lt; 10)) | (1u &lt;&lt; 10);</text>')
+    s.text(450, 314, "핀 n의 모드는 비트 2n+1:2n. 두 비트를 먼저 지우고 원하는 값을 쓴다", 12, color=MUTED)
+    s.save("ch06/fig6-2-moder.svg")
+
+
+def fig_6_3():
+    s = Svg(900, 440)
+    s.text(450, 30, "그림 6-3  ODR 읽기-수정-쓰기와 BSRR 원자적 쓰기", 16, weight="bold")
+    # 위: ODR RMW
+    s.text(40, 70, "(가) GPIOA->ODR ^= (1u << 5);  →  명령 세 개로 나뉜다", 14, "start", RED, "bold")
+    steps = [("LDR", "ODR 읽기", "0x0000"), ("EOR", "5번 비트 반전", "0x0020"), ("STR", "ODR 쓰기", "0x0020")]
+    for i, (op, d, v) in enumerate(steps):
+        x = 60 + i * 280
+        s.box(x, 90, 150, 54, op, d, BLUE_BG, BLUE, 14)
+        s.text(x + 75, 162, f"r3 = {v}", 12, color=MUTED)
+    s.line(212, 117, 338, 117, LINE, 2, arrow=True)
+    s.line(492, 117, 618, 117, LINE, 2, arrow=True)
+    # 인터럽트 끼어듦
+    s.rect(225, 175, 100, 50, ORANGE_BG, ORANGE, 8, 1.5)
+    s.text(275, 197, "인터럽트!", 13, weight="bold", color=ORANGE)
+    s.text(275, 214, "ODR 6번 = 1", 11)
+    s.path("M240,173 L240,150 L212,150", ORANGE, 1.5, arrow=True)
+    s.rect(560, 175, 300, 50, "#fdecec", RED, 8, 1.5)
+    s.text(710, 197, "ISR이 켠 6번 비트가 사라진다", 13, weight="bold", color=RED)
+    s.text(710, 214, "STR이 읽어 둔 옛 값(0x0000)을 바탕으로 쓰기 때문", 11, color=MUTED)
+    # 아래: BSRR
+    s.text(40, 280, "(나) GPIOA->BSRR = (1u << 5);  →  쓰기 한 번", 14, "start", GREEN, "bold")
+    s.box(60, 300, 150, 54, "STR", "BSRR 쓰기", GREEN_BG, GREEN, 14)
+    s.line(212, 327, 300, 327, LINE, 2, arrow=True)
+    s.rect(300, 300, 560, 54, "#ffffff", GREEN, 8, 1.5)
+    s.text(580, 322, "1을 쓴 비트만 바뀌고, 0을 쓴 비트는 그대로 둔다", 13, weight="bold")
+    s.text(580, 342, "읽지 않으므로 끼어들 틈이 없다 (원자적)", 12, color=MUTED)
+    # BSRR 배치
+    s.rect(60, 375, 400, 34, BLUE_BG, BLUE, 0, 1.2)
+    s.text(260, 397, "BR15 … BR0 (비트 31:16) : 1을 쓰면 Low", 12, weight="bold")
+    s.rect(460, 375, 400, 34, ORANGE_BG, ORANGE, 0, 1.2)
+    s.text(660, 397, "BS15 … BS0 (비트 15:0) : 1을 쓰면 High", 12, weight="bold")
+    s.text(450, 430, "같은 핀의 BS와 BR을 동시에 1로 쓰면 BS(High)가 우선한다 (RM0383 GPIO 절)", 11, color=MUTED)
+    s.save("ch06/fig6-3-odr-vs-bsrr.svg")
+
+
+def fig_6_4():
+    s = Svg(900, 400)
+    s.text(450, 30, "그림 6-4  대체 기능 멀티플렉서: PA2를 USART2_TX로 쓰기", 16, weight="bold")
+    afs = [("AF0", "시스템"), ("AF1", "TIM1/2"), ("AF2", "TIM3~5"), ("AF3", "TIM9~11"), ("AF4", "I2C"),
+           ("AF5", "SPI"), ("AF6", "SPI"), ("AF7", "USART1/2"), ("AF8", "USART6"), ("…", ""), ("AF15", "이벤트")]
+    for i, (a, b) in enumerate(afs):
+        y = 56 + i * 28
+        on = a == "AF7"
+        s.rect(60, y, 170, 24, ORANGE_BG if on else "#ffffff", ORANGE if on else MUTED, 3, 1.5 if on else 1)
+        s.text(72, y + 17, a, 12, "start", weight="bold")
+        s.text(220, y + 17, b, 11, "end", MUTED if not on else INK)
+        s.line(232, y + 12, 330, 120 + i * 10, ORANGE if on else "#c9d2dc", 2 if on else 1)
+    s.poly([(330, 100), (380, 130), (380, 260), (330, 290)], GRAY_BG, LINE, 2)
+    s.text(355, 200, "MUX", 12, weight="bold")
+    s.line(382, 195, 500, 195, ORANGE, 2.5, arrow=True)
+    s.box(502, 170, 110, 50, "PA2", "핀", ORANGE_BG, ORANGE, 15)
+    s.line(355, 290, 355, 330, BLUE, 1.5)
+    s.line(355, 330, 520, 330, BLUE, 1.5)
+    s.text(530, 334, "GPIOA_AFRL의 AFRL2 (비트 11:8) = 0111 (7)", 13, "start", BLUE, "bold")
+    s.text(530, 356, "그리고 GPIOA_MODER의 MODER2 = 10 (대체 기능)", 13, "start", BLUE, "bold")
+    s.text(640, 120, "어떤 핀이 어떤 AF를 가지는지는", 12, "start", MUTED)
+    s.text(640, 140, "데이터시트(DS10314)의", 12, "start", MUTED)
+    s.text(640, 160, "대체 기능 매핑 표에 있다", 12, "start", MUTED)
+    s.text(450, 388, "AF 번호의 의미는 핀마다 다르다. 이 그림의 주변장치 이름은 STM32F411의 일반적인 배정을 단순화한 것이다", 11, color=MUTED)
+    s.save("ch06/fig6-4-af-mux.svg")
+
+
+# ---------------------------------------------------------------------------
 # 14장 UART
 # ---------------------------------------------------------------------------
 
