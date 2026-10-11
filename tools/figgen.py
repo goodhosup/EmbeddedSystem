@@ -822,9 +822,9 @@ def fig_3_2():
     s.save("ch03/fig3-2-stm32f411-block.svg")
 
 
-def fig_3_3():
+def fig_3_4():
     s = Svg(860, 400)
-    s.text(430, 30, "그림 3-3  AVR의 하버드 구조와 Cortex-M의 단일 메모리 맵", 16, weight="bold")
+    s.text(430, 30, "그림 3-4  AVR의 하버드 구조와 Cortex-M의 단일 메모리 맵", 16, weight="bold")
     # AVR
     s.text(210, 64, "(가) AVR: 주소 공간이 둘로 나뉜다", 14, weight="bold", color=GREEN)
     s.box(150, 90, 120, 60, "CPU", None, BLUE_BG, BLUE)
@@ -854,12 +854,12 @@ def fig_3_3():
     s.line(640, 152, 640, 196, BLUE, 2.5, both=True)
     s.text(650, 178, "I-Code · D-Code · 시스템 버스", 11, "start", BLUE)
     s.text(640, 378, "주소 하나가 곧 장소 하나. 포인터 하나로 어디든 읽는다", 12, color=BLUE, weight="bold")
-    s.save("ch03/fig3-3-harvard-vs-unified.svg")
+    s.save("ch03/fig3-4-harvard-vs-unified.svg")
 
 
-def fig_3_4():
+def fig_3_5():
     s = Svg(820, 520)
-    s.text(410, 30, "그림 3-4  Cortex-M 메모리 맵과 STM32F411의 실제 배치", 16, weight="bold")
+    s.text(410, 30, "그림 3-5  Cortex-M 메모리 맵과 STM32F411의 실제 배치", 16, weight="bold")
     regions = [
         ("0xE000 0000", "시스템 (코어 주변장치)", "NVIC · SysTick · SCB · 디버그", GRAY_BG),
         ("0xA000 0000", "외부 장치", "F411에는 사용하지 않음", "#ffffff"),
@@ -894,12 +894,12 @@ def fig_3_4():
     s.text(zx + 120, 368, "GPIOA 시작 주소 + 0x14", 12, color=MUTED)
     s.text(410, 480, "주소는 아래가 작고 위가 크다. 칸 크기는 실제 비율과 다르다", 12, color=MUTED)
     s.text(410, 500, "출처: STM32F411 레퍼런스 매뉴얼(RM0383) 메모리 맵 절, Cortex-M4 프로그래밍 매뉴얼(PM0214)", 11, color=MUTED)
-    s.save("ch03/fig3-4-memory-map.svg")
+    s.save("ch03/fig3-5-memory-map.svg")
 
 
-def fig_3_5():
+def fig_3_3():
     s = Svg(820, 520)
-    s.text(410, 30, "그림 3-5  Cortex-M4 코어 레지스터", 16, weight="bold")
+    s.text(410, 30, "그림 3-3  Cortex-M4 코어 레지스터", 16, weight="bold")
     x, w, h = 120, 180, 22
     for i in range(13):
         y = 60 + i * h
@@ -933,7 +933,7 @@ def fig_3_5():
     s.rect(sx, 324, 220, 40, BLUE_BG, BLUE, 6, 1.2)
     s.text(sx + 110, 349, "S0~S31 · FPSCR", 13, weight="bold")
     s.text(410, 505, "모든 레지스터는 32비트. R0~R3은 함수 인자와 반환값을 전달한다 (AAPCS)", 12, color=MUTED)
-    s.save("ch03/fig3-5-core-registers.svg")
+    s.save("ch03/fig3-3-core-registers.svg")
 
 
 def fig_3_6():
@@ -1066,9 +1066,9 @@ def fig_4_1():
     s.save("ch04/fig4-1-bit-ops.svg")
 
 
-def fig_4_2():
+def fig_4_3():
     s = Svg(900, 440)
-    s.text(450, 30, "그림 4-2  레지스터 주소와 구조체 멤버가 겹쳐지는 모습", 16, weight="bold")
+    s.text(450, 30, "그림 4-3  레지스터 주소와 구조체 멤버가 겹쳐지는 모습", 16, weight="bold")
     regs = ["MODER", "OTYPER", "OSPEEDR", "PUPDR", "IDR", "ODR", "BSRR", "LCKR"]
     x, y0, h = 140, 70, 34
     s.text(x + 90, 60, "메모리 (GPIOA 영역)", 13, weight="bold", color=ORANGE)
@@ -1087,12 +1087,12 @@ def fig_4_2():
     mono(s, 140, y0 + 8 * h + 40, "GPIOA = (GPIO_TypeDef *)0x40020000", 13, INK, "start", "bold")
     mono(s, 140, y0 + 8 * h + 64, "GPIOA->ODR  →  0x40020000 + 0x14 = 0x40020014", 13, BLUE, "start", "bold")
     s.text(450, 425, "구조체의 시작을 주변장치의 시작 주소에 맞추면, 멤버 하나하나가 레지스터 하나하나에 겹쳐진다", 12, color=MUTED)
-    s.save("ch04/fig4-2-struct-overlay.svg")
+    s.save("ch04/fig4-3-struct-overlay.svg")
 
 
-def fig_4_3():
+def fig_4_2():
     s = Svg(880, 430)
-    s.text(440, 30, "그림 4-3  volatile이 없을 때 컴파일러가 루프를 바꿔 버리는 과정", 16, weight="bold")
+    s.text(440, 30, "그림 4-2  volatile이 없을 때 컴파일러가 루프를 바꿔 버리는 과정", 16, weight="bold")
 
     def code_box(x, y, w, lines, title, col, fill):
         s.rect(x, y, w, 30 + len(lines) * 22, fill, col, 8, 1.5)
@@ -1119,7 +1119,7 @@ def fig_4_3():
     s.text(595, 322, "컴파일러의 생각: \"루프 안에서 ready를 바꾸는 코드가 없으니 값은 변하지 않는다\"", 12, weight="bold")
     s.text(595, 342, "ISR은 컴파일러가 보기에 main과 상관없이 따로 불리는 함수라서, 그 효과를 계산에 넣지 않는다", 11, color=MUTED)
     s.text(440, 410, "어셈블리는 Cortex-M(Thumb-2)을 단순화한 것이다. 실제 출력은 컴파일러와 옵션에 따라 다르다", 12, color=MUTED)
-    s.save("ch04/fig4-3-volatile.svg")
+    s.save("ch04/fig4-2-volatile.svg")
 
 
 # ---------------------------------------------------------------------------
@@ -1159,9 +1159,9 @@ def fig_5_1():
     s.save("ch05/fig5-1-upload-paths.svg")
 
 
-def fig_5_2():
+def fig_5_3():
     s = Svg(900, 330)
-    s.text(450, 30, "그림 5-2  아두이노 IDE가 [업로드] 버튼 뒤에서 하는 일", 16, weight="bold")
+    s.text(450, 30, "그림 5-3  아두이노 IDE가 [업로드] 버튼 뒤에서 하는 일", 16, weight="bold")
     steps = [("스케치", ".ino"), ("전처리", ".cpp로 변환"), ("컴파일", "avr-g++"), ("링크", "코어 라이브러리"),
              ("변환", "avr-objcopy → .hex"), ("업로드", "avrdude")]
     for i, (a, b) in enumerate(steps):
@@ -1181,12 +1181,12 @@ def fig_5_2():
     s.rect(60, 240, 780, 66, "#fafbfc", MUTED, 8, 1)
     s.text(450, 264, "환경 설정에서 \"컴파일과 업로드 중 자세한 출력 표시\"를 켜면 실제로 실행되는 명령이 모두 보인다", 13, weight="bold")
     s.text(450, 288, "이 장에서는 같은 일을 avr-gcc, avr-objcopy, avrdude를 직접 실행해서 해 본다", 12, color=MUTED)
-    s.save("ch05/fig5-2-arduino-build.svg")
+    s.save("ch05/fig5-3-arduino-build.svg")
 
 
-def fig_5_3():
+def fig_5_4():
     s = Svg(880, 430)
-    s.text(440, 30, "그림 5-3  USBasp와 ATmega128의 ISP 연결", 16, weight="bold")
+    s.text(440, 30, "그림 5-4  USBasp와 ATmega128의 ISP 연결", 16, weight="bold")
     # 10핀 헤더
     s.text(135, 66, "USBasp 10핀 ISP 커넥터", 14, weight="bold", color=BLUE)
     s.text(135, 84, "(위에서 본 모습, ▶가 1번 핀)", 11, color=MUTED)
@@ -1220,12 +1220,12 @@ def fig_5_3():
     s.rect(60, 370, 760, 46, ORANGE_BG, ORANGE, 8, 1.2)
     s.text(440, 391, "주의: ATmega128의 ISP는 SPI 핀(PB2 MOSI, PB3 MISO)이 아니라 PE0, PE1을 쓴다", 13, weight="bold", color=RED)
     s.text(440, 408, "키트의 ISP 커넥터가 이미 올바르게 배선되어 있는지 회로도로 확인한다", 12, color=MUTED)
-    s.save("ch05/fig5-3-usbasp-isp.svg")
+    s.save("ch05/fig5-4-usbasp-isp.svg")
 
 
-def fig_5_4():
+def fig_5_2():
     s = Svg(900, 400)
-    s.text(450, 30, "그림 5-4  툴체인의 구성", 16, weight="bold")
+    s.text(450, 30, "그림 5-2  툴체인의 구성", 16, weight="bold")
     items = [("소스", ".c · .h", GREEN_BG, GREEN), ("컴파일러", "gcc → .o", BLUE_BG, BLUE),
              ("링커", "ld + 링커 스크립트", BLUE_BG, BLUE), ("실행 파일", ".elf", "#ffffff", LINE),
              ("objcopy", "→ .bin · .hex", BLUE_BG, BLUE)]
@@ -1256,7 +1256,7 @@ def fig_5_4():
     for i, (a, b) in enumerate(rows):
         s.text(130, 300 + i * 22, a, 12, "start", weight="bold")
         s.text(300, 300 + i * 22, b, 12, "start", MUTED)
-    s.save("ch05/fig5-4-toolchain.svg")
+    s.save("ch05/fig5-2-toolchain.svg")
 
 
 def fig_5_5():
@@ -1303,9 +1303,9 @@ def fig_5_5():
 # 6장
 # ---------------------------------------------------------------------------
 
-def fig_6_0():
+def fig_6_2():
     s = Svg(880, 430)
-    s.text(440, 30, "그림 6-0  AVR 포트 레지스터 세 개(DDR, PORT, PIN)의 역할", 16, weight="bold")
+    s.text(440, 30, "그림 6-2  AVR 포트 레지스터 세 개(DDR, PORT, PIN)의 역할", 16, weight="bold")
     # 레지스터 상자
     s.box(40, 70, 170, 56, "DDRxn", "방향: 0 입력, 1 출력", BLUE_BG, BLUE, 14)
     s.box(40, 150, 170, 56, "PORTxn", "출력 값 / 풀업 켜기", BLUE_BG, BLUE, 14)
@@ -1353,7 +1353,7 @@ def fig_6_0():
             s.text(x + w / 2, ty + 26 * (r + 1) + 18, v, 12)
             x += w
     s.text(440, 410, "PORT는 \"내가 쓴 값\", PIN은 \"핀에서 실제로 읽은 값\"이다. 출력 중에도 PIN으로 핀 전압을 읽을 수 있다", 12, color=MUTED)
-    s.save("ch06/fig6-0-avr-port-registers.svg")
+    s.save("ch06/fig6-2-avr-port-registers.svg")
 
 
 def fig_6_1():
@@ -1413,9 +1413,9 @@ def fig_6_1():
     s.save("ch06/fig6-1-gpio-internal.svg")
 
 
-def fig_6_2():
+def fig_6_3():
     s = Svg(900, 330)
-    s.text(450, 30, "그림 6-2  GPIOx_MODER의 비트 배치와 PA5 설정", 16, weight="bold")
+    s.text(450, 30, "그림 6-3  GPIOx_MODER의 비트 배치와 PA5 설정", 16, weight="bold")
     x0, y0, w = 40, 90, 51
     for pin in range(15, -1, -1):
         i = 15 - pin
@@ -1440,12 +1440,12 @@ def fig_6_2():
           f'font-family="Consolas,\'D2Coding\',\'Noto Sans Mono\',monospace" font-weight="bold">'
           f'GPIOA-&gt;MODER = (GPIOA-&gt;MODER &amp; ~(3u &lt;&lt; 10)) | (1u &lt;&lt; 10);</text>')
     s.text(450, 314, "핀 n의 모드는 비트 2n+1:2n. 두 비트를 먼저 지우고 원하는 값을 쓴다", 12, color=MUTED)
-    s.save("ch06/fig6-2-moder.svg")
+    s.save("ch06/fig6-3-moder.svg")
 
 
-def fig_6_3():
+def fig_6_4():
     s = Svg(900, 440)
-    s.text(450, 30, "그림 6-3  ODR 읽기-수정-쓰기와 BSRR 원자적 쓰기", 16, weight="bold")
+    s.text(450, 30, "그림 6-4  ODR 읽기-수정-쓰기와 BSRR 원자적 쓰기", 16, weight="bold")
     # 위: ODR RMW
     s.text(40, 70, "(가) GPIOA->ODR ^= (1u << 5);  →  명령 세 개로 나뉜다", 14, "start", RED, "bold")
     steps = [("LDR", "ODR 읽기", "0x0000"), ("EOR", "5번 비트 반전", "0x0020"), ("STR", "ODR 쓰기", "0x0020")]
@@ -1476,12 +1476,12 @@ def fig_6_3():
     s.rect(460, 375, 400, 34, ORANGE_BG, ORANGE, 0, 1.2)
     s.text(660, 397, "BS15 … BS0 (비트 15:0) : 1을 쓰면 High", 12, weight="bold")
     s.text(450, 430, "같은 핀의 BS와 BR을 동시에 1로 쓰면 BS(High)가 우선한다 (RM0383 GPIO 절)", 11, color=MUTED)
-    s.save("ch06/fig6-3-odr-vs-bsrr.svg")
+    s.save("ch06/fig6-4-odr-vs-bsrr.svg")
 
 
-def fig_6_4():
+def fig_6_5():
     s = Svg(900, 400)
-    s.text(450, 30, "그림 6-4  대체 기능 멀티플렉서: PA2를 USART2_TX로 쓰기", 16, weight="bold")
+    s.text(450, 30, "그림 6-5  대체 기능 멀티플렉서: PA2를 USART2_TX로 쓰기", 16, weight="bold")
     afs = [("AF0", "시스템"), ("AF1", "TIM1/2"), ("AF2", "TIM3~5"), ("AF3", "TIM9~11"), ("AF4", "I2C"),
            ("AF5", "SPI"), ("AF6", "SPI"), ("AF7", "USART1/2"), ("AF8", "USART6"), ("…", ""), ("AF15", "이벤트")]
     for i, (a, b) in enumerate(afs):
@@ -1503,7 +1503,7 @@ def fig_6_4():
     s.text(640, 140, "데이터시트(DS10314)의", 12, "start", MUTED)
     s.text(640, 160, "대체 기능 매핑 표에 있다", 12, "start", MUTED)
     s.text(450, 388, "AF 번호의 의미는 핀마다 다르다. 이 그림의 주변장치 이름은 STM32F411의 일반적인 배정을 단순화한 것이다", 11, color=MUTED)
-    s.save("ch06/fig6-4-af-mux.svg")
+    s.save("ch06/fig6-5-af-mux.svg")
 
 
 # ---------------------------------------------------------------------------
@@ -2141,9 +2141,9 @@ def fig_11_1():
     s.save("ch11/fig11-1-lowpower-modes.svg")
 
 
-def fig_11_2():
+def fig_11_3():
     s = Svg(900, 400)
-    s.text(450, 30, "그림 11-2  동작–슬립 반복 시 전류 프로파일과 평균 전류", 16, weight="bold")
+    s.text(450, 30, "그림 11-3  동작–슬립 반복 시 전류 프로파일과 평균 전류", 16, weight="bold")
     x0, y0, w = 110, 300, 740
     s.line(x0, y0, x0 + w + 10, y0, MUTED, 1.2, arrow=True)
     s.line(x0, y0, x0, 60, MUTED, 1.2, arrow=True)
@@ -2173,12 +2173,12 @@ def fig_11_2():
     s.text(724, 116, "= (0.2 + 0.0998) ÷ 10 ≈ 0.030 mA = 30 µA", 12, weight="bold")
     s.text(724, 144, "CR2032 (220 mAh) ÷ 30 µA ≈ 7300 시간", 11)
     s.text(724, 166, "≈ 300일 (자체 방전·온도 여유 전)", 12, weight="bold", color=ORANGE)
-    s.save("ch11/fig11-2-current-profile.svg")
+    s.save("ch11/fig11-3-current-profile.svg")
 
 
-def fig_11_3():
+def fig_11_2():
     s = Svg(900, 400)
-    s.text(450, 30, "그림 11-3  전류 측정 연결 방법", 16, weight="bold")
+    s.text(450, 30, "그림 11-2  전류 측정 연결 방법", 16, weight="bold")
     # (가) 멀티미터
     s.text(220, 66, "(가) 멀티미터를 직렬로 (평균 전류)", 14, weight="bold", color=BLUE)
     s.box(60, 100, 100, 60, "전원", "3.3 V", GREEN_BG, GREEN, 14)
@@ -2208,7 +2208,108 @@ def fig_11_3():
     s.rect(60, 340, 400, 46, GRAY_BG, MUTED, 8, 1)
     s.text(260, 360, "전용 장비: 전류를 넓은 범위로 연속 기록한다", 12, weight="bold")
     s.text(260, 378, "(전력 프로파일러, 저전력 측정용 확장 보드 등)", 11, color=MUTED)
-    s.save("ch11/fig11-3-current-measurement.svg")
+    s.save("ch11/fig11-2-current-measurement.svg")
+
+
+# ---------------------------------------------------------------------------
+# 12장
+# ---------------------------------------------------------------------------
+
+def fig_12_1():
+    s = Svg(900, 440)
+    s.text(450, 30, "그림 12-1  디지털 온도계의 전체 연결도", 16, weight="bold")
+    # 우노
+    s.rect(330, 70, 240, 300, BLUE_BG, BLUE, 12, 2)
+    s.text(450, 96, "아두이노 우노", 15, weight="bold")
+    s.text(450, 116, "ATmega328P", 12, color=MUTED)
+    pins_l = [("5V", 150), ("A0", 200), ("AREF", 250), ("GND", 300)]
+    pins_r = [("D2", 150), ("D8", 200), ("D13", 250), ("USB", 300)]
+    for n, y in pins_l:
+        s.rect(330, y - 12, 56, 24, "#ffffff", BLUE, 3, 1)
+        s.text(358, y + 5, n, 12, weight="bold")
+    for n, y in pins_r:
+        s.rect(514, y - 12, 56, 24, "#ffffff", BLUE, 3, 1)
+        s.text(542, y + 5, n, 12, weight="bold")
+    # TMP36
+    s.rect(90, 160, 120, 110, ORANGE_BG, ORANGE, 8, 1.5)
+    s.text(150, 186, "TMP36", 14, weight="bold")
+    s.text(150, 206, "온도 센서", 11, color=MUTED)
+    for i, (n, y) in enumerate([("+Vs", 150), ("Vout", 200), ("GND", 300)]):
+        pass
+    s.line(210, 175, 280, 175, LINE, 2)
+    s.line(280, 175, 280, 150, LINE, 2)
+    s.line(280, 150, 328, 150, RED, 2)
+    s.line(210, 205, 328, 200, ORANGE, 2.5)
+    s.line(210, 245, 260, 245, LINE, 2)
+    s.line(260, 245, 260, 300, LINE, 2)
+    s.line(260, 300, 328, 300, LINE, 2)
+    s.text(214, 170, "+Vs", 10, "start", MUTED)
+    s.text(214, 200, "Vout", 10, "start", ORANGE)
+    s.text(214, 240, "GND", 10, "start", MUTED)
+    # 커패시터
+    s.line(300, 200, 300, 222, ORANGE, 1.5)
+    s.line(290, 222, 310, 222, LINE, 2)
+    s.line(290, 228, 310, 228, LINE, 2)
+    s.line(300, 228, 300, 300, LINE, 1.5)
+    s.text(286, 240, "0.1 µF", 10, "end", MUTED)
+    s.text(380, 255, "← 내부 1.1 V 기준", 10, "start", MUTED)
+    # 버튼, LED
+    s.box(650, 128, 140, 44, "버튼", "D2 ↔ GND (풀업)", GREEN_BG, GREEN, 13)
+    s.line(572, 150, 648, 150, LINE, 2)
+    s.box(650, 178, 140, 44, "경보 LED", "D8 → 330 Ω → GND", "#fdecec", RED, 13)
+    s.line(572, 200, 648, 200, LINE, 2)
+    s.box(650, 228, 140, 44, "상태 LED", "보드 내장 (1초 깜빡)", GRAY_BG, LINE, 13)
+    s.line(572, 250, 648, 250, LINE, 2)
+    s.box(650, 278, 140, 44, "PC", "시리얼 모니터 9600", GRAY_BG, LINE, 13)
+    s.line(572, 300, 648, 300, LINE, 2, both=True)
+    s.text(450, 400, "TMP36: 0 °C에서 500 mV, 1 °C당 10 mV. 출력 가까이에 0.1 µF 커패시터를 달아 잡음을 줄인다", 12, color=MUTED)
+    s.text(450, 420, "센서 배치: 칩과 레귤레이터의 열을 피해 보드에서 떨어뜨린다", 12, color=MUTED)
+    s.save("ch12/fig12-1-wiring.svg")
+
+
+def fig_12_2():
+    s = Svg(900, 440)
+    s.text(450, 30, "그림 12-2  소프트웨어 구성도", 16, weight="bold")
+    s.box(330, 60, 240, 60, "app (main.c)", "상태 머신, 단위 변환, 최저/최고", BLUE_BG, BLUE, 14)
+    mods = [("tick", "1 ms 틱, millis()", "Timer0 CTC"), ("button", "디바운싱, 짧게/길게", "PD2"),
+            ("sensor", "ADC, 평균, °C × 10", "ADC0, 1.1 V"), ("uart", "문자열 출력", "USART0 송신")]
+    for i, (n, d, hw) in enumerate(mods):
+        x = 95 + i * 200
+        s.box(x, 190, 180, 60, n, d, GREEN_BG, GREEN, 14)
+        s.line(450, 122, x + 90, 186, LINE, 1.5, arrow=True)
+        s.box(x + 15, 320, 150, 44, hw, None, GRAY_BG, LINE, 12)
+        s.line(x + 90, 252, x + 90, 316, LINE, 1.5, arrow=True)
+    s.text(14, 95, "응용", 12, "start", BLUE, "bold")
+    s.text(14, 225, "모듈", 12, "start", GREEN, "bold")
+    s.text(14, 347, "하드웨어", 12, "start", MUTED, "bold")
+    s.text(450, 400, "화살표는 \"부른다\"는 뜻이다. 아래 계층은 위 계층을 모른다 (의존성은 한 방향)", 12, color=MUTED)
+    s.text(450, 420, "모듈마다 .h(무엇을 하는가)와 .c(어떻게 하는가)를 나눈다. 24장에서 이 구조를 일반화한다", 12, color=MUTED)
+    s.save("ch12/fig12-2-software.svg")
+
+
+def fig_12_3():
+    s = Svg(900, 420)
+    s.text(450, 30, "그림 12-3  동작 상태 다이어그램 (경보 히스테리시스와 표시 단위)", 16, weight="bold")
+
+    def state(cx, cy, name, sub, fill, st):
+        s.add(f'<ellipse cx="{cx}" cy="{cy}" rx="110" ry="46" fill="{fill}" stroke="{st}" stroke-width="2"/>')
+        s.text(cx, cy - 4, name, 15, weight="bold")
+        s.text(cx, cy + 16, sub, 11, color=MUTED)
+
+    state(230, 150, "정상", "경보 LED 꺼짐", GREEN_BG, GREEN)
+    state(670, 150, "경보", "경보 LED 깜빡임", "#fdecec", RED)
+    s.path("M330,128 Q450,80 570,128", RED, 2, arrow=True)
+    s.text(450, 84, "온도 ≥ 30.0 °C", 13, color=RED, weight="bold")
+    s.path("M570,172 Q450,220 330,172", GREEN, 2, arrow=True)
+    s.text(450, 228, "온도 < 29.5 °C", 13, color=GREEN, weight="bold")
+    s.text(450, 252, "(0.5 °C 히스테리시스: 경계에서 깜빡이지 않게)", 11, color=MUTED)
+    # 단위 상태
+    s.rect(140, 290, 620, 100, "#fafbfc", MUTED, 10, 1)
+    s.text(450, 312, "두 상태 모두에서 버튼 처리 (상태와 독립)", 12, color=MUTED)
+    s.box(170, 324, 180, 50, "짧게 누름", "°C ↔ °F 표시 전환", BLUE_BG, BLUE, 13)
+    s.box(370, 324, 180, 50, "1초 이상 누름", "최저/최고 기록 초기화", ORANGE_BG, ORANGE, 13)
+    s.box(570, 324, 170, 50, "1초마다", "측정·출력", GRAY_BG, LINE, 13)
+    s.save("ch12/fig12-3-state.svg")
 
 
 # ---------------------------------------------------------------------------

@@ -44,7 +44,7 @@ AVR 코어의 핵심은 **범용 레지스터 32개(R0~R31)** 입니다. 모든 
 
 Cortex-M4는 Arm이 설계한 32비트 코어입니다. ST, NXP, Nordic 같은 칩 제조사들이 Arm에서 코어 설계를 사 와서 자신의 메모리와 주변장치를 붙여 칩을 만듭니다. 그래서 STM32와 nRF52는 제조사가 달라도 코어 부분은 같은 방식으로 동작하고, 코어에 관한 지식은 그대로 옮겨 갈 수 있습니다.
 
-![그림 3-5 Cortex-M4 코어 레지스터](../figures/ch03/fig3-5-core-registers.svg)
+![그림 3-3 Cortex-M4 코어 레지스터](../figures/ch03/fig3-3-core-registers.svg)
 
 Cortex-M4의 레지스터는 모두 32비트입니다.
 
@@ -76,7 +76,7 @@ STM32F411에는 EEPROM이 따로 없어서, 설정값을 남기려면 Flash의 �
 
 CPU가 메모리에서 무언가를 읽으려면 주소를 보냅니다. 그런데 AVR과 Cortex-M은 주소를 해석하는 방식이 다릅니다.
 
-![그림 3-3 AVR의 하버드 구조와 Cortex-M의 단일 메모리 맵](../figures/ch03/fig3-3-harvard-vs-unified.svg)
+![그림 3-4 AVR의 하버드 구조와 Cortex-M의 단일 메모리 맵](../figures/ch03/fig3-4-harvard-vs-unified.svg)
 
 AVR은 **하버드 구조(Harvard architecture)** 입니다. 프로그램을 담은 Flash와 데이터를 담은 SRAM이 서로 다른 주소 공간을 씁니다. 명령을 가져오는 길과 데이터를 읽고 쓰는 길이 따로 있어서 두 일을 동시에 할 수 있다는 장점이 있습니다. 대신 주소 `0x0100`이라는 숫자만으로는 어디를 가리키는지 알 수 없습니다. 프로그램 공간의 `0x0100`과 데이터 공간의 `0x0100`은 전혀 다른 곳입니다.
 
@@ -103,7 +103,7 @@ AVR의 데이터 공간을 자세히 보면 SRAM만 있는 것이 아닙니다(A
 
 이제 1장의 질문 하나에 답할 수 있습니다. STM32에서 `0x40020014`라는 주소는 어디서 왔을까요?
 
-![그림 3-4 Cortex-M 메모리 맵과 STM32F411의 실제 배치](../figures/ch03/fig3-4-memory-map.svg)
+![그림 3-5 Cortex-M 메모리 맵과 STM32F411의 실제 배치](../figures/ch03/fig3-5-memory-map.svg)
 
 Arm은 Cortex-M의 4 GB 주소 공간을 용도별로 나누어 정해 두었습니다. `0x0000 0000`부터는 코드, `0x2000 0000`부터는 SRAM, `0x4000 0000`부터는 주변장치, `0xE000 0000`부터는 NVIC나 SysTick 같은 코어 자체의 주변장치입니다. 칩 제조사는 이 큰 틀 안에서 자신의 메모리와 주변장치를 배치합니다.
 

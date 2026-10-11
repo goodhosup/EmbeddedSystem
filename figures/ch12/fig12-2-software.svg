@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="440" viewBox="0 0 900 440" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 12-2  소프트웨어 구성도</text>
+  <rect x="330.0" y="60.0" width="240.0" height="60.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="450.0" y="87.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">app (main.c)</text>
+  <text x="450.0" y="106.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">상태 머신, 단위 변환, 최저/최고</text>
+  <rect x="95.0" y="190.0" width="180.0" height="60.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="185.0" y="217.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">tick</text>
+  <text x="185.0" y="236.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">1 ms 틱, millis()</text>
+  <line x1="450.0" y1="122.0" x2="185.0" y2="186.0" stroke="#334e68" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="110.0" y="320.0" width="150.0" height="44.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="185.0" y="347.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">Timer0 CTC</text>
+  <line x1="185.0" y1="252.0" x2="185.0" y2="316.0" stroke="#334e68" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="295.0" y="190.0" width="180.0" height="60.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="385.0" y="217.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">button</text>
+  <text x="385.0" y="236.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">디바운싱, 짧게/길게</text>
+  <line x1="450.0" y1="122.0" x2="385.0" y2="186.0" stroke="#334e68" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="310.0" y="320.0" width="150.0" height="44.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="385.0" y="347.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">PD2</text>
+  <line x1="385.0" y1="252.0" x2="385.0" y2="316.0" stroke="#334e68" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="495.0" y="190.0" width="180.0" height="60.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="585.0" y="217.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">sensor</text>
+  <text x="585.0" y="236.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">ADC, 평균, °C × 10</text>
+  <line x1="450.0" y1="122.0" x2="585.0" y2="186.0" stroke="#334e68" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="510.0" y="320.0" width="150.0" height="44.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="585.0" y="347.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">ADC0, 1.1 V</text>
+  <line x1="585.0" y1="252.0" x2="585.0" y2="316.0" stroke="#334e68" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="695.0" y="190.0" width="180.0" height="60.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="785.0" y="217.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">uart</text>
+  <text x="785.0" y="236.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">문자열 출력</text>
+  <line x1="450.0" y1="122.0" x2="785.0" y2="186.0" stroke="#334e68" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="710.0" y="320.0" width="150.0" height="44.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="785.0" y="347.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">USART0 송신</text>
+  <line x1="785.0" y1="252.0" x2="785.0" y2="316.0" stroke="#334e68" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="14.0" y="95.0" font-size="12" text-anchor="start" fill="#2f6fdf" font-weight="bold">응용</text>
+  <text x="14.0" y="225.0" font-size="12" text-anchor="start" fill="#2f9e44" font-weight="bold">모듈</text>
+  <text x="14.0" y="347.0" font-size="12" text-anchor="start" fill="#616e7c" font-weight="bold">하드웨어</text>
+  <text x="450.0" y="400.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">화살표는 "부른다"는 뜻이다. 아래 계층은 위 계층을 모른다 (의존성은 한 방향)</text>
+  <text x="450.0" y="420.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">모듈마다 .h(무엇을 하는가)와 .c(어떻게 하는가)를 나눈다. 24장에서 이 구조를 일반화한다</text>
+</svg>

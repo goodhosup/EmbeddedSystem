@@ -127,7 +127,7 @@ int main(void) {
 
 디버그 빌드에서는 잘 동작합니다. 그런데 최적화를 켜면(`-O2`, `-Os`) 영원히 멈춥니다.
 
-![그림 4-3 volatile이 없을 때 컴파일러가 루프를 바꿔 버리는 과정](../figures/ch04/fig4-3-volatile.svg)
+![그림 4-2 volatile이 없을 때 컴파일러가 루프를 바꿔 버리는 과정](../figures/ch04/fig4-2-volatile.svg)
 
 컴파일러는 `main`을 최적화하면서 이렇게 생각합니다. "루프 안에서 `ready`를 바꾸는 코드가 없다. 그러니 `ready`를 매번 메모리에서 읽을 필요 없이 한 번만 읽으면 된다." ISR은 하드웨어가 아무 때나 끼어들어 실행하는 함수인데, 컴파일러는 그 사실을 모릅니다.
 
@@ -209,7 +209,7 @@ uint16_t v = pgm_read_word(&sine_table[i]);   /* Flash에서 읽기 (LPM 명령)
 
 3장에서 본 것처럼, 주변장치 하나의 레지스터들은 정해진 간격으로 이어져 있습니다. 이 배치를 구조체로 옮겨 적으면 코드가 훨씬 읽기 좋아집니다.
 
-![그림 4-2 레지스터 주소와 구조체 멤버가 겹쳐지는 모습](../figures/ch04/fig4-2-struct-overlay.svg)
+![그림 4-3 레지스터 주소와 구조체 멤버가 겹쳐지는 모습](../figures/ch04/fig4-3-struct-overlay.svg)
 
 ```c
 typedef struct {

@@ -339,6 +339,7 @@ typedef struct {
 #define RTC_CR_WUTE          (1u << 10)
 #define RTC_CR_WUTIE         (1u << 14)
 #define RTC_ISR_WUTWF        (1u << 2)
+#define RTC_ISR_INIT         (1u << 7)
 #define RTC_ISR_WUTF         (1u << 10)
 
 #define EXTI_LINE_RTC_WKUP   22u

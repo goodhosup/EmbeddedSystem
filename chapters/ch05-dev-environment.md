@@ -37,7 +37,7 @@
 
 **툴체인(toolchain)** 은 소스 코드를 타깃 보드에서 실행되는 바이너리로 바꾸고, 보드에 올리고, 디버깅하는 데 쓰는 도구들의 묶음입니다.
 
-![그림 5-4 툴체인의 구성](../figures/ch05/fig5-4-toolchain.svg)
+![그림 5-2 툴체인의 구성](../figures/ch05/fig5-2-toolchain.svg)
 
 - **컴파일러(compiler)**: C 소스 파일 하나를 기계어가 담긴 목적 파일(`.o`)로 바꿉니다. 아직 다른 파일의 함수나 변수가 어디에 있는지는 모릅니다.
 - **링커(linker)**: 여러 목적 파일과 라이브러리를 하나로 합치고, 각 함수와 변수에 실제 주소를 정해 줍니다. 어느 주소에 무엇을 둘지는 **링커 스크립트**가 알려 줍니다. 3장에서 본 Flash `0x0800 0000`, SRAM `0x2000 0000` 같은 정보가 여기에 들어 있습니다(21장).
@@ -64,7 +64,7 @@ AVR용 컴파일러는 `avr-gcc`, Cortex-M용은 `arm-none-eabi-gcc`입니다. �
 
 ### [업로드] 버튼 뒤에서 일어나는 일
 
-![그림 5-2 아두이노 IDE가 [업로드] 버튼 뒤에서 하는 일](../figures/ch05/fig5-2-arduino-build.svg)
+![그림 5-3 아두이노 IDE가 [업로드] 버튼 뒤에서 하는 일](../figures/ch05/fig5-3-arduino-build.svg)
 
 아두이노 IDE는 친절한 껍데기일 뿐, 안에서는 이 장에서 설명하는 도구들이 그대로 돌아갑니다.
 
@@ -143,7 +143,7 @@ avrdude -c arduino -p m328p -P /dev/ttyACM0 -b 115200 -U flash:w:blink.hex:i
 
 ATmega128 교육용 키트에는 대개 부트로더가 없습니다. 대신 **ISP(In-System Programming)** 라는 방법으로 칩의 Flash에 직접 씁니다. 가장 흔히 쓰는 ISP 프로그래머는 값싼 오픈소스 하드웨어인 **USBasp**입니다.
 
-![그림 5-3 USBasp와 ATmega128의 ISP 연결](../figures/ch05/fig5-3-usbasp-isp.svg)
+![그림 5-4 USBasp와 ATmega128의 ISP 연결](../figures/ch05/fig5-4-usbasp-isp.svg)
 
 USBasp의 10핀 커넥터를 키트의 ISP 커넥터에 꽂습니다. 대부분의 키트는 같은 핀 배치의 10핀 커넥터를 갖추고 있지만, 6핀 커넥터를 쓰는 키트도 있으니 키트의 회로도를 확인하세요.
 

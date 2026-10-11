@@ -47,9 +47,9 @@
 - 그림
   - 3-1 ATmega328P 블록 다이어그램 (단순화)
   - 3-2 STM32F411 블록 다이어그램 (단순화)
-  - 3-3 AVR의 하버드 구조와 Cortex-M의 단일 메모리 맵 비교
-  - 3-4 Cortex-M 메모리 맵 (코드, SRAM, 주변장치 영역)
-  - 3-5 코어 레지스터 (R0~R15, xPSR)
+  - 3-3 코어 레지스터 (R0~R15, xPSR)
+  - 3-4 AVR의 하버드 구조와 Cortex-M의 단일 메모리 맵 비교
+  - 3-5 Cortex-M 메모리 맵 (코드, SRAM, 주변장치 영역)
   - 3-6 버스 구조 (코어 – 버스 매트릭스 – AHB/APB – 주변장치)
   - 3-7 클럭 트리 (HSI/HSE → PLL → SYSCLK → AHB/APB 분주)
 
@@ -58,17 +58,17 @@
 - 실습: 우노, STM32
 - 그림
   - 4-1 비트 설정·해제·반전·검사 연산을 비트열로 표현
-  - 4-2 레지스터 주소와 구조체 멤버가 겹쳐지는 모습
-  - 4-3 `volatile`이 없을 때 컴파일러가 루프를 지워 버리는 과정
+  - 4-2 `volatile`이 없을 때 컴파일러가 루프를 지워 버리는 과정
+  - 4-3 레지스터 주소와 구조체 멤버가 겹쳐지는 모습
 
 ### 5장. 개발 환경 구축: 아두이노에서 레지스터까지
 - 아두이노 IDE로 첫 프로그램, 같은 프로그램을 avr-gcc와 avrdude로 빌드하고 올리기, ATmega128과 ISP 프로그래머, Arm GNU Toolchain·CMake·OpenOCD로 STM32 빌드와 디버깅, ESP32 개발 환경(아두이노 IDE, ESP-IDF), VS Code 설정
 - 실습: 우노(아두이노 IDE, avr-gcc + avrdude), ATmega128(USBasp ISP), STM32(arm-none-eabi-gcc, OpenOCD), ESP32(아두이노 IDE, ESP-IDF)
 - 그림
   - 5-1 보드별 업로드 경로 비교 (우노 부트로더, ATmega128 ISP, STM32 ST-LINK SWD, ESP32 USB-UART)
-  - 5-2 아두이노 IDE가 내부에서 하는 일 (스케치 → avr-gcc → avrdude)
-  - 5-3 USBasp와 ATmega128 ISP 연결도
-  - 5-4 툴체인 구성 (컴파일러, 링커, objcopy, OpenOCD, GDB의 역할)
+  - 5-2 툴체인 구성 (컴파일러, 링커, objcopy, OpenOCD, GDB의 역할)
+  - 5-3 아두이노 IDE가 내부에서 하는 일 (스케치 → avr-gcc → avrdude)
+  - 5-4 USBasp와 ATmega128 ISP 연결도
   - 5-5 VS Code 디버그 화면 안내
 
 ---
@@ -79,11 +79,11 @@
 - 아두이노 `digitalWrite`의 속을 열어 보기, AVR 포트 레지스터(DDRx, PORTx, PINx), STM32 GPIO 레지스터(MODER, OTYPER, PUPDR, IDR, ODR, BSRR), CMSIS와 HAL, 원자적 비트 조작, 대체 기능(AF)
 - 실습: 우노 → STM32, ATmega128 박스
 - 그림
-  - 6-0 AVR 포트 레지스터 세 개(DDR, PORT, PIN)의 역할
   - 6-1 GPIO 핀 하나의 내부 구조 (입력 버퍼, 출력 드라이버, 풀업/풀다운)
-  - 6-2 MODER 레지스터 비트 배치와 PA5 설정
-  - 6-3 ODR 읽기-수정-쓰기와 BSRR 원자적 쓰기 비교
-  - 6-4 대체 기능 멀티플렉서
+  - 6-2 AVR 포트 레지스터 세 개(DDR, PORT, PIN)의 역할
+  - 6-3 MODER 레지스터 비트 배치와 PA5 설정
+  - 6-4 ODR 읽기-수정-쓰기와 BSRR 원자적 쓰기 비교
+  - 6-5 대체 기능 멀티플렉서
 
 ### 7장. 인터럽트
 - 폴링과 인터럽트, 예외와 벡터 테이블, NVIC와 우선순위, EXTI, ISR 작성 규칙, 공유 변수, 버튼 디바운싱
@@ -128,8 +128,8 @@
 - 실습: 우노 → STM32
 - 그림
   - 11-1 저전력 모드별 소비 전류와 깨어나는 시간 비교
-  - 11-2 동작–슬립 반복 시 전류 프로파일과 평균 전류 계산
-  - 11-3 전류 측정 연결 방법
+  - 11-2 전류 측정 연결 방법
+  - 11-3 동작–슬립 반복 시 전류 프로파일과 평균 전류 계산
 
 ### 12장. 프로젝트: 디지털 온도계
 - 요구사항 정리, 하드웨어 연결, ADC + 타이머 + UART + 버튼 통합, 코드 구조 정리, 회고

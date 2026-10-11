@@ -26,7 +26,11 @@ void EXTI15_10_IRQHandler(void)
 void RTC_WKUP_IRQHandler(void)
 {
     if (RTC->ISR & RTC_ISR_WUTF) {
-        RTC->ISR &= ~RTC_ISR_WUTF;              /* WUTF는 0을 써서 지운다 */
+        /* WUTF는 0을 써서 지운다(rc_w0). &= 로 쓰면 읽은 뒤 쓰기 전에 세트된 다른 플래그
+           (ALRAF 등)까지 0으로 지울 수 있으므로, 지울 비트에만 0을 쓰고 나머지는 1을 쓴다.
+           INIT(쓰기 가능한 제어 비트)은 현재 값을 보존한다.
+           ISR[13:8]의 플래그는 쓰기 보호(WPR)를 풀지 않아도 지울 수 있다. */
+        RTC->ISR = ~(RTC_ISR_WUTF | RTC_ISR_INIT) | (RTC->ISR & RTC_ISR_INIT);
     }
     EXTI->PR = 1u << EXTI_LINE_RTC_WKUP;        /* EXTI 라인 22도 지운다 */
 }

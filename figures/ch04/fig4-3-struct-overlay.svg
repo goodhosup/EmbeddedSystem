@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="440" viewBox="0 0 900 440" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
   <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
   <rect width="100%" height="100%" fill="#ffffff"/>
-  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 4-2  레지스터 주소와 구조체 멤버가 겹쳐지는 모습</text>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 4-3  레지스터 주소와 구조체 멤버가 겹쳐지는 모습</text>
   <text x="230.0" y="60.0" font-size="13" text-anchor="middle" fill="#d9730d" font-weight="bold">메모리 (GPIOA 영역)</text>
   <text x="620.0" y="60.0" font-size="13" text-anchor="middle" fill="#2f6fdf" font-weight="bold">C 구조체 GPIO_TypeDef</text>
   <rect x="140.0" y="70.0" width="180.0" height="34.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>

@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="440" viewBox="0 0 900 440" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
   <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
   <rect width="100%" height="100%" fill="#ffffff"/>
-  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 6-3  ODR 읽기-수정-쓰기와 BSRR 원자적 쓰기</text>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 6-4  ODR 읽기-수정-쓰기와 BSRR 원자적 쓰기</text>
   <text x="40.0" y="70.0" font-size="14" text-anchor="start" fill="#d64545" font-weight="bold">(가) GPIOA-&gt;ODR ^= (1u &lt;&lt; 5);  →  명령 세 개로 나뉜다</text>
   <rect x="60.0" y="90.0" width="150.0" height="54.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
   <text x="135.0" y="114.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">LDR</text>
