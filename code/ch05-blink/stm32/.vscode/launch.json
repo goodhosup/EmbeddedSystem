@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "STM32 디버그 (OpenOCD)",
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "openocd",
+            "cwd": "${workspaceFolder}",
+            "executable": "build/ch05-blink.elf",
+            "configFiles": [
+                "interface/stlink.cfg",
+                "target/stm32f4x.cfg"
+            ],
+            "runToEntryPoint": "main",
+            "preLaunchTask": "make",
+            "svdFile": "${workspaceFolder}/STM32F411.svd"
+        }
+    ]
+}

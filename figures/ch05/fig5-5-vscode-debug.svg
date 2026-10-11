@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="470" viewBox="0 0 900 470" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 5-5  VS Code 디버그 화면의 구성 (개념도)</text>
+  <rect x="30.0" y="50.0" width="840.0" height="400.0" rx="8" fill="#ffffff" stroke="#334e68" stroke-width="1.5"/>
+  <rect x="30.0" y="50.0" width="840.0" height="34.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1"/>
+  <text x="450.0" y="72.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">① 디버그 툴바:  계속 · 한 줄 실행 · 함수 안으로 · 함수 밖으로 · 다시 시작 · 중지</text>
+  <rect x="40.0" y="94.0" width="250.0" height="346.0" rx="6" fill="#fafbfc" stroke="#616e7c" stroke-width="1"/>
+  <text x="52.0" y="118.0" font-size="12" text-anchor="start" fill="#2f6fdf" font-weight="bold">② 변수</text>
+  <text x="64.0" y="138.0" font-size="11" text-anchor="start" fill="#1f2933" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">count = 42</text>
+  <text x="64.0" y="156.0" font-size="11" text-anchor="start" fill="#1f2933" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">ready = 1 '\001'</text>
+  <text x="52.0" y="210.0" font-size="12" text-anchor="start" fill="#2f6fdf" font-weight="bold">③ 조사식</text>
+  <text x="64.0" y="230.0" font-size="11" text-anchor="start" fill="#1f2933" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">GPIOA-&gt;ODR = 0x20</text>
+  <text x="52.0" y="284.0" font-size="12" text-anchor="start" fill="#2f6fdf" font-weight="bold">④ 호출 스택</text>
+  <text x="64.0" y="304.0" font-size="11" text-anchor="start" fill="#1f2933" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">led_toggle()  led.c:18</text>
+  <text x="64.0" y="322.0" font-size="11" text-anchor="start" fill="#1f2933" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">main()        main.c:29</text>
+  <text x="52.0" y="376.0" font-size="12" text-anchor="start" fill="#2f6fdf" font-weight="bold">⑤ 주변장치 레지스터</text>
+  <text x="64.0" y="396.0" font-size="11" text-anchor="start" fill="#1f2933" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">GPIOA ▸ MODER, ODR ...</text>
+  <text x="64.0" y="414.0" font-size="11" text-anchor="start" fill="#1f2933" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">RCC ▸ AHB1ENR ...</text>
+  <rect x="300.0" y="94.0" width="560.0" height="250.0" rx="6" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="345.0" y="120.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">25</text>
+  <text x="360.0" y="120.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">int main(void)</text>
+  <text x="345.0" y="146.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">26</text>
+  <text x="360.0" y="146.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">{</text>
+  <text x="345.0" y="172.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">27</text>
+  <text x="360.0" y="172.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">    led_init();</text>
+  <text x="345.0" y="198.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">28</text>
+  <text x="360.0" y="198.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">    for (;;) {</text>
+  <text x="345.0" y="224.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">29</text>
+  <rect x="352.0" y="207.0" width="496.0" height="24.0" rx="3" fill="#fff4cc" stroke="#d9730d" stroke-width="1"/>
+  <polygon points="316.0,214.0 326.0,219.0 316.0,224.0" fill="#d9730d" stroke="#d9730d" stroke-width="1"/>
+  <text x="360.0" y="224.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">        led_toggle();</text>
+  <text x="345.0" y="250.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">30</text>
+  <circle cx="318.0" cy="245.0" r="6" fill="#d64545"/>
+  <text x="360.0" y="250.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">        delay(1000000);</text>
+  <text x="345.0" y="276.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">31</text>
+  <text x="360.0" y="276.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">    }</text>
+  <text x="345.0" y="302.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">32</text>
+  <text x="360.0" y="302.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">}</text>
+  <text x="600.0" y="330.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">⑥ 노란 줄: 다음에 실행할 줄,  빨간 점: 중단점</text>
+  <rect x="300.0" y="352.0" width="560.0" height="88.0" rx="6" fill="#1f2933" stroke="#334e68" stroke-width="1"/>
+  <text x="315.0" y="376.0" font-size="12" text-anchor="start" fill="#e3edfd" font-weight="bold" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">⑦ 디버그 콘솔 / 터미널</text>
+  <text x="315.0" y="398.0" font-size="11" text-anchor="start" fill="#c9d2dc" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">Info : STLINK V2J... (API v2) VID:PID 0483:374B</text>
+  <text x="315.0" y="418.0" font-size="11" text-anchor="start" fill="#c9d2dc" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">Info : stm32f4x.cpu: Cortex-M4 r0p1 processor detected</text>
+</svg>

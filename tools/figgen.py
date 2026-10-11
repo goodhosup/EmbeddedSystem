@@ -1123,6 +1123,183 @@ def fig_4_3():
 
 
 # ---------------------------------------------------------------------------
+# 5장
+# ---------------------------------------------------------------------------
+
+def chain(s, x, y, items, w=128, h=50, gap=30, colors=None):
+    """상자들을 가로로 잇는다. items = [(제목, 부제), ...]"""
+    for i, (a, b) in enumerate(items):
+        fill, st = (colors[i] if colors else (GRAY_BG, LINE))
+        s.box(x + i * (w + gap), y, w, h, a, b, fill, st, 13)
+        if i < len(items) - 1:
+            s.line(x + i * (w + gap) + w + 2, y + h / 2, x + (i + 1) * (w + gap) - 3, y + h / 2, LINE, 2, arrow=True)
+
+
+def fig_5_1():
+    s = Svg(900, 450)
+    s.text(450, 30, "그림 5-1  보드별 업로드 경로 비교", 16, weight="bold")
+    PC = (GREEN_BG, GREEN)
+    MID = (GRAY_BG, LINE)
+    TGT = (BLUE_BG, BLUE)
+    rows = [
+        ("아두이노 우노", [("PC", "avrdude"), ("ATmega16U2", "USB ↔ 시리얼"), ("UART", "TX · RX · DTR"),
+                         ("부트로더", "Optiboot"), ("Flash", "ATmega328P")], "USB 케이블 하나. 리셋 직후 부트로더가 받아 쓴다"),
+        ("ATmega128", [("PC", "avrdude"), ("USBasp", "ISP 프로그래머"), ("ISP", "SCK · PDI · PDO · RST"),
+                       ("프로그래밍 회로", "칩 내장"), ("Flash", "ATmega128A")], "부트로더 없이 칩에 직접 쓴다. 퓨즈도 이 경로로만 바꾼다"),
+        ("STM32", [("PC", "OpenOCD · GDB"), ("ST-LINK", "보드 내장"), ("SWD", "SWDIO · SWCLK"),
+                   ("디버그 포트", "코어 내장"), ("Flash", "STM32F411")], "업로드와 디버깅(정지, 한 줄 실행)을 같은 선으로 한다"),
+        ("ESP32", [("PC", "esptool"), ("USB-UART", "CP2102 · CH340"), ("UART0", "TX · RX · EN · IO0"),
+                   ("ROM 부트로더", "칩 내장"), ("SPI Flash", "외부 4 MB")], "IO0을 Low로 두고 리셋하면 다운로드 모드로 들어간다"),
+    ]
+    for r, (name, items, note) in enumerate(rows):
+        y = 60 + r * 96
+        s.text(20, y + 30, name, 14, "start", weight="bold")
+        chain(s, 140, y, items, 128, 50, 25, [PC, MID, MID, TGT, TGT])
+        s.text(140, y + 70, note, 12, "start", MUTED)
+    s.save("ch05/fig5-1-upload-paths.svg")
+
+
+def fig_5_2():
+    s = Svg(900, 330)
+    s.text(450, 30, "그림 5-2  아두이노 IDE가 [업로드] 버튼 뒤에서 하는 일", 16, weight="bold")
+    steps = [("스케치", ".ino"), ("전처리", ".cpp로 변환"), ("컴파일", "avr-g++"), ("링크", "코어 라이브러리"),
+             ("변환", "avr-objcopy → .hex"), ("업로드", "avrdude")]
+    for i, (a, b) in enumerate(steps):
+        x = 20 + i * 147
+        fill, st = (GREEN_BG, GREEN) if i == 0 else ((BLUE_BG, BLUE) if i < 5 else (ORANGE_BG, ORANGE))
+        s.box(x, 70, 127, 60, a, b, fill, st, 14)
+        if i < 5:
+            s.line(x + 129, 100, x + 145, 100, LINE, 2, arrow=True)
+    notes = [
+        (83, ["#include <Arduino.h>", "추가", "함수 원형 자동 생성"]),
+        (377, ["digitalWrite, Serial 등", "아두이노 코어와", "main() 함수를 함께 링크"]),
+        (818, ["보드를 리셋하고", "부트로더에", "115200 bps로 전송"]),
+    ]
+    for cx, lines in notes:
+        for j, t in enumerate(lines):
+            s.text(cx + (147 if cx == 83 else 0), 160 + j * 18, t, 12, color=MUTED)
+    s.rect(60, 240, 780, 66, "#fafbfc", MUTED, 8, 1)
+    s.text(450, 264, "환경 설정에서 \"컴파일과 업로드 중 자세한 출력 표시\"를 켜면 실제로 실행되는 명령이 모두 보인다", 13, weight="bold")
+    s.text(450, 288, "이 장에서는 같은 일을 avr-gcc, avr-objcopy, avrdude를 직접 실행해서 해 본다", 12, color=MUTED)
+    s.save("ch05/fig5-2-arduino-build.svg")
+
+
+def fig_5_3():
+    s = Svg(880, 430)
+    s.text(440, 30, "그림 5-3  USBasp와 ATmega128의 ISP 연결", 16, weight="bold")
+    # 10핀 헤더
+    s.text(135, 66, "USBasp 10핀 ISP 커넥터", 14, weight="bold", color=BLUE)
+    s.text(135, 84, "(위에서 본 모습, ▶가 1번 핀)", 11, color=MUTED)
+    pins = {1: "MOSI", 2: "VCC", 3: "NC", 4: "GND", 5: "RST", 6: "GND", 7: "SCK", 8: "GND", 9: "MISO", 10: "GND"}
+    x0, y0 = 65, 100
+    for n in range(1, 11):
+        col = (n - 1) % 2
+        row = (n - 1) // 2
+        x = x0 + col * 70
+        y = y0 + row * 52
+        name = pins[n]
+        used = name in ("MOSI", "MISO", "SCK", "RST", "GND")
+        s.rect(x, y, 60, 40, BLUE_BG if used else "#ffffff", BLUE if used else MUTED, 4, 1.2)
+        s.text(x + 30, y + 17, str(n), 11, color=MUTED)
+        s.text(x + 30, y + 33, name, 12, weight="bold")
+    s.poly([(x0 - 14, y0 + 14), (x0 - 4, y0 + 20), (x0 - 14, y0 + 26)], BLUE, BLUE, 1)
+    # ATmega128 핀
+    s.rect(520, 80, 300, 270, "#fafbfc", ORANGE, 12, 1.5)
+    s.text(670, 104, "ATmega128A", 15, weight="bold", color=ORANGE)
+    targets = [("PE0 (PDI)", "1번 MOSI", "데이터 입력"), ("PE1 (PDO)", "9번 MISO", "데이터 출력"),
+               ("PB1 (SCK)", "7번 SCK", "클럭"), ("RESET", "5번 RST", "리셋"), ("GND", "4·6·8·10번", "공통 접지")]
+    s.text(400, 104, "USBasp 핀", 12, weight="bold", color=BLUE)
+    for i, (pin, src, desc) in enumerate(targets):
+        y = 125 + i * 44
+        s.rect(340, y, 120, 34, BLUE_BG, BLUE, 4, 1.2)
+        s.text(400, y + 22, src, 12, weight="bold")
+        s.line(462, y + 17, 536, y + 17, ORANGE if i < 3 else LINE, 2, arrow=True)
+        s.rect(540, y, 120, 34, ORANGE_BG, ORANGE, 4, 1.2)
+        s.text(600, y + 22, pin, 13, weight="bold")
+        s.text(672, y + 22, desc, 11, "start", MUTED)
+    s.rect(60, 370, 760, 46, ORANGE_BG, ORANGE, 8, 1.2)
+    s.text(440, 391, "주의: ATmega128의 ISP는 SPI 핀(PB2 MOSI, PB3 MISO)이 아니라 PE0, PE1을 쓴다", 13, weight="bold", color=RED)
+    s.text(440, 408, "키트의 ISP 커넥터가 이미 올바르게 배선되어 있는지 회로도로 확인한다", 12, color=MUTED)
+    s.save("ch05/fig5-3-usbasp-isp.svg")
+
+
+def fig_5_4():
+    s = Svg(900, 400)
+    s.text(450, 30, "그림 5-4  툴체인의 구성", 16, weight="bold")
+    items = [("소스", ".c · .h", GREEN_BG, GREEN), ("컴파일러", "gcc → .o", BLUE_BG, BLUE),
+             ("링커", "ld + 링커 스크립트", BLUE_BG, BLUE), ("실행 파일", ".elf", "#ffffff", LINE),
+             ("objcopy", "→ .bin · .hex", BLUE_BG, BLUE)]
+    for i, (a, b, f, st) in enumerate(items):
+        x = 30 + i * 172
+        s.box(x, 70, 150, 60, a, b, f, st, 14)
+        if i < 4:
+            s.line(x + 152, 100, x + 170, 100, LINE, 2, arrow=True)
+    s.text(450, 58, "빌드: PC 안에서 일어나는 일", 12, color=MUTED)
+    # 아래: 업로드와 디버깅
+    s.box(130, 200, 150, 60, "GDB", "디버거", ORANGE_BG, ORANGE, 14)
+    s.box(370, 200, 150, 60, "OpenOCD", "GDB 서버", ORANGE_BG, ORANGE, 14)
+    s.box(610, 200, 120, 60, "ST-LINK", "USB ↔ SWD", GRAY_BG, LINE, 14)
+    s.box(770, 200, 110, 60, "STM32", "타깃", BLUE_BG, BLUE, 14)
+    s.line(282, 230, 366, 230, LINE, 2, both=True)
+    s.text(324, 222, "TCP 3333", 11, color=MUTED)
+    s.line(522, 230, 606, 230, LINE, 2, both=True)
+    s.text(564, 222, "USB", 11, color=MUTED)
+    s.line(732, 230, 766, 230, LINE, 2, both=True)
+    s.path("M535,132 L535,165 L205,165 L205,196", MUTED, 1.5, arrow=True)
+    s.text(370, 160, ".elf (심볼 포함)", 11, color=MUTED)
+    s.path("M800,132 L800,180 L445,180 L445,196", MUTED, 1.5, arrow=True)
+    s.text(620, 176, ".elf 또는 .bin 업로드", 11, color=MUTED)
+    rows = [("arm-none-eabi-gcc", "STM32용 크로스 컴파일러, 링커, objcopy 묶음"),
+            ("avr-gcc · avr-libc", "AVR용 크로스 컴파일러와 표준 라이브러리"),
+            ("avrdude", "AVR 업로드 도구 (부트로더, USBasp 모두 지원)"),
+            ("OpenOCD", "디버그 프로브를 GDB와 이어 주는 서버")]
+    for i, (a, b) in enumerate(rows):
+        s.text(130, 300 + i * 22, a, 12, "start", weight="bold")
+        s.text(300, 300 + i * 22, b, 12, "start", MUTED)
+    s.save("ch05/fig5-4-toolchain.svg")
+
+
+def fig_5_5():
+    s = Svg(900, 470)
+    s.text(450, 30, "그림 5-5  VS Code 디버그 화면의 구성 (개념도)", 16, weight="bold")
+    s.rect(30, 50, 840, 400, "#ffffff", LINE, 8, 1.5)
+    s.rect(30, 50, 840, 34, GRAY_BG, LINE, 8, 1)
+    # 디버그 툴바
+    s.text(450, 72, "① 디버그 툴바:  계속 · 한 줄 실행 · 함수 안으로 · 함수 밖으로 · 다시 시작 · 중지", 12, weight="bold")
+    # 왼쪽 패널
+    s.rect(40, 94, 250, 346, "#fafbfc", MUTED, 6, 1)
+    panels = [("② 변수", ["count = 42", "ready = 1 '\\001'"]), ("③ 조사식", ["GPIOA->ODR = 0x20"]),
+              ("④ 호출 스택", ["led_toggle()  led.c:18", "main()        main.c:29"]),
+              ("⑤ 주변장치 레지스터", ["GPIOA ▸ MODER, ODR ...", "RCC ▸ AHB1ENR ..."])]
+    y = 104
+    for title, lines in panels:
+        s.text(52, y + 14, title, 12, "start", BLUE, "bold")
+        for j, t in enumerate(lines):
+            mono(s, 64, y + 34 + j * 18, t, 11, INK)
+        y += 40 + len(lines) * 18 + 16
+    # 코드 영역
+    s.rect(300, 94, 560, 250, "#ffffff", MUTED, 6, 1)
+    code = ["int main(void)", "{", "    led_init();", "    for (;;) {", "        led_toggle();",
+            "        delay(1000000);", "    }", "}"]
+    for i, t in enumerate(code):
+        y = 120 + i * 26
+        s.text(345, y, str(25 + i), 11, "end", MUTED)
+        if i == 4:
+            s.rect(352, y - 17, 496, 24, "#fff4cc", ORANGE, 3, 1)
+            s.poly([(316, y - 10), (326, y - 5), (316, y)], ORANGE, ORANGE, 1)
+        if i == 5:
+            s.add(f'<circle cx="{318:.1f}" cy="{y - 5:.1f}" r="6" fill="{RED}"/>')
+        mono(s, 360, y, t, 13)
+    s.text(600, 330, "⑥ 노란 줄: 다음에 실행할 줄,  빨간 점: 중단점", 12, color=MUTED)
+    # 터미널
+    s.rect(300, 352, 560, 88, "#1f2933", LINE, 6, 1)
+    mono(s, 315, 376, "⑦ 디버그 콘솔 / 터미널", 12, "#e3edfd", "start", "bold")
+    mono(s, 315, 398, "Info : STLINK V2J... (API v2) VID:PID 0483:374B", 11, "#c9d2dc")
+    mono(s, 315, 418, "Info : stm32f4x.cpu: Cortex-M4 r0p1 processor detected", 11, "#c9d2dc")
+    s.save("ch05/fig5-5-vscode-debug.svg")
+
+
+# ---------------------------------------------------------------------------
 # 14장 UART
 # ---------------------------------------------------------------------------
 
