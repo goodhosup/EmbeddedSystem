@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="440" viewBox="0 0 900 440" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 4-2  레지스터 주소와 구조체 멤버가 겹쳐지는 모습</text>
+  <text x="230.0" y="60.0" font-size="13" text-anchor="middle" fill="#d9730d" font-weight="bold">메모리 (GPIOA 영역)</text>
+  <text x="620.0" y="60.0" font-size="13" text-anchor="middle" fill="#2f6fdf" font-weight="bold">C 구조체 GPIO_TypeDef</text>
+  <rect x="140.0" y="70.0" width="180.0" height="34.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="230.0" y="92.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">32비트</text>
+  <text x="130.0" y="92.0" font-size="12" text-anchor="end" fill="#616e7c" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">0x4002 0000</text>
+  <text x="470.0" y="92.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">volatile uint32_t MODER;   </text>
+  <text x="870.0" y="92.0" font-size="12" text-anchor="end" fill="#616e7c" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">/* 0x00 */</text>
+  <line x1="322.0" y1="87.0" x2="462.0" y2="87.0" stroke="#c9d2dc" stroke-width="1" stroke-dasharray="4 3"/>
+  <rect x="140.0" y="104.0" width="180.0" height="34.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="230.0" y="126.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">32비트</text>
+  <text x="130.0" y="126.0" font-size="12" text-anchor="end" fill="#616e7c" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">0x4002 0004</text>
+  <text x="470.0" y="126.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">volatile uint32_t OTYPER;  </text>
+  <text x="870.0" y="126.0" font-size="12" text-anchor="end" fill="#616e7c" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">/* 0x04 */</text>
+  <line x1="322.0" y1="121.0" x2="462.0" y2="121.0" stroke="#c9d2dc" stroke-width="1" stroke-dasharray="4 3"/>
+  <rect x="140.0" y="138.0" width="180.0" height="34.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="230.0" y="160.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">32비트</text>
+  <text x="130.0" y="160.0" font-size="12" text-anchor="end" fill="#616e7c" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">0x4002 0008</text>
+  <text x="470.0" y="160.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">volatile uint32_t OSPEEDR; </text>
+  <text x="870.0" y="160.0" font-size="12" text-anchor="end" fill="#616e7c" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">/* 0x08 */</text>
+  <line x1="322.0" y1="155.0" x2="462.0" y2="155.0" stroke="#c9d2dc" stroke-width="1" stroke-dasharray="4 3"/>
+  <rect x="140.0" y="172.0" width="180.0" height="34.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="230.0" y="194.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">32비트</text>
+  <text x="130.0" y="194.0" font-size="12" text-anchor="end" fill="#616e7c" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">0x4002 000C</text>
+  <text x="470.0" y="194.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">volatile uint32_t PUPDR;   </text>
+  <text x="870.0" y="194.0" font-size="12" text-anchor="end" fill="#616e7c" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">/* 0x0C */</text>
+  <line x1="322.0" y1="189.0" x2="462.0" y2="189.0" stroke="#c9d2dc" stroke-width="1" stroke-dasharray="4 3"/>
+  <rect x="140.0" y="206.0" width="180.0" height="34.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="230.0" y="228.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">32비트</text>
+  <text x="130.0" y="228.0" font-size="12" text-anchor="end" fill="#616e7c" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">0x4002 0010</text>
+  <text x="470.0" y="228.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">volatile uint32_t IDR;     </text>
+  <text x="870.0" y="228.0" font-size="12" text-anchor="end" fill="#616e7c" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">/* 0x10 */</text>
+  <line x1="322.0" y1="223.0" x2="462.0" y2="223.0" stroke="#c9d2dc" stroke-width="1" stroke-dasharray="4 3"/>
+  <rect x="140.0" y="240.0" width="180.0" height="34.0" rx="0" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="230.0" y="262.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">32비트</text>
+  <text x="130.0" y="262.0" font-size="12" text-anchor="end" fill="#616e7c" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">0x4002 0014</text>
+  <text x="470.0" y="262.0" font-size="13" text-anchor="start" fill="#2f6fdf" font-weight="bold" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">volatile uint32_t ODR;     </text>
+  <text x="870.0" y="262.0" font-size="12" text-anchor="end" fill="#616e7c" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">/* 0x14 */</text>
+  <line x1="322.0" y1="257.0" x2="462.0" y2="257.0" stroke="#2f6fdf" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="140.0" y="274.0" width="180.0" height="34.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="230.0" y="296.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">32비트</text>
+  <text x="130.0" y="296.0" font-size="12" text-anchor="end" fill="#616e7c" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">0x4002 0018</text>
+  <text x="470.0" y="296.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">volatile uint32_t BSRR;    </text>
+  <text x="870.0" y="296.0" font-size="12" text-anchor="end" fill="#616e7c" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">/* 0x18 */</text>
+  <line x1="322.0" y1="291.0" x2="462.0" y2="291.0" stroke="#c9d2dc" stroke-width="1" stroke-dasharray="4 3"/>
+  <rect x="140.0" y="308.0" width="180.0" height="34.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="230.0" y="330.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">32비트</text>
+  <text x="130.0" y="330.0" font-size="12" text-anchor="end" fill="#616e7c" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">0x4002 001C</text>
+  <text x="470.0" y="330.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">volatile uint32_t LCKR;    </text>
+  <text x="870.0" y="330.0" font-size="12" text-anchor="end" fill="#616e7c" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">/* 0x1C */</text>
+  <line x1="322.0" y1="325.0" x2="462.0" y2="325.0" stroke="#c9d2dc" stroke-width="1" stroke-dasharray="4 3"/>
+  <rect x="455.0" y="66.0" width="425.0" height="280.0" rx="8" fill="none" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="140.0" y="382.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">GPIOA = (GPIO_TypeDef *)0x40020000</text>
+  <text x="140.0" y="406.0" font-size="13" text-anchor="start" fill="#2f6fdf" font-weight="bold" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">GPIOA-&gt;ODR  →  0x40020000 + 0x14 = 0x40020014</text>
+  <text x="450.0" y="425.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">구조체의 시작을 주변장치의 시작 주소에 맞추면, 멤버 하나하나가 레지스터 하나하나에 겹쳐진다</text>
+</svg>

@@ -7,7 +7,7 @@
  *
  * 클럭 설정 순서: RM0383 6장 "Reset and clock control (RCC)",
  * Flash 대기 상태: RM0383 3.4.1절 "Relation between CPU clock frequency
- * and Flash memory read time" 표 (2.7~3.6 V, 90~100 MHz → 3 WS) [절 번호 확인 필요]
+ * and Flash memory read time" 표 (2.7~3.6 V, 90~100 MHz → 3 WS)
  */
 #include "stm32f411_regs.h"
 

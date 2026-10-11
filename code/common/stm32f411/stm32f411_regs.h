@@ -7,7 +7,6 @@
  *   - GPIO 레지스터: RM0383 8.4절 "GPIO registers"
  *   - FLASH_ACR: RM0383 3.8절 "Flash interface registers"
  *   - PWR_CR: RM0383 5.4절 "PWR registers"
- *   [절 번호는 RM0383 Rev 3 기준, 확인 필요]
  *
  * 실무에서는 ST가 배포하는 CMSIS 디바이스 헤더(stm32f411xe.h)를 쓴다.
  * 이 파일은 그 헤더가 내부에서 하는 일을 직접 보여 주려고 만들었다.

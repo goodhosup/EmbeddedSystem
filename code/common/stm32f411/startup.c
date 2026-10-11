@@ -4,7 +4,7 @@
  * 벡터 테이블의 앞부분 16개는 Cortex-M4 공통 예외다
  * (Cortex-M4 프로그래밍 매뉴얼 PM0214, 2.3.4절 "Vector table").
  * 그 뒤의 주변장치 인터럽트 86개(위치 0~85, 마지막은 SPI5)는 RM0383
- * "Interrupts and events" 장의 벡터 테이블 표를 따른다. [절 번호 확인 필요]
+ * 10.1.3절의 표 "Vector table for STM32F411xC/E"를 따른다.
  * 지금은 모두 Default_Handler로 채워 두고, 7장에서 이름을 붙인다.
  *
  * 21장에서 이 파일이 하는 일을 자세히 설명한다.

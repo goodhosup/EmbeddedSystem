@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="430" viewBox="0 0 880 430" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="440.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 4-3  volatile이 없을 때 컴파일러가 루프를 바꿔 버리는 과정</text>
+  <rect x="30.0" y="60.0" width="260.0" height="272.0" rx="8" fill="#ffffff" stroke="#334e68" stroke-width="1.5"/>
+  <text x="160.0" y="80.0" font-size="13" text-anchor="middle" fill="#334e68" font-weight="bold">C 코드</text>
+  <text x="44.0" y="106.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">uint8_t ready = 0;</text>
+  <text x="44.0" y="128.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace"></text>
+  <text x="44.0" y="150.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">void ISR(void) {</text>
+  <text x="44.0" y="172.0" font-size="13" text-anchor="start" fill="#2f6fdf" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">    ready = 1;</text>
+  <text x="44.0" y="194.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">}</text>
+  <text x="44.0" y="216.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace"></text>
+  <text x="44.0" y="238.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">int main(void) {</text>
+  <text x="44.0" y="260.0" font-size="13" text-anchor="start" fill="#d64545" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">    while (ready == 0) {</text>
+  <text x="44.0" y="282.0" font-size="13" text-anchor="start" fill="#d64545" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">    }</text>
+  <text x="44.0" y="304.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">    start();</text>
+  <text x="44.0" y="326.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">}</text>
+  <rect x="330.0" y="60.0" width="250.0" height="140.0" rx="8" fill="#fdecec" stroke="#d64545" stroke-width="1.5"/>
+  <text x="455.0" y="80.0" font-size="13" text-anchor="middle" fill="#d64545" font-weight="bold">volatile 없음 (최적화)</text>
+  <text x="344.0" y="106.0" font-size="13" text-anchor="start" fill="#d9730d" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">    ldrb r3, [ready]</text>
+  <text x="344.0" y="128.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">loop:</text>
+  <text x="344.0" y="150.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">    cmp  r3, #0</text>
+  <text x="344.0" y="172.0" font-size="13" text-anchor="start" fill="#d64545" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">    beq  loop</text>
+  <text x="344.0" y="194.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">    bl   start</text>
+  <text x="455.0" y="230.0" font-size="12" text-anchor="middle" fill="#d64545" font-weight="normal">ready를 한 번만 읽고</text>
+  <text x="455.0" y="248.0" font-size="12" text-anchor="middle" fill="#d64545" font-weight="normal">레지스터 r3 값만 계속 비교</text>
+  <text x="455.0" y="266.0" font-size="12" text-anchor="middle" fill="#d64545" font-weight="bold">→ ISR이 1로 바꿔도 영원히 루프</text>
+  <rect x="610.0" y="60.0" width="250.0" height="140.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="735.0" y="80.0" font-size="13" text-anchor="middle" fill="#2f9e44" font-weight="bold">volatile 있음</text>
+  <text x="624.0" y="106.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">loop:</text>
+  <text x="624.0" y="128.0" font-size="13" text-anchor="start" fill="#2f9e44" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">    ldrb r3, [ready]</text>
+  <text x="624.0" y="150.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">    cmp  r3, #0</text>
+  <text x="624.0" y="172.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">    beq  loop</text>
+  <text x="624.0" y="194.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="normal" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">    bl   start</text>
+  <text x="735.0" y="230.0" font-size="12" text-anchor="middle" fill="#2f9e44" font-weight="normal">매번 메모리에서 다시 읽는다</text>
+  <text x="735.0" y="248.0" font-size="12" text-anchor="middle" fill="#2f9e44" font-weight="bold">→ ISR이 바꾼 값을 본다</text>
+  <rect x="330.0" y="300.0" width="530.0" height="56.0" rx="8" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="595.0" y="322.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">컴파일러의 생각: "루프 안에서 ready를 바꾸는 코드가 없으니 값은 변하지 않는다"</text>
+  <text x="595.0" y="342.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">ISR은 컴파일러가 보기에 main과 상관없이 따로 불리는 함수라서, 그 효과를 계산에 넣지 않는다</text>
+  <text x="440.0" y="410.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">어셈블리는 Cortex-M(Thumb-2)을 단순화한 것이다. 실제 출력은 컴파일러와 옵션에 따라 다르다</text>
+</svg>

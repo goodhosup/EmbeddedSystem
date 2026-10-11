@@ -1,0 +1,262 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="470" viewBox="0 0 860 470" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="430.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 4-1  비트 설정, 해제, 반전, 검사</text>
+  <rect x="40.0" y="60.0" width="380.0" height="180.0" rx="10" fill="#fafbfc" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="56.0" y="86.0" font-size="14" text-anchor="start" fill="#2f9e44" font-weight="bold">설정 (set)</text>
+  <text x="404.0" y="86.0" font-size="13" text-anchor="end" fill="#1f2933" font-weight="bold" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">x |= (1 &lt;&lt; 3)</text>
+  <rect x="190.0" y="104.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="202.0" y="121.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">1</text>
+  <rect x="214.0" y="104.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="226.0" y="121.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="238.0" y="104.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="250.0" y="121.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">1</text>
+  <rect x="262.0" y="104.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="274.0" y="121.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="286.0" y="104.0" width="24.0" height="24.0" rx="2" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="298.0" y="121.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">0</text>
+  <rect x="310.0" y="104.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="322.0" y="121.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">1</text>
+  <rect x="334.0" y="104.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="346.0" y="121.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">1</text>
+  <rect x="358.0" y="104.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="370.0" y="121.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <text x="180.0" y="121.0" font-size="12" text-anchor="end" fill="#1f2933" font-weight="normal">x = 0xA6</text>
+  <rect x="190.0" y="138.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="202.0" y="155.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="214.0" y="138.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="226.0" y="155.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="238.0" y="138.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="250.0" y="155.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="262.0" y="138.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="274.0" y="155.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="286.0" y="138.0" width="24.0" height="24.0" rx="2" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="298.0" y="155.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">1</text>
+  <rect x="310.0" y="138.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="322.0" y="155.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="334.0" y="138.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="346.0" y="155.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="358.0" y="138.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="370.0" y="155.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <text x="180.0" y="155.0" font-size="12" text-anchor="end" fill="#1f2933" font-weight="normal">마스크</text>
+  <line x1="190.0" y1="170.0" x2="382.0" y2="170.0" stroke="#334e68" stroke-width="1.5"/>
+  <rect x="190.0" y="176.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="202.0" y="193.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">1</text>
+  <rect x="214.0" y="176.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="226.0" y="193.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="238.0" y="176.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="250.0" y="193.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">1</text>
+  <rect x="262.0" y="176.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="274.0" y="193.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="286.0" y="176.0" width="24.0" height="24.0" rx="2" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="298.0" y="193.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">1</text>
+  <rect x="310.0" y="176.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="322.0" y="193.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">1</text>
+  <rect x="334.0" y="176.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="346.0" y="193.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">1</text>
+  <rect x="358.0" y="176.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="370.0" y="193.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <text x="180.0" y="193.0" font-size="12" text-anchor="end" fill="#1f2933" font-weight="normal">결과</text>
+  <text x="230.0" y="226.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">OR: 1인 자리만 1로</text>
+  <text x="202.0" y="100.0" font-size="9" text-anchor="middle" fill="#616e7c" font-weight="normal">7</text>
+  <text x="226.0" y="100.0" font-size="9" text-anchor="middle" fill="#616e7c" font-weight="normal">6</text>
+  <text x="250.0" y="100.0" font-size="9" text-anchor="middle" fill="#616e7c" font-weight="normal">5</text>
+  <text x="274.0" y="100.0" font-size="9" text-anchor="middle" fill="#616e7c" font-weight="normal">4</text>
+  <text x="298.0" y="100.0" font-size="9" text-anchor="middle" fill="#616e7c" font-weight="normal">3</text>
+  <text x="322.0" y="100.0" font-size="9" text-anchor="middle" fill="#616e7c" font-weight="normal">2</text>
+  <text x="346.0" y="100.0" font-size="9" text-anchor="middle" fill="#616e7c" font-weight="normal">1</text>
+  <text x="370.0" y="100.0" font-size="9" text-anchor="middle" fill="#616e7c" font-weight="normal">0</text>
+  <rect x="450.0" y="60.0" width="380.0" height="180.0" rx="10" fill="#fafbfc" stroke="#d64545" stroke-width="1.5"/>
+  <text x="466.0" y="86.0" font-size="14" text-anchor="start" fill="#d64545" font-weight="bold">해제 (clear)</text>
+  <text x="814.0" y="86.0" font-size="13" text-anchor="end" fill="#1f2933" font-weight="bold" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">x &amp;= ~(1 &lt;&lt; 2)</text>
+  <rect x="600.0" y="104.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="612.0" y="121.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">1</text>
+  <rect x="624.0" y="104.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="636.0" y="121.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="648.0" y="104.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="660.0" y="121.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">1</text>
+  <rect x="672.0" y="104.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="684.0" y="121.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="696.0" y="104.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="708.0" y="121.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="720.0" y="104.0" width="24.0" height="24.0" rx="2" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="732.0" y="121.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">1</text>
+  <rect x="744.0" y="104.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="756.0" y="121.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">1</text>
+  <rect x="768.0" y="104.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="780.0" y="121.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <text x="590.0" y="121.0" font-size="12" text-anchor="end" fill="#1f2933" font-weight="normal">x = 0xA6</text>
+  <rect x="600.0" y="138.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="612.0" y="155.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">1</text>
+  <rect x="624.0" y="138.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="636.0" y="155.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">1</text>
+  <rect x="648.0" y="138.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="660.0" y="155.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">1</text>
+  <rect x="672.0" y="138.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="684.0" y="155.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">1</text>
+  <rect x="696.0" y="138.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="708.0" y="155.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">1</text>
+  <rect x="720.0" y="138.0" width="24.0" height="24.0" rx="2" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="732.0" y="155.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">0</text>
+  <rect x="744.0" y="138.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="756.0" y="155.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">1</text>
+  <rect x="768.0" y="138.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="780.0" y="155.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">1</text>
+  <text x="590.0" y="155.0" font-size="12" text-anchor="end" fill="#1f2933" font-weight="normal">마스크</text>
+  <line x1="600.0" y1="170.0" x2="792.0" y2="170.0" stroke="#334e68" stroke-width="1.5"/>
+  <rect x="600.0" y="176.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="612.0" y="193.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">1</text>
+  <rect x="624.0" y="176.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="636.0" y="193.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="648.0" y="176.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="660.0" y="193.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">1</text>
+  <rect x="672.0" y="176.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="684.0" y="193.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="696.0" y="176.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="708.0" y="193.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="720.0" y="176.0" width="24.0" height="24.0" rx="2" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="732.0" y="193.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">0</text>
+  <rect x="744.0" y="176.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="756.0" y="193.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">1</text>
+  <rect x="768.0" y="176.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="780.0" y="193.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <text x="590.0" y="193.0" font-size="12" text-anchor="end" fill="#1f2933" font-weight="normal">결과</text>
+  <text x="640.0" y="226.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">AND: 0인 자리만 0으로</text>
+  <text x="612.0" y="100.0" font-size="9" text-anchor="middle" fill="#616e7c" font-weight="normal">7</text>
+  <text x="636.0" y="100.0" font-size="9" text-anchor="middle" fill="#616e7c" font-weight="normal">6</text>
+  <text x="660.0" y="100.0" font-size="9" text-anchor="middle" fill="#616e7c" font-weight="normal">5</text>
+  <text x="684.0" y="100.0" font-size="9" text-anchor="middle" fill="#616e7c" font-weight="normal">4</text>
+  <text x="708.0" y="100.0" font-size="9" text-anchor="middle" fill="#616e7c" font-weight="normal">3</text>
+  <text x="732.0" y="100.0" font-size="9" text-anchor="middle" fill="#616e7c" font-weight="normal">2</text>
+  <text x="756.0" y="100.0" font-size="9" text-anchor="middle" fill="#616e7c" font-weight="normal">1</text>
+  <text x="780.0" y="100.0" font-size="9" text-anchor="middle" fill="#616e7c" font-weight="normal">0</text>
+  <rect x="40.0" y="260.0" width="380.0" height="180.0" rx="10" fill="#fafbfc" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="56.0" y="286.0" font-size="14" text-anchor="start" fill="#2f6fdf" font-weight="bold">반전 (toggle)</text>
+  <text x="404.0" y="286.0" font-size="13" text-anchor="end" fill="#1f2933" font-weight="bold" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">x ^= (1 &lt;&lt; 7)</text>
+  <rect x="190.0" y="304.0" width="24.0" height="24.0" rx="2" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="202.0" y="321.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">1</text>
+  <rect x="214.0" y="304.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="226.0" y="321.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="238.0" y="304.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="250.0" y="321.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">1</text>
+  <rect x="262.0" y="304.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="274.0" y="321.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="286.0" y="304.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="298.0" y="321.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="310.0" y="304.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="322.0" y="321.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">1</text>
+  <rect x="334.0" y="304.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="346.0" y="321.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">1</text>
+  <rect x="358.0" y="304.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="370.0" y="321.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <text x="180.0" y="321.0" font-size="12" text-anchor="end" fill="#1f2933" font-weight="normal">x = 0xA6</text>
+  <rect x="190.0" y="338.0" width="24.0" height="24.0" rx="2" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="202.0" y="355.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">1</text>
+  <rect x="214.0" y="338.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="226.0" y="355.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="238.0" y="338.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="250.0" y="355.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="262.0" y="338.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="274.0" y="355.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="286.0" y="338.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="298.0" y="355.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="310.0" y="338.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="322.0" y="355.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="334.0" y="338.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="346.0" y="355.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="358.0" y="338.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="370.0" y="355.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <text x="180.0" y="355.0" font-size="12" text-anchor="end" fill="#1f2933" font-weight="normal">마스크</text>
+  <line x1="190.0" y1="370.0" x2="382.0" y2="370.0" stroke="#334e68" stroke-width="1.5"/>
+  <rect x="190.0" y="376.0" width="24.0" height="24.0" rx="2" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="202.0" y="393.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">0</text>
+  <rect x="214.0" y="376.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="226.0" y="393.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="238.0" y="376.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="250.0" y="393.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">1</text>
+  <rect x="262.0" y="376.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="274.0" y="393.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="286.0" y="376.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="298.0" y="393.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="310.0" y="376.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="322.0" y="393.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">1</text>
+  <rect x="334.0" y="376.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="346.0" y="393.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">1</text>
+  <rect x="358.0" y="376.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="370.0" y="393.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <text x="180.0" y="393.0" font-size="12" text-anchor="end" fill="#1f2933" font-weight="normal">결과</text>
+  <text x="230.0" y="426.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">XOR: 1인 자리만 뒤집기</text>
+  <text x="202.0" y="300.0" font-size="9" text-anchor="middle" fill="#616e7c" font-weight="normal">7</text>
+  <text x="226.0" y="300.0" font-size="9" text-anchor="middle" fill="#616e7c" font-weight="normal">6</text>
+  <text x="250.0" y="300.0" font-size="9" text-anchor="middle" fill="#616e7c" font-weight="normal">5</text>
+  <text x="274.0" y="300.0" font-size="9" text-anchor="middle" fill="#616e7c" font-weight="normal">4</text>
+  <text x="298.0" y="300.0" font-size="9" text-anchor="middle" fill="#616e7c" font-weight="normal">3</text>
+  <text x="322.0" y="300.0" font-size="9" text-anchor="middle" fill="#616e7c" font-weight="normal">2</text>
+  <text x="346.0" y="300.0" font-size="9" text-anchor="middle" fill="#616e7c" font-weight="normal">1</text>
+  <text x="370.0" y="300.0" font-size="9" text-anchor="middle" fill="#616e7c" font-weight="normal">0</text>
+  <rect x="450.0" y="260.0" width="380.0" height="180.0" rx="10" fill="#fafbfc" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="466.0" y="286.0" font-size="14" text-anchor="start" fill="#d9730d" font-weight="bold">검사 (test)</text>
+  <text x="814.0" y="286.0" font-size="13" text-anchor="end" fill="#1f2933" font-weight="bold" xml:space="preserve" font-family="Consolas,'D2Coding','Noto Sans Mono',monospace">x &amp; (1 &lt;&lt; 5)</text>
+  <rect x="600.0" y="304.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="612.0" y="321.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">1</text>
+  <rect x="624.0" y="304.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="636.0" y="321.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="648.0" y="304.0" width="24.0" height="24.0" rx="2" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="660.0" y="321.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">1</text>
+  <rect x="672.0" y="304.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="684.0" y="321.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="696.0" y="304.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="708.0" y="321.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="720.0" y="304.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="732.0" y="321.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">1</text>
+  <rect x="744.0" y="304.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="756.0" y="321.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">1</text>
+  <rect x="768.0" y="304.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="780.0" y="321.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <text x="590.0" y="321.0" font-size="12" text-anchor="end" fill="#1f2933" font-weight="normal">x = 0xA6</text>
+  <rect x="600.0" y="338.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="612.0" y="355.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="624.0" y="338.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="636.0" y="355.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="648.0" y="338.0" width="24.0" height="24.0" rx="2" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="660.0" y="355.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">1</text>
+  <rect x="672.0" y="338.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="684.0" y="355.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="696.0" y="338.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="708.0" y="355.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="720.0" y="338.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="732.0" y="355.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="744.0" y="338.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="756.0" y="355.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="768.0" y="338.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="780.0" y="355.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <text x="590.0" y="355.0" font-size="12" text-anchor="end" fill="#1f2933" font-weight="normal">마스크</text>
+  <line x1="600.0" y1="370.0" x2="792.0" y2="370.0" stroke="#334e68" stroke-width="1.5"/>
+  <rect x="600.0" y="376.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="612.0" y="393.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="624.0" y="376.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="636.0" y="393.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="648.0" y="376.0" width="24.0" height="24.0" rx="2" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="660.0" y="393.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">1</text>
+  <rect x="672.0" y="376.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="684.0" y="393.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="696.0" y="376.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="708.0" y="393.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="720.0" y="376.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="732.0" y="393.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="744.0" y="376.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="756.0" y="393.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <rect x="768.0" y="376.0" width="24.0" height="24.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1"/>
+  <text x="780.0" y="393.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">0</text>
+  <text x="590.0" y="393.0" font-size="12" text-anchor="end" fill="#1f2933" font-weight="normal">결과</text>
+  <text x="640.0" y="426.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">AND 결과가 0이 아니면 참</text>
+  <text x="612.0" y="300.0" font-size="9" text-anchor="middle" fill="#616e7c" font-weight="normal">7</text>
+  <text x="636.0" y="300.0" font-size="9" text-anchor="middle" fill="#616e7c" font-weight="normal">6</text>
+  <text x="660.0" y="300.0" font-size="9" text-anchor="middle" fill="#616e7c" font-weight="normal">5</text>
+  <text x="684.0" y="300.0" font-size="9" text-anchor="middle" fill="#616e7c" font-weight="normal">4</text>
+  <text x="708.0" y="300.0" font-size="9" text-anchor="middle" fill="#616e7c" font-weight="normal">3</text>
+  <text x="732.0" y="300.0" font-size="9" text-anchor="middle" fill="#616e7c" font-weight="normal">2</text>
+  <text x="756.0" y="300.0" font-size="9" text-anchor="middle" fill="#616e7c" font-weight="normal">1</text>
+  <text x="780.0" y="300.0" font-size="9" text-anchor="middle" fill="#616e7c" font-weight="normal">0</text>
+  <text x="430.0" y="460.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">주황색 칸이 바뀌거나 검사하는 비트. 나머지 비트는 그대로 남는다</text>
+</svg>

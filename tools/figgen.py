@@ -1016,6 +1016,113 @@ def fig_3_7():
 
 
 # ---------------------------------------------------------------------------
+# 4장
+# ---------------------------------------------------------------------------
+
+def bit_row(s, x, y, bits, hl=None, fill=None, size=24, label=None, hl_color=ORANGE):
+    """8비트 값을 칸으로 그린다. bits는 '10100110' 같은 문자열(왼쪽이 7번 비트)."""
+    for i, b in enumerate(bits):
+        n = 7 - i
+        on = hl is not None and n == hl
+        f = (ORANGE_BG if hl_color == ORANGE else BLUE_BG) if on else (fill or "#ffffff")
+        s.rect(x + i * size, y, size, size, f, hl_color if on else MUTED, 2, 1.5 if on else 1)
+        s.text(x + i * size + size / 2, y + size / 2 + 5, b, 13, weight="bold" if on else "normal")
+    if label:
+        s.text(x - 10, y + size / 2 + 5, label, 12, "end", INK)
+
+
+def mono(s, x, y, txt, size=13, color=INK, anchor="start", weight="normal"):
+    s.add(
+        f'<text x="{x:.1f}" y="{y:.1f}" font-size="{size}" text-anchor="{anchor}" fill="{color}" '
+        f'font-weight="{weight}" xml:space="preserve" font-family="Consolas,\'D2Coding\',\'Noto Sans Mono\',monospace">{escape(txt)}</text>'
+    )
+
+
+def fig_4_1():
+    s = Svg(860, 470)
+    s.text(430, 30, "그림 4-1  비트 설정, 해제, 반전, 검사", 16, weight="bold")
+    x0 = "10100110"
+    panels = [
+        ("설정 (set)", "x |= (1 << 3)", "OR: 1인 자리만 1로", "00001000", "10101110", 3, GREEN),
+        ("해제 (clear)", "x &= ~(1 << 2)", "AND: 0인 자리만 0으로", "11111011", "10100010", 2, RED),
+        ("반전 (toggle)", "x ^= (1 << 7)", "XOR: 1인 자리만 뒤집기", "10000000", "00100110", 7, BLUE),
+        ("검사 (test)", "x & (1 << 5)", "AND 결과가 0이 아니면 참", "00100000", "00100000", 5, ORANGE),
+    ]
+    for k, (title, code, desc, mask, res, n, col) in enumerate(panels):
+        px = 40 + (k % 2) * 410
+        py = 60 + (k // 2) * 200
+        s.rect(px, py, 380, 180, "#fafbfc", col, 10, 1.5)
+        s.text(px + 16, py + 26, title, 14, "start", col, "bold")
+        mono(s, px + 364, py + 26, code, 13, INK, "end", "bold")
+        bx = px + 150
+        bit_row(s, bx, py + 44, x0, n, label="x = 0xA6")
+        bit_row(s, bx, py + 78, mask, n, label="마스크")
+        s.line(bx, py + 110, bx + 8 * 24, py + 110, LINE, 1.5)
+        bit_row(s, bx, py + 116, res, n, label="결과")
+        s.text(px + 190, py + 166, desc, 12, color=MUTED)
+        for i in range(8):
+            s.text(bx + i * 24 + 12, py + 40, str(7 - i), 9, color=MUTED)
+    s.text(430, 460, "주황색 칸이 바뀌거나 검사하는 비트. 나머지 비트는 그대로 남는다", 12, color=MUTED)
+    s.save("ch04/fig4-1-bit-ops.svg")
+
+
+def fig_4_2():
+    s = Svg(900, 440)
+    s.text(450, 30, "그림 4-2  레지스터 주소와 구조체 멤버가 겹쳐지는 모습", 16, weight="bold")
+    regs = ["MODER", "OTYPER", "OSPEEDR", "PUPDR", "IDR", "ODR", "BSRR", "LCKR"]
+    x, y0, h = 140, 70, 34
+    s.text(x + 90, 60, "메모리 (GPIOA 영역)", 13, weight="bold", color=ORANGE)
+    s.text(620, 60, "C 구조체 GPIO_TypeDef", 13, weight="bold", color=BLUE)
+    for i, r in enumerate(regs):
+        y = y0 + i * h
+        on = r == "ODR"
+        s.rect(x, y, 180, h, ORANGE_BG if on else "#ffffff", ORANGE if on else LINE, 0, 1.5 if on else 1)
+        s.text(x + 90, y + 22, "32비트", 11, color=MUTED)
+        mono(s, x - 10, y + 22, f"0x4002 00{i * 4:02X}", 12, MUTED, "end")
+        # 구조체 줄
+        mono(s, 470, y + 22, f"volatile uint32_t {r + ';':<9}", 13, INK if not on else BLUE, "start", "bold" if on else "normal")
+        mono(s, 870, y + 22, f"/* 0x{i * 4:02X} */", 12, MUTED, "end")
+        s.line(322, y + h / 2, 462, y + h / 2, BLUE if on else "#c9d2dc", 2 if on else 1, "4 3" if not on else None, arrow=on)
+    s.rect(455, y0 - 4, 425, len(regs) * h + 8, "none", BLUE, 8, 1.5)
+    mono(s, 140, y0 + 8 * h + 40, "GPIOA = (GPIO_TypeDef *)0x40020000", 13, INK, "start", "bold")
+    mono(s, 140, y0 + 8 * h + 64, "GPIOA->ODR  →  0x40020000 + 0x14 = 0x40020014", 13, BLUE, "start", "bold")
+    s.text(450, 425, "구조체의 시작을 주변장치의 시작 주소에 맞추면, 멤버 하나하나가 레지스터 하나하나에 겹쳐진다", 12, color=MUTED)
+    s.save("ch04/fig4-2-struct-overlay.svg")
+
+
+def fig_4_3():
+    s = Svg(880, 430)
+    s.text(440, 30, "그림 4-3  volatile이 없을 때 컴파일러가 루프를 바꿔 버리는 과정", 16, weight="bold")
+
+    def code_box(x, y, w, lines, title, col, fill):
+        s.rect(x, y, w, 30 + len(lines) * 22, fill, col, 8, 1.5)
+        s.text(x + w / 2, y + 20, title, 13, weight="bold", color=col)
+        for i, (t, c) in enumerate(lines):
+            mono(s, x + 14, y + 46 + i * 22, t, 13, c or INK)
+
+    code_box(30, 60, 260, [("uint8_t ready = 0;", None), ("", None), ("void ISR(void) {", None),
+                           ("    ready = 1;", BLUE), ("}", None), ("", None), ("int main(void) {", None),
+                           ("    while (ready == 0) {", RED), ("    }", RED), ("    start();", None), ("}", None)],
+             "C 코드", LINE, "#ffffff")
+    code_box(330, 60, 250, [("    ldrb r3, [ready]", ORANGE), ("loop:", None), ("    cmp  r3, #0", None),
+                            ("    beq  loop", RED), ("    bl   start", None)],
+             "volatile 없음 (최적화)", RED, "#fdecec")
+    s.text(455, 230, "ready를 한 번만 읽고", 12, color=RED)
+    s.text(455, 248, "레지스터 r3 값만 계속 비교", 12, color=RED)
+    s.text(455, 266, "→ ISR이 1로 바꿔도 영원히 루프", 12, color=RED, weight="bold")
+    code_box(610, 60, 250, [("loop:", None), ("    ldrb r3, [ready]", GREEN), ("    cmp  r3, #0", None),
+                            ("    beq  loop", None), ("    bl   start", None)],
+             "volatile 있음", GREEN, GREEN_BG)
+    s.text(735, 230, "매번 메모리에서 다시 읽는다", 12, color=GREEN)
+    s.text(735, 248, "→ ISR이 바꾼 값을 본다", 12, color=GREEN, weight="bold")
+    s.rect(330, 300, 530, 56, "#ffffff", MUTED, 8, 1)
+    s.text(595, 322, "컴파일러의 생각: \"루프 안에서 ready를 바꾸는 코드가 없으니 값은 변하지 않는다\"", 12, weight="bold")
+    s.text(595, 342, "ISR은 컴파일러가 보기에 main과 상관없이 따로 불리는 함수라서, 그 효과를 계산에 넣지 않는다", 11, color=MUTED)
+    s.text(440, 410, "어셈블리는 Cortex-M(Thumb-2)을 단순화한 것이다. 실제 출력은 컴파일러와 옵션에 따라 다르다", 12, color=MUTED)
+    s.save("ch04/fig4-3-volatile.svg")
+
+
+# ---------------------------------------------------------------------------
 # 14장 UART
 # ---------------------------------------------------------------------------
 
