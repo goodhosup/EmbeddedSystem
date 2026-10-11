@@ -10,6 +10,8 @@
  *   - SYSCFG: RM0383 7.2절 "SYSCFG registers"
  *   - EXTI: RM0383 10.3절 "EXTI registers"
  *   - TIM2~TIM5: RM0383 13.4절 "TIM2 to TIM5 registers"
+ *   - ADC: RM0383 11.12절 "ADC registers", 보정값 주소: DS10314 "Temperature sensor
+ *     calibration values", "Internal reference voltage calibration values" 표
  *   - NVIC, SysTick, SCB: Cortex-M4 프로그래밍 매뉴얼(PM0214) 4장 "Core peripherals"
  *
  * 실무에서는 ST가 배포하는 CMSIS 디바이스 헤더(stm32f411xe.h)를 쓴다.
@@ -94,6 +96,7 @@ typedef struct {
 #define RCC_APB1ENR_PWREN   (1u << 28)
 
 /* RCC_APB2ENR */
+#define RCC_APB2ENR_ADC1EN   (1u << 8)
 #define RCC_APB2ENR_SYSCFGEN (1u << 14)
 
 /* RCC_CSR: 리셋 원인 플래그 */
@@ -226,8 +229,61 @@ typedef struct {
 #define TIM_CCER_CC1P       (1u << 1)
 #define TIM_CCER_CC1NP      (1u << 3)
 
+/* ---- ADC1 (0x4001 2000), 공통 레지스터 (0x4001 2300) ---- */
+typedef struct {
+    __IO uint32_t SR;          /* 0x00 */
+    __IO uint32_t CR1;         /* 0x04 */
+    __IO uint32_t CR2;         /* 0x08 */
+    __IO uint32_t SMPR1;       /* 0x0C 채널 10~18 샘플링 시간 */
+    __IO uint32_t SMPR2;       /* 0x10 채널 0~9 샘플링 시간 */
+    __IO uint32_t JOFR[4];     /* 0x14 ~ 0x20 */
+    __IO uint32_t HTR;         /* 0x24 */
+    __IO uint32_t LTR;         /* 0x28 */
+    __IO uint32_t SQR1;        /* 0x2C 변환 개수 L[23:20] */
+    __IO uint32_t SQR2;        /* 0x30 */
+    __IO uint32_t SQR3;        /* 0x34 첫 번째 변환 채널 SQ1[4:0] */
+    __IO uint32_t JSQR;        /* 0x38 */
+    __IO uint32_t JDR[4];      /* 0x3C ~ 0x48 */
+    __IO uint32_t DR;          /* 0x4C */
+} ADC_TypeDef;
+
+typedef struct {
+    __IO uint32_t CSR;         /* 0x00 */
+    __IO uint32_t CCR;         /* 0x04 */
+    __IO uint32_t CDR;         /* 0x08 */
+} ADC_Common_TypeDef;
+
+#define ADC1        ((ADC_TypeDef *)0x40012000u)
+#define ADC_COMMON  ((ADC_Common_TypeDef *)0x40012300u)
+
+#define ADC_SR_EOC          (1u << 1)
+#define ADC_SR_OVR          (1u << 5)
+#define ADC_CR1_RES_Msk     (3u << 24)      /* 00 = 12비트 */
+#define ADC_CR2_ADON        (1u << 0)
+#define ADC_CR2_CONT        (1u << 1)
+#define ADC_CR2_DMA         (1u << 8)
+#define ADC_CR2_DDS         (1u << 9)
+#define ADC_CR2_EOCS        (1u << 10)
+#define ADC_CR2_ALIGN       (1u << 11)
+#define ADC_CR2_SWSTART     (1u << 30)
+#define ADC_CCR_ADCPRE_Msk  (3u << 16)      /* 00 = PCLK2 ÷2 */
+#define ADC_CCR_VBATE       (1u << 22)
+#define ADC_CCR_TSVREFE     (1u << 23)
+
+/* 샘플링 시간 코드 (3비트): 0=3, 1=15, 2=28, 3=56, 4=84, 5=112, 6=144, 7=480 클럭 */
+#define ADC_SMP_480         7u
+
+#define ADC_CH_TEMP         18u             /* 온도 센서 (VBAT와 같은 채널, VBATE = 0이어야 함) */
+#define ADC_CH_VREFINT      17u
+
+/* 공장 보정값 (시스템 메모리, 읽기 전용) */
+#define TS_CAL1      (*(const volatile uint16_t *)0x1FFF7A2Cu)   /* 30 °C, VDDA = 3.3 V */
+#define TS_CAL2      (*(const volatile uint16_t *)0x1FFF7A2Eu)   /* 110 °C, VDDA = 3.3 V */
+#define VREFINT_CAL  (*(const volatile uint16_t *)0x1FFF7A2Au)   /* 30 °C, VDDA = 3.3 V */
+
 /* ---- 인터럽트 번호 (RM0383 10.1.3절 표, 7장에서 쓰는 것만) ---- */
 #define EXTI0_IRQn       6
+#define ADC_IRQn        18
 #define TIM2_IRQn       28
 #define TIM3_IRQn       29
 #define TIM4_IRQn       30

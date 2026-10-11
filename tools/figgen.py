@@ -1823,6 +1823,180 @@ def fig_8_5():
 
 
 # ---------------------------------------------------------------------------
+# 9장
+# ---------------------------------------------------------------------------
+
+def fig_9_1():
+    import math
+    s = Svg(900, 420)
+    s.text(450, 30, "그림 9-1  아날로그 신호의 샘플링과 양자화 (3비트 ADC의 예)", 16, weight="bold")
+    x0, y0, w, h = 120, 340, 700, 260       # y0 = 0 V
+    levels = 8
+    s.line(x0, y0, x0 + w + 10, y0, MUTED, 1.2, arrow=True)
+    s.line(x0, y0, x0, y0 - h - 20, MUTED, 1.2, arrow=True)
+    s.text(x0 + w + 10, y0 + 20, "시간", 12, "end", MUTED)
+    for k in range(levels):
+        y = y0 - (k + 0.5) * h / levels
+        s.line(x0, y, x0 + w, y, "#e6eaef", 1)
+        s.text(x0 - 10, y + 4, f"{k:03b}", 11, "end", MUTED)
+    s.text(x0 - 10, y0 - h - 24, "코드", 12, "end", INK, "bold")
+
+    def f(t):
+        return 0.5 + 0.38 * math.sin(2 * math.pi * t * 1.3) + 0.08 * math.sin(2 * math.pi * t * 3.1)
+    # 원래 신호
+    pts = " ".join(f"L{x0 + i:.1f},{y0 - f(i / w) * h:.1f}" for i in range(0, w + 1, 4))
+    s.path(f"M{x0},{y0 - f(0) * h:.1f} " + pts, BLUE, 2)
+    # 샘플과 양자화 계단
+    n = 20
+    step_pts = []
+    for i in range(n):
+        t = i / n
+        x = x0 + t * w
+        v = f(t)
+        code = min(levels - 1, int(v * levels))
+        yq = y0 - (code + 0.5) * h / levels
+        step_pts.append(f"L{x:.1f},{yq:.1f} L{x + w / n:.1f},{yq:.1f}")
+        s.line(x, y0, x, y0 - v * h, "#c9d2dc", 1, "3 3")
+        s.add(f'<circle cx="{x:.1f}" cy="{y0 - v * h:.1f}" r="4" fill="{RED}"/>')
+    first = step_pts[0].split()[0][1:]
+    s.path(f"M{first} " + " ".join(step_pts), ORANGE, 2.5)
+    # 범례
+    lx = 600
+    s.line(lx, 58, lx + 30, 58, BLUE, 2)
+    s.text(lx + 38, 62, "원래 아날로그 신호", 12, "start")
+    s.add(f'<circle cx="{lx + 15}" cy="78" r="4" fill="{RED}"/>')
+    s.text(lx + 38, 82, "샘플링 (일정한 간격으로 값을 읽음)", 12, "start")
+    s.line(lx, 98, lx + 30, 98, ORANGE, 2.5)
+    s.text(lx + 38, 102, "양자화 (가장 가까운 단계로 반올림)", 12, "start")
+    s.text(450, 400, "비트 수가 많을수록 단계가 촘촘하고, 샘플링이 빠를수록 시간 축이 촘촘하다", 12, color=MUTED)
+    s.save("ch09/fig9-1-sampling-quantization.svg")
+
+
+def fig_9_2():
+    import math
+    s = Svg(900, 400)
+    s.text(450, 30, "그림 9-2  나이퀴스트 주파수와 에일리어싱", 16, weight="bold")
+
+    def panel(y, title, fsig, fs, color):
+        x0, w, h = 120, 720, 90
+        s.text(x0 - 10, y - 50, title, 13, "start", color, "bold")
+        s.line(x0, y, x0 + w, y, "#e6eaef", 1)
+        pts = " ".join(f"L{x0 + i:.1f},{y - h / 2 * math.sin(2 * math.pi * fsig * i / w):.1f}" for i in range(0, w + 1, 3))
+        s.path(f"M{x0},{y} " + pts, BLUE, 1.6)
+        n = int(fs) + 1
+        samp = []
+        for k in range(n):
+            t = k / fs
+            if t > 1:
+                break
+            x = x0 + t * w
+            yy = y - h / 2 * math.sin(2 * math.pi * fsig * t)
+            samp.append((x, yy))
+            s.add(f'<circle cx="{x:.1f}" cy="{yy:.1f}" r="4.5" fill="{RED}"/>')
+        return samp, x0, w, h
+
+    panel(130, "(가) 신호 2 Hz, 샘플링 20 Hz: 충분히 빠르다 → 모양이 그대로 남는다", 2, 20, GREEN)
+    samp, x0, w, h = panel(300, "(나) 신호 9 Hz, 샘플링 10 Hz: 너무 느리다 → 1 Hz짜리 가짜 신호로 보인다", 9, 10, RED)
+    pts = " ".join(f"L{x0 + i:.1f},{300 + h / 2 * math.sin(2 * math.pi * 1 * i / w):.1f}" for i in range(0, w + 1, 3))
+    s.path(f"M{x0},{300} " + pts, ORANGE, 2.5)
+    s.text(450, 388, "샘플링 주파수는 신호의 가장 높은 주파수의 2배보다 커야 한다 (나이퀴스트). 넘는 성분은 아날로그 필터로 미리 없앤다", 12, color=MUTED)
+    s.save("ch09/fig9-2-aliasing.svg")
+
+
+def fig_9_3():
+    s = Svg(900, 450)
+    s.text(450, 30, "그림 9-3  SAR ADC의 변환 과정: 이진 탐색 (3비트, Vref = 8 V, 입력 5.3 V)", 16, weight="bold")
+    x0, y0, h = 130, 360, 280     # 0~8 V
+    def Y(v):
+        return y0 - v / 8 * h
+    s.line(x0, y0, x0, y0 - h - 10, MUTED, 1.2, arrow=True)
+    for v in range(0, 9):
+        s.line(x0 - 5, Y(v), x0, Y(v), MUTED, 1.2)
+        s.text(x0 - 10, Y(v) + 4, f"{v} V", 11, "end", MUTED)
+    s.line(x0, Y(5.3), 640, Y(5.3), RED, 2, "6 4")
+    s.text(x0 + 8, Y(5.3) - 8, "입력 5.3 V", 12, "start", RED, "bold")
+    steps = [("1단계: 4 V와 비교", 4, "크다 → 비트2 = 1", "1??"),
+             ("2단계: 6 V와 비교", 6, "작다 → 비트1 = 0", "10?"),
+             ("3단계: 5 V와 비교", 5, "크다 → 비트0 = 1", "101")]
+    for i, (t, v, r, code) in enumerate(steps):
+        x = 200 + i * 150
+        s.line(x - 40, Y(v), x + 40, Y(v), BLUE, 3)
+        s.text(x, Y(v) - 10, f"{v} V", 12, color=BLUE, weight="bold")
+        s.text(x, 70, t, 12, weight="bold")
+        s.text(x, 88, r, 11, color=MUTED)
+        s.rect(x - 30, y0 + 16, 60, 28, ORANGE_BG, ORANGE, 4, 1.2)
+        s.text(x, y0 + 35, code, 14, weight="bold")
+        if i < 2:
+            s.line(x + 45, y0 + 30, x + 105, y0 + 30, LINE, 1.5, arrow=True)
+    s.rect(680, 150, 190, 120, "#fafbfc", MUTED, 8, 1)
+    s.text(775, 176, "결과 101₂ = 5", 14, weight="bold")
+    s.text(775, 200, "5 × (8 V ÷ 8) = 5 V", 12, color=MUTED)
+    s.text(775, 222, "~ 6 V 사이", 12, color=MUTED)
+    s.text(775, 248, "n비트 = 비교 n번", 12, color=BLUE, weight="bold")
+    s.text(450, 438, "비교할 때마다 남은 범위를 절반으로 줄인다. 그동안 입력은 샘플-홀드 커패시터에 붙잡아 둔다", 12, color=MUTED)
+    s.save("ch09/fig9-3-sar.svg")
+
+
+def fig_9_4():
+    s = Svg(820, 380)
+    s.text(410, 30, "그림 9-4  가변저항 분압 회로", 16, weight="bold")
+    x = 200
+    supply(s, x, 80, "VCC (5 V 또는 3.3 V)")
+    s.line(x, 80, x, 110, LINE, 2)
+    s.rect(x - 14, 110, 28, 160, "#ffffff", LINE, 2, 2)
+    s.text(x - 24, 150, "R1", 13, "end", weight="bold")
+    s.text(x - 24, 240, "R2", 13, "end", weight="bold")
+    # 와이퍼
+    s.poly([(x + 16, 190), (x + 34, 182), (x + 34, 198)], ORANGE, ORANGE, 1)
+    s.line(x + 34, 190, 360, 190, ORANGE, 2.5)
+    s.text(300, 182, "와이퍼", 11, color=ORANGE)
+    s.line(x, 270, x, 300, LINE, 2)
+    ground(s, x, 300)
+    s.box(360, 165, 130, 50, "ADC 입력", "A0 / PA0", BLUE_BG, BLUE, 13)
+    s.rect(540, 110, 250, 150, "#fafbfc", MUTED, 8, 1)
+    s.text(665, 138, "Vout = VCC × R2 ÷ (R1 + R2)", 13, weight="bold")
+    s.text(665, 166, "손잡이를 돌리면 R1과 R2의 비율이 바뀐다", 12, color=MUTED)
+    s.text(665, 194, "ADC 기준 전압 = VCC이면", 12, color=MUTED)
+    s.text(665, 216, "ADC 값 = 최대 코드 × R2 ÷ (R1 + R2)", 12, weight="bold", color=BLUE)
+    s.text(665, 240, "→ 전원 전압이 흔들려도 값은 그대로", 12, color=BLUE)
+    s.text(410, 360, "가변저항은 10 kΩ 정도를 쓴다. 너무 크면 ADC 입력의 샘플링 커패시터를 제때 채우지 못한다", 12, color=MUTED)
+    s.save("ch09/fig9-4-pot-divider.svg")
+
+
+def fig_9_5():
+    import math, random
+    s = Svg(900, 380)
+    s.text(450, 30, "그림 9-5  이동 평균 필터 적용 전후", 16, weight="bold")
+    random.seed(7)
+    x0, y0, w, h = 110, 320, 740, 240
+    s.line(x0, y0, x0 + w + 10, y0, MUTED, 1.2, arrow=True)
+    s.line(x0, y0, x0, y0 - h - 10, MUTED, 1.2, arrow=True)
+    s.text(x0 - 10, y0 - h - 14, "ADC 값", 12, "end", INK, "bold")
+    s.text(x0 + w + 10, y0 + 20, "샘플 번호", 12, "end", MUTED)
+    n = 120
+    truth = [0.45 + (0.25 if 40 <= i < 85 else 0.0) for i in range(n)]
+    raw = [t + random.gauss(0, 0.06) for t in truth]
+    N = 8
+    avg = []
+    for i in range(n):
+        win = raw[max(0, i - N + 1): i + 1]
+        avg.append(sum(win) / len(win))
+    def P(arr, col, wd):
+        pts = " ".join(f"L{x0 + i * w / (n - 1):.1f},{y0 - v * h:.1f}" for i, v in enumerate(arr))
+        s.path(f"M{x0},{y0 - arr[0] * h:.1f} " + pts, col, wd)
+    P(raw, "#9fb3c8", 1.3)
+    P(avg, ORANGE, 2.5)
+    lx = 620
+    s.line(lx, 60, lx + 30, 60, "#9fb3c8", 1.5)
+    s.text(lx + 38, 64, "원래 값 (잡음 섞임)", 12, "start")
+    s.line(lx, 82, lx + 30, 82, ORANGE, 2.5)
+    s.text(lx + 38, 86, "최근 8개 평균", 12, "start")
+    s.text(x0 + 40 * w / (n - 1) + 6, y0 - 0.78 * h, "평균은 계단을 늦게 따라간다 (지연)", 12, "start", ORANGE)
+    s.text(450, 362, "잡음은 줄지만 변화에 늦게 반응한다. 창이 길수록 더 매끄럽고 더 느리다", 12, color=MUTED)
+    s.save("ch09/fig9-5-moving-average.svg")
+
+
+# ---------------------------------------------------------------------------
 # 14장 UART
 # ---------------------------------------------------------------------------
 

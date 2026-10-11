@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="380" viewBox="0 0 820 380" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="410.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 9-4  가변저항 분압 회로</text>
+  <line x1="186.0" y1="80.0" x2="214.0" y2="80.0" stroke="#334e68" stroke-width="2.5"/>
+  <text x="200.0" y="72.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">VCC (5 V 또는 3.3 V)</text>
+  <line x1="200.0" y1="80.0" x2="200.0" y2="110.0" stroke="#334e68" stroke-width="2"/>
+  <rect x="186.0" y="110.0" width="28.0" height="160.0" rx="2" fill="#ffffff" stroke="#334e68" stroke-width="2"/>
+  <text x="176.0" y="150.0" font-size="13" text-anchor="end" fill="#1f2933" font-weight="bold">R1</text>
+  <text x="176.0" y="240.0" font-size="13" text-anchor="end" fill="#1f2933" font-weight="bold">R2</text>
+  <polygon points="216.0,190.0 234.0,182.0 234.0,198.0" fill="#d9730d" stroke="#d9730d" stroke-width="1"/>
+  <line x1="234.0" y1="190.0" x2="360.0" y2="190.0" stroke="#d9730d" stroke-width="2.5"/>
+  <text x="300.0" y="182.0" font-size="11" text-anchor="middle" fill="#d9730d" font-weight="normal">와이퍼</text>
+  <line x1="200.0" y1="270.0" x2="200.0" y2="300.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="200.0" y1="300.0" x2="200.0" y2="308.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="186.0" y1="308.0" x2="214.0" y2="308.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="191.0" y1="313.0" x2="209.0" y2="313.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="196.0" y1="318.0" x2="204.0" y2="318.0" stroke="#334e68" stroke-width="2"/>
+  <rect x="360.0" y="165.0" width="130.0" height="50.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="425.0" y="187.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">ADC 입력</text>
+  <text x="425.0" y="206.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">A0 / PA0</text>
+  <rect x="540.0" y="110.0" width="250.0" height="150.0" rx="8" fill="#fafbfc" stroke="#616e7c" stroke-width="1"/>
+  <text x="665.0" y="138.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">Vout = VCC × R2 ÷ (R1 + R2)</text>
+  <text x="665.0" y="166.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">손잡이를 돌리면 R1과 R2의 비율이 바뀐다</text>
+  <text x="665.0" y="194.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">ADC 기준 전압 = VCC이면</text>
+  <text x="665.0" y="216.0" font-size="12" text-anchor="middle" fill="#2f6fdf" font-weight="bold">ADC 값 = 최대 코드 × R2 ÷ (R1 + R2)</text>
+  <text x="665.0" y="240.0" font-size="12" text-anchor="middle" fill="#2f6fdf" font-weight="normal">→ 전원 전압이 흔들려도 값은 그대로</text>
+  <text x="410.0" y="360.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">가변저항은 10 kΩ 정도를 쓴다. 너무 크면 ADC 입력의 샘플링 커패시터를 제때 채우지 못한다</text>
+</svg>

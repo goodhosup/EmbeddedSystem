@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="450" viewBox="0 0 900 450" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 9-3  SAR ADC의 변환 과정: 이진 탐색 (3비트, Vref = 8 V, 입력 5.3 V)</text>
+  <line x1="130.0" y1="360.0" x2="130.0" y2="70.0" stroke="#616e7c" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="125.0" y1="360.0" x2="130.0" y2="360.0" stroke="#616e7c" stroke-width="1.2"/>
+  <text x="120.0" y="364.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">0 V</text>
+  <line x1="125.0" y1="325.0" x2="130.0" y2="325.0" stroke="#616e7c" stroke-width="1.2"/>
+  <text x="120.0" y="329.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">1 V</text>
+  <line x1="125.0" y1="290.0" x2="130.0" y2="290.0" stroke="#616e7c" stroke-width="1.2"/>
+  <text x="120.0" y="294.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">2 V</text>
+  <line x1="125.0" y1="255.0" x2="130.0" y2="255.0" stroke="#616e7c" stroke-width="1.2"/>
+  <text x="120.0" y="259.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">3 V</text>
+  <line x1="125.0" y1="220.0" x2="130.0" y2="220.0" stroke="#616e7c" stroke-width="1.2"/>
+  <text x="120.0" y="224.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">4 V</text>
+  <line x1="125.0" y1="185.0" x2="130.0" y2="185.0" stroke="#616e7c" stroke-width="1.2"/>
+  <text x="120.0" y="189.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">5 V</text>
+  <line x1="125.0" y1="150.0" x2="130.0" y2="150.0" stroke="#616e7c" stroke-width="1.2"/>
+  <text x="120.0" y="154.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">6 V</text>
+  <line x1="125.0" y1="115.0" x2="130.0" y2="115.0" stroke="#616e7c" stroke-width="1.2"/>
+  <text x="120.0" y="119.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">7 V</text>
+  <line x1="125.0" y1="80.0" x2="130.0" y2="80.0" stroke="#616e7c" stroke-width="1.2"/>
+  <text x="120.0" y="84.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">8 V</text>
+  <line x1="130.0" y1="174.5" x2="640.0" y2="174.5" stroke="#d64545" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="138.0" y="166.5" font-size="12" text-anchor="start" fill="#d64545" font-weight="bold">입력 5.3 V</text>
+  <line x1="160.0" y1="220.0" x2="240.0" y2="220.0" stroke="#2f6fdf" stroke-width="3"/>
+  <text x="200.0" y="210.0" font-size="12" text-anchor="middle" fill="#2f6fdf" font-weight="bold">4 V</text>
+  <text x="200.0" y="70.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">1단계: 4 V와 비교</text>
+  <text x="200.0" y="88.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">크다 → 비트2 = 1</text>
+  <rect x="170.0" y="376.0" width="60.0" height="28.0" rx="4" fill="#fdebd7" stroke="#d9730d" stroke-width="1.2"/>
+  <text x="200.0" y="395.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">1??</text>
+  <line x1="245.0" y1="390.0" x2="305.0" y2="390.0" stroke="#334e68" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="310.0" y1="150.0" x2="390.0" y2="150.0" stroke="#2f6fdf" stroke-width="3"/>
+  <text x="350.0" y="140.0" font-size="12" text-anchor="middle" fill="#2f6fdf" font-weight="bold">6 V</text>
+  <text x="350.0" y="70.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">2단계: 6 V와 비교</text>
+  <text x="350.0" y="88.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">작다 → 비트1 = 0</text>
+  <rect x="320.0" y="376.0" width="60.0" height="28.0" rx="4" fill="#fdebd7" stroke="#d9730d" stroke-width="1.2"/>
+  <text x="350.0" y="395.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">10?</text>
+  <line x1="395.0" y1="390.0" x2="455.0" y2="390.0" stroke="#334e68" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="460.0" y1="185.0" x2="540.0" y2="185.0" stroke="#2f6fdf" stroke-width="3"/>
+  <text x="500.0" y="175.0" font-size="12" text-anchor="middle" fill="#2f6fdf" font-weight="bold">5 V</text>
+  <text x="500.0" y="70.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">3단계: 5 V와 비교</text>
+  <text x="500.0" y="88.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">크다 → 비트0 = 1</text>
+  <rect x="470.0" y="376.0" width="60.0" height="28.0" rx="4" fill="#fdebd7" stroke="#d9730d" stroke-width="1.2"/>
+  <text x="500.0" y="395.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">101</text>
+  <rect x="680.0" y="150.0" width="190.0" height="120.0" rx="8" fill="#fafbfc" stroke="#616e7c" stroke-width="1"/>
+  <text x="775.0" y="176.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">결과 101₂ = 5</text>
+  <text x="775.0" y="200.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">5 × (8 V ÷ 8) = 5 V</text>
+  <text x="775.0" y="222.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">~ 6 V 사이</text>
+  <text x="775.0" y="248.0" font-size="12" text-anchor="middle" fill="#2f6fdf" font-weight="bold">n비트 = 비교 n번</text>
+  <text x="450.0" y="438.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">비교할 때마다 남은 범위를 절반으로 줄인다. 그동안 입력은 샘플-홀드 커패시터에 붙잡아 둔다</text>
+</svg>
