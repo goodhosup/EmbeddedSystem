@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="380" viewBox="0 0 820 380" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="410.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 2-1  옴의 법칙과 LED 회로</text>
+  <text x="190.0" y="70.0" font-size="14" text-anchor="middle" fill="#2f6fdf" font-weight="bold">옴의 법칙</text>
+  <polygon points="190.0,95.0 90.0,265.0 290.0,265.0" fill="#e3edfd" stroke="#2f6fdf" stroke-width="2"/>
+  <line x1="125.0" y1="205.0" x2="255.0" y2="205.0" stroke="#2f6fdf" stroke-width="2"/>
+  <line x1="190.0" y1="205.0" x2="190.0" y2="265.0" stroke="#2f6fdf" stroke-width="2"/>
+  <text x="190.0" y="180.0" font-size="30" text-anchor="middle" fill="#1f2933" font-weight="bold">V</text>
+  <text x="155.0" y="248.0" font-size="28" text-anchor="middle" fill="#1f2933" font-weight="bold">I</text>
+  <text x="225.0" y="248.0" font-size="28" text-anchor="middle" fill="#1f2933" font-weight="bold">R</text>
+  <text x="190.0" y="300.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">V = I × R</text>
+  <text x="190.0" y="324.0" font-size="13" text-anchor="middle" fill="#616e7c" font-weight="normal">I = V ÷ R,   R = V ÷ I</text>
+  <text x="190.0" y="346.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">가리고 싶은 값을 손으로 덮으면 식이 보인다</text>
+  <text x="590.0" y="70.0" font-size="14" text-anchor="middle" fill="#d9730d" font-weight="bold">LED 전류 제한 저항</text>
+  <rect x="400.0" y="95.0" width="90.0" height="44.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="445.0" y="122.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">MCU 핀</text>
+  <text x="445.0" y="155.0" font-size="12" text-anchor="middle" fill="#2f6fdf" font-weight="normal">High = 5 V</text>
+  <line x1="490.0" y1="117.0" x2="520.0" y2="117.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="520.0" y1="117.0" x2="520.0" y2="120.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="520.0" y1="120.0" x2="520.0" y2="140.0" stroke="#334e68" stroke-width="2"/>
+  <path d="M520.0,140.0 L528.0,143.3 L512.0,150.0 L528.0,156.7 L512.0,163.3 L528.0,170.0 L512.0,176.7 L520.0,180.0" stroke="#334e68" stroke-width="2" fill="none" stroke-linejoin="round"/>
+  <line x1="520.0" y1="180.0" x2="520.0" y2="200.0" stroke="#334e68" stroke-width="2"/>
+  <text x="536.0" y="165.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold">R = 330 Ω</text>
+  <line x1="520.0" y1="200.0" x2="520.0" y2="225.5" stroke="#334e68" stroke-width="2"/>
+  <polygon points="508.0,225.5 532.0,225.5 520.0,245.5" fill="#ffffff" stroke="#d64545" stroke-width="2"/>
+  <line x1="508.0" y1="245.5" x2="532.0" y2="245.5" stroke="#d64545" stroke-width="2.5"/>
+  <line x1="520.0" y1="245.5" x2="520.0" y2="275.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="536.0" y1="229.5" x2="547.0" y2="221.5" stroke="#d64545" stroke-width="1.5"/>
+  <polygon points="547.0,221.5 541.0,222.5 545.0,226.5" fill="#d64545" stroke="#d64545" stroke-width="1"/>
+  <line x1="536.0" y1="238.5" x2="547.0" y2="230.5" stroke="#d64545" stroke-width="1.5"/>
+  <polygon points="547.0,230.5 541.0,231.5 545.0,235.5" fill="#d64545" stroke="#d64545" stroke-width="1"/>
+  <text x="554.0" y="242.5" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold">빨간 LED</text>
+  <line x1="520.0" y1="275.0" x2="520.0" y2="283.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="506.0" y1="283.0" x2="534.0" y2="283.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="511.0" y1="288.0" x2="529.0" y2="288.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="516.0" y1="293.0" x2="524.0" y2="293.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="650.0" y1="128.0" x2="650.0" y2="192.0" stroke="#d9730d" stroke-width="1.5" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+  <text x="660.0" y="165.0" font-size="13" text-anchor="start" fill="#d9730d" font-weight="bold">3 V</text>
+  <line x1="650.0" y1="208.0" x2="650.0" y2="268.0" stroke="#d64545" stroke-width="1.5" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+  <text x="660.0" y="243.0" font-size="13" text-anchor="start" fill="#d64545" font-weight="bold">Vf ≈ 2 V</text>
+  <rect x="400.0" y="310.0" width="380.0" height="52.0" rx="8" fill="#eef1f4" stroke="#616e7c" stroke-width="1"/>
+  <text x="590.0" y="332.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">저항에 걸리는 전압 = 5 V − 2 V = 3 V</text>
+  <text x="590.0" y="352.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">I = 3 V ÷ 330 Ω ≈ 9 mA (핀 허용 전류 안쪽)</text>
+</svg>

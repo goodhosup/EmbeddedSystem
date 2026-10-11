@@ -365,6 +365,365 @@ def fig_1_6():
 
 
 # ---------------------------------------------------------------------------
+# 회로 기호 (2장 이후 공통)
+# ---------------------------------------------------------------------------
+
+def resistor_v(s, x, y0, y1, label=None, color=LINE):
+    """세로 저항. y0~y1 사이 가운데에 지그재그를 그린다."""
+    mid = (y0 + y1) / 2
+    zig_h = 40
+    a, b = mid - zig_h / 2, mid + zig_h / 2
+    s.line(x, y0, x, a, color, 2)
+    pts = [f"M{x:.1f},{a:.1f}"]
+    n = 6
+    for i in range(n):
+        dx = 8 if i % 2 == 0 else -8
+        pts.append(f"L{x + dx:.1f},{a + (i + 0.5) * zig_h / n:.1f}")
+    pts.append(f"L{x:.1f},{b:.1f}")
+    s.path(" ".join(pts), color, 2)
+    s.line(x, b, x, y1, color, 2)
+    if label:
+        s.text(x + 16, mid + 5, label, 13, "start", weight="bold")
+
+
+def resistor_h(s, x0, x1, y, label=None, color=LINE):
+    """가로 저항."""
+    mid = (x0 + x1) / 2
+    zig_w = 40
+    a, b = mid - zig_w / 2, mid + zig_w / 2
+    s.line(x0, y, a, y, color, 2)
+    pts = [f"M{a:.1f},{y:.1f}"]
+    n = 6
+    for i in range(n):
+        dy = -8 if i % 2 == 0 else 8
+        pts.append(f"L{a + (i + 0.5) * zig_w / n:.1f},{y + dy:.1f}")
+    pts.append(f"L{b:.1f},{y:.1f}")
+    s.path(" ".join(pts), color, 2)
+    s.line(b, y, x1, y, color, 2)
+    if label:
+        s.text(mid, y - 16, label, 13, weight="bold")
+
+
+def led_v(s, x, y0, y1, label=None, color=RED):
+    """세로 LED (위가 애노드, 아래가 캐소드)."""
+    mid = (y0 + y1) / 2
+    s.line(x, y0, x, mid - 12, LINE, 2)
+    s.poly([(x - 12, mid - 12), (x + 12, mid - 12), (x, mid + 8)], "#ffffff", color, 2)
+    s.line(x - 12, mid + 8, x + 12, mid + 8, color, 2.5)
+    s.line(x, mid + 8, x, y1, LINE, 2)
+    for k in (0, 9):
+        s.line(x + 16, mid - 8 + k, x + 27, mid - 16 + k, color, 1.5)
+        s.poly([(x + 27, mid - 16 + k), (x + 21, mid - 15 + k), (x + 25, mid - 11 + k)], color, color, 1)
+    if label:
+        s.text(x + 34, mid + 5, label, 13, "start", weight="bold")
+
+
+def ground(s, x, y, color=LINE):
+    s.line(x, y, x, y + 8, color, 2)
+    for i, w in enumerate((14, 9, 4)):
+        s.line(x - w, y + 8 + i * 5, x + w, y + 8 + i * 5, color, 2)
+
+
+def supply(s, x, y, label, color=LINE):
+    """전원 기호: 위쪽 가로 막대와 전압 이름."""
+    s.line(x - 14, y, x + 14, y, color, 2.5)
+    s.text(x, y - 8, label, 13, weight="bold")
+
+
+def switch_v(s, x, y0, y1, label=None, closed=False, color=LINE):
+    """세로 푸시 버튼."""
+    mid = (y0 + y1) / 2
+    s.line(x, y0, x, mid - 12, color, 2)
+    s.line(x, mid + 12, x, y1, color, 2)
+    s.add(f'<circle cx="{x:.1f}" cy="{mid - 12:.1f}" r="3" fill="{color}"/>')
+    s.add(f'<circle cx="{x:.1f}" cy="{mid + 12:.1f}" r="3" fill="{color}"/>')
+    if closed:
+        s.line(x - 4, mid - 12, x - 4, mid + 12, color, 2.5)
+    else:
+        s.line(x - 14, mid - 16, x - 14, mid + 16, color, 2.5)
+        s.line(x - 14, mid, x - 26, mid, color, 2)
+    if label:
+        s.text(x + 14, mid + 5, label, 13, "start", weight="bold")
+
+
+def dot(s, x, y, color=LINE):
+    s.add(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="4" fill="{color}"/>')
+
+
+# ---------------------------------------------------------------------------
+# 2장
+# ---------------------------------------------------------------------------
+
+def fig_2_1():
+    s = Svg(820, 380)
+    s.text(410, 30, "그림 2-1  옴의 법칙과 LED 회로", 16, weight="bold")
+    # 왼쪽: 옴의 법칙 삼각형
+    s.text(190, 70, "옴의 법칙", 14, weight="bold", color=BLUE)
+    s.poly([(190, 95), (90, 265), (290, 265)], BLUE_BG, BLUE, 2)
+    s.line(125, 205, 255, 205, BLUE, 2)
+    s.line(190, 205, 190, 265, BLUE, 2)
+    s.text(190, 180, "V", 30, weight="bold")
+    s.text(155, 248, "I", 28, weight="bold")
+    s.text(225, 248, "R", 28, weight="bold")
+    s.text(190, 300, "V = I × R", 16, weight="bold")
+    s.text(190, 324, "I = V ÷ R,   R = V ÷ I", 13, color=MUTED)
+    s.text(190, 346, "가리고 싶은 값을 손으로 덮으면 식이 보인다", 12, color=MUTED)
+
+    # 오른쪽: LED 회로
+    s.text(590, 70, "LED 전류 제한 저항", 14, weight="bold", color=ORANGE)
+    x = 520
+    s.box(400, 95, 90, 44, "MCU 핀", None, BLUE_BG, BLUE, 13)
+    s.text(445, 155, "High = 5 V", 12, color=BLUE)
+    s.line(490, 117, x, 117, LINE, 2)
+    s.line(x, 117, x, 120, LINE, 2)
+    resistor_v(s, x, 120, 200, "R = 330 Ω")
+    led_v(s, x, 200, 275, "빨간 LED")
+    ground(s, x, 275)
+    # 전압 표시
+    s.line(650, 128, 650, 192, ORANGE, 1.5, both=True)
+    s.text(660, 165, "3 V", 13, "start", ORANGE, "bold")
+    s.line(650, 208, 650, 268, RED, 1.5, both=True)
+    s.text(660, 243, "Vf ≈ 2 V", 13, "start", RED, "bold")
+    s.rect(400, 310, 380, 52, GRAY_BG, MUTED, 8, 1)
+    s.text(590, 332, "저항에 걸리는 전압 = 5 V − 2 V = 3 V", 13)
+    s.text(590, 352, "I = 3 V ÷ 330 Ω ≈ 9 mA (핀 허용 전류 안쪽)", 13, weight="bold")
+    s.save("ch02/fig2-1-ohm-led.svg")
+
+
+def fig_2_2():
+    s = Svg(820, 420)
+    s.text(410, 30, "그림 2-2  논리 레벨과 노이즈 마진 (ATmega328P, VCC = 5 V 기준)", 16, weight="bold")
+    base, k = 360, 56  # 0 V의 y좌표, 1 V당 픽셀
+
+    def y(v):
+        return base - v * k
+
+    # 전압 축
+    s.line(120, y(0), 120, y(5.3), MUTED, 1.5, arrow=True)
+    for v in range(6):
+        s.line(114, y(v), 120, y(v), MUTED, 1.5)
+        s.text(108, y(v) + 4, f"{v} V", 12, "end", MUTED)
+
+    # 출력(송신) 막대
+    xo = 200
+    s.text(xo + 60, 62, "출력이 보장하는 값", 13, weight="bold", color=BLUE)
+    s.rect(xo, y(5), 120, y(4.2) - y(5), BLUE_BG, BLUE, 3)
+    s.text(xo + 60, (y(5) + y(4.2)) / 2 + 5, "High 출력", 13, weight="bold")
+    s.rect(xo, y(0.9), 120, y(0) - y(0.9), BLUE_BG, BLUE, 3)
+    s.text(xo + 60, (y(0.9) + y(0)) / 2 + 5, "Low 출력", 13, weight="bold")
+    s.text(xo - 6, y(4.2) + 4, "VOH min 4.2 V", 11, "end", BLUE)
+    s.text(xo - 6, y(0.9) + 4, "VOL max 0.9 V", 11, "end", BLUE)
+
+    # 입력(수신) 막대
+    xi = 520
+    s.text(xi + 60, 62, "입력이 받아들이는 값", 13, weight="bold", color=ORANGE)
+    s.rect(xi, y(5), 120, y(3.0) - y(5), ORANGE_BG, ORANGE, 3)
+    s.text(xi + 60, (y(5) + y(3.0)) / 2 + 5, "High로 인식", 13, weight="bold")
+    s.rect(xi, y(3.0), 120, y(1.5) - y(3.0), "#ffffff", RED, 3)
+    s.text(xi + 60, (y(3.0) + y(1.5)) / 2 - 4, "정의되지 않음", 13, color=RED, weight="bold")
+    s.text(xi + 60, (y(3.0) + y(1.5)) / 2 + 14, "(피해야 하는 구간)", 11, color=RED)
+    s.rect(xi, y(1.5), 120, y(0) - y(1.5), ORANGE_BG, ORANGE, 3)
+    s.text(xi + 60, (y(1.5) + y(0)) / 2 + 5, "Low로 인식", 13, weight="bold")
+    s.text(xi + 126, y(3.0) + 4, "VIH min 3.0 V", 11, "start", ORANGE)
+    s.text(xi + 126, y(1.5) + 4, "VIL max 1.5 V", 11, "start", ORANGE)
+
+    # 노이즈 마진
+    for va, vb, lbl in ((4.2, 3.0, "High 노이즈 마진 1.2 V"), (1.5, 0.9, "Low 노이즈 마진 0.6 V")):
+        s.line(330, y(va), 510, y(va), GREEN, 1.2, "4 3")
+        s.line(330, y(vb), 510, y(vb), GREEN, 1.2, "4 3")
+        s.line(360, y(va) + 1, 360, y(vb) - 1, GREEN, 1.5, both=True)
+        s.text(372, (y(va) + y(vb)) / 2 + 5, lbl, 12, "start", GREEN, "bold")
+    s.text(410, 400, "출력의 최악값과 입력의 경계 사이 여유(노이즈 마진)만큼 잡음을 견딜 수 있다", 12, color=MUTED)
+    s.save("ch02/fig2-2-logic-levels.svg")
+
+
+def fig_2_3():
+    s = Svg(820, 400)
+    s.text(410, 30, "그림 2-3  풀업과 풀다운 저항이 있는 버튼 회로", 16, weight="bold")
+
+    def mcu(x, y):
+        s.box(x, y - 22, 100, 44, "입력 핀", None, BLUE_BG, BLUE, 13)
+
+    # (가) 풀업
+    s.text(205, 64, "(가) 풀업: 평소 High, 누르면 Low", 14, weight="bold", color=BLUE)
+    x = 150
+    supply(s, x, 100, "VCC")
+    resistor_v(s, x, 100, 180, "10 kΩ")
+    dot(s, x, 200)
+    s.line(x, 180, x, 280, LINE, 2)
+    s.line(x, 200, 250, 200, LINE, 2)
+    mcu(250, 200)
+    switch_v(s, x, 230, 300, "버튼")
+    ground(s, x, 300)
+    s.rect(60, 340, 290, 46, GRAY_BG, MUTED, 8, 1)
+    s.text(205, 359, "안 누름: 저항을 통해 VCC → 1", 12)
+    s.text(205, 377, "누름: 핀이 GND에 직접 연결 → 0", 12)
+
+    # (나) 풀다운
+    s.text(615, 64, "(나) 풀다운: 평소 Low, 누르면 High", 14, weight="bold", color=ORANGE)
+    x = 560
+    supply(s, x, 100, "VCC")
+    switch_v(s, x, 100, 170, "버튼")
+    dot(s, x, 200)
+    s.line(x, 170, x, 220, LINE, 2)
+    s.line(x, 200, 660, 200, LINE, 2)
+    mcu(660, 200)
+    resistor_v(s, x, 220, 300, "10 kΩ")
+    ground(s, x, 300)
+    s.rect(470, 340, 290, 46, GRAY_BG, MUTED, 8, 1)
+    s.text(615, 359, "안 누름: 저항을 통해 GND → 0", 12)
+    s.text(615, 377, "누름: 핀이 VCC에 직접 연결 → 1", 12)
+    s.save("ch02/fig2-3-pullup-pulldown.svg")
+
+
+def fig_2_4():
+    s = Svg(820, 420)
+    s.text(410, 30, "그림 2-4  푸시풀 출력과 오픈 드레인 출력의 내부 구조", 16, weight="bold")
+
+    def fet(x, y, name, on, color):
+        """트랜지스터를 스위치 상자로 단순화해서 그린다."""
+        s.rect(x - 45, y - 24, 90, 48, color if on else "#ffffff", LINE, 6, 1.5)
+        s.text(x, y - 3, name, 13, weight="bold")
+        s.text(x, y + 15, "켜짐(ON)" if on else "꺼짐(OFF)", 11, color=INK if on else MUTED)
+
+    # (가) 푸시풀
+    s.text(210, 64, "(가) 푸시풀: 1과 0을 모두 힘 있게 낸다", 14, weight="bold", color=BLUE)
+    x = 150
+    supply(s, x, 100, "VDD")
+    s.line(x, 100, x, 126, LINE, 2)
+    fet(x, 150, "P-MOS", True, BLUE_BG)
+    s.line(x, 174, x, 236, BLUE, 3)
+    dot(s, x, 205)
+    s.line(x, 205, 250, 205, BLUE, 3, arrow=True)
+    s.text(258, 210, "출력 = 1", 13, "start", BLUE, "bold")
+    fet(x, 260, "N-MOS", False, BLUE_BG)
+    s.line(x, 284, x, 300, LINE, 2)
+    ground(s, x, 300)
+    s.text(150, 350, "출력 1: 위가 켜져 VDD로 끌어올림", 12, color=MUTED)
+    s.text(150, 370, "출력 0: 아래가 켜져 GND로 끌어내림", 12, color=MUTED)
+    s.text(150, 390, "두 출력을 서로 연결하면 단락 위험", 12, color=RED, weight="bold")
+
+    # (나) 오픈 드레인
+    s.text(610, 64, "(나) 오픈 드레인: 0만 낸다", 14, weight="bold", color=ORANGE)
+    x = 560
+    s.rect(500, 110, 120, 200, "#fafbfc", MUTED, 10, 1)
+    s.text(560, 128, "칩 내부", 11, color=MUTED)
+    s.text(560, 172, "(위쪽 트랜지스터 없음)", 11, color=MUTED)
+    s.line(x, 205, x, 236, LINE, 2)
+    dot(s, x, 205)
+    fet(x, 260, "N-MOS", False, ORANGE_BG)
+    s.line(x, 284, x, 300, LINE, 2)
+    ground(s, x, 300)
+    s.line(x, 205, 700, 205, ORANGE, 3)
+    supply(s, 700, 100, "VDD")
+    resistor_v(s, 700, 100, 180, "외부 풀업")
+    s.line(700, 180, 700, 205, ORANGE, 3)
+    dot(s, 700, 205)
+    s.line(700, 205, 760, 205, ORANGE, 3, arrow=True)
+    s.text(730, 230, "출력 = 1", 13, color=ORANGE, weight="bold")
+    s.text(610, 350, "0: 트랜지스터가 켜져 GND로 끌어내림", 12, color=MUTED)
+    s.text(610, 370, "1: 트랜지스터가 꺼지고 풀업 저항이 끌어올림", 12, color=MUTED)
+    s.text(610, 390, "여러 출력을 한 선에 묶어도 안전 (I2C)", 12, color=GREEN, weight="bold")
+    s.save("ch02/fig2-4-pushpull-opendrain.svg")
+
+
+def fig_2_5():
+    s = Svg(820, 500)
+    s.text(410, 30, "그림 2-5  브레드보드 내부 연결 구조", 16, weight="bold")
+    x0, y0, p = 110, 70, 26          # 왼쪽 위 구멍 위치, 구멍 간격
+    cols = 22
+    s.rect(70, 50, 690, 362, "#fbfaf6", MUTED, 10, 1.2)
+
+    def hole(x, y):
+        s.rect(x - 5, y - 5, 10, 10, "#ffffff", MUTED, 2, 1)
+
+    # 전원 레일 (위)
+    rails = [(y0, "+", RED), (y0 + p, "−", BLUE)]
+    for y, sign, col in rails:
+        s.line(x0 - 10, y, x0 + (cols - 1) * p + 10, y, col, 5)
+        for c in range(cols):
+            hole(x0 + c * p, y)
+        s.text(x0 - 22, y + 5, sign, 16, color=col, weight="bold")
+    # 단자 줄 a~e, f~j
+    top_rows = "abcde"
+    bot_rows = "fghij"
+    ya = y0 + 2.3 * p
+    yf = ya + 5 * p + 0.9 * p
+    hl = {3: GREEN, 4: GREEN, 9: ORANGE}
+    for c in range(cols):
+        x = x0 + c * p
+        col = hl.get(c)
+        if col:
+            s.line(x, ya, x, ya + 4 * p, col, 6)
+            s.line(x, yf, x, yf + 4 * p, col, 6)
+        for r in range(5):
+            hole(x, ya + r * p)
+            hole(x, yf + r * p)
+    for r in range(5):
+        s.text(x0 - 22, ya + r * p + 4, top_rows[r], 12, color=MUTED)
+        s.text(x0 - 22, yf + r * p + 4, bot_rows[r], 12, color=MUTED)
+    s.rect(x0 - 10, ya + 4 * p + 10, (cols - 1) * p + 20, yf - ya - 4 * p - 20, "#e9e6dc", MUTED, 3, 1)
+    s.text(x0 + 11 * p, (ya + 4 * p + yf) / 2 + 4, "가운데 홈: 위아래는 연결되지 않는다 (IC를 걸쳐 꽂는 자리)", 11, color=MUTED)
+
+    # 설명
+    legend = [
+        (RED, "전원 레일(+, −): 가로 한 줄 전체가 연결된다. 긴 보드는 가운데에서 끊긴 제품도 있다"),
+        (GREEN, "단자 줄: 세로 다섯 칸(a~e 또는 f~j)이 한 묶음이다"),
+        (ORANGE, "같은 열이라도 위(a~e)와 아래(f~j)는 서로 다른 묶음이다"),
+    ]
+    for i, (col, txt) in enumerate(legend):
+        yy = 438 + i * 22
+        s.line(90, yy - 4, 120, yy - 4, col, 5)
+        s.text(132, yy, txt, 12, "start", INK)
+    s.save("ch02/fig2-5-breadboard.svg")
+
+
+def fig_2_6():
+    s = Svg(860, 435)
+    s.text(430, 30, "그림 2-6  데이터시트의 전기적 특성 표 읽는 법 (예시 표)", 16, weight="bold")
+    headers = ["기호", "파라미터", "조건", "Min", "Typ", "Max", "단위"]
+    widths = [70, 190, 150, 60, 60, 60, 60]
+    rows = [
+        ["VIL", "입력 Low 전압", "VCC = 5 V", "−0.5", "", "0.3VCC", "V"],
+        ["VIH", "입력 High 전압", "VCC = 5 V", "0.6VCC", "", "VCC+0.5", "V"],
+        ["VOL", "출력 Low 전압", "IOL = 20 mA", "", "", "0.9", "V"],
+        ["VOH", "출력 High 전압", "IOH = −20 mA", "4.2", "", "", "V"],
+        ["RPU", "내부 풀업 저항", "", "20", "", "50", "kΩ"],
+    ]
+    x0, y0, rh = 70, 70, 36
+    x = x0
+    for h, w in zip(headers, widths):
+        s.rect(x, y0, w, rh, BLUE_BG, LINE, 0, 1)
+        s.text(x + w / 2, y0 + 23, h, 13, weight="bold")
+        x += w
+    for r, row in enumerate(rows):
+        x = x0
+        y = y0 + (r + 1) * rh
+        for c, (v, w) in enumerate(zip(row, widths)):
+            fill = ORANGE_BG if c == 2 and v else "#ffffff"
+            s.rect(x, y, w, rh, fill, LINE, 0, 1)
+            s.text(x + w / 2, y + 23, v, 12, weight="bold" if c == 0 else "normal")
+            x += w
+    yb = y0 + 6 * rh
+    # 번호 배지(표 머리 위)와 해설
+    notes = [
+        (x0 + 35, "①", "기호: 본문과 그림에서 이 이름으로 부른다", BLUE),
+        (x0 + 260 + 75, "②", "조건: 이 조건에서만 표의 값이 보장된다", ORANGE),
+        (x0 + 410 + 90, "③", "Min/Max는 보장값, Typ는 참고값이다. 설계는 최악값(Min/Max)으로 한다", GREEN),
+        (x0 + 560 + 30, "④", "단위와 부호를 확인한다. 전류의 −는 핀에서 흘러나가는 방향이다", RED),
+    ]
+    for i, (nx, badge, txt, col) in enumerate(notes):
+        s.add(f'<circle cx="{nx:.1f}" cy="{y0 - 14:.1f}" r="11" fill="{col}"/>')
+        s.text(nx, y0 - 9, str(i + 1), 13, color="#ffffff", weight="bold")
+        ty = yb + 32 + i * 26
+        s.add(f'<circle cx="{x0 + 10:.1f}" cy="{ty - 5:.1f}" r="10" fill="{col}"/>')
+        s.text(x0 + 10, ty, str(i + 1), 12, color="#ffffff", weight="bold")
+        s.text(x0 + 30, ty, txt, 13, "start", INK)
+    s.text(430, 418, "값은 ATmega328P 데이터시트의 DC 특성 표를 단순화한 것이다. 실제 설계에는 원본 표를 확인한다.", 11, color=MUTED)
+    s.save("ch02/fig2-6-datasheet-table.svg")
+
+
+# ---------------------------------------------------------------------------
 # 14장 UART
 # ---------------------------------------------------------------------------
 
