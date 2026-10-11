@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="520" viewBox="0 0 820 520" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="410.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 3-5  Cortex-M4 코어 레지스터</text>
+  <rect x="120.0" y="60.0" width="180.0" height="22.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="210.0" y="76.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">R0</text>
+  <rect x="120.0" y="82.0" width="180.0" height="22.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="210.0" y="98.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">R1</text>
+  <rect x="120.0" y="104.0" width="180.0" height="22.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="210.0" y="120.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">R2</text>
+  <rect x="120.0" y="126.0" width="180.0" height="22.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="210.0" y="142.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">R3</text>
+  <rect x="120.0" y="148.0" width="180.0" height="22.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="210.0" y="164.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">R4</text>
+  <rect x="120.0" y="170.0" width="180.0" height="22.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="210.0" y="186.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">R5</text>
+  <rect x="120.0" y="192.0" width="180.0" height="22.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="210.0" y="208.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">R6</text>
+  <rect x="120.0" y="214.0" width="180.0" height="22.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="210.0" y="230.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">R7</text>
+  <rect x="120.0" y="236.0" width="180.0" height="22.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="210.0" y="252.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">R8</text>
+  <rect x="120.0" y="258.0" width="180.0" height="22.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="210.0" y="274.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">R9</text>
+  <rect x="120.0" y="280.0" width="180.0" height="22.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="210.0" y="296.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">R10</text>
+  <rect x="120.0" y="302.0" width="180.0" height="22.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="210.0" y="318.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">R11</text>
+  <rect x="120.0" y="324.0" width="180.0" height="22.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="210.0" y="340.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">R12</text>
+  <path d="M110,62 L102,62 L102,344 L110,344" stroke="#2f6fdf" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+  <text x="94.0" y="195.0" font-size="12" text-anchor="end" fill="#2f6fdf" font-weight="bold">범용</text>
+  <text x="94.0" y="213.0" font-size="12" text-anchor="end" fill="#2f6fdf" font-weight="bold">레지스터</text>
+  <rect x="120.0" y="346.0" width="180.0" height="22.0" rx="0" fill="#fdebd7" stroke="#334e68" stroke-width="1"/>
+  <text x="210.0" y="362.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">R13 (SP)</text>
+  <text x="312.0" y="362.0" font-size="12" text-anchor="start" fill="#616e7c" font-weight="normal">스택 포인터: MSP / PSP</text>
+  <rect x="120.0" y="368.0" width="180.0" height="22.0" rx="0" fill="#fdebd7" stroke="#334e68" stroke-width="1"/>
+  <text x="210.0" y="384.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">R14 (LR)</text>
+  <text x="312.0" y="384.0" font-size="12" text-anchor="start" fill="#616e7c" font-weight="normal">링크 레지스터: 복귀 주소</text>
+  <rect x="120.0" y="390.0" width="180.0" height="22.0" rx="0" fill="#fdebd7" stroke="#334e68" stroke-width="1"/>
+  <text x="210.0" y="406.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">R15 (PC)</text>
+  <text x="312.0" y="406.0" font-size="12" text-anchor="start" fill="#616e7c" font-weight="normal">프로그램 카운터</text>
+  <rect x="120.0" y="424.0" width="180.0" height="22.0" rx="0" fill="#e1f4e5" stroke="#334e68" stroke-width="1"/>
+  <text x="210.0" y="440.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">xPSR</text>
+  <text x="312.0" y="440.0" font-size="12" text-anchor="start" fill="#616e7c" font-weight="normal">상태: N Z C V 플래그, 예외 번호</text>
+  <text x="630.0" y="72.0" font-size="14" text-anchor="middle" fill="#d64545" font-weight="bold">특수 레지스터</text>
+  <rect x="520.0" y="86.0" width="220.0" height="40.0" rx="6" fill="#ffffff" stroke="#d64545" stroke-width="1.2"/>
+  <text x="532.0" y="104.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold">PRIMASK</text>
+  <text x="532.0" y="120.0" font-size="11" text-anchor="start" fill="#616e7c" font-weight="normal">모든 인터럽트 막기</text>
+  <rect x="520.0" y="136.0" width="220.0" height="40.0" rx="6" fill="#ffffff" stroke="#d64545" stroke-width="1.2"/>
+  <text x="532.0" y="154.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold">FAULTMASK</text>
+  <text x="532.0" y="170.0" font-size="11" text-anchor="start" fill="#616e7c" font-weight="normal">폴트까지 막기</text>
+  <rect x="520.0" y="186.0" width="220.0" height="40.0" rx="6" fill="#ffffff" stroke="#d64545" stroke-width="1.2"/>
+  <text x="532.0" y="204.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold">BASEPRI</text>
+  <text x="532.0" y="220.0" font-size="11" text-anchor="start" fill="#616e7c" font-weight="normal">우선순위 이하 막기</text>
+  <rect x="520.0" y="236.0" width="220.0" height="40.0" rx="6" fill="#ffffff" stroke="#d64545" stroke-width="1.2"/>
+  <text x="532.0" y="254.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold">CONTROL</text>
+  <text x="532.0" y="270.0" font-size="11" text-anchor="start" fill="#616e7c" font-weight="normal">스택 선택, 권한</text>
+  <text x="630.0" y="310.0" font-size="14" text-anchor="middle" fill="#2f6fdf" font-weight="bold">FPU 레지스터 (M4F)</text>
+  <rect x="520.0" y="324.0" width="220.0" height="40.0" rx="6" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.2"/>
+  <text x="630.0" y="349.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">S0~S31 · FPSCR</text>
+  <text x="410.0" y="505.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">모든 레지스터는 32비트. R0~R3은 함수 인자와 반환값을 전달한다 (AAPCS)</text>
+</svg>

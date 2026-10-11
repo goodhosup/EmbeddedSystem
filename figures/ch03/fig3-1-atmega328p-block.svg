@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="420" viewBox="0 0 820 420" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="410.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 3-1  ATmega328P 블록 다이어그램 (단순화)</text>
+  <rect x="30.0" y="50.0" width="760.0" height="350.0" rx="14" fill="#fafbfc" stroke="#616e7c" stroke-width="1.2"/>
+  <rect x="60.0" y="80.0" width="250.0" height="190.0" rx="10" fill="#e3edfd" stroke="#2f6fdf" stroke-width="2"/>
+  <text x="185.0" y="104.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">AVR CPU 코어 (8비트)</text>
+  <rect x="75.0" y="118.0" width="105.0" height="54.0" rx="8" fill="#ffffff" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="127.5" y="142.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">ALU</text>
+  <text x="127.5" y="161.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">8비트 연산</text>
+  <rect x="190.0" y="118.0" width="105.0" height="54.0" rx="8" fill="#ffffff" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="242.5" y="142.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">R0~R31</text>
+  <text x="242.5" y="161.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">범용 레지스터</text>
+  <rect x="75.0" y="184.0" width="105.0" height="54.0" rx="8" fill="#ffffff" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="127.5" y="208.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">PC · SP</text>
+  <text x="127.5" y="227.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">SREG</text>
+  <rect x="190.0" y="184.0" width="105.0" height="54.0" rx="8" fill="#ffffff" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="242.5" y="216.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">명령 디코더</text>
+  <text x="185.0" y="258.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">대부분의 명령을 1클럭에 실행</text>
+  <rect x="350.0" y="80.0" width="130.0" height="56.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="415.0" y="105.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">Flash</text>
+  <text x="415.0" y="124.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">32 KB · 프로그램</text>
+  <rect x="350.0" y="147.0" width="130.0" height="56.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="415.0" y="172.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">SRAM</text>
+  <text x="415.0" y="191.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">2 KB · 데이터</text>
+  <rect x="350.0" y="214.0" width="130.0" height="56.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="415.0" y="239.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">EEPROM</text>
+  <text x="415.0" y="258.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">1 KB · 설정 저장</text>
+  <line x1="312.0" y1="108.0" x2="346.0" y2="108.0" stroke="#2f9e44" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="329.0" y="100.0" font-size="10" text-anchor="middle" fill="#2f9e44" font-weight="normal">명령</text>
+  <line x1="312.0" y1="175.0" x2="346.0" y2="175.0" stroke="#2f9e44" stroke-width="2" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+  <line x1="312.0" y1="242.0" x2="346.0" y2="242.0" stroke="#2f9e44" stroke-width="2" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+  <rect x="60.0" y="292.0" width="700.0" height="26.0" rx="6" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="410.0" y="310.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">8비트 데이터 버스</text>
+  <line x1="185.0" y1="272.0" x2="185.0" y2="290.0" stroke="#334e68" stroke-width="2" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+  <line x1="415.0" y1="272.0" x2="415.0" y2="290.0" stroke="#334e68" stroke-width="2" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+  <rect x="520.0" y="80.0" width="115.0" height="44.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="577.5" y="99.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">GPIO</text>
+  <text x="577.5" y="118.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">포트 B·C·D</text>
+  <rect x="645.0" y="80.0" width="115.0" height="44.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="702.5" y="99.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">타이머</text>
+  <text x="702.5" y="118.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">0 · 1 · 2</text>
+  <rect x="520.0" y="132.0" width="115.0" height="44.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="577.5" y="151.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">USART</text>
+  <text x="577.5" y="170.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">UART 1개</text>
+  <rect x="645.0" y="132.0" width="115.0" height="44.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="702.5" y="159.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">SPI</text>
+  <rect x="520.0" y="184.0" width="115.0" height="44.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="577.5" y="203.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">TWI</text>
+  <text x="577.5" y="222.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">I2C</text>
+  <rect x="645.0" y="184.0" width="115.0" height="44.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="702.5" y="203.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">ADC</text>
+  <text x="702.5" y="222.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">10비트</text>
+  <rect x="520.0" y="236.0" width="115.0" height="44.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="577.5" y="255.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">WDT</text>
+  <text x="577.5" y="274.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">워치독</text>
+  <line x1="640.0" y1="290.0" x2="640.0" y2="274.0" stroke="#334e68" stroke-width="2" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+  <rect x="60.0" y="334.0" width="220.0" height="50.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="170.0" y="356.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">클럭</text>
+  <text x="170.0" y="375.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">16 MHz 크리스털 (우노)</text>
+  <rect x="300.0" y="334.0" width="220.0" height="50.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="410.0" y="356.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">리셋 · 전원 감시</text>
+  <text x="410.0" y="375.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">POR · BOD · 외부 · WDT</text>
+  <rect x="540.0" y="334.0" width="220.0" height="50.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="650.0" y="356.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">인터럽트 유닛</text>
+  <text x="650.0" y="375.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">벡터 26개</text>
+</svg>

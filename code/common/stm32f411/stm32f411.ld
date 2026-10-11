@@ -1,0 +1,64 @@
+/*
+ * STM32F411RE 링커 스크립트 (이 책의 STM32 예제 공통)
+ *
+ * 메모리 크기와 시작 주소: RM0383 2.3절 "Memory map",
+ * STM32F411xC/E 데이터시트(DS10314) 메모리 매핑 그림.
+ * 21장에서 이 파일을 한 줄씩 해부한다.
+ */
+
+ENTRY(Reset_Handler)
+
+MEMORY
+{
+    FLASH (rx)  : ORIGIN = 0x08000000, LENGTH = 512K
+    RAM   (rwx) : ORIGIN = 0x20000000, LENGTH = 128K
+}
+
+/* 스택은 RAM의 끝에서 아래로 자란다 */
+_estack = ORIGIN(RAM) + LENGTH(RAM);
+
+SECTIONS
+{
+    .isr_vector :
+    {
+        . = ALIGN(4);
+        KEEP(*(.isr_vector))
+        . = ALIGN(4);
+    } > FLASH
+
+    .text :
+    {
+        . = ALIGN(4);
+        *(.text*)
+        *(.rodata*)
+        . = ALIGN(4);
+        _etext = .;
+    } > FLASH
+
+    /* 초기값이 있는 전역 변수: Flash에 저장해 두었다가 시작할 때 RAM으로 복사 */
+    _sidata = LOADADDR(.data);
+    .data :
+    {
+        . = ALIGN(4);
+        _sdata = .;
+        *(.data*)
+        . = ALIGN(4);
+        _edata = .;
+    } > RAM AT > FLASH
+
+    /* 초기값이 없는 전역 변수: 시작할 때 0으로 채움 */
+    .bss (NOLOAD) :
+    {
+        . = ALIGN(4);
+        _sbss = .;
+        *(.bss*)
+        *(COMMON)
+        . = ALIGN(4);
+        _ebss = .;
+    } > RAM
+
+    /DISCARD/ :
+    {
+        *(.ARM.exidx*)
+    }
+}

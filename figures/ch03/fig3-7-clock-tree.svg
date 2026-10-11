@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="400" viewBox="0 0 880 400" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="440.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 3-7  STM32F411의 클럭 트리 (단순화, HSI로 100 MHz 만들기)</text>
+  <rect x="30.0" y="70.0" width="140.0" height="52.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="100.0" y="93.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">HSI</text>
+  <text x="100.0" y="112.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">내부 RC 16 MHz</text>
+  <rect x="30.0" y="140.0" width="140.0" height="52.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="100.0" y="163.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">HSE</text>
+  <text x="100.0" y="182.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">외부 4~26 MHz</text>
+  <rect x="30.0" y="290.0" width="140.0" height="52.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="100.0" y="313.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">LSI / LSE</text>
+  <text x="100.0" y="332.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">32 kHz</text>
+  <line x1="172.0" y1="96.0" x2="210.0" y2="96.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="172.0" y1="166.0" x2="210.0" y2="166.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="210.0" y1="96.0" x2="210.0" y2="166.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="210.0" y1="131.0" x2="236.0" y2="131.0" stroke="#334e68" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="240.0" y="70.0" width="300.0" height="125.0" rx="10" fill="#e3edfd" stroke="#2f6fdf" stroke-width="2"/>
+  <text x="390.0" y="92.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">PLL</text>
+  <rect x="252.0" y="105.0" width="76.0" height="48.0" rx="8" fill="#ffffff" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="290.0" y="126.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">÷M</text>
+  <text x="290.0" y="145.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">M = 8</text>
+  <rect x="352.0" y="105.0" width="76.0" height="48.0" rx="8" fill="#ffffff" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="390.0" y="126.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">×N</text>
+  <text x="390.0" y="145.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">N = 100</text>
+  <rect x="452.0" y="105.0" width="76.0" height="48.0" rx="8" fill="#ffffff" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="490.0" y="126.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">÷P</text>
+  <text x="490.0" y="145.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">P = 2</text>
+  <line x1="330.0" y1="129.0" x2="349.0" y2="129.0" stroke="#334e68" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="430.0" y1="129.0" x2="449.0" y2="129.0" stroke="#334e68" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="340.0" y="172.0" font-size="11" text-anchor="middle" fill="#2f6fdf" font-weight="normal">2 MHz</text>
+  <text x="440.0" y="172.0" font-size="11" text-anchor="middle" fill="#2f6fdf" font-weight="normal">200 MHz (VCO)</text>
+  <text x="290.0" y="186.0" font-size="1" text-anchor="middle" fill="#1f2933" font-weight="normal"></text>
+  <polygon points="580.0,70.0 610.0,85.0 610.0,180.0 580.0,195.0" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="595.0" y="137.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="bold">SW</text>
+  <line x1="530.0" y1="129.0" x2="578.0" y2="129.0" stroke="#334e68" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M172,96 L200,96 L200,58 L565,58 L565,90 L578,90" stroke="#616e7c" stroke-width="1.5" fill="none" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <text x="380.0" y="52.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">HSI 직접 (리셋 직후 기본값)</text>
+  <line x1="612.0" y1="132.0" x2="650.0" y2="132.0" stroke="#334e68" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <rect x="652.0" y="108.0" width="100.0" height="48.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="702.0" y="129.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">SYSCLK</text>
+  <text x="702.0" y="148.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">100 MHz</text>
+  <line x1="702.0" y1="158.0" x2="702.0" y2="210.0" stroke="#334e68" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="652.0" y="212.0" width="100.0" height="44.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="702.0" y="231.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">AHB ÷1</text>
+  <text x="702.0" y="250.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">HCLK 100</text>
+  <line x1="702.0" y1="258.0" x2="702.0" y2="280.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="600.0" y1="280.0" x2="820.0" y2="280.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="600.0" y1="280.0" x2="600.0" y2="300.0" stroke="#334e68" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="820.0" y1="280.0" x2="820.0" y2="300.0" stroke="#334e68" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="540.0" y="302.0" width="120.0" height="44.0" rx="8" fill="#ffffff" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="600.0" y="321.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">APB1 ÷2</text>
+  <text x="600.0" y="340.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">50 MHz</text>
+  <rect x="760.0" y="302.0" width="110.0" height="44.0" rx="8" fill="#ffffff" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="815.0" y="321.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">APB2 ÷1</text>
+  <text x="815.0" y="340.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">100 MHz</text>
+  <line x1="754.0" y1="234.0" x2="790.0" y2="234.0" stroke="#334e68" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="796.0" y="230.0" font-size="11" text-anchor="start" fill="#616e7c" font-weight="normal">코어 · 메모리</text>
+  <text x="796.0" y="245.0" font-size="11" text-anchor="start" fill="#616e7c" font-weight="normal">AHB 주변장치</text>
+  <line x1="172.0" y1="316.0" x2="230.0" y2="316.0" stroke="#334e68" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="236.0" y="312.0" font-size="12" text-anchor="start" fill="#616e7c" font-weight="normal">RTC · 독립 워치독</text>
+  <text x="440.0" y="380.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">VCO 입력은 1~2 MHz, VCO 출력은 100~432 MHz 범위 안에서 고른다 (RM0383 RCC 절, DS10314)</text>
+</svg>

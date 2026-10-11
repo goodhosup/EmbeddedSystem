@@ -499,10 +499,10 @@ def fig_2_2():
         return base - v * k
 
     # 전압 축
-    s.line(120, y(0), 120, y(5.3), MUTED, 1.5, arrow=True)
+    s.line(70, y(0), 70, y(5.3), MUTED, 1.5, arrow=True)
     for v in range(6):
-        s.line(114, y(v), 120, y(v), MUTED, 1.5)
-        s.text(108, y(v) + 4, f"{v} V", 12, "end", MUTED)
+        s.line(64, y(v), 70, y(v), MUTED, 1.5)
+        s.text(58, y(v) + 4, f"{v} V", 12, "end", MUTED)
 
     # 출력(송신) 막대
     xo = 200
@@ -721,6 +721,298 @@ def fig_2_6():
         s.text(x0 + 30, ty, txt, 13, "start", INK)
     s.text(430, 418, "값은 ATmega328P 데이터시트의 DC 특성 표를 단순화한 것이다. 실제 설계에는 원본 표를 확인한다.", 11, color=MUTED)
     s.save("ch02/fig2-6-datasheet-table.svg")
+
+
+# ---------------------------------------------------------------------------
+# 3장
+# ---------------------------------------------------------------------------
+
+def fig_3_1():
+    s = Svg(820, 420)
+    s.text(410, 30, "그림 3-1  ATmega328P 블록 다이어그램 (단순화)", 16, weight="bold")
+    s.rect(30, 50, 760, 350, "#fafbfc", MUTED, 14, 1.2)
+    # 코어
+    s.rect(60, 80, 250, 190, BLUE_BG, BLUE, 10, 2)
+    s.text(185, 104, "AVR CPU 코어 (8비트)", 14, weight="bold")
+    s.box(75, 118, 105, 54, "ALU", "8비트 연산", "#ffffff", BLUE, 13)
+    s.box(190, 118, 105, 54, "R0~R31", "범용 레지스터", "#ffffff", BLUE, 13)
+    s.box(75, 184, 105, 54, "PC · SP", "SREG", "#ffffff", BLUE, 13)
+    s.box(190, 184, 105, 54, "명령 디코더", None, "#ffffff", BLUE, 12)
+    s.text(185, 258, "대부분의 명령을 1클럭에 실행", 11, color=MUTED)
+    # 메모리
+    s.box(350, 80, 130, 56, "Flash", "32 KB · 프로그램", GREEN_BG, GREEN, 14)
+    s.box(350, 147, 130, 56, "SRAM", "2 KB · 데이터", GREEN_BG, GREEN, 14)
+    s.box(350, 214, 130, 56, "EEPROM", "1 KB · 설정 저장", GREEN_BG, GREEN, 14)
+    s.line(312, 108, 346, 108, GREEN, 2, arrow=True)
+    s.text(329, 100, "명령", 10, color=GREEN)
+    s.line(312, 175, 346, 175, GREEN, 2, both=True)
+    s.line(312, 242, 346, 242, GREEN, 2, both=True)
+    # 데이터 버스
+    s.rect(60, 292, 700, 26, GRAY_BG, LINE, 6, 1.5)
+    s.text(410, 310, "8비트 데이터 버스", 12, weight="bold")
+    s.line(185, 272, 185, 290, LINE, 2, both=True)
+    s.line(415, 272, 415, 290, LINE, 2, both=True)
+    # 주변장치
+    per = [("GPIO", "포트 B·C·D"), ("타이머", "0 · 1 · 2"), ("USART", "UART 1개"), ("SPI", ""),
+           ("TWI", "I2C"), ("ADC", "10비트"), ("WDT", "워치독")]
+    for i, (a, b) in enumerate(per):
+        x = 520 + (i % 2) * 125
+        y = 80 + (i // 2) * 52
+        s.box(x, y, 115, 44, a, b or None, ORANGE_BG, ORANGE, 13)
+    s.line(640, 290, 640, 274, LINE, 2, both=True)
+    # 클럭/리셋
+    s.box(60, 334, 220, 50, "클럭", "16 MHz 크리스털 (우노)", GRAY_BG, LINE, 13)
+    s.box(300, 334, 220, 50, "리셋 · 전원 감시", "POR · BOD · 외부 · WDT", GRAY_BG, LINE, 13)
+    s.box(540, 334, 220, 50, "인터럽트 유닛", "벡터 26개", GRAY_BG, LINE, 13)
+    s.save("ch03/fig3-1-atmega328p-block.svg")
+
+
+def fig_3_2():
+    s = Svg(860, 470)
+    s.text(430, 30, "그림 3-2  STM32F411 블록 다이어그램 (단순화)", 16, weight="bold")
+    s.rect(30, 50, 800, 400, "#fafbfc", MUTED, 14, 1.2)
+    # 코어
+    s.rect(55, 75, 230, 150, BLUE_BG, BLUE, 10, 2)
+    s.text(170, 98, "Arm Cortex-M4F (32비트)", 14, weight="bold")
+    s.box(70, 110, 95, 46, "CPU", "최대 100 MHz", "#ffffff", BLUE, 13)
+    s.box(175, 110, 95, 46, "FPU", "단정밀도", "#ffffff", BLUE, 13)
+    s.box(70, 166, 95, 46, "NVIC", "인터럽트", "#ffffff", BLUE, 13)
+    s.box(175, 166, 95, 46, "SysTick", "MPU · 디버그", "#ffffff", BLUE, 12)
+    # 버스 매트릭스
+    s.rect(320, 75, 60, 360, GRAY_BG, LINE, 8, 2)
+    for i, ch in enumerate("버스매트릭스"):
+        s.text(350, 160 + i * 22, ch, 14, weight="bold")
+    s.line(287, 130, 316, 130, LINE, 2.5, both=True)
+    s.line(287, 190, 316, 190, LINE, 2.5, both=True)
+    # DMA
+    s.box(55, 250, 230, 50, "DMA1 · DMA2", "CPU 대신 데이터 복사", ORANGE_BG, ORANGE, 13)
+    s.line(287, 275, 316, 275, LINE, 2.5, both=True)
+    # 메모리
+    s.box(415, 75, 170, 56, "Flash", "512 KB · 0x0800 0000", GREEN_BG, GREEN, 14)
+    s.box(415, 141, 170, 56, "SRAM", "128 KB · 0x2000 0000", GREEN_BG, GREEN, 14)
+    s.line(382, 103, 411, 103, LINE, 2.5, both=True)
+    s.line(382, 169, 411, 169, LINE, 2.5, both=True)
+    # AHB
+    s.rect(415, 215, 170, 60, "#ffffff", LINE, 8, 1.5)
+    s.text(500, 238, "AHB1 (100 MHz)", 13, weight="bold")
+    s.text(500, 258, "GPIO A~E, H · RCC · CRC", 11, color=MUTED)
+    s.line(382, 245, 411, 245, LINE, 2.5, both=True)
+    s.rect(415, 290, 170, 50, "#ffffff", LINE, 8, 1.5)
+    s.text(500, 312, "AHB2", 13, weight="bold")
+    s.text(500, 330, "USB OTG FS", 11, color=MUTED)
+    s.line(382, 315, 411, 315, LINE, 2.5, both=True)
+    # APB 브리지
+    s.line(587, 245, 620, 245, LINE, 2.5)
+    s.line(620, 120, 620, 400, LINE, 2.5)
+    s.rect(640, 75, 170, 160, ORANGE_BG, ORANGE, 8, 1.5)
+    s.text(725, 98, "APB2 (최대 100 MHz)", 13, weight="bold")
+    for i, t in enumerate(["TIM1 · 9 · 10 · 11", "USART1 · USART6", "SPI1 · SPI4 · SPI5", "ADC1 · SYSCFG · EXTI"]):
+        s.text(725, 124 + i * 26, t, 12)
+    s.line(620, 155, 636, 155, LINE, 2.5, arrow=True)
+    s.rect(640, 250, 170, 160, ORANGE_BG, ORANGE, 8, 1.5)
+    s.text(725, 273, "APB1 (최대 50 MHz)", 13, weight="bold")
+    for i, t in enumerate(["TIM2~5", "USART2", "I2C1~3 · SPI2 · 3", "IWDG · WWDG · RTC"]):
+        s.text(725, 299 + i * 26, t, 12)
+    s.line(620, 330, 636, 330, LINE, 2.5, arrow=True)
+    # 클럭/리셋
+    s.box(55, 320, 230, 50, "RCC", "클럭 · 리셋 제어", GRAY_BG, LINE, 13)
+    s.box(55, 385, 230, 50, "전원 · 저전력", "PWR · 레귤레이터", GRAY_BG, LINE, 13)
+    s.text(500, 375, "모든 주변장치는", 12, color=MUTED)
+    s.text(500, 393, "RCC에서 클럭을 켜야 동작한다", 12, color=RED, weight="bold")
+    s.save("ch03/fig3-2-stm32f411-block.svg")
+
+
+def fig_3_3():
+    s = Svg(860, 400)
+    s.text(430, 30, "그림 3-3  AVR의 하버드 구조와 Cortex-M의 단일 메모리 맵", 16, weight="bold")
+    # AVR
+    s.text(210, 64, "(가) AVR: 주소 공간이 둘로 나뉜다", 14, weight="bold", color=GREEN)
+    s.box(150, 90, 120, 60, "CPU", None, BLUE_BG, BLUE)
+    s.rect(50, 200, 140, 150, GREEN_BG, GREEN, 8, 1.5)
+    s.text(120, 226, "프로그램 공간", 13, weight="bold")
+    s.text(120, 250, "Flash", 13)
+    s.text(120, 276, "0x0000 ~ 0x7FFF", 11, color=MUTED)
+    s.text(120, 294, "(바이트 주소)", 11, color=MUTED)
+    s.rect(230, 200, 140, 150, ORANGE_BG, ORANGE, 8, 1.5)
+    s.text(300, 226, "데이터 공간", 13, weight="bold")
+    s.text(300, 250, "레지스터 · I/O · SRAM", 12)
+    s.text(300, 276, "0x0000 ~ 0x08FF", 11, color=MUTED)
+    s.line(185, 152, 130, 196, GREEN, 2.5, arrow=True)
+    s.line(235, 152, 290, 196, ORANGE, 2.5, both=True)
+    s.text(118, 178, "명령 버스", 11, color=GREEN)
+    s.text(305, 178, "데이터 버스", 11, color=ORANGE)
+    s.text(210, 378, "같은 숫자 0x0100도 어느 공간이냐에 따라 다른 곳", 12, color=RED, weight="bold")
+    # Cortex-M
+    s.text(640, 64, "(나) Cortex-M: 4 GB 주소 공간 하나", 14, weight="bold", color=BLUE)
+    s.box(580, 90, 120, 60, "CPU", None, BLUE_BG, BLUE)
+    s.rect(520, 200, 240, 150, "#ffffff", LINE, 8, 1.5)
+    rows = [("0x0800 0000", "Flash", GREEN_BG), ("0x2000 0000", "SRAM", ORANGE_BG), ("0x4000 0000", "주변장치", GRAY_BG)]
+    for i, (addr, name, fill) in enumerate(rows):
+        s.rect(530, 210 + i * 44, 220, 36, fill, LINE, 4, 1)
+        s.text(545, 233 + i * 44, addr, 12, "start", MUTED)
+        s.text(735, 233 + i * 44, name, 13, "end", weight="bold")
+    s.line(640, 152, 640, 196, BLUE, 2.5, both=True)
+    s.text(650, 178, "I-Code · D-Code · 시스템 버스", 11, "start", BLUE)
+    s.text(640, 378, "주소 하나가 곧 장소 하나. 포인터 하나로 어디든 읽는다", 12, color=BLUE, weight="bold")
+    s.save("ch03/fig3-3-harvard-vs-unified.svg")
+
+
+def fig_3_4():
+    s = Svg(820, 520)
+    s.text(410, 30, "그림 3-4  Cortex-M 메모리 맵과 STM32F411의 실제 배치", 16, weight="bold")
+    regions = [
+        ("0xE000 0000", "시스템 (코어 주변장치)", "NVIC · SysTick · SCB · 디버그", GRAY_BG),
+        ("0xA000 0000", "외부 장치", "F411에는 사용하지 않음", "#ffffff"),
+        ("0x6000 0000", "외부 RAM", "F411에는 사용하지 않음", "#ffffff"),
+        ("0x4000 0000", "주변장치", "APB1 · APB2 · AHB1 · AHB2", ORANGE_BG),
+        ("0x2000 0000", "SRAM", "128 KB (0x2000 0000 ~ 0x2001 FFFF)", BLUE_BG),
+        ("0x0000 0000", "코드", "Flash 512 KB는 0x0800 0000부터", GREEN_BG),
+    ]
+    x, w, top, h = 220, 260, 60, 66
+    for i, (addr, name, sub, fill) in enumerate(regions):
+        y = top + i * h
+        s.rect(x, y, w, h, fill, LINE, 0, 1.5)
+        s.text(x + w / 2, y + h / 2 - 2, name, 14, weight="bold")
+        s.text(x + w / 2, y + h / 2 + 17, sub, 11, color=MUTED)
+        s.text(x - 12, y + h - 4, addr, 12, "end", MUTED)
+    s.text(x - 12, top + 4, "0xFFFF FFFF", 12, "end", MUTED)
+    # 오른쪽 확대: 주변장치
+    zx = 540
+    s.text(zx + 120, 76, "주변장치 영역 확대", 13, weight="bold", color=ORANGE)
+    zoom = [("0x5000 0000", "AHB2", "USB OTG FS"), ("0x4002 3800", "RCC", "AHB1"),
+            ("0x4002 0000", "GPIOA", "AHB1 시작"), ("0x4001 0000", "APB2", "TIM1, USART1 ..."),
+            ("0x4000 0000", "APB1", "TIM2, USART2, I2C1 ...")]
+    for i, (addr, name, sub) in enumerate(zoom):
+        y = 90 + i * 46
+        s.rect(zx, y, 240, 40, "#ffffff", ORANGE, 4, 1.2)
+        s.text(zx + 12, y + 25, addr, 12, "start", MUTED)
+        s.text(zx + 130, y + 18, name, 13, "start", weight="bold")
+        s.text(zx + 130, y + 33, sub, 10, "start", MUTED)
+    s.path(f"M{x + w},{top + 3 * h + h} L{zx - 10},{90 + 5 * 46 - 6}", ORANGE, 1.2)
+    s.path(f"M{x + w},{top + 3 * h} L{zx - 10},{90}", ORANGE, 1.2)
+    s.text(zx + 120, 350, "1장의 0x4002 0014(GPIOA_ODR)는", 12, color=MUTED)
+    s.text(zx + 120, 368, "GPIOA 시작 주소 + 0x14", 12, color=MUTED)
+    s.text(410, 480, "주소는 아래가 작고 위가 크다. 칸 크기는 실제 비율과 다르다", 12, color=MUTED)
+    s.text(410, 500, "출처: STM32F411 레퍼런스 매뉴얼(RM0383) 메모리 맵 절, Cortex-M4 프로그래밍 매뉴얼(PM0214)", 11, color=MUTED)
+    s.save("ch03/fig3-4-memory-map.svg")
+
+
+def fig_3_5():
+    s = Svg(820, 520)
+    s.text(410, 30, "그림 3-5  Cortex-M4 코어 레지스터", 16, weight="bold")
+    x, w, h = 120, 180, 22
+    for i in range(13):
+        y = 60 + i * h
+        s.rect(x, y, w, h, "#ffffff", LINE, 0, 1)
+        s.text(x + w / 2, y + 16, f"R{i}", 13, weight="bold")
+    s.path(f"M{x - 10},{62} L{x - 18},{62} L{x - 18},{60 + 13 * h - 2} L{x - 10},{60 + 13 * h - 2}", BLUE, 1.5)
+    s.text(x - 26, 60 + 6.5 * h - 8, "범용", 12, "end", BLUE, "bold")
+    s.text(x - 26, 60 + 6.5 * h + 10, "레지스터", 12, "end", BLUE, "bold")
+    special = [("R13 (SP)", "스택 포인터: MSP / PSP", ORANGE_BG), ("R14 (LR)", "링크 레지스터: 복귀 주소", ORANGE_BG),
+               ("R15 (PC)", "프로그램 카운터", ORANGE_BG)]
+    for i, (n, d, fill) in enumerate(special):
+        y = 60 + (13 + i) * h
+        s.rect(x, y, w, h, fill, LINE, 0, 1)
+        s.text(x + w / 2, y + 16, n, 13, weight="bold")
+        s.text(x + w + 12, y + 16, d, 12, "start", MUTED)
+    y = 60 + 16 * h + 12
+    s.rect(x, y, w, h, GREEN_BG, LINE, 0, 1)
+    s.text(x + w / 2, y + 16, "xPSR", 13, weight="bold")
+    s.text(x + w + 12, y + 16, "상태: N Z C V 플래그, 예외 번호", 12, "start", MUTED)
+    # 특수 레지스터
+    sx = 520
+    s.text(sx + 110, 72, "특수 레지스터", 14, weight="bold", color=RED)
+    sp = [("PRIMASK", "모든 인터럽트 막기"), ("FAULTMASK", "폴트까지 막기"), ("BASEPRI", "우선순위 이하 막기"),
+          ("CONTROL", "스택 선택, 권한")]
+    for i, (n, d) in enumerate(sp):
+        yy = 86 + i * 50
+        s.rect(sx, yy, 220, 40, "#ffffff", RED, 6, 1.2)
+        s.text(sx + 12, yy + 18, n, 13, "start", weight="bold")
+        s.text(sx + 12, yy + 34, d, 11, "start", MUTED)
+    s.text(sx + 110, 310, "FPU 레지스터 (M4F)", 14, weight="bold", color=BLUE)
+    s.rect(sx, 324, 220, 40, BLUE_BG, BLUE, 6, 1.2)
+    s.text(sx + 110, 349, "S0~S31 · FPSCR", 13, weight="bold")
+    s.text(410, 505, "모든 레지스터는 32비트. R0~R3은 함수 인자와 반환값을 전달한다 (AAPCS)", 12, color=MUTED)
+    s.save("ch03/fig3-5-core-registers.svg")
+
+
+def fig_3_6():
+    s = Svg(860, 380)
+    s.text(430, 30, "그림 3-6  STM32F411의 버스 구조", 16, weight="bold")
+    masters = [("Cortex-M4 I-Code", BLUE_BG, BLUE), ("Cortex-M4 D-Code", BLUE_BG, BLUE),
+               ("Cortex-M4 시스템", BLUE_BG, BLUE), ("DMA1 · DMA2", ORANGE_BG, ORANGE)]
+    for i, (n, fill, st) in enumerate(masters):
+        y = 70 + i * 66
+        s.box(40, y, 170, 48, n, None, fill, st, 13)
+        s.line(212, y + 24, 286, y + 24, LINE, 2, arrow=True)
+    s.text(125, 60, "마스터 (요청하는 쪽)", 12, color=MUTED)
+    s.rect(290, 60, 120, 260, GRAY_BG, LINE, 10, 2)
+    s.text(350, 180, "버스", 15, weight="bold")
+    s.text(350, 202, "매트릭스", 15, weight="bold")
+    s.text(350, 228, "(AHB)", 12, color=MUTED)
+    slaves = [("Flash", "명령 · 상수", GREEN_BG, GREEN), ("SRAM", "변수 · 스택", GREEN_BG, GREEN),
+              ("AHB1 주변장치", "GPIO · RCC", "#ffffff", LINE), ("AHB/APB 브리지", "", "#ffffff", LINE)]
+    for i, (n, sub, fill, st) in enumerate(slaves):
+        y = 70 + i * 66
+        s.line(412, y + 24, 486, y + 24, LINE, 2, arrow=True)
+        s.box(490, y, 160, 48, n, sub or None, fill, st, 13)
+    s.text(570, 60, "슬레이브 (응답하는 쪽)", 12, color=MUTED)
+    s.line(652, 70 + 3 * 66 + 24, 690, 70 + 3 * 66 + 24, LINE, 2)
+    s.line(690, 150, 690, 330, LINE, 2)
+    s.box(705, 125, 130, 50, "APB2", "≤ 100 MHz", ORANGE_BG, ORANGE, 13)
+    s.box(705, 295, 130, 50, "APB1", "≤ 50 MHz", ORANGE_BG, ORANGE, 13)
+    s.line(690, 150, 701, 150, LINE, 2, arrow=True)
+    s.line(690, 320, 701, 320, LINE, 2, arrow=True)
+    s.text(430, 355, "마스터가 서로 다른 슬레이브에 접근하면 동시에 진행된다. 같은 슬레이브를 두고는 중재가 일어난다", 12, color=MUTED)
+    s.save("ch03/fig3-6-bus.svg")
+
+
+def fig_3_7():
+    s = Svg(880, 400)
+    s.text(440, 30, "그림 3-7  STM32F411의 클럭 트리 (단순화, HSI로 100 MHz 만들기)", 16, weight="bold")
+    # 소스
+    s.box(30, 70, 140, 52, "HSI", "내부 RC 16 MHz", GREEN_BG, GREEN, 14)
+    s.box(30, 140, 140, 52, "HSE", "외부 4~26 MHz", GREEN_BG, GREEN, 14)
+    s.box(30, 290, 140, 52, "LSI / LSE", "32 kHz", GREEN_BG, GREEN, 14)
+    s.line(172, 96, 210, 96, LINE, 2)
+    s.line(172, 166, 210, 166, LINE, 2)
+    s.line(210, 96, 210, 166, LINE, 2)
+    s.line(210, 131, 236, 131, LINE, 2, arrow=True)
+    # PLL
+    s.rect(240, 70, 300, 125, BLUE_BG, BLUE, 10, 2)
+    s.text(390, 92, "PLL", 15, weight="bold")
+    s.box(252, 105, 76, 48, "÷M", "M = 8", "#ffffff", BLUE, 13)
+    s.box(352, 105, 76, 48, "×N", "N = 100", "#ffffff", BLUE, 13)
+    s.box(452, 105, 76, 48, "÷P", "P = 2", "#ffffff", BLUE, 13)
+    s.line(330, 129, 349, 129, LINE, 2, arrow=True)
+    s.line(430, 129, 449, 129, LINE, 2, arrow=True)
+    s.text(340, 172, "2 MHz", 11, color=BLUE)
+    s.text(440, 172, "200 MHz (VCO)", 11, color=BLUE)
+    s.text(290, 186, "", 1)
+    # SYSCLK mux
+    s.poly([(580, 70), (610, 85), (610, 180), (580, 195)], GRAY_BG)
+    s.text(595, 137, "SW", 11, weight="bold")
+    s.line(530, 129, 578, 129, LINE, 2, arrow=True)
+    s.path("M172,96 L200,96 L200,58 L565,58 L565,90 L578,90", MUTED, 1.5, arrow=True)
+    s.text(380, 52, "HSI 직접 (리셋 직후 기본값)", 11, color=MUTED)
+    s.line(612, 132, 650, 132, LINE, 2.5, arrow=True)
+    s.box(652, 108, 100, 48, "SYSCLK", "100 MHz", ORANGE_BG, ORANGE, 13)
+    # AHB, APB
+    s.line(702, 158, 702, 210, LINE, 2, arrow=True)
+    s.box(652, 212, 100, 44, "AHB ÷1", "HCLK 100", ORANGE_BG, ORANGE, 12)
+    s.line(702, 258, 702, 280, LINE, 2)
+    s.line(600, 280, 820, 280, LINE, 2)
+    s.line(600, 280, 600, 300, LINE, 2, arrow=True)
+    s.line(820, 280, 820, 300, LINE, 2, arrow=True)
+    s.box(540, 302, 120, 44, "APB1 ÷2", "50 MHz", "#ffffff", ORANGE, 12)
+    s.box(760, 302, 110, 44, "APB2 ÷1", "100 MHz", "#ffffff", ORANGE, 12)
+    s.line(754, 234, 790, 234, LINE, 2, arrow=True)
+    s.text(796, 230, "코어 · 메모리", 11, "start", MUTED)
+    s.text(796, 245, "AHB 주변장치", 11, "start", MUTED)
+    s.line(172, 316, 230, 316, LINE, 2, arrow=True)
+    s.text(236, 312, "RTC · 독립 워치독", 12, "start", MUTED)
+    s.text(440, 380, "VCO 입력은 1~2 MHz, VCO 출력은 100~432 MHz 범위 안에서 고른다 (RM0383 RCC 절, DS10314)", 11, color=MUTED)
+    s.save("ch03/fig3-7-clock-tree.svg")
 
 
 # ---------------------------------------------------------------------------

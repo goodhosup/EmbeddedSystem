@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="470" viewBox="0 0 860 470" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="430.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 3-2  STM32F411 블록 다이어그램 (단순화)</text>
+  <rect x="30.0" y="50.0" width="800.0" height="400.0" rx="14" fill="#fafbfc" stroke="#616e7c" stroke-width="1.2"/>
+  <rect x="55.0" y="75.0" width="230.0" height="150.0" rx="10" fill="#e3edfd" stroke="#2f6fdf" stroke-width="2"/>
+  <text x="170.0" y="98.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">Arm Cortex-M4F (32비트)</text>
+  <rect x="70.0" y="110.0" width="95.0" height="46.0" rx="8" fill="#ffffff" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="117.5" y="130.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">CPU</text>
+  <text x="117.5" y="149.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">최대 100 MHz</text>
+  <rect x="175.0" y="110.0" width="95.0" height="46.0" rx="8" fill="#ffffff" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="222.5" y="130.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">FPU</text>
+  <text x="222.5" y="149.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">단정밀도</text>
+  <rect x="70.0" y="166.0" width="95.0" height="46.0" rx="8" fill="#ffffff" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="117.5" y="186.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">NVIC</text>
+  <text x="117.5" y="205.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">인터럽트</text>
+  <rect x="175.0" y="166.0" width="95.0" height="46.0" rx="8" fill="#ffffff" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="222.5" y="186.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">SysTick</text>
+  <text x="222.5" y="205.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">MPU · 디버그</text>
+  <rect x="320.0" y="75.0" width="60.0" height="360.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="2"/>
+  <text x="350.0" y="160.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">버</text>
+  <text x="350.0" y="182.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">스</text>
+  <text x="350.0" y="204.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">매</text>
+  <text x="350.0" y="226.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">트</text>
+  <text x="350.0" y="248.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">릭</text>
+  <text x="350.0" y="270.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">스</text>
+  <line x1="287.0" y1="130.0" x2="316.0" y2="130.0" stroke="#334e68" stroke-width="2.5" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+  <line x1="287.0" y1="190.0" x2="316.0" y2="190.0" stroke="#334e68" stroke-width="2.5" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+  <rect x="55.0" y="250.0" width="230.0" height="50.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="170.0" y="272.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">DMA1 · DMA2</text>
+  <text x="170.0" y="291.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">CPU 대신 데이터 복사</text>
+  <line x1="287.0" y1="275.0" x2="316.0" y2="275.0" stroke="#334e68" stroke-width="2.5" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+  <rect x="415.0" y="75.0" width="170.0" height="56.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="500.0" y="100.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">Flash</text>
+  <text x="500.0" y="119.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">512 KB · 0x0800 0000</text>
+  <rect x="415.0" y="141.0" width="170.0" height="56.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="500.0" y="166.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">SRAM</text>
+  <text x="500.0" y="185.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">128 KB · 0x2000 0000</text>
+  <line x1="382.0" y1="103.0" x2="411.0" y2="103.0" stroke="#334e68" stroke-width="2.5" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+  <line x1="382.0" y1="169.0" x2="411.0" y2="169.0" stroke="#334e68" stroke-width="2.5" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+  <rect x="415.0" y="215.0" width="170.0" height="60.0" rx="8" fill="#ffffff" stroke="#334e68" stroke-width="1.5"/>
+  <text x="500.0" y="238.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">AHB1 (100 MHz)</text>
+  <text x="500.0" y="258.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">GPIO A~E, H · RCC · CRC</text>
+  <line x1="382.0" y1="245.0" x2="411.0" y2="245.0" stroke="#334e68" stroke-width="2.5" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+  <rect x="415.0" y="290.0" width="170.0" height="50.0" rx="8" fill="#ffffff" stroke="#334e68" stroke-width="1.5"/>
+  <text x="500.0" y="312.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">AHB2</text>
+  <text x="500.0" y="330.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">USB OTG FS</text>
+  <line x1="382.0" y1="315.0" x2="411.0" y2="315.0" stroke="#334e68" stroke-width="2.5" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+  <line x1="587.0" y1="245.0" x2="620.0" y2="245.0" stroke="#334e68" stroke-width="2.5"/>
+  <line x1="620.0" y1="120.0" x2="620.0" y2="400.0" stroke="#334e68" stroke-width="2.5"/>
+  <rect x="640.0" y="75.0" width="170.0" height="160.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="725.0" y="98.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">APB2 (최대 100 MHz)</text>
+  <text x="725.0" y="124.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">TIM1 · 9 · 10 · 11</text>
+  <text x="725.0" y="150.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">USART1 · USART6</text>
+  <text x="725.0" y="176.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">SPI1 · SPI4 · SPI5</text>
+  <text x="725.0" y="202.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">ADC1 · SYSCFG · EXTI</text>
+  <line x1="620.0" y1="155.0" x2="636.0" y2="155.0" stroke="#334e68" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <rect x="640.0" y="250.0" width="170.0" height="160.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="725.0" y="273.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">APB1 (최대 50 MHz)</text>
+  <text x="725.0" y="299.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">TIM2~5</text>
+  <text x="725.0" y="325.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">USART2</text>
+  <text x="725.0" y="351.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">I2C1~3 · SPI2 · 3</text>
+  <text x="725.0" y="377.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">IWDG · WWDG · RTC</text>
+  <line x1="620.0" y1="330.0" x2="636.0" y2="330.0" stroke="#334e68" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <rect x="55.0" y="320.0" width="230.0" height="50.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="170.0" y="342.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">RCC</text>
+  <text x="170.0" y="361.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">클럭 · 리셋 제어</text>
+  <rect x="55.0" y="385.0" width="230.0" height="50.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="170.0" y="407.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">전원 · 저전력</text>
+  <text x="170.0" y="426.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">PWR · 레귤레이터</text>
+  <text x="500.0" y="375.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">모든 주변장치는</text>
+  <text x="500.0" y="393.0" font-size="12" text-anchor="middle" fill="#d64545" font-weight="bold">RCC에서 클럭을 켜야 동작한다</text>
+</svg>
