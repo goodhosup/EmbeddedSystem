@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="260" viewBox="0 0 760 260" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="380.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 16-1  SPI 연결: 선 네 개, 방향이 정해져 있다</text>
+  <rect x="70.0" y="60.0" width="200.0" height="170.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="170.0" y="142.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">마스터</text>
+  <text x="170.0" y="161.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">STM32</text>
+  <rect x="490.0" y="60.0" width="200.0" height="170.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="590.0" y="142.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">슬레이브</text>
+  <text x="590.0" y="161.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">SPI 플래시</text>
+  <text x="255.0" y="95.0" font-size="13" text-anchor="end" fill="#1f2933" font-weight="bold">SCLK</text>
+  <text x="505.0" y="95.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold">SCLK</text>
+  <line x1="272.0" y1="90.0" x2="486.0" y2="90.0" stroke="#2f6fdf" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="380.0" y="84.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">클럭 (마스터가 만듦)</text>
+  <text x="255.0" y="130.0" font-size="13" text-anchor="end" fill="#1f2933" font-weight="bold">MOSI</text>
+  <text x="505.0" y="130.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold">SI</text>
+  <line x1="272.0" y1="125.0" x2="486.0" y2="125.0" stroke="#2f6fdf" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="380.0" y="119.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">Master Out Slave In</text>
+  <text x="255.0" y="165.0" font-size="13" text-anchor="end" fill="#1f2933" font-weight="bold">MISO</text>
+  <text x="505.0" y="165.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold">SO</text>
+  <line x1="488.0" y1="160.0" x2="274.0" y2="160.0" stroke="#d9730d" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="380.0" y="154.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">Master In Slave Out</text>
+  <text x="255.0" y="200.0" font-size="13" text-anchor="end" fill="#1f2933" font-weight="bold">CS</text>
+  <text x="505.0" y="200.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold">CS</text>
+  <line x1="272.0" y1="195.0" x2="486.0" y2="195.0" stroke="#2f6fdf" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="380.0" y="189.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">칩 선택 (Low = 선택)</text>
+  <text x="255.0" y="222.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">GND도 공유</text>
+</svg>

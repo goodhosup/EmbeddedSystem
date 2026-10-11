@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="300" viewBox="0 0 760 300" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="380.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 14-6  링 버퍼: ISR은 head에 쓰고, 메인 루프는 tail에서 읽는다</text>
+  <rect x="80.0" y="110.0" width="60.0" height="56.0" rx="4" fill="#ffffff" stroke="#616e7c" stroke-width="1.5"/>
+  <text x="110.0" y="144.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold"></text>
+  <text x="110.0" y="188.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">0</text>
+  <rect x="140.0" y="110.0" width="60.0" height="56.0" rx="4" fill="#ffffff" stroke="#616e7c" stroke-width="1.5"/>
+  <text x="170.0" y="144.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold"></text>
+  <text x="170.0" y="188.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">1</text>
+  <rect x="200.0" y="110.0" width="60.0" height="56.0" rx="4" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="230.0" y="144.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">'H'</text>
+  <text x="230.0" y="188.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">2</text>
+  <rect x="260.0" y="110.0" width="60.0" height="56.0" rx="4" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="290.0" y="144.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">'E'</text>
+  <text x="290.0" y="188.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">3</text>
+  <rect x="320.0" y="110.0" width="60.0" height="56.0" rx="4" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="350.0" y="144.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">'L'</text>
+  <text x="350.0" y="188.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">4</text>
+  <rect x="380.0" y="110.0" width="60.0" height="56.0" rx="4" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="410.0" y="144.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">'L'</text>
+  <text x="410.0" y="188.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">5</text>
+  <rect x="440.0" y="110.0" width="60.0" height="56.0" rx="4" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="470.0" y="144.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">'O'</text>
+  <text x="470.0" y="188.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">6</text>
+  <rect x="500.0" y="110.0" width="60.0" height="56.0" rx="4" fill="#ffffff" stroke="#616e7c" stroke-width="1.5"/>
+  <text x="530.0" y="144.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold"></text>
+  <text x="530.0" y="188.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">7</text>
+  <rect x="560.0" y="110.0" width="60.0" height="56.0" rx="4" fill="#ffffff" stroke="#616e7c" stroke-width="1.5"/>
+  <text x="590.0" y="144.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold"></text>
+  <text x="590.0" y="188.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">8</text>
+  <rect x="620.0" y="110.0" width="60.0" height="56.0" rx="4" fill="#ffffff" stroke="#616e7c" stroke-width="1.5"/>
+  <text x="650.0" y="144.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold"></text>
+  <text x="650.0" y="188.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">9</text>
+  <line x1="230.0" y1="70.0" x2="230.0" y2="104.0" stroke="#2f9e44" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="230.0" y="62.0" font-size="13" text-anchor="middle" fill="#2f9e44" font-weight="bold">tail (다음에 읽을 위치)</text>
+  <line x1="530.0" y1="70.0" x2="530.0" y2="104.0" stroke="#d9730d" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="530.0" y="62.0" font-size="13" text-anchor="middle" fill="#d9730d" font-weight="bold">head (다음에 쓸 위치)</text>
+  <path d="M670,202 Q710,250 380.0,260 Q50,250 90,208" stroke="#616e7c" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+  <line x1="94.0" y1="214.0" x2="90.0" y2="206.0" stroke="#616e7c" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="380.0" y="282.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">끝에 닿으면 0번으로 돌아간다   ·   head == tail 이면 비어 있음</text>
+</svg>

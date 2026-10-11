@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="330" viewBox="0 0 880 330" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="440.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 1-5  이 책의 실습 보드 네 가지와 역할</text>
+  <rect x="30.0" y="60.0" width="190.0" height="70.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="125.0" y="92.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">아두이노 우노</text>
+  <text x="125.0" y="111.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">ATmega328P · AVR 8비트</text>
+  <rect x="40.0" y="150.0" width="170.0" height="32.0" rx="6" fill="#ffffff" stroke="#2f9e44" stroke-width="1.2"/>
+  <text x="125.0" y="171.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">입문</text>
+  <rect x="40.0" y="190.0" width="170.0" height="32.0" rx="6" fill="#ffffff" stroke="#2f9e44" stroke-width="1.2"/>
+  <text x="125.0" y="211.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">아두이노 함수 → 레지스터</text>
+  <rect x="40.0" y="230.0" width="170.0" height="32.0" rx="6" fill="#ffffff" stroke="#2f9e44" stroke-width="1.2"/>
+  <text x="125.0" y="251.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">6~16장 AVR 구현</text>
+  <rect x="240.0" y="60.0" width="190.0" height="70.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="335.0" y="92.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">ATmega128</text>
+  <text x="335.0" y="111.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">ATmega128A · AVR 8비트</text>
+  <rect x="250.0" y="150.0" width="170.0" height="32.0" rx="6" fill="#ffffff" stroke="#334e68" stroke-width="1.2"/>
+  <text x="335.0" y="171.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">우노와 다른 점 박스</text>
+  <rect x="250.0" y="190.0" width="170.0" height="32.0" rx="6" fill="#ffffff" stroke="#334e68" stroke-width="1.2"/>
+  <text x="335.0" y="211.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">포트 A~G, UART 2개</text>
+  <rect x="250.0" y="230.0" width="170.0" height="32.0" rx="6" fill="#ffffff" stroke="#334e68" stroke-width="1.2"/>
+  <text x="335.0" y="251.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">ISP 프로그래밍</text>
+  <rect x="450.0" y="60.0" width="190.0" height="70.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="545.0" y="92.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">STM32</text>
+  <text x="545.0" y="111.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">NUCLEO-F411RE · Cortex-M4F</text>
+  <rect x="460.0" y="150.0" width="170.0" height="32.0" rx="6" fill="#ffffff" stroke="#2f6fdf" stroke-width="1.2"/>
+  <text x="545.0" y="171.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">6~16장 32비트 구현</text>
+  <rect x="460.0" y="190.0" width="170.0" height="32.0" rx="6" fill="#ffffff" stroke="#2f6fdf" stroke-width="1.2"/>
+  <text x="545.0" y="211.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">DMA · RTOS · 부트로더</text>
+  <rect x="460.0" y="230.0" width="170.0" height="32.0" rx="6" fill="#ffffff" stroke="#2f6fdf" stroke-width="1.2"/>
+  <text x="545.0" y="251.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">보안 · 최적화 · 양산</text>
+  <rect x="660.0" y="60.0" width="190.0" height="70.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="755.0" y="92.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">ESP32</text>
+  <text x="755.0" y="111.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">ESP32-DevKitC · Wi-Fi/BLE</text>
+  <rect x="670.0" y="150.0" width="170.0" height="32.0" rx="6" fill="#ffffff" stroke="#d9730d" stroke-width="1.2"/>
+  <text x="755.0" y="171.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">무선 · IoT</text>
+  <rect x="670.0" y="190.0" width="170.0" height="32.0" rx="6" fill="#ffffff" stroke="#d9730d" stroke-width="1.2"/>
+  <text x="755.0" y="211.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">아두이노 IDE → ESP-IDF</text>
+  <rect x="670.0" y="230.0" width="170.0" height="32.0" rx="6" fill="#ffffff" stroke="#d9730d" stroke-width="1.2"/>
+  <text x="755.0" y="251.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">OTA · 최종 프로젝트</text>
+  <line x1="60.0" y1="290.0" x2="820.0" y2="290.0" stroke="#616e7c" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="60.0" y="312.0" font-size="12" text-anchor="start" fill="#616e7c" font-weight="normal">8비트, 단순함</text>
+  <text x="820.0" y="312.0" font-size="12" text-anchor="end" fill="#616e7c" font-weight="normal">32비트, 고성능 · 무선</text>
+</svg>

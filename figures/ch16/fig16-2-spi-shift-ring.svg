@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="280" viewBox="0 0 820 280" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="410.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 16-2  SPI는 두 시프트 레지스터를 고리로 이은 것이다</text>
+  <text x="180.0" y="72.0" font-size="14" text-anchor="middle" fill="#2f6fdf" font-weight="bold">마스터 시프트 레지스터</text>
+  <rect x="60.0" y="85.0" width="30.0" height="40.0" rx="2" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="75.0" y="111.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">1</text>
+  <rect x="90.0" y="85.0" width="30.0" height="40.0" rx="2" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="105.0" y="111.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">0</text>
+  <rect x="120.0" y="85.0" width="30.0" height="40.0" rx="2" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="135.0" y="111.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">1</text>
+  <rect x="150.0" y="85.0" width="30.0" height="40.0" rx="2" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="165.0" y="111.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">1</text>
+  <rect x="180.0" y="85.0" width="30.0" height="40.0" rx="2" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="195.0" y="111.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">0</text>
+  <rect x="210.0" y="85.0" width="30.0" height="40.0" rx="2" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="225.0" y="111.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">0</text>
+  <rect x="240.0" y="85.0" width="30.0" height="40.0" rx="2" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="255.0" y="111.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">1</text>
+  <rect x="270.0" y="85.0" width="30.0" height="40.0" rx="2" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="285.0" y="111.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">0</text>
+  <text x="640.0" y="72.0" font-size="14" text-anchor="middle" fill="#d9730d" font-weight="bold">슬레이브 시프트 레지스터</text>
+  <rect x="520.0" y="85.0" width="30.0" height="40.0" rx="2" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="535.0" y="111.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">0</text>
+  <rect x="550.0" y="85.0" width="30.0" height="40.0" rx="2" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="565.0" y="111.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">1</text>
+  <rect x="580.0" y="85.0" width="30.0" height="40.0" rx="2" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="595.0" y="111.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">0</text>
+  <rect x="610.0" y="85.0" width="30.0" height="40.0" rx="2" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="625.0" y="111.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">1</text>
+  <rect x="640.0" y="85.0" width="30.0" height="40.0" rx="2" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="655.0" y="111.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">1</text>
+  <rect x="670.0" y="85.0" width="30.0" height="40.0" rx="2" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="685.0" y="111.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">1</text>
+  <rect x="700.0" y="85.0" width="30.0" height="40.0" rx="2" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="715.0" y="111.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">0</text>
+  <rect x="730.0" y="85.0" width="30.0" height="40.0" rx="2" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="745.0" y="111.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">0</text>
+  <path d="M302,105 L380,105" stroke="#2f6fdf" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
+  <line x1="380.0" y1="105.0" x2="516.0" y2="105.0" stroke="#2f6fdf" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="410.0" y="96.0" font-size="13" text-anchor="middle" fill="#2f6fdf" font-weight="bold">MOSI</text>
+  <path d="M762,105 L790,105 L790,190 L30,190 L30,105 L56,105" stroke="#d9730d" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
+  <line x1="44.0" y1="105.0" x2="56.0" y2="105.0" stroke="#d9730d" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="410.0" y="182.0" font-size="13" text-anchor="middle" fill="#d9730d" font-weight="bold">MISO</text>
+  <text x="410.0" y="225.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">클럭 한 번에 한 비트씩 양쪽이 동시에 밀려난다. 8클럭 뒤면 두 레지스터의 내용이 서로 바뀐다.</text>
+  <text x="410.0" y="250.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">그래서 SPI는 항상 전이중이다. 읽기만 하고 싶어도 아무 값(보통 0xFF)이라도 보내야 한다.</text>
+</svg>

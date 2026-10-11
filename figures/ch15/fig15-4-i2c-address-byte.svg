@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="822" height="266" viewBox="0 0 822 266" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="411.0" y="24.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 15-4  주소 바이트(0x76, 쓰기) 전송과 ACK</text>
+  <line x1="144.0" y1="64.0" x2="144.0" y2="168.0" stroke="#2f9e44" stroke-width="1.2" stroke-dasharray="4 4"/>
+  <text x="144.0" y="58.0" font-size="12" text-anchor="middle" fill="#2f9e44" font-weight="normal">시작(S)</text>
+  <line x1="711.0" y1="64.0" x2="711.0" y2="168.0" stroke="#2f9e44" stroke-width="1.2" stroke-dasharray="4 4"/>
+  <text x="711.0" y="58.0" font-size="12" text-anchor="middle" fill="#2f9e44" font-weight="normal">정지(P)</text>
+  <text x="76.0" y="88.0" font-size="14" text-anchor="end" fill="#1f2933" font-weight="bold">SDA</text>
+  <line x1="90.0" y1="70.0" x2="144.0" y2="70.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="144.0" y1="70.0" x2="144.0" y2="96.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="144.0" y1="96.0" x2="171.0" y2="96.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="171.0" y1="70.0" x2="171.0" y2="96.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="171.0" y1="70.0" x2="225.0" y2="70.0" stroke="#334e68" stroke-width="2"/>
+  <text x="198.0" y="64.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">A6</text>
+  <line x1="225.0" y1="70.0" x2="279.0" y2="70.0" stroke="#334e68" stroke-width="2"/>
+  <text x="252.0" y="64.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">A5</text>
+  <line x1="279.0" y1="70.0" x2="333.0" y2="70.0" stroke="#334e68" stroke-width="2"/>
+  <text x="306.0" y="64.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">A4</text>
+  <line x1="333.0" y1="70.0" x2="333.0" y2="96.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="333.0" y1="96.0" x2="387.0" y2="96.0" stroke="#334e68" stroke-width="2"/>
+  <text x="360.0" y="64.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">A3</text>
+  <line x1="387.0" y1="70.0" x2="387.0" y2="96.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="387.0" y1="70.0" x2="441.0" y2="70.0" stroke="#334e68" stroke-width="2"/>
+  <text x="414.0" y="64.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">A2</text>
+  <line x1="441.0" y1="70.0" x2="495.0" y2="70.0" stroke="#334e68" stroke-width="2"/>
+  <text x="468.0" y="64.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">A1</text>
+  <line x1="495.0" y1="70.0" x2="495.0" y2="96.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="495.0" y1="96.0" x2="549.0" y2="96.0" stroke="#334e68" stroke-width="2"/>
+  <text x="522.0" y="64.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">A0</text>
+  <line x1="549.0" y1="96.0" x2="603.0" y2="96.0" stroke="#334e68" stroke-width="2"/>
+  <text x="576.0" y="64.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">W</text>
+  <line x1="603.0" y1="96.0" x2="657.0" y2="96.0" stroke="#2f9e44" stroke-width="2"/>
+  <text x="630.0" y="64.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">ACK</text>
+  <line x1="657.0" y1="96.0" x2="711.0" y2="96.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="711.0" y1="70.0" x2="711.0" y2="96.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="711.0" y1="70.0" x2="792.0" y2="70.0" stroke="#334e68" stroke-width="2"/>
+  <text x="76.0" y="146.0" font-size="14" text-anchor="end" fill="#1f2933" font-weight="bold">SCL</text>
+  <line x1="90.0" y1="128.0" x2="157.5" y2="128.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="157.5" y1="128.0" x2="157.5" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="157.5" y1="154.0" x2="184.5" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="184.5" y1="128.0" x2="184.5" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="184.5" y1="128.0" x2="211.5" y2="128.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="211.5" y1="128.0" x2="211.5" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="211.5" y1="154.0" x2="238.5" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="238.5" y1="128.0" x2="238.5" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="238.5" y1="128.0" x2="265.5" y2="128.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="265.5" y1="128.0" x2="265.5" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="265.5" y1="154.0" x2="292.5" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="292.5" y1="128.0" x2="292.5" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="292.5" y1="128.0" x2="319.5" y2="128.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="319.5" y1="128.0" x2="319.5" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="319.5" y1="154.0" x2="346.5" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="346.5" y1="128.0" x2="346.5" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="346.5" y1="128.0" x2="373.5" y2="128.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="373.5" y1="128.0" x2="373.5" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="373.5" y1="154.0" x2="400.5" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="400.5" y1="128.0" x2="400.5" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="400.5" y1="128.0" x2="427.5" y2="128.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="427.5" y1="128.0" x2="427.5" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="427.5" y1="154.0" x2="454.5" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="454.5" y1="128.0" x2="454.5" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="454.5" y1="128.0" x2="481.5" y2="128.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="481.5" y1="128.0" x2="481.5" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="481.5" y1="154.0" x2="508.5" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="508.5" y1="128.0" x2="508.5" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="508.5" y1="128.0" x2="535.5" y2="128.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="535.5" y1="128.0" x2="535.5" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="535.5" y1="154.0" x2="562.5" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="562.5" y1="128.0" x2="562.5" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="562.5" y1="128.0" x2="589.5" y2="128.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="589.5" y1="128.0" x2="589.5" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="589.5" y1="154.0" x2="616.5" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="616.5" y1="128.0" x2="616.5" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="616.5" y1="128.0" x2="643.5" y2="128.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="643.5" y1="128.0" x2="643.5" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="643.5" y1="154.0" x2="670.5" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="670.5" y1="154.0" x2="684.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="684.0" y1="128.0" x2="684.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="684.0" y1="128.0" x2="792.0" y2="128.0" stroke="#334e68" stroke-width="2"/>
+  <path d="M173.0,161.0 L173.0,166.0 L547.0,166.0 L547.0,161.0" stroke="#2f6fdf" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+  <text x="360.0" y="182.0" font-size="12" text-anchor="middle" fill="#2f6fdf" font-weight="bold">7비트 주소 0x76 (MSB 먼저)</text>
+  <path d="M551.0,161.0 L551.0,166.0 L601.0,166.0 L601.0,161.0" stroke="#d9730d" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+  <text x="576.0" y="182.0" font-size="12" text-anchor="middle" fill="#d9730d" font-weight="bold">R/W</text>
+  <path d="M605.0,161.0 L605.0,166.0 L655.0,166.0 L655.0,161.0" stroke="#2f9e44" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+  <text x="630.0" y="182.0" font-size="12" text-anchor="middle" fill="#2f9e44" font-weight="bold">ACK</text>
+  <text x="441.0" y="215.0" font-size="13" text-anchor="middle" fill="#616e7c" font-weight="normal">SDA는 SCL이 Low일 때만 바뀌고, SCL이 High인 동안 읽힌다. 예외가 시작·정지 조건이다.</text>
+</svg>

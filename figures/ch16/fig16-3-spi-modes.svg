@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="410" viewBox="0 0 760 410" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="380.0" y="24.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 16-3  SPI 모드 0~3: 클럭의 유휴 레벨(CPOL)과 샘플링 에지(CPHA)</text>
+  <text x="136.0" y="88.0" font-size="14" text-anchor="end" fill="#1f2933" font-weight="bold">CS</text>
+  <line x1="150.0" y1="70.0" x2="208.0" y2="70.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="208.0" y1="70.0" x2="208.0" y2="96.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="208.0" y1="96.0" x2="701.0" y2="96.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="701.0" y1="70.0" x2="701.0" y2="96.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="701.0" y1="70.0" x2="730.0" y2="70.0" stroke="#334e68" stroke-width="2"/>
+  <text x="136.0" y="141.0" font-size="14" text-anchor="end" fill="#1f2933" font-weight="bold">SCLK</text>
+  <text x="136.0" y="158.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">CPOL = 0</text>
+  <line x1="150.0" y1="154.0" x2="237.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="237.0" y1="128.0" x2="237.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="237.0" y1="128.0" x2="266.0" y2="128.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="266.0" y1="128.0" x2="266.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="266.0" y1="154.0" x2="295.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="295.0" y1="128.0" x2="295.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="295.0" y1="128.0" x2="324.0" y2="128.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="324.0" y1="128.0" x2="324.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="324.0" y1="154.0" x2="353.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="353.0" y1="128.0" x2="353.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="353.0" y1="128.0" x2="382.0" y2="128.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="382.0" y1="128.0" x2="382.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="382.0" y1="154.0" x2="411.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="411.0" y1="128.0" x2="411.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="411.0" y1="128.0" x2="440.0" y2="128.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="440.0" y1="128.0" x2="440.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="440.0" y1="154.0" x2="469.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="469.0" y1="128.0" x2="469.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="469.0" y1="128.0" x2="498.0" y2="128.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="498.0" y1="128.0" x2="498.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="498.0" y1="154.0" x2="527.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="527.0" y1="128.0" x2="527.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="527.0" y1="128.0" x2="556.0" y2="128.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="556.0" y1="128.0" x2="556.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="556.0" y1="154.0" x2="585.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="585.0" y1="128.0" x2="585.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="585.0" y1="128.0" x2="614.0" y2="128.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="614.0" y1="128.0" x2="614.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="614.0" y1="154.0" x2="643.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="643.0" y1="128.0" x2="643.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="643.0" y1="128.0" x2="672.0" y2="128.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="672.0" y1="128.0" x2="672.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="672.0" y1="154.0" x2="701.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="701.0" y1="154.0" x2="730.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <text x="136.0" y="199.0" font-size="14" text-anchor="end" fill="#1f2933" font-weight="bold">SCLK</text>
+  <text x="136.0" y="216.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">CPOL = 1</text>
+  <line x1="150.0" y1="186.0" x2="237.0" y2="186.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="237.0" y1="186.0" x2="237.0" y2="212.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="237.0" y1="212.0" x2="266.0" y2="212.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="266.0" y1="186.0" x2="266.0" y2="212.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="266.0" y1="186.0" x2="295.0" y2="186.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="295.0" y1="186.0" x2="295.0" y2="212.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="295.0" y1="212.0" x2="324.0" y2="212.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="324.0" y1="186.0" x2="324.0" y2="212.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="324.0" y1="186.0" x2="353.0" y2="186.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="353.0" y1="186.0" x2="353.0" y2="212.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="353.0" y1="212.0" x2="382.0" y2="212.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="382.0" y1="186.0" x2="382.0" y2="212.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="382.0" y1="186.0" x2="411.0" y2="186.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="411.0" y1="186.0" x2="411.0" y2="212.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="411.0" y1="212.0" x2="440.0" y2="212.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="440.0" y1="186.0" x2="440.0" y2="212.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="440.0" y1="186.0" x2="469.0" y2="186.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="469.0" y1="186.0" x2="469.0" y2="212.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="469.0" y1="212.0" x2="498.0" y2="212.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="498.0" y1="186.0" x2="498.0" y2="212.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="498.0" y1="186.0" x2="527.0" y2="186.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="527.0" y1="186.0" x2="527.0" y2="212.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="527.0" y1="212.0" x2="556.0" y2="212.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="556.0" y1="186.0" x2="556.0" y2="212.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="556.0" y1="186.0" x2="585.0" y2="186.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="585.0" y1="186.0" x2="585.0" y2="212.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="585.0" y1="212.0" x2="614.0" y2="212.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="614.0" y1="186.0" x2="614.0" y2="212.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="614.0" y1="186.0" x2="643.0" y2="186.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="643.0" y1="186.0" x2="643.0" y2="212.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="643.0" y1="212.0" x2="672.0" y2="212.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="672.0" y1="186.0" x2="672.0" y2="212.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="672.0" y1="186.0" x2="701.0" y2="186.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="701.0" y1="186.0" x2="730.0" y2="186.0" stroke="#334e68" stroke-width="2"/>
+  <text x="136.0" y="257.0" font-size="14" text-anchor="end" fill="#1f2933" font-weight="bold">데이터</text>
+  <text x="136.0" y="274.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">CPHA = 0</text>
+  <line x1="150.0" y1="257.0" x2="208.0" y2="257.0" stroke="#616e7c" stroke-width="2" stroke-dasharray="6 4"/>
+  <polygon points="208.0,257.0 214.0,244.0 260.0,244.0 266.0,257.0 260.0,270.0 214.0,270.0" fill="#e3edfd" stroke="#334e68" stroke-width="1.5"/>
+  <text x="237.0" y="262.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">b7</text>
+  <polygon points="266.0,257.0 272.0,244.0 318.0,244.0 324.0,257.0 318.0,270.0 272.0,270.0" fill="#e3edfd" stroke="#334e68" stroke-width="1.5"/>
+  <text x="295.0" y="262.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">b6</text>
+  <polygon points="324.0,257.0 330.0,244.0 376.0,244.0 382.0,257.0 376.0,270.0 330.0,270.0" fill="#e3edfd" stroke="#334e68" stroke-width="1.5"/>
+  <text x="353.0" y="262.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">b5</text>
+  <polygon points="382.0,257.0 388.0,244.0 434.0,244.0 440.0,257.0 434.0,270.0 388.0,270.0" fill="#e3edfd" stroke="#334e68" stroke-width="1.5"/>
+  <text x="411.0" y="262.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">b4</text>
+  <polygon points="440.0,257.0 446.0,244.0 492.0,244.0 498.0,257.0 492.0,270.0 446.0,270.0" fill="#e3edfd" stroke="#334e68" stroke-width="1.5"/>
+  <text x="469.0" y="262.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">b3</text>
+  <polygon points="498.0,257.0 504.0,244.0 550.0,244.0 556.0,257.0 550.0,270.0 504.0,270.0" fill="#e3edfd" stroke="#334e68" stroke-width="1.5"/>
+  <text x="527.0" y="262.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">b2</text>
+  <polygon points="556.0,257.0 562.0,244.0 608.0,244.0 614.0,257.0 608.0,270.0 562.0,270.0" fill="#e3edfd" stroke="#334e68" stroke-width="1.5"/>
+  <text x="585.0" y="262.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">b1</text>
+  <polygon points="614.0,257.0 620.0,244.0 666.0,244.0 672.0,257.0 666.0,270.0 620.0,270.0" fill="#e3edfd" stroke="#334e68" stroke-width="1.5"/>
+  <text x="643.0" y="262.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">b0</text>
+  <line x1="672.0" y1="257.0" x2="730.0" y2="257.0" stroke="#616e7c" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="136.0" y="315.0" font-size="14" text-anchor="end" fill="#1f2933" font-weight="bold">데이터</text>
+  <text x="136.0" y="332.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">CPHA = 1</text>
+  <line x1="150.0" y1="315.0" x2="237.0" y2="315.0" stroke="#616e7c" stroke-width="2" stroke-dasharray="6 4"/>
+  <polygon points="237.0,315.0 243.0,302.0 289.0,302.0 295.0,315.0 289.0,328.0 243.0,328.0" fill="#fdebd7" stroke="#334e68" stroke-width="1.5"/>
+  <text x="266.0" y="320.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">b7</text>
+  <polygon points="295.0,315.0 301.0,302.0 347.0,302.0 353.0,315.0 347.0,328.0 301.0,328.0" fill="#fdebd7" stroke="#334e68" stroke-width="1.5"/>
+  <text x="324.0" y="320.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">b6</text>
+  <polygon points="353.0,315.0 359.0,302.0 405.0,302.0 411.0,315.0 405.0,328.0 359.0,328.0" fill="#fdebd7" stroke="#334e68" stroke-width="1.5"/>
+  <text x="382.0" y="320.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">b5</text>
+  <polygon points="411.0,315.0 417.0,302.0 463.0,302.0 469.0,315.0 463.0,328.0 417.0,328.0" fill="#fdebd7" stroke="#334e68" stroke-width="1.5"/>
+  <text x="440.0" y="320.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">b4</text>
+  <polygon points="469.0,315.0 475.0,302.0 521.0,302.0 527.0,315.0 521.0,328.0 475.0,328.0" fill="#fdebd7" stroke="#334e68" stroke-width="1.5"/>
+  <text x="498.0" y="320.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">b3</text>
+  <polygon points="527.0,315.0 533.0,302.0 579.0,302.0 585.0,315.0 579.0,328.0 533.0,328.0" fill="#fdebd7" stroke="#334e68" stroke-width="1.5"/>
+  <text x="556.0" y="320.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">b2</text>
+  <polygon points="585.0,315.0 591.0,302.0 637.0,302.0 643.0,315.0 637.0,328.0 591.0,328.0" fill="#fdebd7" stroke="#334e68" stroke-width="1.5"/>
+  <text x="614.0" y="320.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">b1</text>
+  <polygon points="643.0,315.0 649.0,302.0 695.0,302.0 701.0,315.0 695.0,328.0 649.0,328.0" fill="#fdebd7" stroke="#334e68" stroke-width="1.5"/>
+  <text x="672.0" y="320.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">b0</text>
+  <line x1="701.0" y1="315.0" x2="730.0" y2="315.0" stroke="#616e7c" stroke-width="2" stroke-dasharray="6 4"/>
+  <polygon points="237.0,276.0 232.0,285.0 242.0,285.0" fill="#2f6fdf" stroke="#2f6fdf" stroke-width="1"/>
+  <polygon points="295.0,276.0 290.0,285.0 300.0,285.0" fill="#2f6fdf" stroke="#2f6fdf" stroke-width="1"/>
+  <polygon points="353.0,276.0 348.0,285.0 358.0,285.0" fill="#2f6fdf" stroke="#2f6fdf" stroke-width="1"/>
+  <polygon points="411.0,276.0 406.0,285.0 416.0,285.0" fill="#2f6fdf" stroke="#2f6fdf" stroke-width="1"/>
+  <polygon points="469.0,276.0 464.0,285.0 474.0,285.0" fill="#2f6fdf" stroke="#2f6fdf" stroke-width="1"/>
+  <polygon points="527.0,276.0 522.0,285.0 532.0,285.0" fill="#2f6fdf" stroke="#2f6fdf" stroke-width="1"/>
+  <polygon points="585.0,276.0 580.0,285.0 590.0,285.0" fill="#2f6fdf" stroke="#2f6fdf" stroke-width="1"/>
+  <polygon points="643.0,276.0 638.0,285.0 648.0,285.0" fill="#2f6fdf" stroke="#2f6fdf" stroke-width="1"/>
+  <polygon points="266.0,334.0 261.0,343.0 271.0,343.0" fill="#d9730d" stroke="#d9730d" stroke-width="1"/>
+  <polygon points="324.0,334.0 319.0,343.0 329.0,343.0" fill="#d9730d" stroke="#d9730d" stroke-width="1"/>
+  <polygon points="382.0,334.0 377.0,343.0 387.0,343.0" fill="#d9730d" stroke="#d9730d" stroke-width="1"/>
+  <polygon points="440.0,334.0 435.0,343.0 445.0,343.0" fill="#d9730d" stroke="#d9730d" stroke-width="1"/>
+  <polygon points="498.0,334.0 493.0,343.0 503.0,343.0" fill="#d9730d" stroke="#d9730d" stroke-width="1"/>
+  <polygon points="556.0,334.0 551.0,343.0 561.0,343.0" fill="#d9730d" stroke="#d9730d" stroke-width="1"/>
+  <polygon points="614.0,334.0 609.0,343.0 619.0,343.0" fill="#d9730d" stroke="#d9730d" stroke-width="1"/>
+  <polygon points="672.0,334.0 667.0,343.0 677.0,343.0" fill="#d9730d" stroke="#d9730d" stroke-width="1"/>
+  <text x="440.0" y="370.0" font-size="13" text-anchor="middle" fill="#616e7c" font-weight="normal">▲ 샘플링 시점.  CPHA=0: 첫 번째 에지에서 읽음  ·  CPHA=1: 두 번째 에지에서 읽음</text>
+  <text x="440.0" y="394.0" font-size="13" text-anchor="middle" fill="#616e7c" font-weight="normal">모드 0 = (0,0)   모드 1 = (0,1)   모드 2 = (1,0)   모드 3 = (1,1)</text>
+</svg>

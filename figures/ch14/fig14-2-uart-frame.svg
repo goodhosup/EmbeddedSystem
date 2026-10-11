@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="822" height="173" viewBox="0 0 822 173" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="411.0" y="24.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 14-2  UART 프레임 구조 (데이터 8비트 + 패리티 + 정지 1비트)</text>
+  <text x="76.0" y="113.0" font-size="14" text-anchor="end" fill="#1f2933" font-weight="bold">TX 선</text>
+  <line x1="90.0" y1="95.0" x2="144.0" y2="95.0" stroke="#334e68" stroke-width="2"/>
+  <text x="117.0" y="89.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">유휴</text>
+  <line x1="144.0" y1="95.0" x2="144.0" y2="121.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="144.0" y1="121.0" x2="198.0" y2="121.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="198.0" y1="121.0" x2="204.0" y2="121.0" stroke="#334e68" stroke-width="2"/>
+  <polygon points="198.0,108.0 204.0,95.0 246.0,95.0 252.0,108.0 246.0,121.0 204.0,121.0" fill="#e3edfd" stroke="#334e68" stroke-width="1.5"/>
+  <text x="225.0" y="113.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">D0</text>
+  <polygon points="252.0,108.0 258.0,95.0 300.0,95.0 306.0,108.0 300.0,121.0 258.0,121.0" fill="#e3edfd" stroke="#334e68" stroke-width="1.5"/>
+  <text x="279.0" y="113.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">D1</text>
+  <polygon points="306.0,108.0 312.0,95.0 354.0,95.0 360.0,108.0 354.0,121.0 312.0,121.0" fill="#e3edfd" stroke="#334e68" stroke-width="1.5"/>
+  <text x="333.0" y="113.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">D2</text>
+  <polygon points="360.0,108.0 366.0,95.0 408.0,95.0 414.0,108.0 408.0,121.0 366.0,121.0" fill="#e3edfd" stroke="#334e68" stroke-width="1.5"/>
+  <text x="387.0" y="113.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">D3</text>
+  <polygon points="414.0,108.0 420.0,95.0 462.0,95.0 468.0,108.0 462.0,121.0 420.0,121.0" fill="#e3edfd" stroke="#334e68" stroke-width="1.5"/>
+  <text x="441.0" y="113.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">D4</text>
+  <polygon points="468.0,108.0 474.0,95.0 516.0,95.0 522.0,108.0 516.0,121.0 474.0,121.0" fill="#e3edfd" stroke="#334e68" stroke-width="1.5"/>
+  <text x="495.0" y="113.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">D5</text>
+  <polygon points="522.0,108.0 528.0,95.0 570.0,95.0 576.0,108.0 570.0,121.0 528.0,121.0" fill="#e3edfd" stroke="#334e68" stroke-width="1.5"/>
+  <text x="549.0" y="113.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">D6</text>
+  <polygon points="576.0,108.0 582.0,95.0 624.0,95.0 630.0,108.0 624.0,121.0 582.0,121.0" fill="#e3edfd" stroke="#334e68" stroke-width="1.5"/>
+  <text x="603.0" y="113.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">D7</text>
+  <polygon points="630.0,108.0 636.0,95.0 678.0,95.0 684.0,108.0 678.0,121.0 636.0,121.0" fill="#fdebd7" stroke="#334e68" stroke-width="1.5"/>
+  <text x="657.0" y="113.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">P</text>
+  <line x1="678.0" y1="108.0" x2="684.0" y2="95.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="684.0" y1="95.0" x2="738.0" y2="95.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="738.0" y1="95.0" x2="792.0" y2="95.0" stroke="#334e68" stroke-width="2"/>
+  <text x="765.0" y="89.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">유휴</text>
+  <path d="M146.0,128.0 L146.0,133.0 L196.0,133.0 L196.0,128.0" stroke="#2f9e44" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+  <text x="171.0" y="149.0" font-size="12" text-anchor="middle" fill="#2f9e44" font-weight="bold">시작 비트</text>
+  <path d="M200.0,128.0 L200.0,133.0 L628.0,133.0 L628.0,128.0" stroke="#2f6fdf" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+  <text x="414.0" y="149.0" font-size="12" text-anchor="middle" fill="#2f6fdf" font-weight="bold">데이터 8비트 (LSB 먼저)</text>
+  <path d="M632.0,128.0 L632.0,133.0 L682.0,133.0 L682.0,128.0" stroke="#d9730d" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+  <text x="657.0" y="149.0" font-size="12" text-anchor="middle" fill="#d9730d" font-weight="bold">패리티</text>
+  <path d="M686.0,128.0 L686.0,133.0 L736.0,133.0 L736.0,128.0" stroke="#2f9e44" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+  <text x="711.0" y="149.0" font-size="12" text-anchor="middle" fill="#2f9e44" font-weight="bold">정지</text>
+  <text x="171.0" y="62.0" font-size="12" text-anchor="start" fill="#616e7c" font-weight="normal">1 → 0 하강이 프레임의 시작을 알림</text>
+</svg>

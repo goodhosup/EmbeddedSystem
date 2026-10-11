@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="400" viewBox="0 0 820 400" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="410.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 1-1  임베디드 시스템의 구성 요소</text>
+  <rect x="40.0" y="50.0" width="740.0" height="330.0" rx="14" fill="#fafbfc" stroke="#616e7c" stroke-width="1.2"/>
+  <text x="70.0" y="75.0" font-size="13" text-anchor="start" fill="#616e7c" font-weight="normal">디지털 온도 조절기의 예</text>
+  <rect x="70.0" y="120.0" width="150.0" height="60.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="145.0" y="147.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">센서</text>
+  <text x="145.0" y="166.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">온도 · 습도 센서</text>
+  <rect x="70.0" y="210.0" width="150.0" height="60.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="145.0" y="237.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">사용자 입력</text>
+  <text x="145.0" y="256.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">버튼, 다이얼</text>
+  <rect x="290.0" y="100.0" width="240.0" height="190.0" rx="12" fill="#e3edfd" stroke="#2f6fdf" stroke-width="2"/>
+  <text x="410.0" y="128.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">마이크로컨트롤러 (MCU)</text>
+  <rect x="305.0" y="142.0" width="210.0" height="40.0" rx="6" fill="#ffffff" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="318.0" y="167.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold">CPU 코어</text>
+  <text x="503.0" y="167.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">명령 실행</text>
+  <rect x="305.0" y="189.0" width="210.0" height="40.0" rx="6" fill="#ffffff" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="318.0" y="214.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold">메모리</text>
+  <text x="503.0" y="214.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">Flash · SRAM</text>
+  <rect x="305.0" y="236.0" width="210.0" height="40.0" rx="6" fill="#ffffff" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="318.0" y="261.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold">주변장치</text>
+  <text x="503.0" y="261.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">GPIO · ADC · UART</text>
+  <rect x="600.0" y="120.0" width="150.0" height="60.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="675.0" y="147.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">액추에이터</text>
+  <text x="675.0" y="166.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">히터 릴레이, 모터</text>
+  <rect x="600.0" y="210.0" width="150.0" height="60.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="675.0" y="237.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">표시 장치</text>
+  <text x="675.0" y="256.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">LCD, LED</text>
+  <line x1="222.0" y1="150.0" x2="286.0" y2="150.0" stroke="#334e68" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="532.0" y1="150.0" x2="596.0" y2="150.0" stroke="#334e68" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="222.0" y1="240.0" x2="286.0" y2="240.0" stroke="#334e68" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="532.0" y1="240.0" x2="596.0" y2="240.0" stroke="#334e68" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="260.0" y="315.0" width="140.0" height="50.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="330.0" y="337.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">전원</text>
+  <text x="330.0" y="356.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">배터리 · 레귤레이터</text>
+  <rect x="420.0" y="315.0" width="140.0" height="50.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="490.0" y="337.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">통신</text>
+  <text x="490.0" y="356.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">UART · Wi-Fi · BLE</text>
+  <line x1="330.0" y1="313.0" x2="330.0" y2="294.0" stroke="#334e68" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="490.0" y1="311.0" x2="490.0" y2="294.0" stroke="#334e68" stroke-width="2" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+  <text x="145.0" y="105.0" font-size="13" text-anchor="middle" fill="#2f9e44" font-weight="bold">입력</text>
+  <text x="675.0" y="105.0" font-size="13" text-anchor="middle" fill="#d9730d" font-weight="bold">출력</text>
+</svg>

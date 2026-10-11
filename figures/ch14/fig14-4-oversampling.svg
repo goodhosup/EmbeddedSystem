@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="940" height="281" viewBox="0 0 940 281" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="470.0" y="24.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 14-4  16배 오버샘플링: 비트 한가운데에서 값을 읽는다</text>
+  <line x1="221.0" y1="89.0" x2="221.0" y2="193.0" stroke="#616e7c" stroke-width="1.2" stroke-dasharray="4 4"/>
+  <text x="221.0" y="63.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">하강 감지</text>
+  <line x1="351.0" y1="89.0" x2="351.0" y2="193.0" stroke="#d64545" stroke-width="1.2" stroke-dasharray="4 4"/>
+  <text x="351.0" y="63.0" font-size="12" text-anchor="middle" fill="#d64545" font-weight="normal">8번째 샘플</text>
+  <line x1="611.0" y1="89.0" x2="611.0" y2="193.0" stroke="#d64545" stroke-width="1.2" stroke-dasharray="4 4"/>
+  <text x="611.0" y="63.0" font-size="12" text-anchor="middle" fill="#d64545" font-weight="normal">24번째 샘플</text>
+  <text x="116.0" y="113.0" font-size="14" text-anchor="end" fill="#1f2933" font-weight="bold">RX</text>
+  <line x1="130.0" y1="95.0" x2="221.0" y2="95.0" stroke="#334e68" stroke-width="2"/>
+  <text x="175.5" y="89.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">유휴</text>
+  <line x1="221.0" y1="95.0" x2="221.0" y2="121.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="221.0" y1="121.0" x2="481.0" y2="121.0" stroke="#334e68" stroke-width="2"/>
+  <text x="351.0" y="89.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">시작 비트</text>
+  <line x1="481.0" y1="95.0" x2="481.0" y2="121.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="481.0" y1="95.0" x2="741.0" y2="95.0" stroke="#334e68" stroke-width="2"/>
+  <text x="611.0" y="89.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">D0 = 1</text>
+  <line x1="741.0" y1="95.0" x2="741.0" y2="121.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="741.0" y1="121.0" x2="910.0" y2="121.0" stroke="#334e68" stroke-width="2"/>
+  <text x="116.0" y="166.0" font-size="14" text-anchor="end" fill="#1f2933" font-weight="bold">샘플 클럭</text>
+  <text x="116.0" y="183.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">보레이트 × 16</text>
+  <line x1="130.0" y1="166.0" x2="910.0" y2="166.0" stroke="#616e7c" stroke-width="2" stroke-dasharray="6 4"/>
+  <polygon points="221.0,185.0 216.0,194.0 226.0,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="237.2,185.0 232.2,194.0 242.2,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="253.5,185.0 248.5,194.0 258.5,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="269.8,185.0 264.8,194.0 274.8,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="286.0,185.0 281.0,194.0 291.0,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="302.2,185.0 297.2,194.0 307.2,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="318.5,185.0 313.5,194.0 323.5,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="334.8,185.0 329.8,194.0 339.8,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="351.0,185.0 346.0,194.0 356.0,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="367.2,185.0 362.2,194.0 372.2,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="383.5,185.0 378.5,194.0 388.5,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="399.8,185.0 394.8,194.0 404.8,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="416.0,185.0 411.0,194.0 421.0,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="432.2,185.0 427.2,194.0 437.2,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="448.5,185.0 443.5,194.0 453.5,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="464.8,185.0 459.8,194.0 469.8,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="481.0,185.0 476.0,194.0 486.0,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="497.2,185.0 492.2,194.0 502.2,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="513.5,185.0 508.5,194.0 518.5,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="529.8,185.0 524.8,194.0 534.8,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="546.0,185.0 541.0,194.0 551.0,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="562.2,185.0 557.2,194.0 567.2,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="578.5,185.0 573.5,194.0 583.5,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="594.8,185.0 589.8,194.0 599.8,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="611.0,185.0 606.0,194.0 616.0,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="627.2,185.0 622.2,194.0 632.2,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="643.5,185.0 638.5,194.0 648.5,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="659.8,185.0 654.8,194.0 664.8,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="676.0,185.0 671.0,194.0 681.0,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="692.2,185.0 687.2,194.0 697.2,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="708.5,185.0 703.5,194.0 713.5,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="724.8,185.0 719.8,194.0 729.8,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="741.0,185.0 736.0,194.0 746.0,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="757.2,185.0 752.2,194.0 762.2,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="773.5,185.0 768.5,194.0 778.5,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="789.8,185.0 784.8,194.0 794.8,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="806.0,185.0 801.0,194.0 811.0,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="822.2,185.0 817.2,194.0 827.2,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="838.5,185.0 833.5,194.0 843.5,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="854.8,185.0 849.8,194.0 859.8,194.0" fill="#616e7c" stroke="#616e7c" stroke-width="1"/>
+  <polygon points="334.8,127.0 329.8,136.0 339.8,136.0" fill="#d64545" stroke="#d64545" stroke-width="1"/>
+  <polygon points="351.0,127.0 346.0,136.0 356.0,136.0" fill="#d64545" stroke="#d64545" stroke-width="1"/>
+  <polygon points="367.2,127.0 362.2,136.0 372.2,136.0" fill="#d64545" stroke="#d64545" stroke-width="1"/>
+  <polygon points="594.8,127.0 589.8,136.0 599.8,136.0" fill="#d64545" stroke="#d64545" stroke-width="1"/>
+  <polygon points="611.0,127.0 606.0,136.0 616.0,136.0" fill="#d64545" stroke="#d64545" stroke-width="1"/>
+  <polygon points="627.2,127.0 622.2,136.0 632.2,136.0" fill="#d64545" stroke="#d64545" stroke-width="1"/>
+  <text x="520.0" y="225.0" font-size="13" text-anchor="middle" fill="#616e7c" font-weight="normal">빨간 표시: 비트 중앙의 7·8·9번째 샘플을 다수결로 판정해 노이즈에 강해진다</text>
+</svg>

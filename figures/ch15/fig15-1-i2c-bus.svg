@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="300" viewBox="0 0 820 300" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="410.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 15-1  I2C 버스: 선 두 개에 여러 장치가 매달린다</text>
+  <line x1="60.0" y1="120.0" x2="780.0" y2="120.0" stroke="#2f6fdf" stroke-width="3"/>
+  <line x1="60.0" y1="150.0" x2="780.0" y2="150.0" stroke="#d9730d" stroke-width="3"/>
+  <text x="790.0" y="125.0" font-size="13" text-anchor="start" fill="#2f6fdf" font-weight="bold">SDA</text>
+  <text x="790.0" y="155.0" font-size="13" text-anchor="start" fill="#d9730d" font-weight="bold">SCL</text>
+  <text x="120.0" y="52.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">VDD (3.3 V)</text>
+  <line x1="80.0" y1="60.0" x2="160.0" y2="60.0" stroke="#1f2933" stroke-width="2"/>
+  <line x1="100.0" y1="60.0" x2="100.0" y2="72.0" stroke="#1f2933" stroke-width="2"/>
+  <rect x="93.0" y="72.0" width="14.0" height="30.0" rx="2" fill="#ffffff" stroke="#1f2933" stroke-width="1.5"/>
+  <line x1="100.0" y1="102.0" x2="100.0" y2="120.0" stroke="#1f2933" stroke-width="2"/>
+  <circle cx="100" cy="120" r="4" fill="#1f2933"/>
+  <line x1="140.0" y1="60.0" x2="140.0" y2="72.0" stroke="#1f2933" stroke-width="2"/>
+  <rect x="133.0" y="72.0" width="14.0" height="30.0" rx="2" fill="#ffffff" stroke="#1f2933" stroke-width="1.5"/>
+  <line x1="140.0" y1="102.0" x2="140.0" y2="150.0" stroke="#1f2933" stroke-width="2"/>
+  <circle cx="140" cy="150" r="4" fill="#1f2933"/>
+  <text x="165.0" y="92.0" font-size="12" text-anchor="start" fill="#616e7c" font-weight="normal">풀업 저항 (예: 4.7 kΩ)</text>
+  <rect x="200.0" y="200.0" width="125.0" height="64.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="262.5" y="229.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">마스터</text>
+  <text x="262.5" y="248.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">STM32</text>
+  <line x1="245.0" y1="120.0" x2="245.0" y2="198.0" stroke="#2f6fdf" stroke-width="2"/>
+  <line x1="280.0" y1="150.0" x2="280.0" y2="198.0" stroke="#d9730d" stroke-width="2"/>
+  <circle cx="245" cy="120" r="4" fill="#2f6fdf"/>
+  <circle cx="280" cy="150" r="4" fill="#d9730d"/>
+  <rect x="345.0" y="200.0" width="125.0" height="64.0" rx="8" fill="#ffffff" stroke="#334e68" stroke-width="1.5"/>
+  <text x="407.5" y="229.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">슬레이브</text>
+  <text x="407.5" y="248.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">온도 센서 0x76</text>
+  <line x1="390.0" y1="120.0" x2="390.0" y2="198.0" stroke="#2f6fdf" stroke-width="2"/>
+  <line x1="425.0" y1="150.0" x2="425.0" y2="198.0" stroke="#d9730d" stroke-width="2"/>
+  <circle cx="390" cy="120" r="4" fill="#2f6fdf"/>
+  <circle cx="425" cy="150" r="4" fill="#d9730d"/>
+  <rect x="490.0" y="200.0" width="125.0" height="64.0" rx="8" fill="#ffffff" stroke="#334e68" stroke-width="1.5"/>
+  <text x="552.5" y="229.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">슬레이브</text>
+  <text x="552.5" y="248.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">EEPROM 0x50</text>
+  <line x1="535.0" y1="120.0" x2="535.0" y2="198.0" stroke="#2f6fdf" stroke-width="2"/>
+  <line x1="570.0" y1="150.0" x2="570.0" y2="198.0" stroke="#d9730d" stroke-width="2"/>
+  <circle cx="535" cy="120" r="4" fill="#2f6fdf"/>
+  <circle cx="570" cy="150" r="4" fill="#d9730d"/>
+  <rect x="635.0" y="200.0" width="125.0" height="64.0" rx="8" fill="#ffffff" stroke="#334e68" stroke-width="1.5"/>
+  <text x="697.5" y="229.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">슬레이브</text>
+  <text x="697.5" y="248.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">OLED 0x3C</text>
+  <line x1="680.0" y1="120.0" x2="680.0" y2="198.0" stroke="#2f6fdf" stroke-width="2"/>
+  <line x1="715.0" y1="150.0" x2="715.0" y2="198.0" stroke="#d9730d" stroke-width="2"/>
+  <circle cx="680" cy="120" r="4" fill="#2f6fdf"/>
+  <circle cx="715" cy="150" r="4" fill="#d9730d"/>
+  <text x="410.0" y="290.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">모든 장치는 선을 0으로 끌어내릴 수만 있고(오픈 드레인), 1은 풀업 저항이 만든다</text>
+</svg>

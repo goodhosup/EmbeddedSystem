@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="300" viewBox="0 0 860 300" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="430.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 1-6  digitalWrite(13, HIGH) 한 줄이 실제로 하는 일</text>
+  <rect x="40.0" y="70.0" width="230.0" height="60.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="155.0" y="97.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">digitalWrite(13, HIGH)</text>
+  <text x="155.0" y="116.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">아두이노 함수</text>
+  <line x1="272.0" y1="100.0" x2="318.0" y2="100.0" stroke="#334e68" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="295.0" y="62.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">핀 번호 변환</text>
+  <rect x="320.0" y="70.0" width="200.0" height="60.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="420.0" y="97.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">13번 핀 = PB5</text>
+  <text x="420.0" y="116.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">포트 B의 5번 비트</text>
+  <line x1="522.0" y1="100.0" x2="568.0" y2="100.0" stroke="#334e68" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="570.0" y="70.0" width="250.0" height="60.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="695.0" y="97.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">PORTB |= (1 &lt;&lt; 5)</text>
+  <text x="695.0" y="116.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">레지스터에 비트 쓰기</text>
+  <text x="605.0" y="211.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold">← PORTB 레지스터 (8비트)</text>
+  <rect x="270.0" y="185.0" width="40.0" height="40.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1.5"/>
+  <text x="290.0" y="211.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">0</text>
+  <text x="290.0" y="242.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">7</text>
+  <rect x="310.0" y="185.0" width="40.0" height="40.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1.5"/>
+  <text x="330.0" y="211.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">0</text>
+  <text x="330.0" y="242.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">6</text>
+  <rect x="350.0" y="185.0" width="40.0" height="40.0" rx="2" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="370.0" y="211.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">1</text>
+  <text x="370.0" y="242.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">5</text>
+  <rect x="390.0" y="185.0" width="40.0" height="40.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1.5"/>
+  <text x="410.0" y="211.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">0</text>
+  <text x="410.0" y="242.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">4</text>
+  <rect x="430.0" y="185.0" width="40.0" height="40.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1.5"/>
+  <text x="450.0" y="211.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">0</text>
+  <text x="450.0" y="242.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">3</text>
+  <rect x="470.0" y="185.0" width="40.0" height="40.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1.5"/>
+  <text x="490.0" y="211.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">0</text>
+  <text x="490.0" y="242.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">2</text>
+  <rect x="510.0" y="185.0" width="40.0" height="40.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1.5"/>
+  <text x="530.0" y="211.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">0</text>
+  <text x="530.0" y="242.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">1</text>
+  <rect x="550.0" y="185.0" width="40.0" height="40.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1.5"/>
+  <text x="570.0" y="211.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">0</text>
+  <text x="570.0" y="242.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">0</text>
+  <path d="M695,133 L695,155 L370,155 L370,181" stroke="#d9730d" stroke-width="1.5" fill="none" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <text x="430.0" y="275.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">5번 비트가 1이 되는 순간 PB5 핀의 전압이 5V가 되고, 연결된 LED가 켜진다</text>
+</svg>
