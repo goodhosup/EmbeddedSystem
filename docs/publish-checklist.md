@@ -9,6 +9,5 @@
 | `chapters/ch05-dev-environment.md` | 33 | [확인 필요: 출간 시점 버전] |
 | `chapters/ch05-dev-environment.md` | 34 | [확인 필요: 출간 시점 버전] |
 | `chapters/ch05-dev-environment.md` | 392 | [확인 필요: 출간 시점 메뉴 이름] |
-| `README.md` | 77 | [확인 필요] |
 
-총 5건
+총 4건

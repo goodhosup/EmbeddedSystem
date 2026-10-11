@@ -7,6 +7,9 @@
  *   - GPIO 레지스터: RM0383 8.4절 "GPIO registers"
  *   - FLASH_ACR: RM0383 3.8절 "Flash interface registers"
  *   - PWR_CR: RM0383 5.4절 "PWR registers"
+ *   - SYSCFG: RM0383 7.2절 "SYSCFG registers"
+ *   - EXTI: RM0383 10.3절 "EXTI registers"
+ *   - NVIC, SysTick, SCB: Cortex-M4 프로그래밍 매뉴얼(PM0214) 4장 "Core peripherals"
  *
  * 실무에서는 ST가 배포하는 CMSIS 디바이스 헤더(stm32f411xe.h)를 쓴다.
  * 이 파일은 그 헤더가 내부에서 하는 일을 직접 보여 주려고 만들었다.
@@ -85,6 +88,9 @@ typedef struct {
 /* RCC_APB1ENR */
 #define RCC_APB1ENR_PWREN   (1u << 28)
 
+/* RCC_APB2ENR */
+#define RCC_APB2ENR_SYSCFGEN (1u << 14)
+
 /* RCC_CSR: 리셋 원인 플래그 */
 #define RCC_CSR_RMVF        (1u << 24)
 #define RCC_CSR_BORRSTF     (1u << 25)
@@ -134,5 +140,102 @@ typedef struct {
 
 #define PWR_CR_VOS_Msk      (3u << 14)
 #define PWR_CR_VOS_SCALE1   (3u << 14)
+
+/* ---- SYSCFG (0x4001 3800) ---- */
+typedef struct {
+    __IO uint32_t MEMRMP;      /* 0x00 */
+    __IO uint32_t PMC;         /* 0x04 */
+    __IO uint32_t EXTICR[4];   /* 0x08 ~ 0x14: EXTI 라인 0~15의 포트 선택 */
+} SYSCFG_TypeDef;
+
+#define SYSCFG ((SYSCFG_TypeDef *)0x40013800u)
+
+/* EXTICR 값: 0 = 포트 A, 1 = B, 2 = C, 3 = D, 4 = E, 7 = H */
+
+/* ---- EXTI (0x4001 3C00) ---- */
+typedef struct {
+    __IO uint32_t IMR;         /* 0x00 인터럽트 마스크 (1 = 허용) */
+    __IO uint32_t EMR;         /* 0x04 이벤트 마스크 */
+    __IO uint32_t RTSR;        /* 0x08 상승 에지 선택 */
+    __IO uint32_t FTSR;        /* 0x0C 하강 에지 선택 */
+    __IO uint32_t SWIER;       /* 0x10 소프트웨어 인터럽트 */
+    __IO uint32_t PR;          /* 0x14 대기 플래그 (1을 써서 지움) */
+} EXTI_TypeDef;
+
+#define EXTI ((EXTI_TypeDef *)0x40013C00u)
+
+/* ---- 인터럽트 번호 (RM0383 10.1.3절 표, 7장에서 쓰는 것만) ---- */
+#define EXTI0_IRQn       6
+#define TIM2_IRQn       28
+#define TIM3_IRQn       29
+#define USART2_IRQn     38
+#define EXTI15_10_IRQn  40
+
+/* ---- Cortex-M4 코어 주변장치 ---- */
+typedef struct {
+    __IO uint32_t ISER[8];     /* 0xE000E100 인터럽트 허용 (1을 쓰면 허용) */
+    uint32_t      RESERVED0[24];
+    __IO uint32_t ICER[8];     /* 0xE000E180 인터럽트 금지 (1을 쓰면 금지) */
+    uint32_t      RESERVED1[24];
+    __IO uint32_t ISPR[8];     /* 0xE000E200 대기 상태로 만들기 */
+    uint32_t      RESERVED2[24];
+    __IO uint32_t ICPR[8];     /* 0xE000E280 대기 상태 지우기 */
+    uint32_t      RESERVED3[24];
+    __IO uint32_t IABR[8];     /* 0xE000E300 실행 중 표시 (읽기 전용) */
+    uint32_t      RESERVED4[56];
+    __IO uint8_t  IP[240];     /* 0xE000E400 우선순위, IRQ 하나에 1바이트 */
+} NVIC_TypeDef;
+
+#define NVIC ((NVIC_TypeDef *)0xE000E100u)
+
+/* STM32F4는 우선순위 바이트의 상위 4비트만 쓴다: 0(가장 높음) ~ 15(가장 낮음) */
+#define NVIC_PRIO_BITS 4
+
+static inline void nvic_enable_irq(uint32_t irqn)
+{
+    NVIC->ISER[irqn >> 5] = 1u << (irqn & 31u);
+}
+
+static inline void nvic_disable_irq(uint32_t irqn)
+{
+    NVIC->ICER[irqn >> 5] = 1u << (irqn & 31u);
+}
+
+static inline void nvic_set_priority(uint32_t irqn, uint32_t prio)
+{
+    NVIC->IP[irqn] = (uint8_t)((prio << (8 - NVIC_PRIO_BITS)) & 0xFFu);
+}
+
+/* SysTick (0xE000 E010): 8장 */
+typedef struct {
+    __IO uint32_t CTRL;        /* 0x00 */
+    __IO uint32_t LOAD;        /* 0x04 */
+    __IO uint32_t VAL;         /* 0x08 */
+    __IO uint32_t CALIB;       /* 0x0C */
+} SysTick_TypeDef;
+
+#define SYSTICK ((SysTick_TypeDef *)0xE000E010u)
+
+#define SYSTICK_CTRL_ENABLE    (1u << 0)
+#define SYSTICK_CTRL_TICKINT   (1u << 1)
+#define SYSTICK_CTRL_CLKSOURCE (1u << 2)    /* 1 = 프로세서 클럭(HCLK) */
+#define SYSTICK_CTRL_COUNTFLAG (1u << 16)
+
+/* 전체 인터럽트 켜고 끄기 (PRIMASK) */
+static inline void irq_disable(void) { __asm volatile ("cpsid i" ::: "memory"); }
+static inline void irq_enable(void)  { __asm volatile ("cpsie i" ::: "memory"); }
+
+static inline uint32_t irq_save(void)
+{
+    uint32_t primask;
+    __asm volatile ("mrs %0, primask" : "=r" (primask));
+    __asm volatile ("cpsid i" ::: "memory");
+    return primask;
+}
+
+static inline void irq_restore(uint32_t primask)
+{
+    __asm volatile ("msr primask, %0" :: "r" (primask) : "memory");
+}
 
 #endif /* STM32F411_REGS_H */

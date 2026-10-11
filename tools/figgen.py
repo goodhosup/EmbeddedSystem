@@ -1507,6 +1507,189 @@ def fig_6_4():
 
 
 # ---------------------------------------------------------------------------
+# 7장
+# ---------------------------------------------------------------------------
+
+def fig_7_1():
+    s = Svg(900, 400)
+    s.text(450, 30, "그림 7-1  폴링과 인터럽트의 시간 흐름 비교", 16, weight="bold")
+    x0, x1 = 150, 860
+    ev = 470
+
+    def axis(y, title, sub):
+        s.text(20, y + 5, title, 14, "start", weight="bold")
+        s.text(20, y + 24, sub, 11, "start", MUTED)
+        s.line(x0, y + 30, x1, y + 30, MUTED, 1.2, arrow=True)
+
+    # 폴링
+    y = 70
+    axis(y, "(가) 폴링", "주기적으로 확인")
+    for i in range(7):
+        x = x0 + 10 + i * 100
+        s.rect(x, y, 70, 22, BLUE_BG, BLUE, 3, 1)
+        s.text(x + 35, y + 16, "다른 일", 11)
+        s.rect(x + 70, y, 22, 22, ORANGE_BG, ORANGE, 3, 1)
+        s.text(x + 81, y + 16, "?", 12, weight="bold")
+    s.line(ev, y - 18, ev, y + 40, RED, 2, "4 3")
+    s.text(ev, y - 22, "버튼 눌림", 12, color=RED, weight="bold")
+    s.path(f"M{ev},{y + 46} L{x0 + 10 + 4 * 100 + 81},{y + 46}", RED, 1.5)
+    s.text((ev + x0 + 491) / 2, y + 62, "다음 확인까지 지연", 11, color=RED)
+    s.text(x1, y + 62, "확인할 때마다 CPU 시간을 쓴다 (대부분 헛걸음)", 11, "end", MUTED)
+
+    # 인터럽트
+    y = 220
+    axis(y, "(나) 인터럽트", "일이 생기면 알려 줌")
+    s.rect(x0 + 10, y, ev - x0 - 10, 22, BLUE_BG, BLUE, 3, 1)
+    s.text((x0 + ev) / 2, y + 16, "메인 코드: 하고 싶은 일", 11)
+    s.rect(ev + 10, y - 30, 80, 22, ORANGE_BG, ORANGE, 3, 1.5)
+    s.text(ev + 50, y - 14, "ISR", 12, weight="bold")
+    s.rect(ev + 100, y, x1 - ev - 110, 22, BLUE_BG, BLUE, 3, 1)
+    s.text((ev + 100 + x1) / 2, y + 16, "메인 코드 계속", 11)
+    s.path(f"M{ev},{y + 11} L{ev + 10},{y - 19}", ORANGE, 1.5, arrow=True)
+    s.path(f"M{ev + 90},{y - 19} L{ev + 100},{y + 11}", ORANGE, 1.5, arrow=True)
+    s.line(ev, y - 48, ev, y + 40, RED, 2, "4 3")
+    s.text(ev, y - 52, "버튼 눌림", 12, color=RED, weight="bold")
+    s.text(ev + 50, y + 62, "곧바로 반응", 11, color=ORANGE, weight="bold")
+    s.text(x1, y + 90, "일이 없을 때는 CPU를 다른 일에 쓰거나 잠재울 수 있다 (11장)", 11, "end", MUTED)
+    s.save("ch07/fig7-1-polling-vs-interrupt.svg")
+
+
+def fig_7_2():
+    s = Svg(900, 470)
+    s.text(450, 30, "그림 7-2  인터럽트 발생부터 복귀까지 (Cortex-M)", 16, weight="bold")
+    steps = [("① 요청", "주변장치가 플래그 설정", GREEN_BG, GREEN),
+             ("② 스태킹", "레지스터 8개를 스택에", BLUE_BG, BLUE),
+             ("③ 벡터 조회", "벡터 테이블에서 ISR 주소", BLUE_BG, BLUE),
+             ("④ ISR 실행", "플래그 지우기, 할 일", ORANGE_BG, ORANGE),
+             ("⑤ 언스태킹", "레지스터 복원, 복귀", BLUE_BG, BLUE)]
+    for i, (a, b, f, st) in enumerate(steps):
+        x = 25 + i * 175
+        s.box(x, 60, 155, 60, a, b, f, st, 14)
+        if i < 4:
+            s.line(x + 157, 90, x + 173, 90, LINE, 2, arrow=True)
+    s.text(270, 142, "②와 ③은 하드웨어가 동시에 처리 (최소 12클럭)", 12, color=BLUE)
+    # 스택 프레임
+    s.text(250, 185, "스택에 자동으로 저장되는 것 (예외 스택 프레임)", 14, weight="bold")
+    frame = ["xPSR", "PC (돌아갈 주소)", "LR", "R12", "R3", "R2", "R1", "R0"]
+    for i, n in enumerate(frame):
+        y = 200 + i * 28
+        s.rect(150, y, 200, 28, BLUE_BG if i < 2 else "#ffffff", BLUE, 0, 1)
+        s.text(250, y + 19, n, 13, weight="bold" if i < 2 else "normal")
+        s.text(140, y + 19, f"SP+0x{(7 - i) * 4:02X}", 11, "end", MUTED)
+    s.line(360, 200 + 7 * 28 + 14, 400, 200 + 7 * 28 + 14, ORANGE, 2)
+    s.text(406, 200 + 7 * 28 + 18, "← 새 SP", 12, "start", ORANGE, "bold")
+    s.text(250, 440, "높은 주소 ↑   스택은 아래로 자란다", 11, color=MUTED)
+    # 설명
+    tx = 500
+    notes = [
+        ("ISR이 보통 C 함수인 이유", BLUE),
+        ("호출 규약(AAPCS)에서 함수가 마음대로 써도 되는", INK),
+        ("R0~R3, R12, LR을 하드웨어가 미리 저장해 준다", INK),
+        ("", INK),
+        ("LR에 들어가는 특별한 값", BLUE),
+        ("ISR 진입 시 LR = 0xFFFF FFxx (EXC_RETURN)", INK),
+        ("ISR이 이 값으로 복귀하면 하드웨어가 언스태킹", INK),
+        ("", INK),
+        ("AVR은 훨씬 단순하다", GREEN),
+        ("PC만 스택에 넣고(2바이트) 전체 인터럽트(I 비트)를 끈다", INK),
+        ("나머지 레지스터는 컴파일러가 ISR 앞뒤에 저장 코드를 넣는다", INK),
+    ]
+    for i, (t, c) in enumerate(notes):
+        if t:
+            s.text(tx, 205 + i * 22, t, 13 if c != INK else 12, "start", c, "bold" if c != INK else "normal")
+    s.save("ch07/fig7-2-interrupt-sequence.svg")
+
+
+def fig_7_3():
+    s = Svg(900, 480)
+    s.text(450, 30, "그림 7-3  벡터 테이블의 구조", 16, weight="bold")
+    # AVR
+    s.text(210, 64, "(가) ATmega328P: 점프 명령의 목록", 14, weight="bold", color=GREEN)
+    avr = [("0x0000", "JMP 리셋 처리"), ("0x0002", "JMP INT0_vect"), ("0x0004", "JMP INT1_vect"),
+           ("0x0006", "JMP PCINT0_vect"), ("…", "…"), ("0x0020", "JMP TIMER0_OVF_vect"), ("0x0024", "JMP USART_RX_vect"),
+           ("…", "…"), ("0x0032", "JMP SPM_READY_vect")]
+    for i, (a, n) in enumerate(avr):
+        y = 80 + i * 34
+        on = n == "JMP INT0_vect"
+        s.rect(110, y, 230, 34, GREEN_BG if on else "#ffffff", GREEN if on else LINE, 0, 1)
+        s.text(100, y + 22, a, 12, "end", MUTED)
+        s.text(225, y + 22, n, 12, weight="bold" if on else "normal")
+    s.text(210, 412, "Flash 맨 앞, 워드 주소. 벡터 26개, 각각 명령 하나(2워드)", 11, color=MUTED)
+    s.text(210, 430, "우선순위는 주소가 낮을수록 높다 (고정)", 11, color=MUTED)
+    # Cortex-M
+    s.text(660, 64, "(나) STM32F411: 주소의 목록", 14, weight="bold", color=BLUE)
+    cm = [("0x000", "초기 SP 값"), ("0x004", "Reset_Handler"), ("0x008", "NMI_Handler"), ("0x00C", "HardFault_Handler"),
+          ("…", "…"), ("0x03C", "SysTick_Handler"), ("0x040", "IRQ 0: WWDG"), ("…", "…"),
+          ("0x0E0", "IRQ 40: EXTI15_10"), ("…", "…"), ("0x194", "IRQ 85: SPI5")]
+    for i, (a, n) in enumerate(cm):
+        y = 80 + i * 30
+        on = "EXTI15_10" in n
+        first = i < 2
+        s.rect(560, y, 230, 30, BLUE_BG if on else (GRAY_BG if first else "#ffffff"), BLUE if on else LINE, 0, 1)
+        s.text(550, y + 20, a, 12, "end", MUTED)
+        s.text(675, y + 20, n, 12, weight="bold" if on or first else "normal")
+    s.text(660, 430, "0x0000 0000(Flash 별칭)부터 4바이트 주소 102개", 11, color=MUTED)
+    s.text(660, 448, "IRQ n의 위치 = 0x40 + n × 4.  우선순위는 NVIC에서 설정", 11, color=MUTED)
+    s.save("ch07/fig7-3-vector-table.svg")
+
+
+def fig_7_4():
+    s = Svg(900, 440)
+    s.text(450, 30, "그림 7-4  우선순위와 선점: 중첩 인터럽트 타임라인", 16, weight="bold")
+    lanes = [("EXTI ISR", "우선순위 1 (높음)", ORANGE_BG, ORANGE), ("TIM2 ISR", "우선순위 2", BLUE_BG, BLUE),
+             ("메인", "스레드 모드", GRAY_BG, LINE)]
+    ys = [80, 160, 240]
+    for (n, sub, f, st), y in zip(lanes, ys):
+        s.text(130, y + 14, n, 13, "end", weight="bold")
+        s.text(130, y + 30, sub, 10, "end", MUTED)
+        s.line(140, y + 36, 870, y + 36, "#dde3ea", 1)
+    X = lambda t: 150 + t * 34
+    # 메인
+    s.rect(X(0), 240, X(3) - X(0), 30, GRAY_BG, LINE, 3, 1)
+    s.rect(X(14), 240, X(20) - X(14), 30, GRAY_BG, LINE, 3, 1)
+    # TIM2
+    s.rect(X(3), 160, X(6) - X(3), 30, BLUE_BG, BLUE, 3, 1)
+    s.rect(X(10), 160, X(12) - X(10), 30, BLUE_BG, BLUE, 3, 1)
+    # EXTI
+    s.rect(X(6), 80, X(10) - X(6), 30, ORANGE_BG, ORANGE, 3, 1)
+    # 두번째 TIM2 요청 (같은 우선순위, 대기 후 tail-chain)
+    s.rect(X(12), 160, X(14) - X(12), 30, "#dbe7fb", BLUE, 3, 1)
+    s.text((X(12) + X(14)) / 2, 180, "다음", 10)
+    # 화살표
+    for t in (3, 6):
+        s.line(X(t), 300, X(t), 290, RED, 1.5)
+    s.text(X(3), 316, "① TIM2 요청", 11, color=RED)
+    s.text(X(6), 316, "② EXTI 요청 → 선점", 11, color=RED, weight="bold")
+    s.text(X(8), 100, "EXTI ISR", 12, weight="bold")
+    s.text((X(3) + X(6)) / 2, 180, "TIM2 ISR", 11)
+    s.text((X(10) + X(12)) / 2, 180, "이어서", 10)
+    s.text(150, 346, "③ EXTI ISR이 실행되는 동안 TIM2 ISR은 멈춘 채 기다린다", 12, "start", MUTED)
+    s.text(150, 368, "④ EXTI ISR이 끝나면 TIM2 ISR이 멈춘 곳부터 이어서 실행된다", 12, "start", MUTED)
+    s.text(150, 390, "⑤ 그사이 들어온 TIM2 요청은 메인으로 돌아가지 않고 바로 이어서 처리된다 (꼬리 물기)", 12, "start", MUTED)
+    s.text(450, 428, "숫자가 작을수록 우선순위가 높다. 더 높은 우선순위만 실행 중인 ISR을 선점할 수 있다", 11, color=INK)
+    s.save("ch07/fig7-4-nesting.svg")
+
+
+def fig_7_5():
+    t = Timing(24, 32, 150, 70, "그림 7-5  버튼 바운싱 파형과 디바운싱 처리")
+    raw = [(3, "h", None, None), (0.4, "l", None, None), (0.3, "h", None, None), (0.6, "l", None, None),
+           (0.3, "h", None, None), (0.3, "l", None, None), (0.2, "h", None, None), (6.9, "l", "눌린 상태", None),
+           (0.3, "h", None, None), (0.4, "l", None, None), (0.3, "h", None, None), (11, "h", "뗀 상태", None)]
+    t.signal("버튼 핀", raw, sub="실제 신호")
+    isr = [(3, "h", None, None), (0.15, "l", None, None), (0.55, "h", None, None), (0.15, "l", None, None),
+           (0.75, "h", None, None), (0.15, "l", None, None), (7.75, "h", None, None), (0.15, "l", None, None),
+           (11.35, "h", None, None)]
+    t.signal("하강 에지 검출", isr, sub="그대로 쓰면 4번")
+    clean = [(3, "h", None, None), (9.6, "l", None, None), (11.4, "h", None, None)]
+    t.signal("디바운싱 결과", clean, sub="한 번만 인식")
+    t.note("span", row=0, t0=3, t1=5.1, label="바운싱 수 ms", color=RED, below=False)
+    t.note("span", row=2, t0=3, t1=8, label="첫 에지 뒤 20 ms 동안 무시", color=GREEN)
+    t.note("vline", t=3, color=ORANGE)
+    t.note("text", t=12, y=290, label="뗄 때의 바운싱에도 하강 에지가 생긴다. 디바운싱은 누를 때와 뗄 때 모두 필요하다", size=12)
+    t.render("ch07/fig7-5-debounce.svg", 70)
+
+
+# ---------------------------------------------------------------------------
 # 14장 UART
 # ---------------------------------------------------------------------------
 

@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="400" viewBox="0 0 900 400" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 7-1  폴링과 인터럽트의 시간 흐름 비교</text>
+  <text x="20.0" y="75.0" font-size="14" text-anchor="start" fill="#1f2933" font-weight="bold">(가) 폴링</text>
+  <text x="20.0" y="94.0" font-size="11" text-anchor="start" fill="#616e7c" font-weight="normal">주기적으로 확인</text>
+  <line x1="150.0" y1="100.0" x2="860.0" y2="100.0" stroke="#616e7c" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <rect x="160.0" y="70.0" width="70.0" height="22.0" rx="3" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1"/>
+  <text x="195.0" y="86.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="normal">다른 일</text>
+  <rect x="230.0" y="70.0" width="22.0" height="22.0" rx="3" fill="#fdebd7" stroke="#d9730d" stroke-width="1"/>
+  <text x="241.0" y="86.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">?</text>
+  <rect x="260.0" y="70.0" width="70.0" height="22.0" rx="3" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1"/>
+  <text x="295.0" y="86.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="normal">다른 일</text>
+  <rect x="330.0" y="70.0" width="22.0" height="22.0" rx="3" fill="#fdebd7" stroke="#d9730d" stroke-width="1"/>
+  <text x="341.0" y="86.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">?</text>
+  <rect x="360.0" y="70.0" width="70.0" height="22.0" rx="3" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1"/>
+  <text x="395.0" y="86.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="normal">다른 일</text>
+  <rect x="430.0" y="70.0" width="22.0" height="22.0" rx="3" fill="#fdebd7" stroke="#d9730d" stroke-width="1"/>
+  <text x="441.0" y="86.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">?</text>
+  <rect x="460.0" y="70.0" width="70.0" height="22.0" rx="3" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1"/>
+  <text x="495.0" y="86.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="normal">다른 일</text>
+  <rect x="530.0" y="70.0" width="22.0" height="22.0" rx="3" fill="#fdebd7" stroke="#d9730d" stroke-width="1"/>
+  <text x="541.0" y="86.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">?</text>
+  <rect x="560.0" y="70.0" width="70.0" height="22.0" rx="3" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1"/>
+  <text x="595.0" y="86.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="normal">다른 일</text>
+  <rect x="630.0" y="70.0" width="22.0" height="22.0" rx="3" fill="#fdebd7" stroke="#d9730d" stroke-width="1"/>
+  <text x="641.0" y="86.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">?</text>
+  <rect x="660.0" y="70.0" width="70.0" height="22.0" rx="3" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1"/>
+  <text x="695.0" y="86.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="normal">다른 일</text>
+  <rect x="730.0" y="70.0" width="22.0" height="22.0" rx="3" fill="#fdebd7" stroke="#d9730d" stroke-width="1"/>
+  <text x="741.0" y="86.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">?</text>
+  <rect x="760.0" y="70.0" width="70.0" height="22.0" rx="3" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1"/>
+  <text x="795.0" y="86.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="normal">다른 일</text>
+  <rect x="830.0" y="70.0" width="22.0" height="22.0" rx="3" fill="#fdebd7" stroke="#d9730d" stroke-width="1"/>
+  <text x="841.0" y="86.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">?</text>
+  <line x1="470.0" y1="52.0" x2="470.0" y2="110.0" stroke="#d64545" stroke-width="2" stroke-dasharray="4 3"/>
+  <text x="470.0" y="48.0" font-size="12" text-anchor="middle" fill="#d64545" font-weight="bold">버튼 눌림</text>
+  <path d="M470,116 L641,116" stroke="#d64545" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+  <text x="555.5" y="132.0" font-size="11" text-anchor="middle" fill="#d64545" font-weight="normal">다음 확인까지 지연</text>
+  <text x="860.0" y="132.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">확인할 때마다 CPU 시간을 쓴다 (대부분 헛걸음)</text>
+  <text x="20.0" y="225.0" font-size="14" text-anchor="start" fill="#1f2933" font-weight="bold">(나) 인터럽트</text>
+  <text x="20.0" y="244.0" font-size="11" text-anchor="start" fill="#616e7c" font-weight="normal">일이 생기면 알려 줌</text>
+  <line x1="150.0" y1="250.0" x2="860.0" y2="250.0" stroke="#616e7c" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <rect x="160.0" y="220.0" width="310.0" height="22.0" rx="3" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1"/>
+  <text x="310.0" y="236.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="normal">메인 코드: 하고 싶은 일</text>
+  <rect x="480.0" y="190.0" width="80.0" height="22.0" rx="3" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="520.0" y="206.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">ISR</text>
+  <rect x="570.0" y="220.0" width="280.0" height="22.0" rx="3" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1"/>
+  <text x="715.0" y="236.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="normal">메인 코드 계속</text>
+  <path d="M470,231 L480,201" stroke="#d9730d" stroke-width="1.5" fill="none" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <path d="M560,201 L570,231" stroke="#d9730d" stroke-width="1.5" fill="none" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <line x1="470.0" y1="172.0" x2="470.0" y2="260.0" stroke="#d64545" stroke-width="2" stroke-dasharray="4 3"/>
+  <text x="470.0" y="168.0" font-size="12" text-anchor="middle" fill="#d64545" font-weight="bold">버튼 눌림</text>
+  <text x="520.0" y="282.0" font-size="11" text-anchor="middle" fill="#d9730d" font-weight="bold">곧바로 반응</text>
+  <text x="860.0" y="310.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">일이 없을 때는 CPU를 다른 일에 쓰거나 잠재울 수 있다 (11장)</text>
+</svg>

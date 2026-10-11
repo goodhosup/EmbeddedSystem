@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="948" height="314" viewBox="0 0 948 314" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="474.0" y="24.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 7-5  버튼 바운싱 파형과 디바운싱 처리</text>
+  <line x1="246.0" y1="64.0" x2="246.0" y2="226.0" stroke="#d9730d" stroke-width="1.2" stroke-dasharray="4 4"/>
+  <text x="136.0" y="83.0" font-size="14" text-anchor="end" fill="#1f2933" font-weight="bold">버튼 핀</text>
+  <text x="136.0" y="100.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">실제 신호</text>
+  <line x1="150.0" y1="70.0" x2="246.0" y2="70.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="246.0" y1="70.0" x2="246.0" y2="96.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="246.0" y1="96.0" x2="258.8" y2="96.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="258.8" y1="70.0" x2="258.8" y2="96.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="258.8" y1="70.0" x2="268.4" y2="70.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="268.4" y1="70.0" x2="268.4" y2="96.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="268.4" y1="96.0" x2="287.6" y2="96.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="287.6" y1="70.0" x2="287.6" y2="96.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="287.6" y1="70.0" x2="297.2" y2="70.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="297.2" y1="70.0" x2="297.2" y2="96.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="297.2" y1="96.0" x2="306.8" y2="96.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="306.8" y1="70.0" x2="306.8" y2="96.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="306.8" y1="70.0" x2="313.2" y2="70.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="313.2" y1="70.0" x2="313.2" y2="96.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="313.2" y1="96.0" x2="534.0" y2="96.0" stroke="#334e68" stroke-width="2"/>
+  <text x="423.6" y="64.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">눌린 상태</text>
+  <line x1="534.0" y1="70.0" x2="534.0" y2="96.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="534.0" y1="70.0" x2="543.6" y2="70.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="543.6" y1="70.0" x2="543.6" y2="96.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="543.6" y1="96.0" x2="556.4" y2="96.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="556.4" y1="70.0" x2="556.4" y2="96.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="556.4" y1="70.0" x2="566.0" y2="70.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="566.0" y1="70.0" x2="918.0" y2="70.0" stroke="#334e68" stroke-width="2"/>
+  <text x="742.0" y="64.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">뗀 상태</text>
+  <text x="136.0" y="141.0" font-size="14" text-anchor="end" fill="#1f2933" font-weight="bold">하강 에지 검출</text>
+  <text x="136.0" y="158.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">그대로 쓰면 4번</text>
+  <line x1="150.0" y1="128.0" x2="246.0" y2="128.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="246.0" y1="128.0" x2="246.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="246.0" y1="154.0" x2="250.8" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="250.8" y1="128.0" x2="250.8" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="250.8" y1="128.0" x2="268.4" y2="128.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="268.4" y1="128.0" x2="268.4" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="268.4" y1="154.0" x2="273.2" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="273.2" y1="128.0" x2="273.2" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="273.2" y1="128.0" x2="297.2" y2="128.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="297.2" y1="128.0" x2="297.2" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="297.2" y1="154.0" x2="302.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="302.0" y1="128.0" x2="302.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="302.0" y1="128.0" x2="550.0" y2="128.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="550.0" y1="128.0" x2="550.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="550.0" y1="154.0" x2="554.8" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="554.8" y1="128.0" x2="554.8" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="554.8" y1="128.0" x2="918.0" y2="128.0" stroke="#334e68" stroke-width="2"/>
+  <text x="136.0" y="199.0" font-size="14" text-anchor="end" fill="#1f2933" font-weight="bold">디바운싱 결과</text>
+  <text x="136.0" y="216.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">한 번만 인식</text>
+  <line x1="150.0" y1="186.0" x2="246.0" y2="186.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="246.0" y1="186.0" x2="246.0" y2="212.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="246.0" y1="212.0" x2="553.2" y2="212.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="553.2" y1="186.0" x2="553.2" y2="212.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="553.2" y1="186.0" x2="918.0" y2="186.0" stroke="#334e68" stroke-width="2"/>
+  <path d="M248.0,63.0 L248.0,58.0 L311.2,58.0 L311.2,63.0" stroke="#d64545" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+  <text x="279.6" y="52.0" font-size="12" text-anchor="middle" fill="#d64545" font-weight="bold">바운싱 수 ms</text>
+  <path d="M248.0,219.0 L248.0,224.0 L404.0,224.0 L404.0,219.0" stroke="#2f9e44" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+  <text x="326.0" y="240.0" font-size="12" text-anchor="middle" fill="#2f9e44" font-weight="bold">첫 에지 뒤 20 ms 동안 무시</text>
+  <text x="534.0" y="290.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">뗄 때의 바운싱에도 하강 에지가 생긴다. 디바운싱은 누를 때와 뗄 때 모두 필요하다</text>
+</svg>

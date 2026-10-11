@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="470" viewBox="0 0 900 470" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 7-2  인터럽트 발생부터 복귀까지 (Cortex-M)</text>
+  <rect x="25.0" y="60.0" width="155.0" height="60.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="102.5" y="87.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">① 요청</text>
+  <text x="102.5" y="106.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">주변장치가 플래그 설정</text>
+  <line x1="182.0" y1="90.0" x2="198.0" y2="90.0" stroke="#334e68" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="200.0" y="60.0" width="155.0" height="60.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="277.5" y="87.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">② 스태킹</text>
+  <text x="277.5" y="106.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">레지스터 8개를 스택에</text>
+  <line x1="357.0" y1="90.0" x2="373.0" y2="90.0" stroke="#334e68" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="375.0" y="60.0" width="155.0" height="60.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="452.5" y="87.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">③ 벡터 조회</text>
+  <text x="452.5" y="106.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">벡터 테이블에서 ISR 주소</text>
+  <line x1="532.0" y1="90.0" x2="548.0" y2="90.0" stroke="#334e68" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="550.0" y="60.0" width="155.0" height="60.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="627.5" y="87.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">④ ISR 실행</text>
+  <text x="627.5" y="106.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">플래그 지우기, 할 일</text>
+  <line x1="707.0" y1="90.0" x2="723.0" y2="90.0" stroke="#334e68" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="725.0" y="60.0" width="155.0" height="60.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="802.5" y="87.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">⑤ 언스태킹</text>
+  <text x="802.5" y="106.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">레지스터 복원, 복귀</text>
+  <text x="270.0" y="142.0" font-size="12" text-anchor="middle" fill="#2f6fdf" font-weight="normal">②와 ③은 하드웨어가 동시에 처리 (최소 12클럭)</text>
+  <text x="250.0" y="185.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">스택에 자동으로 저장되는 것 (예외 스택 프레임)</text>
+  <rect x="150.0" y="200.0" width="200.0" height="28.0" rx="0" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1"/>
+  <text x="250.0" y="219.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">xPSR</text>
+  <text x="140.0" y="219.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">SP+0x1C</text>
+  <rect x="150.0" y="228.0" width="200.0" height="28.0" rx="0" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1"/>
+  <text x="250.0" y="247.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">PC (돌아갈 주소)</text>
+  <text x="140.0" y="247.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">SP+0x18</text>
+  <rect x="150.0" y="256.0" width="200.0" height="28.0" rx="0" fill="#ffffff" stroke="#2f6fdf" stroke-width="1"/>
+  <text x="250.0" y="275.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">LR</text>
+  <text x="140.0" y="275.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">SP+0x14</text>
+  <rect x="150.0" y="284.0" width="200.0" height="28.0" rx="0" fill="#ffffff" stroke="#2f6fdf" stroke-width="1"/>
+  <text x="250.0" y="303.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">R12</text>
+  <text x="140.0" y="303.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">SP+0x10</text>
+  <rect x="150.0" y="312.0" width="200.0" height="28.0" rx="0" fill="#ffffff" stroke="#2f6fdf" stroke-width="1"/>
+  <text x="250.0" y="331.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">R3</text>
+  <text x="140.0" y="331.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">SP+0x0C</text>
+  <rect x="150.0" y="340.0" width="200.0" height="28.0" rx="0" fill="#ffffff" stroke="#2f6fdf" stroke-width="1"/>
+  <text x="250.0" y="359.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">R2</text>
+  <text x="140.0" y="359.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">SP+0x08</text>
+  <rect x="150.0" y="368.0" width="200.0" height="28.0" rx="0" fill="#ffffff" stroke="#2f6fdf" stroke-width="1"/>
+  <text x="250.0" y="387.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">R1</text>
+  <text x="140.0" y="387.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">SP+0x04</text>
+  <rect x="150.0" y="396.0" width="200.0" height="28.0" rx="0" fill="#ffffff" stroke="#2f6fdf" stroke-width="1"/>
+  <text x="250.0" y="415.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">R0</text>
+  <text x="140.0" y="415.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">SP+0x00</text>
+  <line x1="360.0" y1="410.0" x2="400.0" y2="410.0" stroke="#d9730d" stroke-width="2"/>
+  <text x="406.0" y="414.0" font-size="12" text-anchor="start" fill="#d9730d" font-weight="bold">← 새 SP</text>
+  <text x="250.0" y="440.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">높은 주소 ↑   스택은 아래로 자란다</text>
+  <text x="500.0" y="205.0" font-size="13" text-anchor="start" fill="#2f6fdf" font-weight="bold">ISR이 보통 C 함수인 이유</text>
+  <text x="500.0" y="227.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="normal">호출 규약(AAPCS)에서 함수가 마음대로 써도 되는</text>
+  <text x="500.0" y="249.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="normal">R0~R3, R12, LR을 하드웨어가 미리 저장해 준다</text>
+  <text x="500.0" y="293.0" font-size="13" text-anchor="start" fill="#2f6fdf" font-weight="bold">LR에 들어가는 특별한 값</text>
+  <text x="500.0" y="315.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="normal">ISR 진입 시 LR = 0xFFFF FFxx (EXC_RETURN)</text>
+  <text x="500.0" y="337.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="normal">ISR이 이 값으로 복귀하면 하드웨어가 언스태킹</text>
+  <text x="500.0" y="381.0" font-size="13" text-anchor="start" fill="#2f9e44" font-weight="bold">AVR은 훨씬 단순하다</text>
+  <text x="500.0" y="403.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="normal">PC만 스택에 넣고(2바이트) 전체 인터럽트(I 비트)를 끈다</text>
+  <text x="500.0" y="425.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="normal">나머지 레지스터는 컴파일러가 ISR 앞뒤에 저장 코드를 넣는다</text>
+</svg>
