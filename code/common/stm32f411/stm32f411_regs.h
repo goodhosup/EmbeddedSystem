@@ -10,6 +10,8 @@
  *   - SYSCFG: RM0383 7.2절 "SYSCFG registers"
  *   - EXTI: RM0383 10.3절 "EXTI registers"
  *   - TIM2~TIM5: RM0383 13.4절 "TIM2 to TIM5 registers"
+ *   - DMA: RM0383 9.5절 "DMA registers"
+ *   - DWT 사이클 카운터: Cortex-M4 기술 참조 매뉴얼, ARMv7-M 아키텍처 참조 매뉴얼
  *   - ADC: RM0383 11.12절 "ADC registers", 보정값 주소: DS10314 "Temperature sensor
  *     calibration values", "Internal reference voltage calibration values" 표
  *   - NVIC, SysTick, SCB: Cortex-M4 프로그래밍 매뉴얼(PM0214) 4장 "Core peripherals"
@@ -87,6 +89,8 @@ typedef struct {
 #define RCC_AHB1ENR_GPIOAEN (1u << 0)
 #define RCC_AHB1ENR_GPIOBEN (1u << 1)
 #define RCC_AHB1ENR_GPIOCEN (1u << 2)
+#define RCC_AHB1ENR_DMA1EN  (1u << 21)
+#define RCC_AHB1ENR_DMA2EN  (1u << 22)
 
 /* RCC_APB1ENR */
 #define RCC_APB1ENR_TIM2EN  (1u << 0)
@@ -209,6 +213,8 @@ typedef struct {
 
 #define TIM_CR1_CEN         (1u << 0)
 #define TIM_CR1_ARPE        (1u << 7)
+#define TIM_CR2_MMS_Msk     (7u << 4)
+#define TIM_CR2_MMS_UPDATE  (2u << 4)       /* 업데이트 이벤트를 TRGO로 내보낸다 */
 #define TIM_DIER_UIE        (1u << 0)
 #define TIM_DIER_CC1IE      (1u << 1)
 #define TIM_SR_UIF          (1u << 0)
@@ -228,6 +234,73 @@ typedef struct {
 #define TIM_CCER_CC1E       (1u << 0)
 #define TIM_CCER_CC1P       (1u << 1)
 #define TIM_CCER_CC1NP      (1u << 3)
+
+/* ---- DMA (DMA1 0x4002 6000, DMA2 0x4002 6400) ---- */
+typedef struct {
+    __IO uint32_t CR;          /* +0x00 */
+    __IO uint32_t NDTR;        /* +0x04 남은 전송 개수 */
+    __IO uint32_t PAR;         /* +0x08 주변장치 주소 */
+    __IO uint32_t M0AR;        /* +0x0C 메모리 주소 0 */
+    __IO uint32_t M1AR;        /* +0x10 메모리 주소 1 (더블 버퍼 모드) */
+    __IO uint32_t FCR;         /* +0x14 FIFO 제어 */
+} DMA_Stream_TypeDef;
+
+typedef struct {
+    __IO uint32_t LISR;        /* 0x00 스트림 0~3 상태 */
+    __IO uint32_t HISR;        /* 0x04 스트림 4~7 상태 */
+    __IO uint32_t LIFCR;       /* 0x08 스트림 0~3 플래그 지우기 (1을 쓴다) */
+    __IO uint32_t HIFCR;       /* 0x0C 스트림 4~7 플래그 지우기 */
+    DMA_Stream_TypeDef S[8];   /* 0x10 + 0x18 × n */
+} DMA_TypeDef;
+
+#define DMA1 ((DMA_TypeDef *)0x40026000u)
+#define DMA2 ((DMA_TypeDef *)0x40026400u)
+
+#define DMA_SxCR_EN          (1u << 0)
+#define DMA_SxCR_TEIE        (1u << 2)
+#define DMA_SxCR_HTIE        (1u << 3)
+#define DMA_SxCR_TCIE        (1u << 4)
+#define DMA_SxCR_DIR_P2M     (0u << 6)
+#define DMA_SxCR_DIR_M2P     (1u << 6)
+#define DMA_SxCR_DIR_M2M     (2u << 6)
+#define DMA_SxCR_CIRC        (1u << 8)
+#define DMA_SxCR_PINC        (1u << 9)
+#define DMA_SxCR_MINC        (1u << 10)
+#define DMA_SxCR_PSIZE_8     (0u << 11)
+#define DMA_SxCR_PSIZE_16    (1u << 11)
+#define DMA_SxCR_PSIZE_32    (2u << 11)
+#define DMA_SxCR_MSIZE_8     (0u << 13)
+#define DMA_SxCR_MSIZE_16    (1u << 13)
+#define DMA_SxCR_MSIZE_32    (2u << 13)
+#define DMA_SxCR_PL_HIGH     (2u << 16)
+#define DMA_SxCR_CHSEL(n)    ((uint32_t)(n) << 25)
+
+/* LISR/LIFCR의 스트림 0 플래그. 스트림 1은 6비트, 2는 16비트, 3은 22비트 위로 같은 배치 */
+#define DMA_FEIF0            (1u << 0)
+#define DMA_DMEIF0           (1u << 2)
+#define DMA_TEIF0            (1u << 3)
+#define DMA_HTIF0            (1u << 4)
+#define DMA_TCIF0            (1u << 5)
+#define DMA_ALL_FLAGS0       (0x3Du)
+static inline uint32_t dma_flag_shift(uint32_t stream)
+{
+    static const uint8_t shift[4] = { 0u, 6u, 16u, 22u };
+    return shift[stream & 3u];
+}
+
+/* ---- DWT 사이클 카운터 (34장에서 자세히) ---- */
+#define DEMCR       (*(volatile uint32_t *)0xE000EDFCu)
+#define DEMCR_TRCENA (1u << 24)
+#define DWT_CTRL    (*(volatile uint32_t *)0xE0001000u)
+#define DWT_CYCCNT  (*(volatile uint32_t *)0xE0001004u)
+#define DWT_CTRL_CYCCNTENA (1u << 0)
+
+static inline void cycle_counter_init(void)
+{
+    DEMCR |= DEMCR_TRCENA;          /* 추적 기능 켜기 */
+    DWT_CYCCNT = 0;
+    DWT_CTRL |= DWT_CTRL_CYCCNTENA; /* 클럭마다 1씩 증가 */
+}
 
 /* ---- ADC1 (0x4001 2000), 공통 레지스터 (0x4001 2300) ---- */
 typedef struct {
@@ -265,6 +338,10 @@ typedef struct {
 #define ADC_CR2_DDS         (1u << 9)
 #define ADC_CR2_EOCS        (1u << 10)
 #define ADC_CR2_ALIGN       (1u << 11)
+#define ADC_CR2_EXTSEL_Msk  (0xFu << 24)
+#define ADC_CR2_EXTSEL_TIM3_TRGO (8u << 24)
+#define ADC_CR2_EXTEN_RISING (1u << 28)
+#define ADC_CR2_EXTEN_Msk   (3u << 28)
 #define ADC_CR2_SWSTART     (1u << 30)
 #define ADC_CCR_ADCPRE_Msk  (3u << 16)      /* 00 = PCLK2 ÷2 */
 #define ADC_CCR_VBATE       (1u << 22)
@@ -289,6 +366,7 @@ typedef struct {
 #define TIM4_IRQn       30
 #define USART2_IRQn     38
 #define EXTI15_10_IRQn  40
+#define DMA2_Stream0_IRQn 56
 
 /* ---- Cortex-M4 코어 주변장치 ---- */
 typedef struct {

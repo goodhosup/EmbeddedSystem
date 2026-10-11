@@ -1921,7 +1921,7 @@ def fig_9_3():
     for i, (t, v, r, code) in enumerate(steps):
         x = 200 + i * 150
         s.line(x - 40, Y(v), x + 40, Y(v), BLUE, 3)
-        s.text(x, Y(v) - 10, f"{v} V", 12, color=BLUE, weight="bold")
+        s.text(x + 46, Y(v) + 18, f"{v} V", 12, "start", BLUE, "bold")
         s.text(x, 70, t, 12, weight="bold")
         s.text(x, 88, r, 11, color=MUTED)
         s.rect(x - 30, y0 + 16, 60, 28, ORANGE_BG, ORANGE, 4, 1.2)
@@ -1991,9 +1991,122 @@ def fig_9_5():
     s.text(lx + 38, 64, "원래 값 (잡음 섞임)", 12, "start")
     s.line(lx, 82, lx + 30, 82, ORANGE, 2.5)
     s.text(lx + 38, 86, "최근 8개 평균", 12, "start")
-    s.text(x0 + 40 * w / (n - 1) + 6, y0 - 0.78 * h, "평균은 계단을 늦게 따라간다 (지연)", 12, "start", ORANGE)
+    ax = x0 + 44 * w / (n - 1)
+    s.text(ax - 30, y0 - 0.98 * h, "평균은 계단을 늦게 따라간다 (지연)", 12, "start", ORANGE, "bold")
+    s.line(ax - 10, y0 - 0.95 * h, ax, y0 - 0.62 * h, ORANGE, 1.5, arrow=True)
     s.text(450, 362, "잡음은 줄지만 변화에 늦게 반응한다. 창이 길수록 더 매끄럽고 더 느리다", 12, color=MUTED)
     s.save("ch09/fig9-5-moving-average.svg")
+
+
+# ---------------------------------------------------------------------------
+# 10장
+# ---------------------------------------------------------------------------
+
+def fig_10_1():
+    s = Svg(900, 400)
+    s.text(450, 30, "그림 10-1  CPU 복사와 DMA 전송의 비교", 16, weight="bold")
+    x0, x1 = 170, 860
+    # (가) CPU 복사
+    s.text(30, 76, "(가) CPU가 복사", 14, "start", RED, "bold")
+    s.text(160, 106, "CPU", 13, "end", weight="bold")
+    s.text(160, 140, "버스", 13, "end", weight="bold")
+    k = 0
+    x = x0
+    while x < x1 - 40:
+        s.rect(x, 90, 30, 24, BLUE_BG, BLUE, 2, 1)
+        s.text(x + 15, 107, "읽기", 9)
+        s.rect(x + 32, 90, 30, 24, ORANGE_BG, ORANGE, 2, 1)
+        s.text(x + 47, 107, "쓰기", 9)
+        s.rect(x, 126, 62, 22, GRAY_BG, LINE, 2, 1)
+        x += 66
+        k += 1
+    s.text(515, 172, "복사하는 동안 CPU는 다른 일을 못 한다. 바이트 하나마다 명령 여러 개", 12, color=MUTED)
+    # (나) DMA
+    s.text(30, 222, "(나) DMA가 전송", 14, "start", GREEN, "bold")
+    s.text(160, 252, "CPU", 13, "end", weight="bold")
+    s.text(160, 286, "DMA", 13, "end", weight="bold")
+    s.text(160, 320, "버스", 13, "end", weight="bold")
+    s.rect(x0, 236, 50, 24, BLUE_BG, BLUE, 2, 1)
+    s.text(x0 + 25, 253, "설정", 10)
+    s.rect(x0 + 54, 236, x1 - x0 - 120, 24, GREEN_BG, GREEN, 2, 1)
+    s.text((x0 + 54 + x1 - 66) / 2, 253, "CPU는 다른 계산을 계속한다 (또는 잠든다)", 11)
+    s.rect(x1 - 62, 236, 52, 24, ORANGE_BG, ORANGE, 2, 1)
+    s.text(x1 - 36, 253, "완료 ISR", 9)
+    x = x0 + 54
+    while x < x1 - 70:
+        s.rect(x, 272, 26, 24, GRAY_BG, LINE, 2, 1)
+        x += 30
+    s.text(x0 + 54 + 13, 289, "R/W", 8)
+    x = x0 + 54
+    while x < x1 - 70:
+        s.rect(x, 306, 26, 22, "#dde3ea", LINE, 2, 1)
+        x += 30
+    s.text(515, 352, "DMA가 버스를 쓰는 사이사이에 CPU도 버스를 쓴다. 다른 메모리라면 동시에 진행된다 (버스 매트릭스)", 12, color=MUTED)
+    s.text(515, 374, "데이터 하나를 옮기는 데 CPU 명령이 하나도 들지 않는다", 12, color=GREEN, weight="bold")
+    s.save("ch10/fig10-1-cpu-vs-dma.svg")
+
+
+def fig_10_2():
+    s = Svg(900, 450)
+    s.text(450, 30, "그림 10-2  DMA 스트림과 채널: STM32F411 DMA2 스트림 0의 요청 연결", 16, weight="bold")
+    s.text(140, 66, "주변장치 요청", 13, weight="bold", color=ORANGE)
+    reqs = [("CH0", "ADC1"), ("CH1", "-"), ("CH2", "-"), ("CH3", "SPI1_RX"), ("CH4", "SPI4_RX"), ("CH5", "-"),
+            ("CH6", "TIM1_TRIG"), ("CH7", "-")]
+    for i, (c, n) in enumerate(reqs):
+        y = 80 + i * 40
+        on = n == "ADC1"
+        s.rect(60, y, 160, 32, ORANGE_BG if on else "#ffffff", ORANGE if on else MUTED, 4, 1.5 if on else 1)
+        s.text(72, y + 21, c, 12, "start", weight="bold")
+        s.text(210, y + 21, n, 12, "end", INK if n != "-" else MUTED)
+        s.line(222, y + 16, 300, 240, ORANGE if on else "#dde3ea", 2 if on else 1)
+    s.poly([(300, 120), (350, 150), (350, 330), (300, 360)], GRAY_BG, LINE, 2)
+    s.text(325, 235, "CHSEL", 10, weight="bold")
+    s.text(325, 382, "스트림 0의 선택기", 11, color=MUTED)
+    s.line(352, 240, 420, 240, ORANGE, 2.5, arrow=True)
+    s.rect(422, 160, 210, 160, BLUE_BG, BLUE, 10, 2)
+    s.text(527, 186, "DMA2 스트림 0", 14, weight="bold")
+    for i, t in enumerate(["PAR: 주변장치 주소", "M0AR: 메모리 주소", "NDTR: 남은 개수", "CR: 방향 · 크기 · 증가 · 원형"]):
+        s.text(440, 214 + i * 24, t, 12, "start")
+    s.line(634, 240, 700, 240, LINE, 2, both=True)
+    s.box(702, 200, 170, 80, "버스 매트릭스", "→ ADC1_DR, SRAM", GRAY_BG, LINE, 13)
+    s.text(450, 420, "스트림마다 8개 채널 중 하나를 고른다. 어느 주변장치가 어느 스트림·채널에 있는지는 RM0383의 DMA 요청 표에서 찾는다", 12, color=MUTED)
+    s.text(450, 440, "ADC1은 DMA2의 스트림 0 또는 스트림 4, 채널 0", 12, color=MUTED)
+    s.save("ch10/fig10-2-dma-streams.svg")
+
+
+def fig_10_3():
+    s = Svg(900, 440)
+    s.text(450, 30, "그림 10-3  원형 버퍼와 하프/풀 전송 인터럽트 (더블 버퍼링)", 16, weight="bold")
+    # 버퍼
+    bx, by, bw = 120, 70, 660
+    s.rect(bx, by, bw / 2, 44, BLUE_BG, BLUE, 0, 1.5)
+    s.rect(bx + bw / 2, by, bw / 2, 44, ORANGE_BG, ORANGE, 0, 1.5)
+    s.text(bx + bw / 4, by + 28, "앞쪽 절반 buf[0 ~ 31]", 13, weight="bold")
+    s.text(bx + 3 * bw / 4, by + 28, "뒤쪽 절반 buf[32 ~ 63]", 13, weight="bold")
+    s.path(f"M{bx + bw},{by + 22} L{bx + bw + 30},{by + 22} L{bx + bw + 30},{by + 64} L{bx - 30},{by + 64} "
+           f"L{bx - 30},{by + 22} L{bx - 4},{by + 22}", MUTED, 1.5, arrow=True)
+    s.text(450, by + 82, "끝에 도달하면 처음으로 돌아가 계속 채운다 (원형 모드, CIRC = 1)", 12, color=MUTED)
+    # 타임라인
+    x0, unit = 160, 170
+    s.text(150, 214, "DMA가 채우는 곳", 12, "end", weight="bold")
+    s.text(150, 284, "CPU가 처리하는 곳", 12, "end", weight="bold")
+    for i in range(4):
+        x = x0 + i * unit
+        front = i % 2 == 0
+        s.rect(x, 196, unit - 6, 30, BLUE_BG if front else ORANGE_BG, BLUE if front else ORANGE, 3, 1.2)
+        s.text(x + unit / 2 - 3, 216, "앞쪽 절반" if front else "뒤쪽 절반", 12)
+        # 인터럽트
+        ex = x + unit - 3
+        s.line(ex, 180, ex, 312, RED, 1.2, "4 3")
+        s.text(ex, 174, "HT" if front else "TC", 12, color=RED, weight="bold")
+        if i < 3:
+            s.rect(ex + 3, 266, unit - 12, 30, BLUE_BG if front else ORANGE_BG, BLUE if front else ORANGE, 3, 1.2)
+            s.text(ex + unit / 2 - 3, 286, "앞쪽 처리" if front else "뒤쪽 처리", 12)
+    s.text(450, 340, "HT(하프 전송): 앞쪽 절반이 찼다 → CPU가 앞쪽을 처리하는 동안 DMA는 뒤쪽을 채운다", 12, color=INK)
+    s.text(450, 362, "TC(전송 완료): 뒤쪽 절반이 찼다 → CPU가 뒤쪽을 처리하는 동안 DMA는 다시 앞쪽을 채운다", 12, color=INK)
+    s.text(450, 396, "조건: CPU가 절반을 처리하는 시간 < DMA가 나머지 절반을 채우는 시간", 13, color=RED, weight="bold")
+    s.text(450, 420, "이 조건을 어기면 처리 중인 데이터를 DMA가 덮어쓴다", 12, color=MUTED)
+    s.save("ch10/fig10-3-circular-ht-tc.svg")
 
 
 # ---------------------------------------------------------------------------

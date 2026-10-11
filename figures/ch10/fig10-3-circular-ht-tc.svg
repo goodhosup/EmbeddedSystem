@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="440" viewBox="0 0 900 440" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 10-3  원형 버퍼와 하프/풀 전송 인터럽트 (더블 버퍼링)</text>
+  <rect x="120.0" y="70.0" width="330.0" height="44.0" rx="0" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <rect x="450.0" y="70.0" width="330.0" height="44.0" rx="0" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="285.0" y="98.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">앞쪽 절반 buf[0 ~ 31]</text>
+  <text x="615.0" y="98.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">뒤쪽 절반 buf[32 ~ 63]</text>
+  <path d="M780,92 L810,92 L810,134 L90,134 L90,92 L116,92" stroke="#616e7c" stroke-width="1.5" fill="none" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <text x="450.0" y="152.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">끝에 도달하면 처음으로 돌아가 계속 채운다 (원형 모드, CIRC = 1)</text>
+  <text x="150.0" y="214.0" font-size="12" text-anchor="end" fill="#1f2933" font-weight="bold">DMA가 채우는 곳</text>
+  <text x="150.0" y="284.0" font-size="12" text-anchor="end" fill="#1f2933" font-weight="bold">CPU가 처리하는 곳</text>
+  <rect x="160.0" y="196.0" width="164.0" height="30.0" rx="3" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.2"/>
+  <text x="242.0" y="216.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">앞쪽 절반</text>
+  <line x1="327.0" y1="180.0" x2="327.0" y2="312.0" stroke="#d64545" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <text x="327.0" y="174.0" font-size="12" text-anchor="middle" fill="#d64545" font-weight="bold">HT</text>
+  <rect x="330.0" y="266.0" width="158.0" height="30.0" rx="3" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.2"/>
+  <text x="409.0" y="286.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">앞쪽 처리</text>
+  <rect x="330.0" y="196.0" width="164.0" height="30.0" rx="3" fill="#fdebd7" stroke="#d9730d" stroke-width="1.2"/>
+  <text x="412.0" y="216.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">뒤쪽 절반</text>
+  <line x1="497.0" y1="180.0" x2="497.0" y2="312.0" stroke="#d64545" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <text x="497.0" y="174.0" font-size="12" text-anchor="middle" fill="#d64545" font-weight="bold">TC</text>
+  <rect x="500.0" y="266.0" width="158.0" height="30.0" rx="3" fill="#fdebd7" stroke="#d9730d" stroke-width="1.2"/>
+  <text x="579.0" y="286.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">뒤쪽 처리</text>
+  <rect x="500.0" y="196.0" width="164.0" height="30.0" rx="3" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.2"/>
+  <text x="582.0" y="216.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">앞쪽 절반</text>
+  <line x1="667.0" y1="180.0" x2="667.0" y2="312.0" stroke="#d64545" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <text x="667.0" y="174.0" font-size="12" text-anchor="middle" fill="#d64545" font-weight="bold">HT</text>
+  <rect x="670.0" y="266.0" width="158.0" height="30.0" rx="3" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.2"/>
+  <text x="749.0" y="286.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">앞쪽 처리</text>
+  <rect x="670.0" y="196.0" width="164.0" height="30.0" rx="3" fill="#fdebd7" stroke="#d9730d" stroke-width="1.2"/>
+  <text x="752.0" y="216.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">뒤쪽 절반</text>
+  <line x1="837.0" y1="180.0" x2="837.0" y2="312.0" stroke="#d64545" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <text x="837.0" y="174.0" font-size="12" text-anchor="middle" fill="#d64545" font-weight="bold">TC</text>
+  <text x="450.0" y="340.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">HT(하프 전송): 앞쪽 절반이 찼다 → CPU가 앞쪽을 처리하는 동안 DMA는 뒤쪽을 채운다</text>
+  <text x="450.0" y="362.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">TC(전송 완료): 뒤쪽 절반이 찼다 → CPU가 뒤쪽을 처리하는 동안 DMA는 다시 앞쪽을 채운다</text>
+  <text x="450.0" y="396.0" font-size="13" text-anchor="middle" fill="#d64545" font-weight="bold">조건: CPU가 절반을 처리하는 시간 &lt; DMA가 나머지 절반을 채우는 시간</text>
+  <text x="450.0" y="420.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">이 조건을 어기면 처리 중인 데이터를 DMA가 덮어쓴다</text>
+</svg>

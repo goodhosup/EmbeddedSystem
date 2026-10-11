@@ -20,7 +20,7 @@
 #define AVG_N 8
 
 static volatile uint32_t ms_ticks;
-volatile uint16_t pot_raw, pot_avg;      /* 디버거나 7장 이후 UART로 확인용 */
+volatile uint16_t pot_raw, pot_avg;      /* 14장 이후 UART로 확인용 */
 
 ISR(TIMER0_COMPA_vect)
 {

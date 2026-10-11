@@ -12,6 +12,7 @@
   <text x="658.0" y="64.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="normal">원래 값 (잡음 섞임)</text>
   <line x1="620.0" y1="82.0" x2="650.0" y2="82.0" stroke="#d9730d" stroke-width="2.5"/>
   <text x="658.0" y="86.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="normal">최근 8개 평균</text>
-  <text x="364.7" y="132.8" font-size="12" text-anchor="start" fill="#d9730d" font-weight="normal">평균은 계단을 늦게 따라간다 (지연)</text>
+  <text x="353.6" y="84.8" font-size="12" text-anchor="start" fill="#d9730d" font-weight="bold">평균은 계단을 늦게 따라간다 (지연)</text>
+  <line x1="373.6" y1="92.0" x2="383.6" y2="171.2" stroke="#d9730d" stroke-width="1.5" marker-end="url(#arrow)"/>
   <text x="450.0" y="362.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">잡음은 줄지만 변화에 늦게 반응한다. 창이 길수록 더 매끄럽고 더 느리다</text>
 </svg>
