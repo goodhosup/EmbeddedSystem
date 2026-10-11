@@ -2020,7 +2020,7 @@ def fig_10_1():
         s.rect(x, 126, 62, 22, GRAY_BG, LINE, 2, 1)
         x += 66
         k += 1
-    s.text(515, 172, "복사하는 동안 CPU는 다른 일을 못 한다. 바이트 하나마다 명령 여러 개", 12, color=MUTED)
+    s.text(515, 172, "복사하는 동안 CPU는 다른 일을 못 한다. 워드 하나마다 명령 여러 개", 12, color=MUTED)
     # (나) DMA
     s.text(30, 222, "(나) DMA가 전송", 14, "start", GREEN, "bold")
     s.text(160, 252, "CPU", 13, "end", weight="bold")
@@ -2107,6 +2107,108 @@ def fig_10_3():
     s.text(450, 396, "조건: CPU가 절반을 처리하는 시간 < DMA가 나머지 절반을 채우는 시간", 13, color=RED, weight="bold")
     s.text(450, 420, "이 조건을 어기면 처리 중인 데이터를 DMA가 덮어쓴다", 12, color=MUTED)
     s.save("ch10/fig10-3-circular-ht-tc.svg")
+
+
+# ---------------------------------------------------------------------------
+# 11장
+# ---------------------------------------------------------------------------
+
+def fig_11_1():
+    import math
+    s = Svg(900, 440)
+    s.text(450, 30, "그림 11-1  저전력 모드별 소비 전류와 깨어나는 시간 (STM32F411, 자릿수 비교)", 16, weight="bold")
+    modes = [("Run", "100 MHz", 10000, "수 mA ~ 십수 mA", "-", BLUE),
+             ("Sleep", "CPU만 멈춤", 3000, "수 mA", "수 클럭", BLUE),
+             ("Stop", "모든 클럭 멈춤", 40, "수십 µA", "수 µs ~ 수십 µs", ORANGE),
+             ("Stop + Flash 절전", "", 10, "약 10 µA", "수십 µs ~ 100 µs대", ORANGE),
+             ("Standby", "1.2 V 영역 꺼짐", 2, "수 µA", "리셋처럼 재시작", RED)]
+    x0, y0, h = 240, 70, 52
+    lo, hi = math.log10(1), math.log10(20000)
+    W = 400
+    for i, (n, sub, ua, lbl, wake, col) in enumerate(modes):
+        y = y0 + i * (h + 14)
+        s.text(x0 - 14, y + 22, n, 14, "end", weight="bold")
+        if sub:
+            s.text(x0 - 14, y + 40, sub, 11, "end", MUTED)
+        w = W * (math.log10(ua) - lo) / (hi - lo)
+        s.rect(x0, y + 6, max(w, 6), h - 12, {BLUE: BLUE_BG, ORANGE: ORANGE_BG, RED: "#fdecec"}[col], col, 4, 1.5)
+        s.text(x0 + max(w, 6) + 10, y + 32, lbl, 12, "start", col, "bold")
+        s.text(860, y + 32, wake, 12, "end", INK)
+    s.text(x0 + W / 2, y0 - 8, "소비 전류 (로그 눈금)", 12, color=MUTED)
+    s.text(860, y0 - 8, "깨어나는 시간", 12, "end", MUTED)
+    s.text(450, 420, "아래로 갈수록 전류는 자릿수 단위로 줄고, 깨어나는 데 걸리는 시간과 잃는 것(클럭 설정, SRAM)은 늘어난다", 12, color=MUTED)
+    s.text(450, 437, "정확한 값은 DS10314의 전류 소비 표에서 조건(전압, 온도, 클럭, 켜 둔 주변장치)과 함께 확인한다", 11, color=MUTED)
+    s.save("ch11/fig11-1-lowpower-modes.svg")
+
+
+def fig_11_2():
+    s = Svg(900, 400)
+    s.text(450, 30, "그림 11-2  동작–슬립 반복 시 전류 프로파일과 평균 전류", 16, weight="bold")
+    x0, y0, w = 110, 300, 740
+    s.line(x0, y0, x0 + w + 10, y0, MUTED, 1.2, arrow=True)
+    s.line(x0, y0, x0, 60, MUTED, 1.2, arrow=True)
+    s.text(x0 - 10, 66, "전류", 12, "end", INK, "bold")
+    s.text(x0 + w + 10, y0 + 20, "시간", 12, "end", MUTED)
+    yh, yl = 90, 290
+    period = 200
+    d = 24
+    pts = [f"M{x0},{yl}"]
+    for k in range(3):
+        a = x0 + 20 + k * period
+        pts.append(f"L{a},{yl} L{a},{yh} L{a + d},{yh} L{a + d},{yl}")
+    pts.append(f"L{x0 + w},{yl}")
+    s.path(" ".join(pts), BLUE, 2.5)
+    s.text(x0 + 20 + d / 2, yh - 10, "동작 10 mA", 12, color=BLUE, weight="bold")
+    s.text(x0 + 20 + d + 80, yl - 10, "슬립 10 µA", 12, color=BLUE, weight="bold")
+    yavg = 262
+    s.line(x0, yavg, x0 + w, yavg, ORANGE, 2, "6 4")
+    s.text(x0 + w, yavg - 8, "평균 전류", 12, "end", ORANGE, "bold")
+    a = x0 + 20 + period
+    s.line(a, y0 + 16, a + d, y0 + 16, LINE, 1.2, both=True)
+    s.text(a + d / 2, y0 + 34, "20 ms", 11)
+    s.line(x0 + 20, y0 + 50, x0 + 20 + period, y0 + 50, LINE, 1.2, both=True)
+    s.text(x0 + 20 + period / 2, y0 + 68, "주기 10 s (그림은 비율이 다르다)", 11)
+    s.rect(578, 70, 292, 120, "#fafbfc", MUTED, 8, 1)
+    s.text(724, 94, "평균 = (10 mA × 0.02 s + 0.01 mA × 9.98 s) ÷ 10 s", 11)
+    s.text(724, 116, "= (0.2 + 0.0998) ÷ 10 ≈ 0.030 mA = 30 µA", 12, weight="bold")
+    s.text(724, 144, "CR2032 (220 mAh) ÷ 30 µA ≈ 7300 시간", 11)
+    s.text(724, 166, "≈ 300일 (자체 방전·온도 여유 전)", 12, weight="bold", color=ORANGE)
+    s.save("ch11/fig11-2-current-profile.svg")
+
+
+def fig_11_3():
+    s = Svg(900, 400)
+    s.text(450, 30, "그림 11-3  전류 측정 연결 방법", 16, weight="bold")
+    # (가) 멀티미터
+    s.text(220, 66, "(가) 멀티미터를 직렬로 (평균 전류)", 14, weight="bold", color=BLUE)
+    s.box(60, 100, 100, 60, "전원", "3.3 V", GREEN_BG, GREEN, 14)
+    s.add(f'<circle cx="225" cy="130" r="28" fill="#ffffff" stroke="{BLUE}" stroke-width="2"/>')
+    s.text(225, 136, "A", 18, weight="bold", color=BLUE)
+    s.box(290, 100, 110, 60, "MCU", "VDD", BLUE_BG, BLUE, 14)
+    s.line(162, 130, 197, 130, LINE, 2)
+    s.line(253, 130, 288, 130, LINE, 2)
+    s.text(225, 186, "NUCLEO: JP6(IDD) 점퍼를 빼고", 11, color=MUTED)
+    s.text(225, 202, "그 자리에 멀티미터를 연결", 11, color=MUTED)
+    s.text(225, 236, "빠른 변화는 못 보고 평균만 보인다", 12, color=RED)
+    s.text(225, 254, "µA 범위의 내부 저항(버든 전압)으로", 11, color=MUTED)
+    s.text(225, 270, "깨어날 때 전압이 떨어져 리셋될 수도 있다", 11, color=MUTED)
+    # (나) 션트 + 오실로스코프
+    s.text(670, 66, "(나) 션트 저항 + 오실로스코프 (파형)", 14, weight="bold", color=ORANGE)
+    s.box(500, 100, 100, 60, "전원", "3.3 V", GREEN_BG, GREEN, 14)
+    resistor_h(s, 602, 700, 130, "션트 10 Ω")
+    s.box(700, 100, 110, 60, "MCU", "VDD", BLUE_BG, BLUE, 14)
+    dot(s, 630, 130)
+    dot(s, 680, 130)
+    s.line(630, 130, 630, 210, ORANGE, 1.5)
+    s.line(680, 130, 680, 210, ORANGE, 1.5)
+    s.box(590, 210, 130, 50, "오실로스코프", "차동 측정", ORANGE_BG, ORANGE, 13)
+    s.text(655, 290, "I = 션트 양단 전압 ÷ R", 12, weight="bold")
+    s.text(655, 310, "10 mA × 10 Ω = 100 mV, 10 µA × 10 Ω = 0.1 mV", 11, color=MUTED)
+    s.text(655, 330, "→ 범위가 넓으면 한 저항으로 둘 다 재기 어렵다", 11, color=RED)
+    s.rect(60, 340, 400, 46, GRAY_BG, MUTED, 8, 1)
+    s.text(260, 360, "전용 장비: 전류를 넓은 범위로 연속 기록한다", 12, weight="bold")
+    s.text(260, 378, "(전력 프로파일러, 저전력 측정용 확장 보드 등)", 11, color=MUTED)
+    s.save("ch11/fig11-3-current-measurement.svg")
 
 
 # ---------------------------------------------------------------------------

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="440" viewBox="0 0 900 440" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 11-1  저전력 모드별 소비 전류와 깨어나는 시간 (STM32F411, 자릿수 비교)</text>
+  <text x="226.0" y="92.0" font-size="14" text-anchor="end" fill="#1f2933" font-weight="bold">Run</text>
+  <text x="226.0" y="110.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">100 MHz</text>
+  <rect x="240.0" y="76.0" width="372.0" height="40.0" rx="4" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="622.0" y="102.0" font-size="12" text-anchor="start" fill="#2f6fdf" font-weight="bold">수 mA ~ 십수 mA</text>
+  <text x="860.0" y="102.0" font-size="12" text-anchor="end" fill="#1f2933" font-weight="normal">-</text>
+  <text x="226.0" y="158.0" font-size="14" text-anchor="end" fill="#1f2933" font-weight="bold">Sleep</text>
+  <text x="226.0" y="176.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">CPU만 멈춤</text>
+  <rect x="240.0" y="142.0" width="323.4" height="40.0" rx="4" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="573.4" y="168.0" font-size="12" text-anchor="start" fill="#2f6fdf" font-weight="bold">수 mA</text>
+  <text x="860.0" y="168.0" font-size="12" text-anchor="end" fill="#1f2933" font-weight="normal">수 클럭</text>
+  <text x="226.0" y="224.0" font-size="14" text-anchor="end" fill="#1f2933" font-weight="bold">Stop</text>
+  <text x="226.0" y="242.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">모든 클럭 멈춤</text>
+  <rect x="240.0" y="208.0" width="149.0" height="40.0" rx="4" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="399.0" y="234.0" font-size="12" text-anchor="start" fill="#d9730d" font-weight="bold">수십 µA</text>
+  <text x="860.0" y="234.0" font-size="12" text-anchor="end" fill="#1f2933" font-weight="normal">수 µs ~ 수십 µs</text>
+  <text x="226.0" y="290.0" font-size="14" text-anchor="end" fill="#1f2933" font-weight="bold">Stop + Flash 절전</text>
+  <rect x="240.0" y="274.0" width="93.0" height="40.0" rx="4" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="343.0" y="300.0" font-size="12" text-anchor="start" fill="#d9730d" font-weight="bold">약 10 µA</text>
+  <text x="860.0" y="300.0" font-size="12" text-anchor="end" fill="#1f2933" font-weight="normal">수십 µs ~ 100 µs대</text>
+  <text x="226.0" y="356.0" font-size="14" text-anchor="end" fill="#1f2933" font-weight="bold">Standby</text>
+  <text x="226.0" y="374.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">1.2 V 영역 꺼짐</text>
+  <rect x="240.0" y="340.0" width="28.0" height="40.0" rx="4" fill="#fdecec" stroke="#d64545" stroke-width="1.5"/>
+  <text x="278.0" y="366.0" font-size="12" text-anchor="start" fill="#d64545" font-weight="bold">수 µA</text>
+  <text x="860.0" y="366.0" font-size="12" text-anchor="end" fill="#1f2933" font-weight="normal">리셋처럼 재시작</text>
+  <text x="440.0" y="62.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">소비 전류 (로그 눈금)</text>
+  <text x="860.0" y="62.0" font-size="12" text-anchor="end" fill="#616e7c" font-weight="normal">깨어나는 시간</text>
+  <text x="450.0" y="420.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">아래로 갈수록 전류는 자릿수 단위로 줄고, 깨어나는 데 걸리는 시간과 잃는 것(클럭 설정, SRAM)은 늘어난다</text>
+  <text x="450.0" y="437.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">정확한 값은 DS10314의 전류 소비 표에서 조건(전압, 온도, 클럭, 켜 둔 주변장치)과 함께 확인한다</text>
+</svg>

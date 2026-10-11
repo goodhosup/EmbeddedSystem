@@ -9,5 +9,6 @@
 | `chapters/ch05-dev-environment.md` | 33 | [확인 필요: 출간 시점 버전] |
 | `chapters/ch05-dev-environment.md` | 34 | [확인 필요: 출간 시점 버전] |
 | `chapters/ch05-dev-environment.md` | 392 | [확인 필요: 출간 시점 메뉴 이름] |
+| `chapters/ch10-dma.md` | 173 | [확인 필요: DMEIF 발생 시 스트림 정지 여부] |
 
-총 4건
+총 5건

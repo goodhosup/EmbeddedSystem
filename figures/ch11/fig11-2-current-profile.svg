@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="400" viewBox="0 0 900 400" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 11-2  동작–슬립 반복 시 전류 프로파일과 평균 전류</text>
+  <line x1="110.0" y1="300.0" x2="860.0" y2="300.0" stroke="#616e7c" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="110.0" y1="300.0" x2="110.0" y2="60.0" stroke="#616e7c" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <text x="100.0" y="66.0" font-size="12" text-anchor="end" fill="#1f2933" font-weight="bold">전류</text>
+  <text x="860.0" y="320.0" font-size="12" text-anchor="end" fill="#616e7c" font-weight="normal">시간</text>
+  <path d="M110,290 L130,290 L130,90 L154,90 L154,290 L330,290 L330,90 L354,90 L354,290 L530,290 L530,90 L554,90 L554,290 L850,290" stroke="#2f6fdf" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
+  <text x="142.0" y="80.0" font-size="12" text-anchor="middle" fill="#2f6fdf" font-weight="bold">동작 10 mA</text>
+  <text x="234.0" y="280.0" font-size="12" text-anchor="middle" fill="#2f6fdf" font-weight="bold">슬립 10 µA</text>
+  <line x1="110.0" y1="262.0" x2="850.0" y2="262.0" stroke="#d9730d" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="850.0" y="254.0" font-size="12" text-anchor="end" fill="#d9730d" font-weight="bold">평균 전류</text>
+  <line x1="330.0" y1="316.0" x2="354.0" y2="316.0" stroke="#334e68" stroke-width="1.2" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+  <text x="342.0" y="334.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="normal">20 ms</text>
+  <line x1="130.0" y1="350.0" x2="330.0" y2="350.0" stroke="#334e68" stroke-width="1.2" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+  <text x="230.0" y="368.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="normal">주기 10 s (그림은 비율이 다르다)</text>
+  <rect x="578.0" y="70.0" width="292.0" height="120.0" rx="8" fill="#fafbfc" stroke="#616e7c" stroke-width="1"/>
+  <text x="724.0" y="94.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="normal">평균 = (10 mA × 0.02 s + 0.01 mA × 9.98 s) ÷ 10 s</text>
+  <text x="724.0" y="116.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">= (0.2 + 0.0998) ÷ 10 ≈ 0.030 mA = 30 µA</text>
+  <text x="724.0" y="144.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="normal">CR2032 (220 mAh) ÷ 30 µA ≈ 7300 시간</text>
+  <text x="724.0" y="166.0" font-size="12" text-anchor="middle" fill="#d9730d" font-weight="bold">≈ 300일 (자체 방전·온도 여유 전)</text>
+</svg>

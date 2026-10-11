@@ -11,6 +11,8 @@
  *   - EXTI: RM0383 10.3절 "EXTI registers"
  *   - TIM2~TIM5: RM0383 13.4절 "TIM2 to TIM5 registers"
  *   - DMA: RM0383 9.5절 "DMA registers"
+ *   - RTC: RM0383 17.6절 "RTC registers", 저전력 모드: RM0383 5.3절
+ *   - SCB_SCR: PM0214 4.4절 "System control block"
  *   - DWT 사이클 카운터: Cortex-M4 기술 참조 매뉴얼, ARMv7-M 아키텍처 참조 매뉴얼
  *   - ADC: RM0383 11.12절 "ADC registers", 보정값 주소: DS10314 "Temperature sensor
  *     calibration values", "Internal reference voltage calibration values" 표
@@ -103,7 +105,15 @@ typedef struct {
 #define RCC_APB2ENR_ADC1EN   (1u << 8)
 #define RCC_APB2ENR_SYSCFGEN (1u << 14)
 
-/* RCC_CSR: 리셋 원인 플래그 */
+/* RCC_BDCR (백업 영역) */
+#define RCC_BDCR_RTCSEL_Msk (3u << 8)
+#define RCC_BDCR_RTCSEL_LSI (2u << 8)
+#define RCC_BDCR_RTCEN      (1u << 15)
+#define RCC_BDCR_BDRST      (1u << 16)
+
+/* RCC_CSR: LSI와 리셋 원인 플래그 */
+#define RCC_CSR_LSION       (1u << 0)
+#define RCC_CSR_LSIRDY      (1u << 1)
 #define RCC_CSR_RMVF        (1u << 24)
 #define RCC_CSR_BORRSTF     (1u << 25)
 #define RCC_CSR_PINRSTF     (1u << 26)
@@ -158,6 +168,12 @@ typedef struct {
 
 #define PWR ((PWR_TypeDef *)0x40007000u)
 
+#define PWR_CR_LPDS         (1u << 0)       /* Stop에서 저전력 레귤레이터 */
+#define PWR_CR_PDDS         (1u << 1)       /* 딥 슬립 = Standby (0이면 Stop) */
+#define PWR_CR_CWUF         (1u << 2)
+#define PWR_CR_CSBF         (1u << 3)
+#define PWR_CR_DBP          (1u << 8)       /* 백업 영역(RTC) 쓰기 허용 */
+#define PWR_CR_FPDS         (1u << 9)       /* Stop에서 Flash 절전 */
 #define PWR_CR_VOS_Msk      (3u << 14)
 #define PWR_CR_VOS_SCALE1   (3u << 14)
 
@@ -301,6 +317,39 @@ static inline void cycle_counter_init(void)
     DWT_CYCCNT = 0;
     DWT_CTRL |= DWT_CTRL_CYCCNTENA; /* 클럭마다 1씩 증가 */
 }
+
+/* ---- RTC (0x4000 2800) ---- */
+typedef struct {
+    __IO uint32_t TR;          /* 0x00 시간 */
+    __IO uint32_t DR;          /* 0x04 날짜 */
+    __IO uint32_t CR;          /* 0x08 */
+    __IO uint32_t ISR;         /* 0x0C */
+    __IO uint32_t PRER;        /* 0x10 분주 */
+    __IO uint32_t WUTR;        /* 0x14 웨이크업 타이머 */
+    __IO uint32_t CALIBR;      /* 0x18 */
+    __IO uint32_t ALRMAR;      /* 0x1C */
+    __IO uint32_t ALRMBR;      /* 0x20 */
+    __IO uint32_t WPR;         /* 0x24 쓰기 보호 해제 키 */
+} RTC_TypeDef;
+
+#define RTC ((RTC_TypeDef *)0x40002800u)
+
+#define RTC_CR_WUCKSEL_Msk   (7u << 0)
+#define RTC_CR_WUCKSEL_1HZ   (4u << 0)      /* 10x: ck_spre (보통 1 Hz) */
+#define RTC_CR_WUTE          (1u << 10)
+#define RTC_CR_WUTIE         (1u << 14)
+#define RTC_ISR_WUTWF        (1u << 2)
+#define RTC_ISR_WUTF         (1u << 10)
+
+#define EXTI_LINE_RTC_WKUP   22u
+#define RTC_WKUP_IRQn        3
+
+/* ---- SCB 시스템 제어 레지스터 (0xE000 ED10) ---- */
+#define SCB_SCR             (*(volatile uint32_t *)0xE000ED10u)
+#define SCB_SCR_SLEEPONEXIT (1u << 1)
+#define SCB_SCR_SLEEPDEEP   (1u << 2)
+
+static inline void wfi(void) { __asm volatile ("wfi" ::: "memory"); }
 
 /* ---- ADC1 (0x4001 2000), 공통 레지스터 (0x4001 2300) ---- */
 typedef struct {

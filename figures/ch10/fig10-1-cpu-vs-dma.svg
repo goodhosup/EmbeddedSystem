@@ -55,7 +55,7 @@
   <rect x="796.0" y="90.0" width="30.0" height="24.0" rx="2" fill="#fdebd7" stroke="#d9730d" stroke-width="1"/>
   <text x="811.0" y="107.0" font-size="9" text-anchor="middle" fill="#1f2933" font-weight="normal">쓰기</text>
   <rect x="764.0" y="126.0" width="62.0" height="22.0" rx="2" fill="#eef1f4" stroke="#334e68" stroke-width="1"/>
-  <text x="515.0" y="172.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">복사하는 동안 CPU는 다른 일을 못 한다. 바이트 하나마다 명령 여러 개</text>
+  <text x="515.0" y="172.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">복사하는 동안 CPU는 다른 일을 못 한다. 워드 하나마다 명령 여러 개</text>
   <text x="30.0" y="222.0" font-size="14" text-anchor="start" fill="#2f9e44" font-weight="bold">(나) DMA가 전송</text>
   <text x="160.0" y="252.0" font-size="13" text-anchor="end" fill="#1f2933" font-weight="bold">CPU</text>
   <text x="160.0" y="286.0" font-size="13" text-anchor="end" fill="#1f2933" font-weight="bold">DMA</text>

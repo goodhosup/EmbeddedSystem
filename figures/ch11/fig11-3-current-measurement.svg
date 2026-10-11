@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="400" viewBox="0 0 900 400" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 11-3  전류 측정 연결 방법</text>
+  <text x="220.0" y="66.0" font-size="14" text-anchor="middle" fill="#2f6fdf" font-weight="bold">(가) 멀티미터를 직렬로 (평균 전류)</text>
+  <rect x="60.0" y="100.0" width="100.0" height="60.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="110.0" y="127.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">전원</text>
+  <text x="110.0" y="146.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">3.3 V</text>
+  <circle cx="225" cy="130" r="28" fill="#ffffff" stroke="#2f6fdf" stroke-width="2"/>
+  <text x="225.0" y="136.0" font-size="18" text-anchor="middle" fill="#2f6fdf" font-weight="bold">A</text>
+  <rect x="290.0" y="100.0" width="110.0" height="60.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="345.0" y="127.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">MCU</text>
+  <text x="345.0" y="146.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">VDD</text>
+  <line x1="162.0" y1="130.0" x2="197.0" y2="130.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="253.0" y1="130.0" x2="288.0" y2="130.0" stroke="#334e68" stroke-width="2"/>
+  <text x="225.0" y="186.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">NUCLEO: JP6(IDD) 점퍼를 빼고</text>
+  <text x="225.0" y="202.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">그 자리에 멀티미터를 연결</text>
+  <text x="225.0" y="236.0" font-size="12" text-anchor="middle" fill="#d64545" font-weight="normal">빠른 변화는 못 보고 평균만 보인다</text>
+  <text x="225.0" y="254.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">µA 범위의 내부 저항(버든 전압)으로</text>
+  <text x="225.0" y="270.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">깨어날 때 전압이 떨어져 리셋될 수도 있다</text>
+  <text x="670.0" y="66.0" font-size="14" text-anchor="middle" fill="#d9730d" font-weight="bold">(나) 션트 저항 + 오실로스코프 (파형)</text>
+  <rect x="500.0" y="100.0" width="100.0" height="60.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="550.0" y="127.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">전원</text>
+  <text x="550.0" y="146.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">3.3 V</text>
+  <line x1="602.0" y1="130.0" x2="631.0" y2="130.0" stroke="#334e68" stroke-width="2"/>
+  <path d="M631.0,130.0 L634.3,122.0 L641.0,138.0 L647.7,122.0 L654.3,138.0 L661.0,122.0 L667.7,138.0 L671.0,130.0" stroke="#334e68" stroke-width="2" fill="none" stroke-linejoin="round"/>
+  <line x1="671.0" y1="130.0" x2="700.0" y2="130.0" stroke="#334e68" stroke-width="2"/>
+  <text x="651.0" y="114.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">션트 10 Ω</text>
+  <rect x="700.0" y="100.0" width="110.0" height="60.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="755.0" y="127.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">MCU</text>
+  <text x="755.0" y="146.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">VDD</text>
+  <circle cx="630.0" cy="130.0" r="4" fill="#334e68"/>
+  <circle cx="680.0" cy="130.0" r="4" fill="#334e68"/>
+  <line x1="630.0" y1="130.0" x2="630.0" y2="210.0" stroke="#d9730d" stroke-width="1.5"/>
+  <line x1="680.0" y1="130.0" x2="680.0" y2="210.0" stroke="#d9730d" stroke-width="1.5"/>
+  <rect x="590.0" y="210.0" width="130.0" height="50.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="655.0" y="232.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">오실로스코프</text>
+  <text x="655.0" y="251.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">차동 측정</text>
+  <text x="655.0" y="290.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">I = 션트 양단 전압 ÷ R</text>
+  <text x="655.0" y="310.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">10 mA × 10 Ω = 100 mV, 10 µA × 10 Ω = 0.1 mV</text>
+  <text x="655.0" y="330.0" font-size="11" text-anchor="middle" fill="#d64545" font-weight="normal">→ 범위가 넓으면 한 저항으로 둘 다 재기 어렵다</text>
+  <rect x="60.0" y="340.0" width="400.0" height="46.0" rx="8" fill="#eef1f4" stroke="#616e7c" stroke-width="1"/>
+  <text x="260.0" y="360.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">전용 장비: 전류를 넓은 범위로 연속 기록한다</text>
+  <text x="260.0" y="378.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">(전력 프로파일러, 저전력 측정용 확장 보드 등)</text>
+</svg>
