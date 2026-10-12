@@ -71,6 +71,11 @@ SECTIONS
     end = _ebss;
     _end = _ebss;
 
+    /* newlib의 setjmp 등이 C++ 예외 해제 루틴(libgcc)을 끌어온다. 해제 표는 쓰지 않으므로
+       아래에서 버리고, 그 루틴이 찾는 기호만 빈 표로 정의한다 (31장 Unity의 setjmp) */
+    PROVIDE(__exidx_start = .);
+    PROVIDE(__exidx_end = .);
+
     /DISCARD/ :
     {
         *(.ARM.exidx*)

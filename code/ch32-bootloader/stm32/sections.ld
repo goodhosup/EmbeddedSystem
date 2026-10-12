@@ -62,6 +62,10 @@ SECTIONS
     end = _ebss;
     _end = _ebss;
 
+    /* 해제 표는 버리고, libgcc의 해제 루틴이 찾는 기호만 빈 표로 정의한다 (공통 링커 스크립트와 같다) */
+    PROVIDE(__exidx_start = .);
+    PROVIDE(__exidx_end = .);
+
     /DISCARD/ :
     {
         *(.ARM.exidx*)
