@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="470" viewBox="0 0 900 470" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 37-1  임베디드 리눅스 부트 흐름</text>
+  <text x="60.0" y="66.0" font-size="13" text-anchor="start" fill="#2f6fdf" font-weight="bold">일반적인 SoC</text>
+  <rect x="40.0" y="80.0" width="150.0" height="64.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="115.0" y="106.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">ROM 코드</text>
+  <text x="115.0" y="126.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">칩 안, 바꿀 수 없음</text>
+  <line x1="192.0" y1="112.0" x2="210.0" y2="112.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <rect x="212.0" y="80.0" width="150.0" height="64.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="287.0" y="106.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">SPL / 1차 로더</text>
+  <text x="287.0" y="126.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">DRAM 초기화</text>
+  <line x1="364.0" y1="112.0" x2="382.0" y2="112.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <rect x="384.0" y="80.0" width="150.0" height="64.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="459.0" y="106.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">U-Boot</text>
+  <text x="459.0" y="126.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">커널, DTB 읽기</text>
+  <line x1="536.0" y1="112.0" x2="554.0" y2="112.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <rect x="556.0" y="80.0" width="150.0" height="64.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="631.0" y="106.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">리눅스 커널</text>
+  <text x="631.0" y="126.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">드라이버 초기화</text>
+  <line x1="708.0" y1="112.0" x2="726.0" y2="112.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <rect x="728.0" y="80.0" width="150.0" height="64.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="803.0" y="106.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">루트 파일 시스템</text>
+  <text x="803.0" y="126.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">init → 서비스, 앱</text>
+  <text x="60.0" y="196.0" font-size="13" text-anchor="start" fill="#2f9e44" font-weight="bold">Raspberry Pi 5</text>
+  <rect x="40.0" y="210.0" width="150.0" height="64.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="115.0" y="236.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">BCM2712 ROM</text>
+  <text x="115.0" y="256.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">부트 EEPROM 읽기</text>
+  <line x1="192.0" y1="242.0" x2="210.0" y2="242.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <rect x="212.0" y="210.0" width="150.0" height="64.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="287.0" y="236.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">EEPROM 부트로더</text>
+  <text x="287.0" y="256.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">SD, USB, NVMe에서</text>
+  <line x1="364.0" y1="242.0" x2="382.0" y2="242.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <rect x="384.0" y="210.0" width="150.0" height="64.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="459.0" y="236.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">config.txt</text>
+  <text x="459.0" y="256.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">커널, DTB, 오버레이 선택</text>
+  <line x1="536.0" y1="242.0" x2="554.0" y2="242.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <rect x="556.0" y="210.0" width="150.0" height="64.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="631.0" y="236.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">리눅스 커널</text>
+  <text x="631.0" y="256.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">+ initramfs</text>
+  <line x1="708.0" y1="242.0" x2="726.0" y2="242.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <rect x="728.0" y="210.0" width="150.0" height="64.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="803.0" y="236.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">Raspberry Pi OS</text>
+  <text x="803.0" y="256.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">systemd → 서비스</text>
+  <rect x="40.0" y="310.0" width="820.0" height="100.0" rx="8" fill="#fbfcfd" stroke="#cbd2d9" stroke-width="1"/>
+  <text x="60.0" y="336.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="normal">각 단계가 다음 단계를 메모리에 올리고 넘겨준다. 다음에 넘기는 것:</text>
+  <text x="60.0" y="360.0" font-size="12" text-anchor="start" fill="#616e7c" font-weight="normal">• 커널 이미지   • 디바이스 트리(DTB): 어떤 하드웨어가 어디에 있는가   • 커널 명령줄: root=, console=</text>
+  <text x="60.0" y="384.0" font-size="12" text-anchor="start" fill="#616e7c" font-weight="normal">21장의 MCU 부팅(리셋 → 벡터 테이블 → main)과 같은 생각이 단계만 늘어난 것이다</text>
+  <text x="450.0" y="448.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">Raspberry Pi는 U-Boot 대신 자체 부트로더와 config.txt를 쓴다. 산업용 보드는 대부분 U-Boot를 쓴다</text>
+</svg>

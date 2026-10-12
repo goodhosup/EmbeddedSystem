@@ -18,3 +18,5 @@ ch28-realtime/host/rta
 # 33장: 키는 저장소에 올리지 않는다
 ch33-security/keys/
 *.pem
+ch37-linux/gpio_button_led
+ch37-linux/bmp280_read

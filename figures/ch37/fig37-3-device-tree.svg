@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="460" viewBox="0 0 900 460" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 37-3  디바이스 트리 노드와 하드웨어 대응</text>
+  <rect x="40.0" y="60.0" width="430.0" height="330.0" rx="8" fill="#fbfcfd" stroke="#334e68" stroke-width="1.2"/>
+  <text x="56.0" y="88.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="normal">/ {</text>
+  <text x="70.0" y="111.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="normal">axi {</text>
+  <text x="84.0" y="134.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="normal">pcie@1000120000 {</text>
+  <text x="98.0" y="157.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="normal">rp1 {</text>
+  <text x="112.0" y="180.0" font-size="12" text-anchor="start" fill="#2f6fdf" font-weight="bold">i2c@74000 {</text>
+  <text x="126.0" y="203.0" font-size="12" text-anchor="start" fill="#d9730d" font-weight="bold">compatible = "snps,designware-i2c";</text>
+  <text x="126.0" y="226.0" font-size="12" text-anchor="start" fill="#2f9e44" font-weight="normal">reg = &lt;0xc0 0x40074000 0x0 0x1000&gt;;</text>
+  <text x="126.0" y="249.0" font-size="12" text-anchor="start" fill="#2f9e44" font-weight="normal">interrupts = &lt;8 4&gt;;</text>
+  <text x="126.0" y="272.0" font-size="12" text-anchor="start" fill="#2f9e44" font-weight="normal">clock-frequency = &lt;100000&gt;;</text>
+  <text x="126.0" y="295.0" font-size="12" text-anchor="start" fill="#2f9e44" font-weight="normal">status = "okay";</text>
+  <text x="126.0" y="318.0" font-size="12" text-anchor="start" fill="#616e7c" font-weight="normal">bmp280@76 { ... }   ← 오버레이로</text>
+  <text x="112.0" y="341.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="normal">};</text>
+  <text x="112.0" y="364.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="normal">gpio@d0000 { ... };</text>
+  <rect x="560.0" y="70.0" width="300.0" height="60.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="710.0" y="97.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">어떤 드라이버가 맡는가</text>
+  <text x="710.0" y="116.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">compatible ↔ 드라이버의 일치 표 (38장)</text>
+  <rect x="560.0" y="160.0" width="300.0" height="60.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="710.0" y="187.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">어디에 있는가</text>
+  <text x="710.0" y="206.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">레지스터 주소, 인터럽트 번호, 클럭</text>
+  <rect x="560.0" y="250.0" width="300.0" height="60.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="710.0" y="277.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">어떻게 연결되었는가</text>
+  <text x="710.0" y="296.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">부모-자식: 버스와 그 위의 장치</text>
+  <line x1="472.0" y1="203.0" x2="556.0" y2="100.0" stroke="#d9730d" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <line x1="472.0" y1="240.0" x2="556.0" y2="190.0" stroke="#2f9e44" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <line x1="472.0" y1="180.0" x2="556.0" y2="280.0" stroke="#2f6fdf" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <text x="450.0" y="420.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="normal">29장의 Zephyr와 같은 생각이다. 다만 리눅스는 부팅할 때 DTB 파일을 읽어 해석하고, Zephyr는 빌드할 때 매크로로 푼다</text>
+  <text x="450.0" y="440.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">실제 노드: 이 책을 쓴 Raspberry Pi 5의 /proc/device-tree를 dtc로 펼친 것 (일부 생략)</text>
+</svg>

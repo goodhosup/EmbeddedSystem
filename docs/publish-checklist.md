@@ -50,6 +50,8 @@
 | `chapters/ch36-cicd-production.md` | 179 | [확인 필요: 보드 실측] |
 | `chapters/ch36-cicd-production.md` | 193 | [확인 필요: 출간 시점 ESP-IDF 양산 도구 이름과 사용법] |
 | `chapters/ch36-cicd-production.md` | 236 | [확인 필요: 출간 시점 ESP-IDF 코어 덤프 설정 이름] |
+| `chapters/ch37-embedded-linux.md` | 140 | [확인 필요: 버튼과 LED를 연결한 실측] |
+| `chapters/ch37-embedded-linux.md` | 177 | [확인 필요: 센서 연결 실측] |
 | `code/ch18-usb/README.md` | 23 | [확인 필요: CN10 핀 번호] |
 | `code/ch18-usb/stm32/usb_descriptors.c` | 6 | [확인 필요: pid.codes 시험용 PID 정책] |
 | `code/ch19-wireless/esp32-arduino/ble_sensor/ble_sensor.ino` | 9 | [확인 필요: 코어 버전별 BLE 라이브러리 API] |
@@ -67,5 +69,7 @@
 | `code/ch34-performance/README.md` | 18 | [확인 필요: 보드 실측값 (34.7절 표)] |
 | `code/ch35-safety/README.md` | 21 | [확인 필요: 보드 실행 결과] |
 | `code/ch36-cicd/README.md` | 23 | [확인 필요: 공장 시험 펌웨어의 보드 실행, GitHub Actions에서 firmware.yml 실행] |
+| `code/ch37-linux/README.md` | 18 | [확인 필요: 버튼·LED·BMP280을 연결한 실행 결과] |
+| `code/ch37-linux/gpio_button_led.c` | 21 | [확인 필요: 다른 모델·커널] |
 
-총 62건
+총 66건

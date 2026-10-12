@@ -5129,6 +5129,85 @@ def fig_36_2():
     s.save("ch36/fig36-2-factory-jig.svg")
 
 
+# ---------------------------------------------------------------------------
+# 37장 임베디드 리눅스
+# ---------------------------------------------------------------------------
+
+def fig_37_1():
+    s = Svg(900, 470)
+    s.text(450, 30, "그림 37-1  임베디드 리눅스 부트 흐름", 16, weight="bold")
+    s.text(60, 66, "일반적인 SoC", 13, "start", BLUE, "bold")
+    gen = [("ROM 코드", "칩 안, 바꿀 수 없음"), ("SPL / 1차 로더", "DRAM 초기화"), ("U-Boot", "커널, DTB 읽기"),
+           ("리눅스 커널", "드라이버 초기화"), ("루트 파일 시스템", "init → 서비스, 앱")]
+    x = 40
+    for i, (n, d) in enumerate(gen):
+        s.rect(x, 80, 150, 64, BLUE_BG, BLUE, 8, 1.5)
+        s.text(x + 75, 106, n, 13, weight="bold")
+        s.text(x + 75, 126, d, 10, color=MUTED)
+        if i < 4:
+            s.line(x + 152, 112, x + 170, 112, LINE, 1.8, arrow=True)
+        x += 172
+    s.text(60, 196, "Raspberry Pi 5", 13, "start", GREEN, "bold")
+    pi = [("BCM2712 ROM", "부트 EEPROM 읽기"), ("EEPROM 부트로더", "SD, USB, NVMe에서"), ("config.txt", "커널, DTB, 오버레이 선택"),
+          ("리눅스 커널", "+ initramfs"), ("Raspberry Pi OS", "systemd → 서비스")]
+    x = 40
+    for i, (n, d) in enumerate(pi):
+        s.rect(x, 210, 150, 64, GREEN_BG, GREEN, 8, 1.5)
+        s.text(x + 75, 236, n, 13, weight="bold")
+        s.text(x + 75, 256, d, 10, color=MUTED)
+        if i < 4:
+            s.line(x + 152, 242, x + 170, 242, LINE, 1.8, arrow=True)
+        x += 172
+    s.rect(40, 310, 820, 100, "#fbfcfd", "#cbd2d9", 8, 1)
+    s.text(60, 336, "각 단계가 다음 단계를 메모리에 올리고 넘겨준다. 다음에 넘기는 것:", 12, "start", INK)
+    s.text(60, 360, "• 커널 이미지   • 디바이스 트리(DTB): 어떤 하드웨어가 어디에 있는가   • 커널 명령줄: root=, console=", 12, "start", MUTED)
+    s.text(60, 384, "21장의 MCU 부팅(리셋 → 벡터 테이블 → main)과 같은 생각이 단계만 늘어난 것이다", 12, "start", MUTED)
+    s.text(450, 448, "Raspberry Pi는 U-Boot 대신 자체 부트로더와 config.txt를 쓴다. 산업용 보드는 대부분 U-Boot를 쓴다", 11, color=MUTED)
+    s.save("ch37/fig37-1-boot-flow.svg")
+
+
+def fig_37_2():
+    s = Svg(900, 460)
+    s.text(450, 30, "그림 37-2  커널 공간과 사용자 공간", 16, weight="bold")
+    s.rect(40, 60, 820, 120, BLUE_BG, BLUE, 10, 1.6)
+    s.text(60, 84, "사용자 공간 (프로세스마다 보호된 메모리, 실패해도 그 프로세스만 죽는다)", 12, "start", BLUE, "bold")
+    for i, (n, d) in enumerate([("gpio_button_led", "/dev/gpiochip0"), ("bmp280_read", "/dev/i2c-1"), ("python, 셸", "/sys/class/..."), ("서비스 (systemd)", "네트워크, 로그")]):
+        s.box(60 + i * 200, 100, 180, 60, n, d, "#ffffff", BLUE, 12)
+    s.line(40, 204, 860, 204, RED, 2, dash="8 5")
+    s.text(450, 196, "시스템 호출: open, read, write, ioctl, mmap", 12, color=RED, weight="bold")
+    s.rect(40, 214, 820, 170, ORANGE_BG, ORANGE, 10, 1.6)
+    s.text(60, 238, "커널 공간 (모든 메모리, 모든 하드웨어. 버그는 시스템 전체를 멈춘다)", 12, "start", ORANGE, "bold")
+    for i, (n, d) in enumerate([("VFS, 문자 장치", "파일처럼 보이게"), ("GPIO, I2C, SPI 서브시스템", "공통 규칙"), ("드라이버", "칩마다 (38장)"), ("스케줄러, 메모리, 네트워크", "")]):
+        s.box(60 + i * 200, 254, 180, 56, n, d if d else None, "#ffffff", ORANGE, 11)
+    s.box(260, 324, 380, 44, "인터럽트, DMA, MMU", None, "#ffffff", ORANGE, 12)
+    s.rect(40, 398, 820, 40, GRAY_BG, LINE, 8, 1.4)
+    s.text(450, 424, "하드웨어: CPU 코어 4개, RP1(GPIO, I2C, SPI, UART), 메모리", 12, weight="bold")
+    s.save("ch37/fig37-2-kernel-user.svg")
+
+
+def fig_37_3():
+    s = Svg(900, 460)
+    s.text(450, 30, "그림 37-3  디바이스 트리 노드와 하드웨어 대응", 16, weight="bold")
+    s.rect(40, 60, 430, 330, "#fbfcfd", LINE, 8, 1.2)
+    lines = [("/ {", INK), ("  axi {", INK), ("    pcie@1000120000 {", INK), ("      rp1 {", INK),
+             ("        i2c@74000 {", BLUE), ('          compatible = "snps,designware-i2c";', ORANGE),
+             ("          reg = <0xc0 0x40074000 0x0 0x1000>;", GREEN), ("          interrupts = <8 4>;", GREEN),
+             ("          clock-frequency = <100000>;", GREEN), ('          status = "okay";', GREEN),
+             ("          bmp280@76 { ... }   ← 오버레이로", MUTED), ("        };", INK), ("        gpio@d0000 { ... };", INK)]
+    for i, (t, c) in enumerate(lines):
+        ind = len(t) - len(t.lstrip(" "))
+        s.text(56 + ind * 7, 88 + i * 23, t.strip(), 12, "start", c, "bold" if c in (BLUE, ORANGE) else "normal")
+    s.box(560, 70, 300, 60, "어떤 드라이버가 맡는가", "compatible ↔ 드라이버의 일치 표 (38장)", ORANGE_BG, ORANGE, 12)
+    s.box(560, 160, 300, 60, "어디에 있는가", "레지스터 주소, 인터럽트 번호, 클럭", GREEN_BG, GREEN, 12)
+    s.box(560, 250, 300, 60, "어떻게 연결되었는가", "부모-자식: 버스와 그 위의 장치", BLUE_BG, BLUE, 12)
+    s.line(472, 203, 556, 100, ORANGE, 1.4, arrow=True)
+    s.line(472, 240, 556, 190, GREEN, 1.4, arrow=True)
+    s.line(472, 180, 556, 280, BLUE, 1.4, arrow=True)
+    s.text(450, 420, "29장의 Zephyr와 같은 생각이다. 다만 리눅스는 부팅할 때 DTB 파일을 읽어 해석하고, Zephyr는 빌드할 때 매크로로 푼다", 11, color=INK)
+    s.text(450, 440, "실제 노드: 이 책을 쓴 Raspberry Pi 5의 /proc/device-tree를 dtc로 펼친 것 (일부 생략)", 11, color=MUTED)
+    s.save("ch37/fig37-3-device-tree.svg")
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("fig_") and callable(fn):

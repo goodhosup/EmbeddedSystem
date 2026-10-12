@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="460" viewBox="0 0 900 460" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 37-2  커널 공간과 사용자 공간</text>
+  <rect x="40.0" y="60.0" width="820.0" height="120.0" rx="10" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.6"/>
+  <text x="60.0" y="84.0" font-size="12" text-anchor="start" fill="#2f6fdf" font-weight="bold">사용자 공간 (프로세스마다 보호된 메모리, 실패해도 그 프로세스만 죽는다)</text>
+  <rect x="60.0" y="100.0" width="180.0" height="60.0" rx="8" fill="#ffffff" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="150.0" y="127.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">gpio_button_led</text>
+  <text x="150.0" y="146.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">/dev/gpiochip0</text>
+  <rect x="260.0" y="100.0" width="180.0" height="60.0" rx="8" fill="#ffffff" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="350.0" y="127.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">bmp280_read</text>
+  <text x="350.0" y="146.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">/dev/i2c-1</text>
+  <rect x="460.0" y="100.0" width="180.0" height="60.0" rx="8" fill="#ffffff" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="550.0" y="127.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">python, 셸</text>
+  <text x="550.0" y="146.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">/sys/class/...</text>
+  <rect x="660.0" y="100.0" width="180.0" height="60.0" rx="8" fill="#ffffff" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="750.0" y="127.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">서비스 (systemd)</text>
+  <text x="750.0" y="146.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">네트워크, 로그</text>
+  <line x1="40.0" y1="204.0" x2="860.0" y2="204.0" stroke="#d64545" stroke-width="2" stroke-dasharray="8 5"/>
+  <text x="450.0" y="196.0" font-size="12" text-anchor="middle" fill="#d64545" font-weight="bold">시스템 호출: open, read, write, ioctl, mmap</text>
+  <rect x="40.0" y="214.0" width="820.0" height="170.0" rx="10" fill="#fdebd7" stroke="#d9730d" stroke-width="1.6"/>
+  <text x="60.0" y="238.0" font-size="12" text-anchor="start" fill="#d9730d" font-weight="bold">커널 공간 (모든 메모리, 모든 하드웨어. 버그는 시스템 전체를 멈춘다)</text>
+  <rect x="60.0" y="254.0" width="180.0" height="56.0" rx="8" fill="#ffffff" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="150.0" y="279.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="bold">VFS, 문자 장치</text>
+  <text x="150.0" y="298.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">파일처럼 보이게</text>
+  <rect x="260.0" y="254.0" width="180.0" height="56.0" rx="8" fill="#ffffff" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="350.0" y="279.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="bold">GPIO, I2C, SPI 서브시스템</text>
+  <text x="350.0" y="298.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">공통 규칙</text>
+  <rect x="460.0" y="254.0" width="180.0" height="56.0" rx="8" fill="#ffffff" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="550.0" y="279.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="bold">드라이버</text>
+  <text x="550.0" y="298.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">칩마다 (38장)</text>
+  <rect x="660.0" y="254.0" width="180.0" height="56.0" rx="8" fill="#ffffff" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="750.0" y="287.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="bold">스케줄러, 메모리, 네트워크</text>
+  <rect x="260.0" y="324.0" width="380.0" height="44.0" rx="8" fill="#ffffff" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="450.0" y="351.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">인터럽트, DMA, MMU</text>
+  <rect x="40.0" y="398.0" width="820.0" height="40.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.4"/>
+  <text x="450.0" y="424.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">하드웨어: CPU 코어 4개, RP1(GPIO, I2C, SPI, UART), 메모리</text>
+</svg>
