@@ -50,6 +50,7 @@
 | `chapters/ch36-cicd-production.md` | 179 | [확인 필요: 보드 실측] |
 | `chapters/ch36-cicd-production.md` | 193 | [확인 필요: 출간 시점 ESP-IDF 양산 도구 이름과 사용법] |
 | `chapters/ch36-cicd-production.md` | 236 | [확인 필요: 출간 시점 ESP-IDF 코어 덤프 설정 이름] |
+| `chapters/ch37-embedded-linux.md` | 88 | [확인 필요: Pi 5 sysfs GPIO 번호 오프셋] |
 | `chapters/ch37-embedded-linux.md` | 140 | [확인 필요: 버튼과 LED를 연결한 실측] |
 | `chapters/ch37-embedded-linux.md` | 177 | [확인 필요: 센서 연결 실측] |
 | `code/ch18-usb/README.md` | 23 | [확인 필요: CN10 핀 번호] |
@@ -72,4 +73,4 @@
 | `code/ch37-linux/README.md` | 18 | [확인 필요: 버튼·LED·BMP280을 연결한 실행 결과] |
 | `code/ch37-linux/gpio_button_led.c` | 21 | [확인 필요: 다른 모델·커널] |
 
-총 66건
+총 67건

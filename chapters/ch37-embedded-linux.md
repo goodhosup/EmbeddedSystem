@@ -85,7 +85,7 @@ dtparam=uart0=on
 
 ## 37.4 사용자 공간에서 GPIO 다루기
 
-예전에는 `/sys/class/gpio`에 숫자를 쓰는 sysfs 방식으로 GPIO를 다뤘지만, 이 방식은 폐기 예정이 되었고 지금은 **GPIO 문자 장치**(`/dev/gpiochipN`)를 씁니다. 명령줄 도구로 먼저 살펴봅시다.
+예전에는 `/sys/class/gpio`에 숫자를 쓰는 sysfs 방식으로 GPIO를 다뤘지만, 이 방식은 리눅스 4.8(2016년)부터 폐기 예정이 되었고(아직 `CONFIG_GPIO_SYSFS`로 남아 있음) 새 코드에는 쓰지 않습니다. Pi 5에서는 sysfs의 GPIO 번호에 500이 넘는 큰 오프셋이 붙어 헤더 핀 번호와 맞지 않는 혼란도 있습니다. [확인 필요: Pi 5 sysfs GPIO 번호 오프셋] 지금은 **GPIO 문자 장치**(`/dev/gpiochipN`)를 씁니다. 명령줄 도구로 먼저 살펴봅시다.
 
 ```
 $ gpioinfo -c 0
@@ -123,7 +123,7 @@ struct gpio_v2_line_event ev;
 read(btn, &ev, sizeof ev);          /* 에지가 올 때까지 잠든다 (CPU 0%) */
 ```
 
-7장의 EXTI 인터럽트와 같은 일을 커널이 해 주는 것입니다. 커널의 인터럽트 처리기가 에지를 받아 시각(`ev.timestamp_ns`)과 함께 큐에 넣고, 기다리던 프로세스를 깨웁니다. 26장의 RTOS 태스크가 큐에서 Blocked로 기다린 것과 똑같은 구조입니다.
+7장의 EXTI 인터럽트와 같은 일을 커널이 해 주는 것입니다. 예제는 요청할 때 `GPIO_V2_LINE_ATTR_ID_DEBOUNCE` 속성으로 10 ms 디바운스도 함께 부탁합니다. 하드웨어 디바운스가 없는 칩이라면 커널이 소프트웨어로 처리해 주므로, 7장에서 직접 만든 디바운싱을 설정 하나로 대신합니다. 커널의 인터럽트 처리기가 에지를 받아 시각(`ev.timestamp_ns`)과 함께 큐에 넣고, 기다리던 프로세스를 깨웁니다. 26장의 RTOS 태스크가 큐에서 Blocked로 기다린 것과 똑같은 구조입니다.
 
 ```bash
 cd code/ch37-linux
@@ -242,18 +242,22 @@ ssh pi@raspberrypi.local ./bmp280_read                    # 실행
 # /etc/systemd/system/sensor.service
 [Unit]
 Description=BMP280 logger
-After=multi-user.target
 
 [Service]
 ExecStart=/usr/local/bin/bmp280_read
-Restart=on-failure          # 죽으면 다시 시작 (35장의 워치독과 같은 생각)
-User=sensor                 # root가 아닌 사용자로 (33장의 최소 권한)
+# 죽으면 다시 시작 (35장의 워치독과 같은 생각)
+Restart=on-failure
+# root가 아닌 사용자로 (33장의 최소 권한). /dev/i2c-1은 i2c 그룹이 쓸 수 있다
+User=sensor
+SupplementaryGroups=i2c
 
 [Install]
 WantedBy=multi-user.target
 ```
 
-`sudo systemctl enable --now sensor`로 켜고, `journalctl -u sensor`로 출력을 봅니다. systemd는 서비스 수준의 워치독(`WatchdogSec=`)도 제공해서, 35장의 감시자 구조를 프로세스 단위로 만들 수 있습니다.
+systemd 유닛 파일에서 주석은 **줄 맨 앞의** `#`이나 `;`뿐입니다. 값 뒤에 주석을 붙이면 주석까지 값으로 읽혀 설정이 실패합니다(29장의 Kconfig와 같은 함정). 서비스용 사용자는 `sudo useradd -r -s /usr/sbin/nologin sensor`로 만들거나, `DynamicUser=yes`로 systemd가 실행할 때마다 임시 사용자를 만들게 할 수 있습니다.
+
+`sudo systemctl enable --now sensor`로 켜고, `journalctl -u sensor`로 출력을 봅니다. systemd는 서비스 수준의 워치독(`WatchdogSec=`)도 제공해서, 35장의 감시자 구조를 프로세스 단위로 만들 수 있습니다. 이때 프로그램은 주기적으로 `sd_notify(0, "WATCHDOG=1")`로 살아 있음을 알려야 하며, 보통 `Type=notify`와 함께 씁니다. 그리고 `/etc/systemd/system.conf`의 `RuntimeWatchdogSec=`를 설정하면 systemd 자신이 SoC의 하드웨어 워치독을 갱신하므로, 35장의 IWDG처럼 시스템 전체가 멈췄을 때 하드웨어가 리셋합니다.
 
 > 🔧 ATmega128에서는: 8비트 AVR에서 리눅스를 돌리는 것은 현실적이지 않습니다(MMU도, 충분한 메모리도 없음). 대신 37.1절의 "리눅스 + MCU" 구조에서 AVR이 MCU 쪽을 맡는 경우는 흔합니다. 리눅스 보드가 USB-시리얼(14장)이나 I2C로 아두이노나 ATmega128 보드에 명령을 보내고, AVR이 실시간 입출력을 처리합니다. Raspberry Pi의 헤더 UART(3.3 V)와 5 V AVR을 연결할 때는 2장의 레벨 변환을 잊지 마세요.
 

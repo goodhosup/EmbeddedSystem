@@ -22,13 +22,19 @@
 #define LED_LINE 17
 #define BTN_LINE 27
 
-static int request_line(int chip, unsigned offset, __u64 flags, const char *who)
+static int request_line(int chip, unsigned offset, __u64 flags, unsigned debounce_us, const char *who)
 {
     struct gpio_v2_line_request req;
     memset(&req, 0, sizeof req);
     req.offsets[0] = offset;
     req.num_lines = 1;
     req.config.flags = flags;
+    if (debounce_us) {                                     /* 7장의 디바운싱을 커널에 맡긴다 */
+        req.config.num_attrs = 1;
+        req.config.attrs[0].attr.id = GPIO_V2_LINE_ATTR_ID_DEBOUNCE;
+        req.config.attrs[0].attr.debounce_period_us = debounce_us;
+        req.config.attrs[0].mask = 1;                      /* 요청한 줄 중 0번 줄에 적용 */
+    }
     strncpy(req.consumer, who, sizeof req.consumer - 1);   /* gpioinfo에 이 이름으로 보인다 */
     if (ioctl(chip, GPIO_V2_GET_LINE_IOCTL, &req) < 0) {
         perror("GPIO_V2_GET_LINE_IOCTL");
@@ -50,9 +56,9 @@ int main(void)
         perror(CHIP);
         return 1;
     }
-    int led = request_line(chip, LED_LINE, GPIO_V2_LINE_FLAG_OUTPUT, "ch37-led");
+    int led = request_line(chip, LED_LINE, GPIO_V2_LINE_FLAG_OUTPUT, 0, "ch37-led");
     int btn = request_line(chip, BTN_LINE, GPIO_V2_LINE_FLAG_INPUT | GPIO_V2_LINE_FLAG_BIAS_PULL_UP |
-                           GPIO_V2_LINE_FLAG_EDGE_FALLING, "ch37-button");
+                           GPIO_V2_LINE_FLAG_EDGE_FALLING, 10000, "ch37-button");   /* 10 ms */
     close(chip);                                           /* 줄을 받았으면 칩은 닫아도 된다 */
     if (led < 0 || btn < 0) {
         return 1;
