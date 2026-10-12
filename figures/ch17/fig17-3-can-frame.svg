@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="940" height="300" viewBox="0 0 940 300" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="470.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 17-3  CAN 표준 데이터 프레임 구조 (11비트 식별자)</text>
+  <rect x="30.0" y="80.0" width="46.0" height="50.0" rx="2" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="53.0" y="110.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">SOF</text>
+  <text x="53.0" y="146.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">1</text>
+  <rect x="76.0" y="80.0" width="150.0" height="50.0" rx="2" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="151.0" y="110.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">식별자</text>
+  <text x="151.0" y="146.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">11</text>
+  <rect x="226.0" y="80.0" width="46.0" height="50.0" rx="2" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="249.0" y="110.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">RTR</text>
+  <text x="249.0" y="146.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">1</text>
+  <rect x="272.0" y="80.0" width="46.0" height="50.0" rx="2" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="295.0" y="110.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">IDE</text>
+  <text x="295.0" y="146.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">1</text>
+  <rect x="318.0" y="80.0" width="40.0" height="50.0" rx="2" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="338.0" y="110.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">r0</text>
+  <text x="338.0" y="146.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">1</text>
+  <rect x="358.0" y="80.0" width="70.0" height="50.0" rx="2" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="393.0" y="110.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">DLC</text>
+  <text x="393.0" y="146.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">4</text>
+  <rect x="428.0" y="80.0" width="170.0" height="50.0" rx="2" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="513.0" y="110.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">데이터 0~8바이트</text>
+  <text x="513.0" y="146.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">0~64</text>
+  <rect x="598.0" y="80.0" width="120.0" height="50.0" rx="2" fill="#efe6fb" stroke="#7048e8" stroke-width="1.5"/>
+  <text x="658.0" y="110.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">CRC</text>
+  <text x="658.0" y="146.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">15</text>
+  <rect x="718.0" y="80.0" width="36.0" height="50.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1.5"/>
+  <text x="736.0" y="110.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="bold">del</text>
+  <text x="736.0" y="146.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">1</text>
+  <rect x="754.0" y="80.0" width="46.0" height="50.0" rx="2" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="777.0" y="110.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">ACK</text>
+  <text x="777.0" y="146.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">1</text>
+  <rect x="800.0" y="80.0" width="36.0" height="50.0" rx="2" fill="#ffffff" stroke="#616e7c" stroke-width="1.5"/>
+  <text x="818.0" y="110.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="bold">del</text>
+  <text x="818.0" y="146.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">1</text>
+  <rect x="836.0" y="80.0" width="80.0" height="50.0" rx="2" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="876.0" y="110.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">EOF</text>
+  <text x="876.0" y="146.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">7</text>
+  <text x="30.0" y="164.0" font-size="10" text-anchor="start" fill="#616e7c" font-weight="normal">비트 수</text>
+  <line x1="30.0" y1="186.0" x2="272.0" y2="186.0" stroke="#2f6fdf" stroke-width="1.5" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+  <text x="151.0" y="204.0" font-size="12" text-anchor="middle" fill="#2f6fdf" font-weight="bold">중재 구간</text>
+  <line x1="272.0" y1="186.0" x2="428.0" y2="186.0" stroke="#334e68" stroke-width="1.5" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+  <text x="350.0" y="204.0" font-size="12" text-anchor="middle" fill="#334e68" font-weight="bold">제어</text>
+  <text x="470.0" y="236.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">SOF: 우성 1비트로 프레임 시작    RTR: 0이면 데이터 프레임, 1이면 원격 요청    IDE: 0이면 11비트 식별자</text>
+  <text x="470.0" y="256.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">DLC: 데이터 바이트 수(0~8)    CRC: 15비트 오류 검출    ACK: 보낸 쪽은 열성을 내고, 제대로 받은 노드가 우성으로 덮어쓴다</text>
+  <text x="470.0" y="276.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">SOF부터 CRC까지 같은 비트가 5개 이어지면 반대 비트를 하나 끼워 넣는다 (비트 스터핑, 클럭 복원용)</text>
+</svg>

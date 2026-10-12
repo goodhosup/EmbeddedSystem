@@ -3021,7 +3021,7 @@ def fig_16_5():
     s.text(210, 56, "(가) 슬레이브마다 CS 하나씩", 14, weight="bold", color=BLUE)
     s.box(40, 90, 110, 190, "마스터", None, BLUE_BG, BLUE)
     s.path("M95,88 L95,74 L420,74 L420,265", MUTED, 2.5)
-    s.text(214, 90, "SCLK · MOSI · MISO (모두 공유)", 11, color=MUTED)
+    s.text(258, 66, "SCLK · MOSI · MISO (모두 공유)", 11, color=MUTED)
     for i in range(3):
         y = 85 + i * 75
         s.box(280, y, 110, 60, f"슬레이브 {i + 1}", None, "#ffffff", LINE, 13)
@@ -3073,7 +3073,7 @@ def fig_16_6():
     s.text(105, 164, "MISO", 13, "end", ORANGE, "bold")
     s.text(105, 64, "CS", 13, "end", weight="bold")
     total = sum(c[1] for c in cells)
-    s.path(f"M70,50 L{x},50 L{x},72 L{x + total},72 L{x + total},50 L{x + total + 40},50", INK, 2)
+    s.path(f"M{x - 8},50 L{x},50 L{x},72 L{x + total},72 L{x + total},50 L{x + total + 40},50", INK, 2)
     for i, (lbl, w, f, st) in enumerate(cells):
         if st == BLUE:
             s.rect(x, 85, w, 34, f, st, 3)
@@ -3120,6 +3120,198 @@ def fig_16_7():
             x += w
     s.text(450, 428, "두 방식은 경쟁 관계가 아니다. 한 보드에 센서는 I2C로, 플래시와 화면은 SPI로 함께 쓰는 경우가 대부분이다", 12, color=MUTED)
     s.save("ch16/fig16-7-i2c-vs-spi.svg")
+
+
+# ---------------------------------------------------------------------------
+# 17장 CAN
+# ---------------------------------------------------------------------------
+
+def fig_17_1():
+    s = Svg(900, 360)
+    s.text(450, 30, "그림 17-1  CAN 버스 토폴로지와 120 Ω 종단", 16, weight="bold")
+    yH, yL = 170, 200
+    s.line(80, yH, 820, yH, ORANGE, 3)
+    s.line(80, yL, 820, yL, BLUE, 3)
+    s.text(70, yH + 5, "CANH", 12, "end", ORANGE, "bold")
+    s.text(70, yL + 5, "CANL", 12, "end", BLUE, "bold")
+    for x in (100, 800):
+        resistor_v(s, x, yH, yL + 0.1, None)
+        s.text(x, yL + 34, "120 Ω", 12, color=RED, weight="bold")
+    names = [("엔진 ECU", 200), ("변속기", 340), ("ABS", 480), ("계기판", 620)]
+    for n, x in names:
+        s.box(x - 50, 60, 100, 50, n, "노드", BLUE_BG, BLUE, 13)
+        s.line(x - 15, 112, x - 15, yH, ORANGE, 2)
+        s.line(x + 15, 112, x + 15, yL, BLUE, 2)
+        dot(s, x - 15, yH, ORANGE)
+        dot(s, x + 15, yL, BLUE)
+        s.line(x - 15, 130, x - 15, 150, "#ffffff", 0)
+    s.text(450, 260, "꼬인 쌍선 한 쌍에 모든 노드가 짧은 가지로 매달린다 (멀티드롭 버스)", 12, color=INK)
+    s.text(450, 282, "버스의 양 끝(가장 먼 두 노드)에만 120 Ω을 단다. 두 저항이 병렬이라 CANH–CANL 사이는 60 Ω이 된다", 12, color=RED)
+    s.text(450, 304, "전원이 꺼진 상태에서 멀티미터로 CANH–CANL 저항을 재면 약 60 Ω이 나와야 한다", 12, color=MUTED)
+    s.text(450, 330, "주인이 없는 버스: 모든 노드가 대등하고, 누구든 버스가 비면 보낼 수 있다 (멀티 마스터)", 12, color=MUTED)
+    s.save("ch17/fig17-1-can-topology.svg")
+
+
+def fig_17_2():
+    s = Svg(900, 360)
+    s.text(450, 30, "그림 17-2  CANH/CANL 차동 전압과 우성·열성", 16, weight="bold")
+    x0, w = 140, 680
+    def Y(v):
+        return 290 - v * 55
+    s.line(x0, Y(0), x0 + w, Y(0), MUTED, 1.2)
+    for v in (1.5, 2.5, 3.5):
+        s.line(x0 - 5, Y(v), x0 + w, Y(v), "#e6eaef", 1, "4 3")
+        s.text(x0 - 10, Y(v) + 4, f"{v} V", 11, "end", MUTED)
+    bits = [("열성", 1), ("우성", 0), ("우성", 0), ("열성", 1), ("우성", 0), ("열성", 1)]
+    bw = w / len(bits)
+    ph, pl = [], []
+    for i, (n, b) in enumerate(bits):
+        xa, xb = x0 + i * bw, x0 + (i + 1) * bw
+        vh, vl = (2.5, 2.5) if b else (3.5, 1.5)
+        ph.append(f"L{xa:.1f},{Y(vh):.1f} L{xb:.1f},{Y(vh):.1f}")
+        pl.append(f"L{xa:.1f},{Y(vl):.1f} L{xb:.1f},{Y(vl):.1f}")
+        s.text((xa + xb) / 2, 66, n, 13, color=GREEN if b else RED, weight="bold")
+        s.text((xa + xb) / 2, 84, f"논리 {b}", 11, color=MUTED)
+        s.text((xa + xb) / 2, 316, "차이 ≈ 0 V" if b else "차이 ≈ 2 V", 11, color=MUTED)
+    s.path(f"M{x0},{Y(2.5):.1f} " + " ".join(ph), ORANGE, 2.5)
+    s.path(f"M{x0},{Y(2.5):.1f} " + " ".join(pl), BLUE, 2.5)
+    s.text(x0 + w + 8, Y(3.5) + 4, "CANH", 12, "start", ORANGE, "bold")
+    s.text(x0 + w + 8, Y(1.5) + 4, "CANL", 12, "start", BLUE, "bold")
+    s.text(450, 344, "우성(0)은 트랜시버가 두 선을 벌려 놓은 상태, 열성(1)은 아무도 구동하지 않아 종단 저항이 두 선을 같게 만든 상태다", 12, color=INK)
+    s.save("ch17/fig17-2-can-levels.svg")
+
+
+def fig_17_3():
+    s = Svg(940, 300)
+    s.text(470, 30, "그림 17-3  CAN 표준 데이터 프레임 구조 (11비트 식별자)", 16, weight="bold")
+    cells = [("SOF", 1, GREEN_BG, GREEN), ("식별자", 11, BLUE_BG, BLUE), ("RTR", 1, BLUE_BG, BLUE),
+             ("IDE", 1, GRAY_BG, LINE), ("r0", 1, GRAY_BG, LINE), ("DLC", 4, GRAY_BG, LINE),
+             ("데이터 0~8바이트", 20, ORANGE_BG, ORANGE), ("CRC", 15, "#efe6fb", "#7048e8"), ("del", 1, "#ffffff", MUTED),
+             ("ACK", 1, GREEN_BG, GREEN), ("del", 1, "#ffffff", MUTED), ("EOF", 7, GREEN_BG, GREEN)]
+    widths = {"SOF": 46, "식별자": 150, "RTR": 46, "IDE": 46, "r0": 40, "DLC": 70, "데이터 0~8바이트": 170,
+              "CRC": 120, "del": 36, "ACK": 46, "EOF": 80}
+    unit = None
+    x = 30
+    for lbl, bits, f, st in cells:
+        w = widths[lbl]
+        s.rect(x, 80, w, 50, f, st, 2)
+        s.text(x + w / 2, 110, lbl, 11 if w < 40 else 12, weight="bold")
+        s.text(x + w / 2, 146, "0~64" if lbl.startswith("데이터") else str(bits), 10, color=MUTED)
+        x += w
+    s.text(30, 164, "비트 수", 10, "start", MUTED)
+    s.line(30, 186, 30 + 46 + 150 + 46, 186, BLUE, 1.5, both=True)
+    s.text(30 + 121, 204, "중재 구간", 12, color=BLUE, weight="bold")
+    s.line(30 + 242, 186, 30 + 242 + 156, 186, LINE, 1.5, both=True)
+    s.text(30 + 242 + 78, 204, "제어", 12, color=LINE, weight="bold")
+    notes = ["SOF: 우성 1비트로 프레임 시작    RTR: 0이면 데이터 프레임, 1이면 원격 요청    IDE: 0이면 11비트 식별자",
+             "DLC: 데이터 바이트 수(0~8)    CRC: 15비트 오류 검출    ACK: 보낸 쪽은 열성을 내고, 제대로 받은 노드가 우성으로 덮어쓴다",
+             "SOF부터 CRC까지 같은 비트가 5개 이어지면 반대 비트를 하나 끼워 넣는다 (비트 스터핑, 클럭 복원용)"]
+    for i, n in enumerate(notes):
+        s.text(470, 236 + i * 20, n, 11, color=MUTED)
+    s.save("ch17/fig17-3-can-frame.svg")
+
+
+def fig_17_4():
+    t = Timing(13, 50, 150, 80, "그림 17-4  동시에 보낸 두 노드의 비트 단위 중재 (0 = 우성이 이긴다)")
+    a = "0" + "00100100011"          # SOF + 식별자 0x123
+    b = "0" + "00100101101"          # SOF + 식별자 0x12D
+    bus = []
+    lostat = None
+    for i, (x, y) in enumerate(zip(a, b)):
+        bus.append("0" if (x == "0" or (y == "0" and lostat is None)) else "1")
+        if lostat is None and x != y:
+            lostat = i
+    def segs(bitsstr, cut=None, color=None):
+        out = []
+        for i, c in enumerate(bitsstr):
+            if cut is not None and i > cut:
+                out.append((1, "z", "듣기만" if i == cut + 1 else None, None))
+            else:
+                out.append((1, "h" if c == "1" else "l", None, color))
+        return out + [(1, "z", None, None)]
+    t.signal("노드 A", segs(a), sub="ID 0x123 (더 작음)")
+    t.signal("노드 B", segs(b, cut=lostat), sub="ID 0x12D")
+    t.signal("버스", segs("".join("0" if (x == "0" or (y == "0" and (lostat is None or i <= lostat))) else "1"
+                                for i, (x, y) in enumerate(zip(a, b)))), sub="와이어드 AND")
+    t.note("vline", t=lostat + 0.5, color=RED, label="B는 1을 냈는데 버스가 0 → 중재 패배")
+    t.note("text", t=7, y=t.top + 3 * t.ROW + 10, label="이긴 A는 아무 일도 없었던 것처럼 계속 보낸다. 진 B는 버스가 빌 때 다시 시도한다", size=12)
+    t.note("text", t=7, y=t.top + 3 * t.ROW + 30, label="식별자가 작을수록(앞쪽에 0이 많을수록) 우선순위가 높다", size=12)
+    t.render("ch17/fig17-4-can-arbitration.svg", 60)
+
+
+def fig_17_5():
+    s = Svg(900, 330)
+    s.text(450, 30, "그림 17-5  비트 타이밍 세그먼트 (한 비트 = 8 TQ, 샘플 지점 75%의 예)", 16, weight="bold")
+    segs = [("Sync", 1, GREEN_BG, GREEN), ("Prop", 2, BLUE_BG, BLUE), ("Phase 1", 3, ORANGE_BG, ORANGE),
+            ("Phase 2", 2, "#efe6fb", "#7048e8")]
+    x0, unit = 110, 85
+    x = x0
+    for lbl, n, f, st in segs:
+        for k in range(n):
+            s.rect(x + k * unit, 90, unit, 50, f, st, 0, 1)
+        s.text(x + n * unit / 2, 80, lbl, 13, weight="bold", color=st)
+        s.text(x + n * unit / 2, 162, f"{n} TQ", 11, color=MUTED)
+        x += n * unit
+    sp = x0 + 6 * unit
+    s.line(sp, 70, sp, 190, RED, 2.5)
+    s.poly([(sp, 190), (sp - 7, 204), (sp + 7, 204)], RED, RED, 1)
+    s.text(sp, 222, "샘플 지점 (6/8 = 75%)", 13, color=RED, weight="bold")
+    s.line(x0, 250, x0 + 8 * unit, 250, LINE, 1.5, both=True)
+    s.text(x0 + 4 * unit, 244, "1비트 (500 kbps면 2 µs, TQ = 250 ns)", 12, weight="bold")
+    s.text(450, 284, "Sync: 에지가 와야 하는 곳.  Prop: 선을 따라 신호가 오가는 지연.  Phase1·2: 에지가 어긋나면 늘이고 줄여서 다시 맞춘다(SJW)", 11, color=MUTED)
+    s.text(450, 304, "버스의 모든 노드가 같은 보레이트와 비슷한 샘플 지점을 써야 한다", 11, color=INK)
+    s.save("ch17/fig17-5-bit-timing.svg")
+
+
+def fig_17_6():
+    s = Svg(900, 330)
+    s.text(450, 30, "그림 17-6  오류 상태 전이 (TEC: 송신 오류 카운터, REC: 수신 오류 카운터)", 16, weight="bold")
+    def state(cx, name, sub, fill, st):
+        s.add(f'<ellipse cx="{cx}" cy="140" rx="115" ry="52" fill="{fill}" stroke="{st}" stroke-width="2"/>')
+        s.text(cx, 134, name, 15, weight="bold")
+        s.text(cx, 156, sub, 11, color=MUTED)
+    state(150, "Error Active", "정상. 오류를 보면 적극 알림", GREEN_BG, GREEN)
+    state(450, "Error Passive", "오류 알림을 조용히", ORANGE_BG, ORANGE)
+    state(750, "Bus Off", "버스에서 빠짐", "#fdecec", RED)
+    s.path("M262,122 Q300,90 338,122", ORANGE, 2, arrow=True)
+    s.text(300, 88, "TEC 또는 REC ≥ 128", 12, color=ORANGE, weight="bold")
+    s.path("M338,160 Q300,192 262,160", GREEN, 2, arrow=True)
+    s.text(300, 210, "둘 다 < 128", 12, color=GREEN, weight="bold")
+    s.line(566, 140, 632, 140, RED, 2, arrow=True)
+    s.text(600, 128, "TEC > 255", 12, color=RED, weight="bold")
+    s.path("M750,194 Q450,300 150,194", MUTED, 1.5, arrow=True)
+    s.text(450, 268, "열성 11비트를 128번 관찰한 뒤 복귀 (보통 소프트웨어가 재시작을 허가)", 12, color=MUTED)
+    s.text(450, 312, "오류를 보내면 TEC가 8 늘고, 성공하면 1 준다. 고장 난 노드가 스스로 물러나 버스 전체를 지킨다", 12, color=INK)
+    s.save("ch17/fig17-6-error-states.svg")
+
+
+def fig_17_7():
+    s = Svg(900, 360)
+    s.text(450, 30, "그림 17-7  MCU – SPI – MCP2515 – 트랜시버 – 버스 연결도", 16, weight="bold")
+    s.box(30, 90, 150, 150, "MCU", "우노 · STM32", BLUE_BG, BLUE, 15)
+    s.rect(260, 70, 380, 190, "#fafbfc", MUTED, 12, 1.2)
+    s.text(450, 92, "CAN 모듈 (흔한 MCP2515 + TJA1050 보드)", 12, color=MUTED)
+    s.box(280, 110, 160, 120, "MCP2515", "CAN 컨트롤러", ORANGE_BG, ORANGE, 14)
+    s.box(480, 110, 140, 120, "TJA1050", "트랜시버", GREEN_BG, GREEN, 14)
+    for i, (n, y) in enumerate((("SCK", 112), ("SI", 132), ("SO", 152), ("CS", 172), ("INT", 200))):
+        right = n != "SO" and n != "INT"
+        if right:
+            s.line(182, y, 276, y, LINE, 1.8, arrow=True)
+        else:
+            s.line(276, y, 182, y, LINE, 1.8, arrow=True)
+        s.text(229, y - 4, n, 10, color=MUTED)
+    s.line(442, 150, 476, 150, LINE, 1.8, arrow=True)
+    s.text(459, 144, "TXCAN", 9, color=MUTED)
+    s.line(476, 190, 442, 190, LINE, 1.8, arrow=True)
+    s.text(459, 204, "RXCAN", 9, color=MUTED)
+    s.line(622, 150, 760, 150, ORANGE, 3)
+    s.line(622, 190, 760, 190, BLUE, 3)
+    s.text(770, 154, "CANH", 12, "start", ORANGE, "bold")
+    s.text(770, 194, "CANL", 12, "start", BLUE, "bold")
+    s.text(450, 284, "MCP2515: 프레임 만들기, 비트 타이밍, 중재, CRC, 오류 카운터, 수신 필터, 버퍼를 하드웨어로 처리한다", 12, color=INK)
+    s.text(450, 304, "트랜시버: MCP2515의 디지털 신호(TX/RX)를 CANH/CANL 차동 전압으로 바꾼다", 12, color=INK)
+    s.text(450, 330, "MCP2515는 SPI 장치(16장)이므로, SPI가 있는 어느 MCU에서든 CAN을 쓸 수 있다", 12, color=MUTED)
+    s.save("ch17/fig17-7-mcp2515-wiring.svg")
 
 
 if __name__ == "__main__":

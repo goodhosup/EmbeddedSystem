@@ -120,7 +120,7 @@ uint8_t spi_xfer(uint8_t out)
 
 > ⚠️ 주의: 이 장의 예제에서 쓰는 W25Q 계열 SPI 플래시는 3.3 V 칩입니다. 5 V 우노의 SCK, MOSI, CS를 직접 연결하면 플래시의 입력에 5 V가 걸립니다. 우노에서는 74LVC245나 74HC4050 같은 레벨 변환 칩(또는 레벨 변환이 내장된 모듈)을 거치세요. MISO 방향(3.3 V → 5 V)은 ATmega328P가 3.3 V를 High로 읽는 데 여유가 적지만(2장, VIH = 3.0 V) 대개 동작합니다. NUCLEO는 3.3 V라 바로 연결할 수 있습니다.
 
-> 🔧 ATmega128에서는: SPI 레지스터와 비트는 같고, 핀은 SS = PB0, SCK = PB1, MOSI = PB2, MISO = PB3입니다. 5장에서 본 것처럼 ATmega128의 ISP 프로그래밍은 SPI 핀이 아니라 PE0, PE1을 쓰므로, ATmega328P와 달리 SPI 장치를 연결해도 ISP 업로드를 방해하지 않습니다.
+> 🔧 ATmega128에서는: SPI 레지스터와 비트는 같고, 핀은 SS = PB0, SCK = PB1, MOSI = PB2, MISO = PB3입니다. 5장에서 본 것처럼 ATmega128의 ISP 데이터 핀(PDI = PE0, PDO = PE1)은 SPI 핀과 다르지만, ISP 클럭(SCK)은 SPI와 같은 PB1을 씁니다. 그래서 SCK에 연결된 SPI 장치가 업로드 중의 클럭에 반응할 수 있습니다. 슬레이브의 CS에 풀업 저항(예: 10 kΩ)을 달아, MCU가 리셋되어 핀을 놓고 있는 업로드 동안에도 슬레이브가 선택되지 않게 하세요. 이 방법은 ATmega328P에서도 같은 이유로 권장됩니다.
 
 ## 16.7 STM32: SPI 주변장치
 

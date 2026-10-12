@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="830" height="314" viewBox="0 0 830 314" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="415.0" y="24.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 17-4  동시에 보낸 두 노드의 비트 단위 중재 (0 = 우성이 이긴다)</text>
+  <line x1="575.0" y1="74.0" x2="575.0" y2="236.0" stroke="#d64545" stroke-width="1.2" stroke-dasharray="4 4"/>
+  <text x="575.0" y="68.0" font-size="12" text-anchor="middle" fill="#d64545" font-weight="normal">B는 1을 냈는데 버스가 0 → 중재 패배</text>
+  <text x="136.0" y="93.0" font-size="14" text-anchor="end" fill="#1f2933" font-weight="bold">노드 A</text>
+  <text x="136.0" y="110.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">ID 0x123 (더 작음)</text>
+  <line x1="150.0" y1="106.0" x2="200.0" y2="106.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="200.0" y1="106.0" x2="250.0" y2="106.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="250.0" y1="106.0" x2="300.0" y2="106.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="300.0" y1="80.0" x2="300.0" y2="106.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="300.0" y1="80.0" x2="350.0" y2="80.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="350.0" y1="80.0" x2="350.0" y2="106.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="350.0" y1="106.0" x2="400.0" y2="106.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="400.0" y1="106.0" x2="450.0" y2="106.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="450.0" y1="80.0" x2="450.0" y2="106.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="450.0" y1="80.0" x2="500.0" y2="80.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="500.0" y1="80.0" x2="500.0" y2="106.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="500.0" y1="106.0" x2="550.0" y2="106.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="550.0" y1="106.0" x2="600.0" y2="106.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="600.0" y1="106.0" x2="650.0" y2="106.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="650.0" y1="80.0" x2="650.0" y2="106.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="650.0" y1="80.0" x2="700.0" y2="80.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="700.0" y1="80.0" x2="750.0" y2="80.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="750.0" y1="93.0" x2="800.0" y2="93.0" stroke="#616e7c" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="136.0" y="151.0" font-size="14" text-anchor="end" fill="#1f2933" font-weight="bold">노드 B</text>
+  <text x="136.0" y="168.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">ID 0x12D</text>
+  <line x1="150.0" y1="164.0" x2="200.0" y2="164.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="200.0" y1="164.0" x2="250.0" y2="164.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="250.0" y1="164.0" x2="300.0" y2="164.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="300.0" y1="138.0" x2="300.0" y2="164.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="300.0" y1="138.0" x2="350.0" y2="138.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="350.0" y1="138.0" x2="350.0" y2="164.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="350.0" y1="164.0" x2="400.0" y2="164.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="400.0" y1="164.0" x2="450.0" y2="164.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="450.0" y1="138.0" x2="450.0" y2="164.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="450.0" y1="138.0" x2="500.0" y2="138.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="500.0" y1="138.0" x2="500.0" y2="164.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="500.0" y1="164.0" x2="550.0" y2="164.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="550.0" y1="138.0" x2="550.0" y2="164.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="550.0" y1="138.0" x2="600.0" y2="138.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="600.0" y1="151.0" x2="650.0" y2="151.0" stroke="#616e7c" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="625.0" y="134.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">듣기만</text>
+  <line x1="650.0" y1="151.0" x2="700.0" y2="151.0" stroke="#616e7c" stroke-width="2" stroke-dasharray="6 4"/>
+  <line x1="700.0" y1="151.0" x2="750.0" y2="151.0" stroke="#616e7c" stroke-width="2" stroke-dasharray="6 4"/>
+  <line x1="750.0" y1="151.0" x2="800.0" y2="151.0" stroke="#616e7c" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="136.0" y="209.0" font-size="14" text-anchor="end" fill="#1f2933" font-weight="bold">버스</text>
+  <text x="136.0" y="226.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">와이어드 AND</text>
+  <line x1="150.0" y1="222.0" x2="200.0" y2="222.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="200.0" y1="222.0" x2="250.0" y2="222.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="250.0" y1="222.0" x2="300.0" y2="222.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="300.0" y1="196.0" x2="300.0" y2="222.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="300.0" y1="196.0" x2="350.0" y2="196.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="350.0" y1="196.0" x2="350.0" y2="222.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="350.0" y1="222.0" x2="400.0" y2="222.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="400.0" y1="222.0" x2="450.0" y2="222.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="450.0" y1="196.0" x2="450.0" y2="222.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="450.0" y1="196.0" x2="500.0" y2="196.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="500.0" y1="196.0" x2="500.0" y2="222.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="500.0" y1="222.0" x2="550.0" y2="222.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="550.0" y1="222.0" x2="600.0" y2="222.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="600.0" y1="222.0" x2="650.0" y2="222.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="650.0" y1="196.0" x2="650.0" y2="222.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="650.0" y1="196.0" x2="700.0" y2="196.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="700.0" y1="196.0" x2="750.0" y2="196.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="750.0" y1="209.0" x2="800.0" y2="209.0" stroke="#616e7c" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="500.0" y="264.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">이긴 A는 아무 일도 없었던 것처럼 계속 보낸다. 진 B는 버스가 빌 때 다시 시도한다</text>
+  <text x="500.0" y="284.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">식별자가 작을수록(앞쪽에 0이 많을수록) 우선순위가 높다</text>
+</svg>

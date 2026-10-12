@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="360" viewBox="0 0 900 360" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 17-7  MCU – SPI – MCP2515 – 트랜시버 – 버스 연결도</text>
+  <rect x="30.0" y="90.0" width="150.0" height="150.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="105.0" y="162.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">MCU</text>
+  <text x="105.0" y="181.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">우노 · STM32</text>
+  <rect x="260.0" y="70.0" width="380.0" height="190.0" rx="12" fill="#fafbfc" stroke="#616e7c" stroke-width="1.2"/>
+  <text x="450.0" y="92.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">CAN 모듈 (흔한 MCP2515 + TJA1050 보드)</text>
+  <rect x="280.0" y="110.0" width="160.0" height="120.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="360.0" y="167.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">MCP2515</text>
+  <text x="360.0" y="186.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">CAN 컨트롤러</text>
+  <rect x="480.0" y="110.0" width="140.0" height="120.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="550.0" y="167.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">TJA1050</text>
+  <text x="550.0" y="186.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">트랜시버</text>
+  <line x1="182.0" y1="112.0" x2="276.0" y2="112.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="229.0" y="108.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">SCK</text>
+  <line x1="182.0" y1="132.0" x2="276.0" y2="132.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="229.0" y="128.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">SI</text>
+  <line x1="276.0" y1="152.0" x2="182.0" y2="152.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="229.0" y="148.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">SO</text>
+  <line x1="182.0" y1="172.0" x2="276.0" y2="172.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="229.0" y="168.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">CS</text>
+  <line x1="276.0" y1="200.0" x2="182.0" y2="200.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="229.0" y="196.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">INT</text>
+  <line x1="442.0" y1="150.0" x2="476.0" y2="150.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="459.0" y="144.0" font-size="9" text-anchor="middle" fill="#616e7c" font-weight="normal">TXCAN</text>
+  <line x1="476.0" y1="190.0" x2="442.0" y2="190.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="459.0" y="204.0" font-size="9" text-anchor="middle" fill="#616e7c" font-weight="normal">RXCAN</text>
+  <line x1="622.0" y1="150.0" x2="760.0" y2="150.0" stroke="#d9730d" stroke-width="3"/>
+  <line x1="622.0" y1="190.0" x2="760.0" y2="190.0" stroke="#2f6fdf" stroke-width="3"/>
+  <text x="770.0" y="154.0" font-size="12" text-anchor="start" fill="#d9730d" font-weight="bold">CANH</text>
+  <text x="770.0" y="194.0" font-size="12" text-anchor="start" fill="#2f6fdf" font-weight="bold">CANL</text>
+  <text x="450.0" y="284.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">MCP2515: 프레임 만들기, 비트 타이밍, 중재, CRC, 오류 카운터, 수신 필터, 버퍼를 하드웨어로 처리한다</text>
+  <text x="450.0" y="304.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">트랜시버: MCP2515의 디지털 신호(TX/RX)를 CANH/CANL 차동 전압으로 바꾼다</text>
+  <text x="450.0" y="330.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">MCP2515는 SPI 장치(16장)이므로, SPI가 있는 어느 MCU에서든 CAN을 쓸 수 있다</text>
+</svg>

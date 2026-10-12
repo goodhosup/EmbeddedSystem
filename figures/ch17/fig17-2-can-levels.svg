@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="360" viewBox="0 0 900 360" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 17-2  CANH/CANL 차동 전압과 우성·열성</text>
+  <line x1="140.0" y1="290.0" x2="820.0" y2="290.0" stroke="#616e7c" stroke-width="1.2"/>
+  <line x1="135.0" y1="207.5" x2="820.0" y2="207.5" stroke="#e6eaef" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="130.0" y="211.5" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">1.5 V</text>
+  <line x1="135.0" y1="152.5" x2="820.0" y2="152.5" stroke="#e6eaef" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="130.0" y="156.5" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">2.5 V</text>
+  <line x1="135.0" y1="97.5" x2="820.0" y2="97.5" stroke="#e6eaef" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="130.0" y="101.5" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">3.5 V</text>
+  <text x="196.7" y="66.0" font-size="13" text-anchor="middle" fill="#2f9e44" font-weight="bold">열성</text>
+  <text x="196.7" y="84.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">논리 1</text>
+  <text x="196.7" y="316.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">차이 ≈ 0 V</text>
+  <text x="310.0" y="66.0" font-size="13" text-anchor="middle" fill="#d64545" font-weight="bold">우성</text>
+  <text x="310.0" y="84.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">논리 0</text>
+  <text x="310.0" y="316.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">차이 ≈ 2 V</text>
+  <text x="423.3" y="66.0" font-size="13" text-anchor="middle" fill="#d64545" font-weight="bold">우성</text>
+  <text x="423.3" y="84.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">논리 0</text>
+  <text x="423.3" y="316.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">차이 ≈ 2 V</text>
+  <text x="536.7" y="66.0" font-size="13" text-anchor="middle" fill="#2f9e44" font-weight="bold">열성</text>
+  <text x="536.7" y="84.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">논리 1</text>
+  <text x="536.7" y="316.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">차이 ≈ 0 V</text>
+  <text x="650.0" y="66.0" font-size="13" text-anchor="middle" fill="#d64545" font-weight="bold">우성</text>
+  <text x="650.0" y="84.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">논리 0</text>
+  <text x="650.0" y="316.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">차이 ≈ 2 V</text>
+  <text x="763.3" y="66.0" font-size="13" text-anchor="middle" fill="#2f9e44" font-weight="bold">열성</text>
+  <text x="763.3" y="84.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">논리 1</text>
+  <text x="763.3" y="316.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">차이 ≈ 0 V</text>
+  <path d="M140,152.5 L140.0,152.5 L253.3,152.5 L253.3,97.5 L366.7,97.5 L366.7,97.5 L480.0,97.5 L480.0,152.5 L593.3,152.5 L593.3,97.5 L706.7,97.5 L706.7,152.5 L820.0,152.5" stroke="#d9730d" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
+  <path d="M140,152.5 L140.0,152.5 L253.3,152.5 L253.3,207.5 L366.7,207.5 L366.7,207.5 L480.0,207.5 L480.0,152.5 L593.3,152.5 L593.3,207.5 L706.7,207.5 L706.7,152.5 L820.0,152.5" stroke="#2f6fdf" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
+  <text x="828.0" y="101.5" font-size="12" text-anchor="start" fill="#d9730d" font-weight="bold">CANH</text>
+  <text x="828.0" y="211.5" font-size="12" text-anchor="start" fill="#2f6fdf" font-weight="bold">CANL</text>
+  <text x="450.0" y="344.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">우성(0)은 트랜시버가 두 선을 벌려 놓은 상태, 열성(1)은 아무도 구동하지 않아 종단 저항이 두 선을 같게 만든 상태다</text>
+</svg>

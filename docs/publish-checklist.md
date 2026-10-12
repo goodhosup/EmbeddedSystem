@@ -12,5 +12,6 @@
 | `chapters/ch10-dma.md` | 173 | [확인 필요: DMEIF 발생 시 스트림 정지 여부] |
 | `chapters/ch11-low-power.md` | 186 | [확인 필요: 보드 리비전별 X2 장착 여부] |
 | `chapters/ch12-project-thermometer.md` | 73 | [확인 필요: TMP36 출력 용량성 부하 한계] |
+| `chapters/ch17-can.md` | 163 | [확인 필요: STM32F411 PA6의 FT 여부와 MCP2515 모듈별 전원 구성] |
 
-총 7건
+총 8건

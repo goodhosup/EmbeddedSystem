@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="330" viewBox="0 0 900 330" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 17-6  오류 상태 전이 (TEC: 송신 오류 카운터, REC: 수신 오류 카운터)</text>
+  <ellipse cx="150" cy="140" rx="115" ry="52" fill="#e1f4e5" stroke="#2f9e44" stroke-width="2"/>
+  <text x="150.0" y="134.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">Error Active</text>
+  <text x="150.0" y="156.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">정상. 오류를 보면 적극 알림</text>
+  <ellipse cx="450" cy="140" rx="115" ry="52" fill="#fdebd7" stroke="#d9730d" stroke-width="2"/>
+  <text x="450.0" y="134.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">Error Passive</text>
+  <text x="450.0" y="156.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">오류 알림을 조용히</text>
+  <ellipse cx="750" cy="140" rx="115" ry="52" fill="#fdecec" stroke="#d64545" stroke-width="2"/>
+  <text x="750.0" y="134.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">Bus Off</text>
+  <text x="750.0" y="156.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">버스에서 빠짐</text>
+  <path d="M262,122 Q300,90 338,122" stroke="#d9730d" stroke-width="2" fill="none" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <text x="300.0" y="88.0" font-size="12" text-anchor="middle" fill="#d9730d" font-weight="bold">TEC 또는 REC ≥ 128</text>
+  <path d="M338,160 Q300,192 262,160" stroke="#2f9e44" stroke-width="2" fill="none" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <text x="300.0" y="210.0" font-size="12" text-anchor="middle" fill="#2f9e44" font-weight="bold">둘 다 &lt; 128</text>
+  <line x1="566.0" y1="140.0" x2="632.0" y2="140.0" stroke="#d64545" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="600.0" y="128.0" font-size="12" text-anchor="middle" fill="#d64545" font-weight="bold">TEC &gt; 255</text>
+  <path d="M750,194 Q450,300 150,194" stroke="#616e7c" stroke-width="1.5" fill="none" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <text x="450.0" y="268.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">열성 11비트를 128번 관찰한 뒤 복귀 (보통 소프트웨어가 재시작을 허가)</text>
+  <text x="450.0" y="312.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">오류를 보내면 TEC가 8 늘고, 성공하면 1 준다. 고장 난 노드가 스스로 물러나 버스 전체를 지킨다</text>
+</svg>
