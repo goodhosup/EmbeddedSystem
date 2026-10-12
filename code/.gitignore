@@ -15,3 +15,6 @@ ch28-realtime/host/rta
 *.gcda
 *.gcno
 *.gcov
+# 33장: 키는 저장소에 올리지 않는다
+ch33-security/keys/
+*.pem

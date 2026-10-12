@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="460" viewBox="0 0 900 460" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 33-3  TrustZone-M 보안/비보안 영역 분리</text>
+  <rect x="60.0" y="70.0" width="360.0" height="300.0" rx="12" fill="#e1f4e5" stroke="#2f9e44" stroke-width="2"/>
+  <text x="240.0" y="98.0" font-size="15" text-anchor="middle" fill="#2f9e44" font-weight="bold">보안 영역 (Secure)</text>
+  <rect x="90.0" y="120.0" width="300.0" height="42.0" rx="6" fill="#ffffff" stroke="#2f9e44" stroke-width="1.2"/>
+  <text x="240.0" y="146.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">보안 부트, 키 저장</text>
+  <rect x="90.0" y="176.0" width="300.0" height="42.0" rx="6" fill="#ffffff" stroke="#2f9e44" stroke-width="1.2"/>
+  <text x="240.0" y="202.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">암호 서비스 (서명, 복호화)</text>
+  <rect x="90.0" y="232.0" width="300.0" height="42.0" rx="6" fill="#ffffff" stroke="#2f9e44" stroke-width="1.2"/>
+  <text x="240.0" y="258.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">보안 Flash, 보안 RAM</text>
+  <rect x="90.0" y="288.0" width="300.0" height="42.0" rx="6" fill="#ffffff" stroke="#2f9e44" stroke-width="1.2"/>
+  <text x="240.0" y="314.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">보안 주변장치 (암호 가속기 등)</text>
+  <rect x="480.0" y="70.0" width="360.0" height="300.0" rx="12" fill="#e3edfd" stroke="#2f6fdf" stroke-width="2"/>
+  <text x="660.0" y="98.0" font-size="15" text-anchor="middle" fill="#2f6fdf" font-weight="bold">비보안 영역 (Non-secure)</text>
+  <rect x="510.0" y="120.0" width="300.0" height="42.0" rx="6" fill="#ffffff" stroke="#2f6fdf" stroke-width="1.2"/>
+  <text x="660.0" y="146.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">애플리케이션, RTOS</text>
+  <rect x="510.0" y="176.0" width="300.0" height="42.0" rx="6" fill="#ffffff" stroke="#2f6fdf" stroke-width="1.2"/>
+  <text x="660.0" y="202.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">통신 스택 (Wi-Fi, BLE, TLS 상위)</text>
+  <rect x="510.0" y="232.0" width="300.0" height="42.0" rx="6" fill="#ffffff" stroke="#2f6fdf" stroke-width="1.2"/>
+  <text x="660.0" y="258.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">비보안 Flash, RAM</text>
+  <rect x="510.0" y="288.0" width="300.0" height="42.0" rx="6" fill="#ffffff" stroke="#2f6fdf" stroke-width="1.2"/>
+  <text x="660.0" y="314.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">일반 주변장치</text>
+  <line x1="478.0" y1="160.0" x2="422.0" y2="160.0" stroke="#334e68" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="450.0" y="150.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="bold">NSC</text>
+  <text x="450.0" y="182.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">함수 호출만</text>
+  <line x1="422.0" y1="250.0" x2="478.0" y2="250.0" stroke="#d64545" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="450.0" y="240.0" font-size="10" text-anchor="middle" fill="#d64545" font-weight="bold">직접 접근</text>
+  <text x="450.0" y="272.0" font-size="10" text-anchor="middle" fill="#d64545" font-weight="bold">→ 폴트</text>
+  <text x="450.0" y="404.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">비보안 코드가 해킹당해도 보안 영역의 키와 코드는 읽거나 바꿀 수 없다. 정해진 입구(NSC, SG 명령)로만 서비스를 부른다</text>
+  <text x="450.0" y="426.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">Armv8-M(Cortex-M23, M33, M55, M85)의 기능. 이 책의 STM32F411(Cortex-M4)에는 없다: STM32L5, U5, H5 등</text>
+</svg>
