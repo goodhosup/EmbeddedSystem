@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" viewBox="0 0 900 560" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 18-3  열거 과정 (단순화한 순서)</text>
+  <rect x="140.0" y="50.0" width="160.0" height="40.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="220.0" y="75.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">호스트</text>
+  <rect x="600.0" y="50.0" width="160.0" height="40.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="680.0" y="75.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">디바이스</text>
+  <line x1="220.0" y1="92.0" x2="220.0" y2="540.0" stroke="#616e7c" stroke-width="1.2" stroke-dasharray="4 4"/>
+  <line x1="680.0" y1="92.0" x2="680.0" y2="540.0" stroke="#616e7c" stroke-width="1.2" stroke-dasharray="4 4"/>
+  <line x1="676.0" y1="118.0" x2="224.0" y2="118.0" stroke="#d9730d" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="450.0" y="112.0" font-size="12" text-anchor="middle" fill="#d9730d" font-weight="normal">① 연결: D+ 풀업 → 호스트가 감지</text>
+  <line x1="224.0" y1="150.0" x2="676.0" y2="150.0" stroke="#2f6fdf" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="450.0" y="144.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">② 버스 리셋 (10 ms 이상)</text>
+  <line x1="224.0" y1="182.0" x2="676.0" y2="182.0" stroke="#2f6fdf" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="450.0" y="176.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">③ GET_DESCRIPTOR (디바이스) 주소 0</text>
+  <line x1="676.0" y1="214.0" x2="224.0" y2="214.0" stroke="#d9730d" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="450.0" y="208.0" font-size="12" text-anchor="middle" fill="#d9730d" font-weight="normal">    디바이스 디스크립터 (EP0 최대 패킷 크기 등)</text>
+  <line x1="224.0" y1="246.0" x2="676.0" y2="246.0" stroke="#2f6fdf" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="450.0" y="240.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">④ SET_ADDRESS (예: 5)</text>
+  <line x1="224.0" y1="278.0" x2="676.0" y2="278.0" stroke="#2f6fdf" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="450.0" y="272.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">⑤ GET_DESCRIPTOR (디바이스, 전체) 주소 5</text>
+  <line x1="676.0" y1="310.0" x2="224.0" y2="310.0" stroke="#d9730d" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="450.0" y="304.0" font-size="12" text-anchor="middle" fill="#d9730d" font-weight="normal">    VID, PID, 클래스, 구성 수</text>
+  <line x1="224.0" y1="342.0" x2="676.0" y2="342.0" stroke="#2f6fdf" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="450.0" y="336.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">⑥ GET_DESCRIPTOR (구성, 전체)</text>
+  <line x1="676.0" y1="374.0" x2="224.0" y2="374.0" stroke="#d9730d" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="450.0" y="368.0" font-size="12" text-anchor="middle" fill="#d9730d" font-weight="normal">    구성 + 인터페이스 + 엔드포인트 디스크립터</text>
+  <line x1="224.0" y1="406.0" x2="676.0" y2="406.0" stroke="#2f6fdf" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="450.0" y="400.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">⑦ GET_DESCRIPTOR (문자열)</text>
+  <line x1="676.0" y1="438.0" x2="224.0" y2="438.0" stroke="#d9730d" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="450.0" y="432.0" font-size="12" text-anchor="middle" fill="#d9730d" font-weight="normal">    제조사, 제품 이름, 일련번호</text>
+  <line x1="224.0" y1="470.0" x2="676.0" y2="470.0" stroke="#2f6fdf" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="450.0" y="464.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">⑧ SET_CONFIGURATION (1)</text>
+  <line x1="224.0" y1="502.0" x2="676.0" y2="502.0" stroke="#2f6fdf" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="450.0" y="496.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">⑨ 클래스 요청 (예: CDC SET_LINE_CODING)</text>
+  <text x="450.0" y="548.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">모두 엔드포인트 0의 컨트롤 전송이다. 이 과정이 끝나야 운영체제가 드라이버를 붙이고 장치를 쓸 수 있다</text>
+</svg>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="380" viewBox="0 0 900 380" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 18-2  호스트–허브–디바이스 계층 구조 (계층형 스타)</text>
+  <rect x="370.0" y="60.0" width="160.0" height="50.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="450.0" y="82.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">호스트</text>
+  <text x="450.0" y="101.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">루트 허브 포함</text>
+  <rect x="110.0" y="160.0" width="120.0" height="46.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="170.0" y="188.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">허브</text>
+  <rect x="390.0" y="160.0" width="120.0" height="46.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="450.0" y="180.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">키보드</text>
+  <text x="450.0" y="199.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">디바이스</text>
+  <rect x="670.0" y="160.0" width="120.0" height="46.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="730.0" y="188.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">허브</text>
+  <line x1="450.0" y1="112.0" x2="170.0" y2="158.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <line x1="450.0" y1="112.0" x2="450.0" y2="158.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <line x1="450.0" y1="112.0" x2="730.0" y2="158.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <rect x="40.0" y="260.0" width="120.0" height="46.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="100.0" y="280.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">마우스</text>
+  <text x="100.0" y="299.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">디바이스</text>
+  <rect x="180.0" y="260.0" width="120.0" height="46.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="240.0" y="280.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">STM32</text>
+  <text x="240.0" y="299.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">디바이스</text>
+  <rect x="600.0" y="260.0" width="120.0" height="46.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="660.0" y="280.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">USB 메모리</text>
+  <text x="660.0" y="299.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">디바이스</text>
+  <rect x="740.0" y="260.0" width="120.0" height="46.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="800.0" y="288.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">허브</text>
+  <line x1="170.0" y1="208.0" x2="100.0" y2="258.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <line x1="170.0" y1="208.0" x2="240.0" y2="258.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <line x1="730.0" y1="208.0" x2="660.0" y2="258.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <line x1="730.0" y1="208.0" x2="800.0" y2="258.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="450.0" y="340.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">모든 통신은 호스트가 시작한다. 디바이스는 호스트가 물어볼 때만 대답한다 (호스트 중심, 폴링)</text>
+  <text x="450.0" y="362.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">주소 1~127, 허브는 최대 5단까지. 디바이스끼리는 직접 통신하지 않는다</text>
+</svg>

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="400" viewBox="0 0 900 400" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 18-1  USB 물리 계층: 전원 두 선과 차동 데이터 두 선 (USB 2.0)</text>
+  <rect x="40.0" y="80.0" width="170.0" height="200.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="125.0" y="177.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">호스트</text>
+  <text x="125.0" y="196.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">PC</text>
+  <rect x="690.0" y="80.0" width="170.0" height="200.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="775.0" y="177.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">디바이스</text>
+  <text x="775.0" y="196.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">STM32</text>
+  <rect x="690.0" y="80.0" width="170.0" height="200.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="2"/>
+  <text x="800.0" y="140.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">디바이스</text>
+  <text x="800.0" y="160.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">STM32</text>
+  <line x1="212.0" y1="110.0" x2="686.0" y2="110.0" stroke="#d64545" stroke-width="3"/>
+  <text x="449.0" y="102.0" font-size="12" text-anchor="middle" fill="#d64545" font-weight="bold">VBUS (+5 V)</text>
+  <line x1="212.0" y1="160.0" x2="686.0" y2="160.0" stroke="#d9730d" stroke-width="3"/>
+  <text x="449.0" y="152.0" font-size="12" text-anchor="middle" fill="#d9730d" font-weight="bold">D+</text>
+  <line x1="212.0" y1="200.0" x2="686.0" y2="200.0" stroke="#2f6fdf" stroke-width="3"/>
+  <text x="449.0" y="192.0" font-size="12" text-anchor="middle" fill="#2f6fdf" font-weight="bold">D−</text>
+  <line x1="212.0" y1="250.0" x2="686.0" y2="250.0" stroke="#1f2933" stroke-width="3"/>
+  <text x="449.0" y="242.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">GND</text>
+  <text x="449.0" y="182.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">꼬인 쌍선 (90 Ω 차동 임피던스)</text>
+  <line x1="716.0" y1="214.0" x2="744.0" y2="214.0" stroke="#334e68" stroke-width="2.5"/>
+  <text x="730.0" y="206.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">3.3 V</text>
+  <line x1="730.0" y1="214.0" x2="730.0" y2="222.0" stroke="#334e68" stroke-width="1.5"/>
+  <line x1="730.0" y1="222.0" x2="730.0" y2="222.0" stroke="#334e68" stroke-width="2"/>
+  <path d="M730.0,222.0 L738.0,225.3 L722.0,232.0 L738.0,238.7 L722.0,245.3 L738.0,252.0 L722.0,258.7 L730.0,262.0" stroke="#334e68" stroke-width="2" fill="none" stroke-linejoin="round"/>
+  <line x1="730.0" y1="262.0" x2="730.0" y2="262.0" stroke="#334e68" stroke-width="2"/>
+  <path d="M730,262 L730,272 L700,272 L700,160 L686,160" stroke="#d9730d" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+  <text x="748.0" y="246.0" font-size="11" text-anchor="start" fill="#d9730d" font-weight="bold">1.5 kΩ</text>
+  <text x="450.0" y="312.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">디바이스가 D+를 1.5 kΩ으로 3.3 V에 끌어올리면 호스트는 "Full Speed 장치가 연결되었다"고 안다</text>
+  <text x="450.0" y="334.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">(Low Speed 장치는 D−를 끌어올린다. 호스트 쪽에는 두 선에 15 kΩ 풀다운이 있다)</text>
+  <text x="450.0" y="360.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">Low Speed 1.5 Mbps · Full Speed 12 Mbps · High Speed 480 Mbps (USB 2.0).  NRZI 부호화와 비트 스터핑으로 클럭을 실어 보낸다</text>
+</svg>

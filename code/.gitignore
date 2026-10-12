@@ -4,3 +4,4 @@
 *.map
 *.o
 build/
+ch18-usb/stm32/lib/

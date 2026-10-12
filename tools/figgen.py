@@ -3314,6 +3314,133 @@ def fig_17_7():
     s.save("ch17/fig17-7-mcp2515-wiring.svg")
 
 
+# ---------------------------------------------------------------------------
+# 18장 USB
+# ---------------------------------------------------------------------------
+
+def fig_18_1():
+    s = Svg(900, 400)
+    s.text(450, 30, "그림 18-1  USB 물리 계층: 전원 두 선과 차동 데이터 두 선 (USB 2.0)", 16, weight="bold")
+    s.box(40, 80, 170, 200, "호스트", "PC", GRAY_BG, LINE, 15)
+    s.box(690, 80, 170, 200, "디바이스", "STM32", BLUE_BG, BLUE, 15)
+    s.rect(690, 80, 170, 200, BLUE_BG, BLUE, 8, 2)
+    s.text(800, 140, "디바이스", 15, weight="bold")
+    s.text(800, 160, "STM32", 12, color=MUTED)
+    wires = [("VBUS (+5 V)", 110, RED), ("D+", 160, ORANGE), ("D−", 200, BLUE), ("GND", 250, INK)]
+    for n, y, col in wires:
+        s.line(212, y, 686, y, col, 3)
+        s.text(449, y - 8, n, 12, color=col, weight="bold")
+    s.text(449, 182, "꼬인 쌍선 (90 Ω 차동 임피던스)", 10, color=MUTED)
+    # 1.5k 풀업 (디바이스 안쪽, 3.3 V로)
+    supply(s, 730, 214, "3.3 V")
+    s.line(730, 214, 730, 222, LINE, 1.5)
+    resistor_v(s, 730, 222, 262, None)
+    s.path("M730,262 L730,272 L700,272 L700,160 L686,160", ORANGE, 1.5)
+    s.text(748, 246, "1.5 kΩ", 11, "start", ORANGE, "bold")
+    s.text(450, 312, "디바이스가 D+를 1.5 kΩ으로 3.3 V에 끌어올리면 호스트는 \"Full Speed 장치가 연결되었다\"고 안다", 12, color=INK)
+    s.text(450, 334, "(Low Speed 장치는 D−를 끌어올린다. 호스트 쪽에는 두 선에 15 kΩ 풀다운이 있다)", 11, color=MUTED)
+    s.text(450, 360, "Low Speed 1.5 Mbps · Full Speed 12 Mbps · High Speed 480 Mbps (USB 2.0).  NRZI 부호화와 비트 스터핑으로 클럭을 실어 보낸다", 11, color=MUTED)
+    s.save("ch18/fig18-1-usb-physical.svg")
+
+
+def fig_18_2():
+    s = Svg(900, 380)
+    s.text(450, 30, "그림 18-2  호스트–허브–디바이스 계층 구조 (계층형 스타)", 16, weight="bold")
+    s.box(370, 60, 160, 50, "호스트", "루트 허브 포함", GRAY_BG, LINE, 14)
+    hubs = [(170, "허브"), (450, "디바이스", ), (730, "허브")]
+    s.box(110, 160, 120, 46, "허브", None, ORANGE_BG, ORANGE, 13)
+    s.box(390, 160, 120, 46, "키보드", "디바이스", BLUE_BG, BLUE, 12)
+    s.box(670, 160, 120, 46, "허브", None, ORANGE_BG, ORANGE, 13)
+    for x in (170, 450, 730):
+        s.line(450, 112, x, 158, LINE, 1.8, arrow=True)
+    leaves = [(40, "마우스"), (180, "STM32"), (600, "USB 메모리"), (740, "허브")]
+    for x, n in leaves:
+        s.box(x, 260, 120, 46, n, "디바이스" if n != "허브" else None, BLUE_BG if n != "허브" else ORANGE_BG,
+              BLUE if n != "허브" else ORANGE, 12)
+    s.line(170, 208, 100, 258, LINE, 1.8, arrow=True)
+    s.line(170, 208, 240, 258, LINE, 1.8, arrow=True)
+    s.line(730, 208, 660, 258, LINE, 1.8, arrow=True)
+    s.line(730, 208, 800, 258, LINE, 1.8, arrow=True)
+    s.text(450, 340, "모든 통신은 호스트가 시작한다. 디바이스는 호스트가 물어볼 때만 대답한다 (호스트 중심, 폴링)", 12, color=INK)
+    s.text(450, 362, "주소 1~127, 허브는 최대 5단까지. 디바이스끼리는 직접 통신하지 않는다", 11, color=MUTED)
+    s.save("ch18/fig18-2-usb-topology.svg")
+
+
+def fig_18_3():
+    s = Svg(900, 560)
+    s.text(450, 30, "그림 18-3  열거 과정 (단순화한 순서)", 16, weight="bold")
+    xh, xd = 220, 680
+    s.box(xh - 80, 50, 160, 40, "호스트", None, GRAY_BG, LINE, 14)
+    s.box(xd - 80, 50, 160, 40, "디바이스", None, BLUE_BG, BLUE, 14)
+    s.line(xh, 92, xh, 540, MUTED, 1.2, "4 4")
+    s.line(xd, 92, xd, 540, MUTED, 1.2, "4 4")
+    steps = [("d", "① 연결: D+ 풀업 → 호스트가 감지"),
+             ("h", "② 버스 리셋 (10 ms 이상)"),
+             ("h", "③ GET_DESCRIPTOR (디바이스) 주소 0"),
+             ("d", "    디바이스 디스크립터 (EP0 최대 패킷 크기 등)"),
+             ("h", "④ SET_ADDRESS (예: 5)"),
+             ("h", "⑤ GET_DESCRIPTOR (디바이스, 전체) 주소 5"),
+             ("d", "    VID, PID, 클래스, 구성 수"),
+             ("h", "⑥ GET_DESCRIPTOR (구성, 전체)"),
+             ("d", "    구성 + 인터페이스 + 엔드포인트 디스크립터"),
+             ("h", "⑦ GET_DESCRIPTOR (문자열)"),
+             ("d", "    제조사, 제품 이름, 일련번호"),
+             ("h", "⑧ SET_CONFIGURATION (1)"),
+             ("h", "⑨ 클래스 요청 (예: CDC SET_LINE_CODING)")]
+    for i, (who, t) in enumerate(steps):
+        y = 118 + i * 32
+        if who == "h":
+            s.line(xh + 4, y, xd - 4, y, BLUE, 1.8, arrow=True)
+        else:
+            s.line(xd - 4, y, xh + 4, y, ORANGE, 1.8, arrow=True)
+        s.text(450, y - 6, t, 12, color=INK if who == "h" else ORANGE)
+    s.text(450, 548, "모두 엔드포인트 0의 컨트롤 전송이다. 이 과정이 끝나야 운영체제가 드라이버를 붙이고 장치를 쓸 수 있다", 12, color=MUTED)
+    s.save("ch18/fig18-3-enumeration.svg")
+
+
+def fig_18_4():
+    s = Svg(900, 430)
+    s.text(450, 30, "그림 18-4  디스크립터 트리 (CDC 가상 시리얼 장치의 예)", 16, weight="bold")
+    s.box(340, 56, 220, 54, "디바이스 디스크립터", "VID, PID, USB 버전, EP0 크기", GRAY_BG, LINE, 13)
+    s.box(340, 140, 220, 54, "구성 디스크립터", "전력(mA), 인터페이스 수", ORANGE_BG, ORANGE, 13)
+    s.line(450, 112, 450, 138, LINE, 1.8, arrow=True)
+    s.box(120, 226, 250, 54, "인터페이스 0: CDC 통신", "클래스 0x02, 서브클래스 ACM", BLUE_BG, BLUE, 12)
+    s.box(530, 226, 250, 54, "인터페이스 1: CDC 데이터", "클래스 0x0A", BLUE_BG, BLUE, 12)
+    s.line(420, 196, 250, 224, LINE, 1.8, arrow=True)
+    s.line(480, 196, 650, 224, LINE, 1.8, arrow=True)
+    s.box(150, 316, 190, 54, "엔드포인트 0x81", "인터럽트 IN (알림)", GREEN_BG, GREEN, 12)
+    s.box(500, 316, 140, 54, "엔드포인트 0x02", "벌크 OUT", GREEN_BG, GREEN, 12)
+    s.box(660, 316, 140, 54, "엔드포인트 0x82", "벌크 IN", GREEN_BG, GREEN, 12)
+    s.line(245, 282, 245, 314, LINE, 1.8, arrow=True)
+    s.line(620, 282, 570, 314, LINE, 1.8, arrow=True)
+    s.line(690, 282, 730, 314, LINE, 1.8, arrow=True)
+    s.text(450, 398, "엔드포인트 주소의 최상위 비트가 방향이다: 0x8n = IN(디바이스 → 호스트), 0x0n = OUT(호스트 → 디바이스)", 12, color=INK)
+    s.text(450, 418, "엔드포인트 0은 모든 장치에 있고 디스크립터에 적지 않는다 (컨트롤 전송 전용)", 11, color=MUTED)
+    s.save("ch18/fig18-4-descriptors.svg")
+
+
+def fig_18_5():
+    s = Svg(900, 360)
+    s.text(450, 30, "그림 18-5  네 가지 전송 유형 비교", 16, weight="bold")
+    rows = [("유형", "보장하는 것", "보장하지 않는 것", "쓰임"),
+            ("컨트롤", "도착 (재전송), 형식", "속도", "열거, 설정, 명령 (EP0)"),
+            ("벌크", "도착 (재전송)", "대역폭, 지연", "저장 장치, 가상 시리얼, 프린터"),
+            ("인터럽트", "최대 지연 (폴링 간격), 도착", "큰 대역폭", "키보드, 마우스, 게임패드 (HID)"),
+            ("등시", "대역폭, 일정한 간격", "도착 (재전송 없음)", "오디오, 영상")]
+    ws = [110, 230, 200, 300]
+    x0, y0, rh = 30, 60, 44
+    for r, row in enumerate(rows):
+        x = x0
+        for c, (v, w) in enumerate(zip(row, ws)):
+            fill = (GRAY_BG if r == 0 else ("#ffffff" if c else BLUE_BG))
+            s.rect(x, y0 + r * rh, w, rh, fill, LINE, 0, 1)
+            s.text(x + w / 2, y0 + r * rh + 27, v, 13 if r == 0 else 12, weight="bold" if r == 0 or c == 0 else "normal")
+            x += w
+    s.text(450, 300, "인터럽트 전송도 인터럽트가 아니다: 호스트가 정해진 간격으로 \"보낼 것 있나?\" 하고 물어 가는 폴링이다", 12, color=INK)
+    s.text(450, 322, "Full Speed 최대 패킷 크기: 컨트롤 64, 벌크 64, 인터럽트 64, 등시 1023바이트", 11, color=MUTED)
+    s.save("ch18/fig18-5-transfer-types.svg")
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("fig_") and callable(fn):

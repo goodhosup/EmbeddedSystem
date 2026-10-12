@@ -66,6 +66,7 @@ typedef struct {
 #define RCC_CR_HSIRDY       (1u << 1)
 #define RCC_CR_HSEON        (1u << 16)
 #define RCC_CR_HSERDY       (1u << 17)
+#define RCC_CR_HSEBYP       (1u << 18)
 #define RCC_CR_PLLON        (1u << 24)
 #define RCC_CR_PLLRDY       (1u << 25)
 
@@ -96,6 +97,9 @@ typedef struct {
 #define RCC_AHB1ENR_GPIOCEN (1u << 2)
 #define RCC_AHB1ENR_DMA1EN  (1u << 21)
 #define RCC_AHB1ENR_DMA2EN  (1u << 22)
+
+/* RCC_AHB2ENR */
+#define RCC_AHB2ENR_OTGFSEN (1u << 7)
 
 /* RCC_APB1ENR */
 #define RCC_APB1ENR_TIM2EN  (1u << 0)
@@ -526,6 +530,7 @@ typedef struct {
 #define USART2_IRQn     38
 #define EXTI15_10_IRQn  40
 #define DMA2_Stream0_IRQn 56
+#define OTG_FS_IRQn     67
 
 /* ---- Cortex-M4 코어 주변장치 ---- */
 typedef struct {

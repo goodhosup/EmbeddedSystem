@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="430" viewBox="0 0 900 430" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 18-4  디스크립터 트리 (CDC 가상 시리얼 장치의 예)</text>
+  <rect x="340.0" y="56.0" width="220.0" height="54.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="450.0" y="80.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">디바이스 디스크립터</text>
+  <text x="450.0" y="99.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">VID, PID, USB 버전, EP0 크기</text>
+  <rect x="340.0" y="140.0" width="220.0" height="54.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="450.0" y="164.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">구성 디스크립터</text>
+  <text x="450.0" y="183.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">전력(mA), 인터페이스 수</text>
+  <line x1="450.0" y1="112.0" x2="450.0" y2="138.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <rect x="120.0" y="226.0" width="250.0" height="54.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="245.0" y="250.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">인터페이스 0: CDC 통신</text>
+  <text x="245.0" y="269.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">클래스 0x02, 서브클래스 ACM</text>
+  <rect x="530.0" y="226.0" width="250.0" height="54.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="655.0" y="250.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">인터페이스 1: CDC 데이터</text>
+  <text x="655.0" y="269.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">클래스 0x0A</text>
+  <line x1="420.0" y1="196.0" x2="250.0" y2="224.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <line x1="480.0" y1="196.0" x2="650.0" y2="224.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <rect x="150.0" y="316.0" width="190.0" height="54.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="245.0" y="340.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">엔드포인트 0x81</text>
+  <text x="245.0" y="359.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">인터럽트 IN (알림)</text>
+  <rect x="500.0" y="316.0" width="140.0" height="54.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="570.0" y="340.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">엔드포인트 0x02</text>
+  <text x="570.0" y="359.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">벌크 OUT</text>
+  <rect x="660.0" y="316.0" width="140.0" height="54.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="730.0" y="340.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">엔드포인트 0x82</text>
+  <text x="730.0" y="359.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">벌크 IN</text>
+  <line x1="245.0" y1="282.0" x2="245.0" y2="314.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <line x1="620.0" y1="282.0" x2="570.0" y2="314.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <line x1="690.0" y1="282.0" x2="730.0" y2="314.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="450.0" y="398.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">엔드포인트 주소의 최상위 비트가 방향이다: 0x8n = IN(디바이스 → 호스트), 0x0n = OUT(호스트 → 디바이스)</text>
+  <text x="450.0" y="418.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">엔드포인트 0은 모든 장치에 있고 디스크립터에 적지 않는다 (컨트롤 전송 전용)</text>
+</svg>
