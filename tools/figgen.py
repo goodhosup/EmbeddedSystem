@@ -2246,12 +2246,14 @@ def fig_12_1():
     s.text(214, 170, "+Vs", 10, "start", MUTED)
     s.text(214, 200, "Vout", 10, "start", ORANGE)
     s.text(214, 240, "GND", 10, "start", MUTED)
-    # 커패시터
-    s.line(300, 200, 300, 222, ORANGE, 1.5)
-    s.line(290, 222, 310, 222, LINE, 2)
-    s.line(290, 228, 310, 228, LINE, 2)
-    s.line(300, 228, 300, 300, LINE, 1.5)
-    s.text(286, 240, "0.1 µF", 10, "end", MUTED)
+    # 바이패스 커패시터: +Vs와 GND 사이 (센서 가까이)
+    dot(s, 240, 175)
+    s.line(240, 175, 240, 120, RED, 1.5)
+    s.line(230, 120, 250, 120, LINE, 2)
+    s.line(230, 114, 250, 114, LINE, 2)
+    s.line(240, 114, 240, 96, LINE, 1.5)
+    s.text(256, 112, "0.1 µF", 10, "start", MUTED)
+    s.text(240, 90, "GND", 10, color=MUTED)
     s.text(380, 255, "← 내부 1.1 V 기준", 10, "start", MUTED)
     # 버튼, LED
     s.box(650, 128, 140, 44, "버튼", "D2 ↔ GND (풀업)", GREEN_BG, GREEN, 13)
@@ -2262,7 +2264,7 @@ def fig_12_1():
     s.line(572, 250, 648, 250, LINE, 2)
     s.box(650, 278, 140, 44, "PC", "시리얼 모니터 9600", GRAY_BG, LINE, 13)
     s.line(572, 300, 648, 300, LINE, 2, both=True)
-    s.text(450, 400, "TMP36: 0 °C에서 500 mV, 1 °C당 10 mV. 출력 가까이에 0.1 µF 커패시터를 달아 잡음을 줄인다", 12, color=MUTED)
+    s.text(450, 400, "TMP36: 0 °C에서 500 mV, 1 °C당 10 mV. 센서의 +Vs와 GND 사이에 0.1 µF 바이패스 커패시터를 단다", 12, color=MUTED)
     s.text(450, 420, "센서 배치: 칩과 레귤레이터의 열을 피해 보드에서 떨어뜨린다", 12, color=MUTED)
     s.save("ch12/fig12-1-wiring.svg")
 
@@ -2310,6 +2312,208 @@ def fig_12_3():
     s.box(370, 324, 180, 50, "1초 이상 누름", "최저/최고 기록 초기화", ORANGE_BG, ORANGE, 13)
     s.box(570, 324, 170, 50, "1초마다", "측정·출력", GRAY_BG, LINE, 13)
     s.save("ch12/fig12-3-state.svg")
+
+
+# ---------------------------------------------------------------------------
+# 13장
+# ---------------------------------------------------------------------------
+
+def fig_13_1():
+    s = Svg(900, 400)
+    s.text(450, 30, "그림 13-1  직렬 전송과 병렬 전송", 16, weight="bold")
+    # 병렬
+    s.text(220, 64, "(가) 병렬: 8비트를 선 8개로 동시에", 14, weight="bold", color=BLUE)
+    s.box(40, 90, 90, 220, "송신", None, BLUE_BG, BLUE)
+    s.box(310, 90, 90, 220, "수신", None, ORANGE_BG, ORANGE)
+    bits = "01000001"
+    for i, b in enumerate(bits):
+        y = 104 + i * 26
+        s.line(132, y, 306, y, LINE, 1.5, arrow=True)
+        s.rect(205, y - 10, 24, 20, "#ffffff", MUTED, 3, 1)
+        s.text(217, y + 5, b, 12, weight="bold")
+        s.text(160, y - 3, f"D{7 - i}", 9, color=MUTED)
+    s.text(220, 340, "한 번에 한 바이트. 하지만 선이 많고,", 12, color=MUTED)
+    s.text(220, 358, "선마다 도착 시간이 달라지면(스큐) 빠르게 못 보낸다", 12, color=MUTED)
+    # 직렬
+    s.text(680, 64, "(나) 직렬: 1비트씩 선 하나로 차례로", 14, weight="bold", color=GREEN)
+    s.box(500, 170, 90, 60, "송신", None, BLUE_BG, BLUE)
+    s.box(770, 170, 90, 60, "수신", None, ORANGE_BG, ORANGE)
+    s.line(592, 200, 766, 200, LINE, 2, arrow=True)
+    for i, b in enumerate(bits):          # 오른쪽 끝(D0)이 먼저 도착한다 (LSB 먼저)
+        x = 600 + i * 20
+        s.rect(x, 166, 18, 20, "#ffffff", GREEN, 3, 1)
+        s.text(x + 9, 181, b, 11, weight="bold")
+    s.text(680, 262, "선이 적어 배선과 커넥터가 싸고, 멀리 보낼 수 있다", 12, color=MUTED)
+    s.text(680, 280, "속도는 클럭을 올려서 얻는다 (USB, PCIe, SATA도 직렬)", 12, color=MUTED)
+    s.text(450, 390, "임베디드 통신은 거의 모두 직렬이다. 병렬은 칩 안이나 아주 짧은 거리(외부 메모리 버스, 일부 디스플레이)에 남아 있다", 12, color=INK)
+    s.save("ch13/fig13-1-serial-parallel.svg")
+
+
+def fig_13_2():
+    t = Timing(18, 40, 160, 80, "그림 13-2  동기 통신(클럭 공유)과 비동기 통신(약속된 속도)")
+    t.signal("(가) 클럭", [(1.0, "l", None, None)] + [(0.5, "h" if i % 2 == 0 else "l", None, None) for i in range(16)] + [(1, "l", None, None)], sub="동기: 함께 보냄")
+    data = "10110010"
+    segs = [(0.5, "z", None, None)]
+    for i, b in enumerate(data):
+        segs.append((1, "d", b, BLUE_BG))
+    segs.append((9.5, "z", None, None))
+    t.signal("(가) 데이터", segs)
+    t.note("sample", row=1, ts=[1 + i for i in range(8)], color=RED)
+    asyn = [(1, "h", "유휴", None), (1, "l", "시작", None)]
+    for b in "10110010":
+        asyn.append((1, "h" if b == "1" else "l", None, None))
+    asyn += [(1, "h", "정지", None), (7, "h", None, None)]
+    t.signal("(나) 데이터", asyn, sub="비동기: 선 하나")
+    t.note("sample", row=2, ts=[2.5 + i for i in range(8)], color=RED)
+    t.note("text", t=0, y=268, label="▲ 받는 쪽이 비트를 읽는 시점", size=12, anchor="start")
+    t.note("text", t=12.5, y=100, label="클럭의 상승 에지에서 읽는다", size=12)
+    t.note("text", t=17.5, y=268, label="(나) 시작 비트에 맞춰, 약속한 속도로 시간을 재서 읽는다", size=12, anchor="end")
+    t.render("ch13/fig13-2-sync-async.svg", 40)
+
+
+def fig_13_3():
+    s = Svg(900, 330)
+    s.text(450, 30, "그림 13-3  단방향, 반이중, 전이중", 16, weight="bold")
+    rows = [("단방향 (simplex)", "한쪽으로만", [(1, BLUE)], "GPS 모듈의 위치 출력, 방송"),
+            ("반이중 (half-duplex)", "양쪽, 하지만 번갈아", [(1, BLUE), (-1, ORANGE)], "I2C, RS-485, 무전기"),
+            ("전이중 (full-duplex)", "양쪽, 동시에", [(1, BLUE), (-1, ORANGE)], "UART, SPI, 전화")]
+    for i, (n, d, arrows, ex) in enumerate(rows):
+        y = 70 + i * 86
+        s.text(30, y + 22, n, 14, "start", weight="bold")
+        s.text(30, y + 42, d, 12, "start", MUTED)
+        s.box(240, y, 90, 56, "A", None, BLUE_BG, BLUE)
+        s.box(560, y, 90, 56, "B", None, ORANGE_BG, ORANGE)
+        if i == 0:
+            s.line(332, y + 28, 556, y + 28, BLUE, 2.5, arrow=True)
+        elif i == 1:
+            s.line(332, y + 28, 556, y + 28, LINE, 2.5)
+            s.poly([(420, y + 18), (440, y + 28), (420, y + 38)], BLUE, BLUE, 1)
+            s.poly([(470, y + 18), (450, y + 28), (470, y + 38)], ORANGE, ORANGE, 1)
+            s.text(444, y + 14, "선 하나를 번갈아", 11, color=MUTED)
+        else:
+            s.line(332, y + 18, 556, y + 18, BLUE, 2.5, arrow=True)
+            s.line(556, y + 40, 332, y + 40, ORANGE, 2.5, arrow=True)
+        s.text(670, y + 33, ex, 12, "start", MUTED)
+    s.save("ch13/fig13-3-duplex.svg")
+
+
+def fig_13_4():
+    import math
+    s = Svg(900, 470)
+    s.text(450, 30, "그림 13-4  싱글엔드 신호와 차동 신호, 노이즈가 상쇄되는 원리", 16, weight="bold")
+    x0, w = 160, 600
+
+    def wave(y, amp, bits, noise, color, width=2):
+        pts = []
+        for i in range(0, w + 1, 4):
+            t = i / w
+            b = bits[min(len(bits) - 1, int(t * len(bits)))]
+            v = (amp if b == "1" else 0) + noise * math.sin(2 * math.pi * 7 * t) + noise * 0.6 * math.sin(2 * math.pi * 19 * t)
+            pts.append(f"L{x0 + i:.1f},{y - v:.1f}")
+        s.path(f"M{x0},{y} " + " ".join(pts)[1:].replace("L", "L", 1), color, width)
+
+    bits = "0110100110"
+    s.text(30, 64, "(가) 싱글엔드: GND 기준으로 선 하나의 전압을 읽는다", 14, "start", BLUE, "bold")
+    s.text(x0 - 12, 120, "신호", 12, "end", weight="bold")
+    wave(130, 40, bits, 14, BLUE)
+    s.line(x0, 106, x0 + w, 106, RED, 1, "4 3")
+    s.text(x0 + w + 8, 110, "문턱", 11, "start", RED)
+    s.text(450, 166, "잡음이 신호에 그대로 더해져, 문턱 근처에서 0과 1을 잘못 읽는다", 12, color=MUTED)
+
+    s.text(30, 206, "(나) 차동: 두 선의 차이를 읽는다", 14, "start", GREEN, "bold")
+    inv = "".join("1" if b == "0" else "0" for b in bits)
+    s.text(x0 - 12, 254, "D+", 12, "end", weight="bold")
+    wave(262, 30, bits, 14, BLUE)
+    s.text(x0 - 12, 314, "D−", 12, "end", weight="bold")
+    wave(322, 30, inv, 14, ORANGE)
+    s.text(x0 - 12, 392, "D+ − D−", 12, "end", weight="bold")
+    pts = []
+    for i in range(0, w + 1, 4):
+        t = i / w
+        b = bits[min(len(bits) - 1, int(t * len(bits)))]
+        v = 30 if b == "1" else -30
+        pts.append(f"L{x0 + i:.1f},{392 - v:.1f}")
+    s.path(f"M{x0},{392 + 30} " + " ".join(pts), GREEN, 2.5)
+    s.text(x0 + w + 8, 396, "잡음이 사라짐", 11, "start", GREEN, "bold")
+    s.text(450, 458, "두 선이 꼬여 붙어 있으면 같은 잡음을 함께 받으므로, 빼는 순간 잡음은 지워지고 신호는 두 배가 된다 (CAN, RS-485, USB, 이더넷)", 12, color=MUTED)
+    s.save("ch13/fig13-4-differential.svg")
+
+
+def fig_13_5():
+    s = Svg(900, 360)
+    s.text(450, 30, "그림 13-5  점대점, 멀티드롭 버스, 데이지 체인 토폴로지", 16, weight="bold")
+    # 점대점
+    s.text(150, 70, "(가) 점대점", 14, weight="bold", color=BLUE)
+    s.box(50, 130, 70, 50, "A", None, BLUE_BG, BLUE)
+    s.box(180, 130, 70, 50, "B", None, ORANGE_BG, ORANGE)
+    s.line(122, 155, 176, 155, LINE, 2.5, both=True)
+    s.text(150, 220, "UART, SPI(슬레이브 1개), USB", 12, color=MUTED)
+    s.text(150, 240, "단순하고 주소가 필요 없다", 12, color=MUTED)
+    # 버스
+    s.text(450, 70, "(나) 멀티드롭 버스", 14, weight="bold", color=GREEN)
+    s.line(330, 160, 570, 160, LINE, 4)
+    for i, n in enumerate("ABCD"):
+        x = 340 + i * 62
+        s.box(x, 92, 46, 40, n, None, BLUE_BG if i == 0 else ORANGE_BG, BLUE if i == 0 else ORANGE, 13)
+        s.line(x + 23, 134, x + 23, 158, LINE, 2)
+    s.text(450, 220, "I2C, CAN, RS-485", 12, color=MUTED)
+    s.text(450, 240, "선은 적지만 주소와 중재가 필요하다", 12, color=MUTED)
+    # 데이지
+    s.text(750, 70, "(다) 데이지 체인", 14, weight="bold", color=ORANGE)
+    for i, n in enumerate("ABC"):
+        x = 640 + i * 80
+        s.box(x, 130, 56, 50, n, None, BLUE_BG if i == 0 else ORANGE_BG, BLUE if i == 0 else ORANGE, 13)
+        if i < 2:
+            s.line(x + 58, 155, x + 78, 155, LINE, 2.5, arrow=True)
+    s.path("M816,182 L816,200 L668,200 L668,184", LINE, 1.5, arrow=True)
+    s.text(750, 220, "SPI 데이지 체인, LED 스트립, JTAG", 12, color=MUTED)
+    s.text(750, 240, "앞 장치의 출력이 다음 장치의 입력", 12, color=MUTED)
+    s.rect(60, 278, 780, 62, "#fafbfc", MUTED, 8, 1)
+    s.text(450, 302, "토폴로지가 정해지면 \"누가 말할 차례인가(중재)\", \"누구에게 하는 말인가(주소)\"를 어떻게 풀지가 정해진다", 12, weight="bold")
+    s.text(450, 324, "점대점은 둘 다 필요 없고, 버스는 둘 다 필요하며, 데이지 체인은 순서(위치)가 곧 주소다", 12, color=MUTED)
+    s.save("ch13/fig13-5-topology.svg")
+
+
+def fig_13_6():
+    import math
+    s = Svg(900, 500)
+    s.text(450, 30, "그림 13-6  임베디드 통신 방식 비교 지도 (속도 × 거리, 대략의 범위)", 16, weight="bold")
+    x0, y0, W, H = 120, 440, 720, 380
+    # x: 거리 0.01 m ~ 2000 m (log), y: 속도 1 kbps ~ 1 Gbps (log)
+    def X(m):
+        return x0 + W * (math.log10(m) - math.log10(0.01)) / (math.log10(2000) - math.log10(0.01))
+    def Y(bps):
+        return y0 - H * (math.log10(bps) - 3) / (9 - 3)
+    s.line(x0, y0, x0 + W + 10, y0, MUTED, 1.2, arrow=True)
+    s.line(x0, y0, x0, y0 - H - 10, MUTED, 1.2, arrow=True)
+    for m, lbl in ((0.01, "1 cm"), (0.1, "10 cm"), (1, "1 m"), (10, "10 m"), (100, "100 m"), (1000, "1 km")):
+        s.line(X(m), y0, X(m), y0 + 5, MUTED, 1)
+        s.text(X(m), y0 + 20, lbl, 11, color=MUTED)
+    for b, lbl in ((1e3, "1 kbps"), (1e4, "10 k"), (1e5, "100 k"), (1e6, "1 M"), (1e7, "10 M"), (1e8, "100 M"), (1e9, "1 G")):
+        s.line(x0 - 5, Y(b), x0, Y(b), MUTED, 1)
+        s.text(x0 - 9, Y(b) + 4, lbl, 11, "end", MUTED)
+    s.text(x0 + W, y0 + 38, "거리 →", 12, "end", MUTED)
+    s.text(x0 - 9, y0 - H - 16, "속도 ↑", 12, "end", MUTED)
+    regions = [
+        ("I2C", 0.02, 1.0, 1e5, 1e6, GREEN_BG, GREEN),
+        ("SPI", 0.02, 0.5, 1e6, 5e7, BLUE_BG, BLUE),
+        ("UART", 0.05, 10, 9.6e3, 1e6, ORANGE_BG, ORANGE),
+        ("RS-485", 1, 1200, 1e4, 1e7, "#fdecec", RED),
+        ("CAN", 1, 1000, 1e4, 1e6, "#efe6fb", "#7048e8"),
+        ("USB FS/HS", 0.1, 5, 1.2e7, 4.8e8, GRAY_BG, LINE),
+        ("BLE", 1, 50, 1e5, 2e6, "#e6f7f7", "#0c8599"),
+        ("Wi-Fi", 1, 100, 1e6, 3e8, "#fff4e0", "#e67700"),
+    ]
+    for n, d0, d1, b0, b1, f, st in regions:
+        s.add(f'<rect x="{X(d0):.1f}" y="{Y(b1):.1f}" width="{X(d1) - X(d0):.1f}" height="{Y(b0) - Y(b1):.1f}" '
+              f'rx="8" fill="{f}" fill-opacity="0.35" stroke="{st}" stroke-width="1.5"/>')
+    labels = {"I2C": (0.05, 3e5), "SPI": (0.05, 1.5e7), "UART": (2.2, 2.5e4), "RS-485": (200, 3e4),
+              "CAN": (30, 2.5e5), "USB FS/HS": (0.7, 1.5e8), "BLE": (6, 6e5), "Wi-Fi": (30, 2e7)}
+    for n, d0, d1, b0, b1, f, st in regions:
+        lx, ly = labels[n]
+        s.text(X(lx), Y(ly), n, 13, color=st, weight="bold")
+    s.text(450, 490, "범위는 일반적인 사용 예를 나타낸 개념도다. 실제 한계는 규격, 칩, 케이블, 환경에 따라 크게 달라진다", 11, color=MUTED)
+    s.save("ch13/fig13-6-comm-map.svg")
 
 
 # ---------------------------------------------------------------------------

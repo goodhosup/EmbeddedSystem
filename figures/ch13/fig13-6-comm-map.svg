@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="500" viewBox="0 0 900 500" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 13-6  임베디드 통신 방식 비교 지도 (속도 × 거리, 대략의 범위)</text>
+  <line x1="120.0" y1="440.0" x2="850.0" y2="440.0" stroke="#616e7c" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="120.0" y1="440.0" x2="120.0" y2="50.0" stroke="#616e7c" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="120.0" y1="440.0" x2="120.0" y2="445.0" stroke="#616e7c" stroke-width="1"/>
+  <text x="120.0" y="460.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">1 cm</text>
+  <line x1="255.8" y1="440.0" x2="255.8" y2="445.0" stroke="#616e7c" stroke-width="1"/>
+  <text x="255.8" y="460.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">10 cm</text>
+  <line x1="391.6" y1="440.0" x2="391.6" y2="445.0" stroke="#616e7c" stroke-width="1"/>
+  <text x="391.6" y="460.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">1 m</text>
+  <line x1="527.5" y1="440.0" x2="527.5" y2="445.0" stroke="#616e7c" stroke-width="1"/>
+  <text x="527.5" y="460.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">10 m</text>
+  <line x1="663.3" y1="440.0" x2="663.3" y2="445.0" stroke="#616e7c" stroke-width="1"/>
+  <text x="663.3" y="460.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">100 m</text>
+  <line x1="799.1" y1="440.0" x2="799.1" y2="445.0" stroke="#616e7c" stroke-width="1"/>
+  <text x="799.1" y="460.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">1 km</text>
+  <line x1="115.0" y1="440.0" x2="120.0" y2="440.0" stroke="#616e7c" stroke-width="1"/>
+  <text x="111.0" y="444.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">1 kbps</text>
+  <line x1="115.0" y1="376.7" x2="120.0" y2="376.7" stroke="#616e7c" stroke-width="1"/>
+  <text x="111.0" y="380.7" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">10 k</text>
+  <line x1="115.0" y1="313.3" x2="120.0" y2="313.3" stroke="#616e7c" stroke-width="1"/>
+  <text x="111.0" y="317.3" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">100 k</text>
+  <line x1="115.0" y1="250.0" x2="120.0" y2="250.0" stroke="#616e7c" stroke-width="1"/>
+  <text x="111.0" y="254.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">1 M</text>
+  <line x1="115.0" y1="186.7" x2="120.0" y2="186.7" stroke="#616e7c" stroke-width="1"/>
+  <text x="111.0" y="190.7" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">10 M</text>
+  <line x1="115.0" y1="123.3" x2="120.0" y2="123.3" stroke="#616e7c" stroke-width="1"/>
+  <text x="111.0" y="127.3" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">100 M</text>
+  <line x1="115.0" y1="60.0" x2="120.0" y2="60.0" stroke="#616e7c" stroke-width="1"/>
+  <text x="111.0" y="64.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">1 G</text>
+  <text x="840.0" y="478.0" font-size="12" text-anchor="end" fill="#616e7c" font-weight="normal">거리 →</text>
+  <text x="111.0" y="44.0" font-size="12" text-anchor="end" fill="#616e7c" font-weight="normal">속도 ↑</text>
+  <rect x="160.9" y="250.0" width="230.8" height="63.3" rx="8" fill="#e1f4e5" fill-opacity="0.35" stroke="#2f9e44" stroke-width="1.5"/>
+  <rect x="160.9" y="142.4" width="189.9" height="107.6" rx="8" fill="#e3edfd" fill-opacity="0.35" stroke="#2f6fdf" stroke-width="1.5"/>
+  <rect x="214.9" y="250.0" width="312.5" height="127.8" rx="8" fill="#fdebd7" fill-opacity="0.35" stroke="#d9730d" stroke-width="1.5"/>
+  <rect x="391.6" y="186.7" width="418.2" height="190.0" rx="8" fill="#fdecec" fill-opacity="0.35" stroke="#d64545" stroke-width="1.5"/>
+  <rect x="391.6" y="250.0" width="407.5" height="126.7" rx="8" fill="#efe6fb" fill-opacity="0.35" stroke="#7048e8" stroke-width="1.5"/>
+  <rect x="255.8" y="80.2" width="230.8" height="101.5" rx="8" fill="#eef1f4" fill-opacity="0.35" stroke="#334e68" stroke-width="1.5"/>
+  <rect x="391.6" y="230.9" width="230.8" height="82.4" rx="8" fill="#e6f7f7" fill-opacity="0.35" stroke="#0c8599" stroke-width="1.5"/>
+  <rect x="391.6" y="93.1" width="271.6" height="156.9" rx="8" fill="#fff4e0" fill-opacity="0.35" stroke="#e67700" stroke-width="1.5"/>
+  <text x="214.9" y="283.1" font-size="13" text-anchor="middle" fill="#2f9e44" font-weight="bold">I2C</text>
+  <text x="214.9" y="175.5" font-size="13" text-anchor="middle" fill="#2f6fdf" font-weight="bold">SPI</text>
+  <text x="438.2" y="351.5" font-size="13" text-anchor="middle" fill="#d9730d" font-weight="bold">UART</text>
+  <text x="704.2" y="346.4" font-size="13" text-anchor="middle" fill="#d64545" font-weight="bold">RS-485</text>
+  <text x="592.3" y="288.1" font-size="13" text-anchor="middle" fill="#7048e8" font-weight="bold">CAN</text>
+  <text x="370.6" y="112.2" font-size="13" text-anchor="middle" fill="#334e68" font-weight="bold">USB FS/HS</text>
+  <text x="497.3" y="264.1" font-size="13" text-anchor="middle" fill="#0c8599" font-weight="bold">BLE</text>
+  <text x="592.3" y="167.6" font-size="13" text-anchor="middle" fill="#e67700" font-weight="bold">Wi-Fi</text>
+  <text x="450.0" y="490.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">범위는 일반적인 사용 예를 나타낸 개념도다. 실제 한계는 규격, 칩, 케이블, 환경에 따라 크게 달라진다</text>
+</svg>
