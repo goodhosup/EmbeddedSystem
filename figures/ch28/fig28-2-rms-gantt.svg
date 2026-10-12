@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="400" viewBox="0 0 900 400" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 28-2  비율 단조 스케줄링 예시 간트 차트</text>
+  <text x="160.0" y="84.0" font-size="12" text-anchor="end" fill="#1f2933" font-weight="bold">ctrl  C1 T5</text>
+  <line x1="170.0" y1="96.0" x2="820.0" y2="96.0" stroke="#d9dee3" stroke-width="1"/>
+  <text x="160.0" y="124.0" font-size="12" text-anchor="end" fill="#1f2933" font-weight="bold">comm  C4 T20</text>
+  <line x1="170.0" y1="136.0" x2="820.0" y2="136.0" stroke="#d9dee3" stroke-width="1"/>
+  <text x="160.0" y="164.0" font-size="12" text-anchor="end" fill="#1f2933" font-weight="bold">log  C10 T50</text>
+  <line x1="170.0" y1="176.0" x2="820.0" y2="176.0" stroke="#d9dee3" stroke-width="1"/>
+  <text x="160.0" y="204.0" font-size="12" text-anchor="end" fill="#1f2933" font-weight="bold">Idle</text>
+  <line x1="170.0" y1="216.0" x2="820.0" y2="216.0" stroke="#d9dee3" stroke-width="1"/>
+  <rect x="170.0" y="66.0" width="13.0" height="28.0" rx="2" fill="#2f9e44" stroke="#2f9e44" stroke-width="1"/>
+  <rect x="235.0" y="66.0" width="13.0" height="28.0" rx="2" fill="#2f9e44" stroke="#2f9e44" stroke-width="1"/>
+  <rect x="300.0" y="66.0" width="13.0" height="28.0" rx="2" fill="#2f9e44" stroke="#2f9e44" stroke-width="1"/>
+  <rect x="365.0" y="66.0" width="13.0" height="28.0" rx="2" fill="#2f9e44" stroke="#2f9e44" stroke-width="1"/>
+  <rect x="430.0" y="66.0" width="13.0" height="28.0" rx="2" fill="#2f9e44" stroke="#2f9e44" stroke-width="1"/>
+  <rect x="495.0" y="66.0" width="13.0" height="28.0" rx="2" fill="#2f9e44" stroke="#2f9e44" stroke-width="1"/>
+  <rect x="560.0" y="66.0" width="13.0" height="28.0" rx="2" fill="#2f9e44" stroke="#2f9e44" stroke-width="1"/>
+  <rect x="625.0" y="66.0" width="13.0" height="28.0" rx="2" fill="#2f9e44" stroke="#2f9e44" stroke-width="1"/>
+  <rect x="690.0" y="66.0" width="13.0" height="28.0" rx="2" fill="#2f9e44" stroke="#2f9e44" stroke-width="1"/>
+  <rect x="755.0" y="66.0" width="13.0" height="28.0" rx="2" fill="#2f9e44" stroke="#2f9e44" stroke-width="1"/>
+  <rect x="183.0" y="106.0" width="52.0" height="28.0" rx="2" fill="#2f6fdf" stroke="#2f6fdf" stroke-width="1"/>
+  <rect x="443.0" y="106.0" width="52.0" height="28.0" rx="2" fill="#2f6fdf" stroke="#2f6fdf" stroke-width="1"/>
+  <rect x="248.0" y="146.0" width="52.0" height="28.0" rx="2" fill="#d9730d" stroke="#d9730d" stroke-width="1"/>
+  <rect x="313.0" y="146.0" width="52.0" height="28.0" rx="2" fill="#d9730d" stroke="#d9730d" stroke-width="1"/>
+  <rect x="378.0" y="146.0" width="26.0" height="28.0" rx="2" fill="#d9730d" stroke="#d9730d" stroke-width="1"/>
+  <rect x="404.0" y="186.0" width="26.0" height="28.0" rx="2" fill="#cbd2d9" stroke="#cbd2d9" stroke-width="1"/>
+  <rect x="508.0" y="186.0" width="52.0" height="28.0" rx="2" fill="#cbd2d9" stroke="#cbd2d9" stroke-width="1"/>
+  <rect x="573.0" y="186.0" width="52.0" height="28.0" rx="2" fill="#cbd2d9" stroke="#cbd2d9" stroke-width="1"/>
+  <rect x="638.0" y="186.0" width="52.0" height="28.0" rx="2" fill="#cbd2d9" stroke="#cbd2d9" stroke-width="1"/>
+  <rect x="703.0" y="186.0" width="52.0" height="28.0" rx="2" fill="#cbd2d9" stroke="#cbd2d9" stroke-width="1"/>
+  <rect x="768.0" y="186.0" width="52.0" height="28.0" rx="2" fill="#cbd2d9" stroke="#cbd2d9" stroke-width="1"/>
+  <line x1="170.0" y1="216.0" x2="170.0" y2="222.0" stroke="#334e68" stroke-width="1"/>
+  <text x="170.0" y="236.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">0</text>
+  <line x1="235.0" y1="216.0" x2="235.0" y2="222.0" stroke="#334e68" stroke-width="1"/>
+  <text x="235.0" y="236.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">5</text>
+  <line x1="300.0" y1="216.0" x2="300.0" y2="222.0" stroke="#334e68" stroke-width="1"/>
+  <text x="300.0" y="236.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">10</text>
+  <line x1="365.0" y1="216.0" x2="365.0" y2="222.0" stroke="#334e68" stroke-width="1"/>
+  <text x="365.0" y="236.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">15</text>
+  <line x1="430.0" y1="216.0" x2="430.0" y2="222.0" stroke="#334e68" stroke-width="1"/>
+  <text x="430.0" y="236.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">20</text>
+  <line x1="495.0" y1="216.0" x2="495.0" y2="222.0" stroke="#334e68" stroke-width="1"/>
+  <text x="495.0" y="236.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">25</text>
+  <line x1="560.0" y1="216.0" x2="560.0" y2="222.0" stroke="#334e68" stroke-width="1"/>
+  <text x="560.0" y="236.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">30</text>
+  <line x1="625.0" y1="216.0" x2="625.0" y2="222.0" stroke="#334e68" stroke-width="1"/>
+  <text x="625.0" y="236.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">35</text>
+  <line x1="690.0" y1="216.0" x2="690.0" y2="222.0" stroke="#334e68" stroke-width="1"/>
+  <text x="690.0" y="236.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">40</text>
+  <line x1="755.0" y1="216.0" x2="755.0" y2="222.0" stroke="#334e68" stroke-width="1"/>
+  <text x="755.0" y="236.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">45</text>
+  <line x1="820.0" y1="216.0" x2="820.0" y2="222.0" stroke="#334e68" stroke-width="1"/>
+  <text x="820.0" y="236.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">50</text>
+  <polygon points="166.0,104.0 174.0,104.0 170.0,110.0" fill="#2f6fdf" stroke="#2f6fdf" stroke-width="1.5"/>
+  <polygon points="426.0,104.0 434.0,104.0 430.0,110.0" fill="#2f6fdf" stroke="#2f6fdf" stroke-width="1.5"/>
+  <polygon points="686.0,104.0 694.0,104.0 690.0,110.0" fill="#2f6fdf" stroke="#2f6fdf" stroke-width="1.5"/>
+  <polygon points="166.0,144.0 174.0,144.0 170.0,150.0" fill="#d9730d" stroke="#d9730d" stroke-width="1.5"/>
+  <line x1="404.0" y1="140.0" x2="404.0" y2="180.0" stroke="#d64545" stroke-width="1.6"/>
+  <text x="410.0" y="152.0" font-size="11" text-anchor="start" fill="#d64545" font-weight="bold">log 완료: R = 18 ms</text>
+  <line x1="235.0" y1="100.0" x2="235.0" y2="140.0" stroke="#d64545" stroke-width="1.2" stroke-dasharray="3 3"/>
+  <text x="243.0" y="124.0" font-size="10" text-anchor="start" fill="#d64545" font-weight="normal">comm 완료: R = 5 ms</text>
+  <text x="495.0" y="252.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">시간 (ms)</text>
+  <text x="450.0" y="296.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">주기가 짧을수록 높은 우선순위(비율 단조). 이용률 U = 1/5 + 4/20 + 10/50 = 0.6</text>
+  <text x="450.0" y="320.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">응답 시간 분석: R_log = 10 + ⌈R/5⌉·1 + ⌈R/20⌉·4 → 16 → 18 → 18 (마감 50 ms 이내)</text>
+  <text x="450.0" y="344.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">▼ 표시는 태스크가 깨어나는 시각. 0 ms에 모두 동시에 깨어나는 경우가 최악이다 (임계 순간)</text>
+</svg>

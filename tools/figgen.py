@@ -4436,6 +4436,104 @@ def fig_27_5():
     s.save("ch27/fig27-5-deferred.svg")
 
 
+# ---------------------------------------------------------------------------
+# 28장 실시간성 분석
+# ---------------------------------------------------------------------------
+
+def fig_28_1():
+    s = Svg(900, 440)
+    s.text(450, 30, "그림 28-1  지연(latency)과 지터(jitter)", 16, weight="bold")
+    x0 = 120
+    s.text(x0 - 10, 90, "사건", 12, "end", weight="bold")
+    s.text(x0 - 10, 150, "반응", 12, "end", weight="bold")
+    lat = [18, 26, 15, 40, 20]
+    for k, l in enumerate(lat):
+        t = x0 + k * 140
+        s.line(t, 70, t, 100, RED, 2.2)
+        s.poly([(t - 5, 70), (t + 5, 70), (t, 62)], RED, RED)
+        s.rect(t + l, 130, 34, 30, ORANGE_BG, ORANGE, 3, 1.4)
+        s.line(t, 112, t + l, 112, LINE, 1.2, both=True)
+        s.text(t + l / 2, 108, f"{l}", 10, color=MUTED)
+        s.line(t, 100, t, 170, "#cbd2d9", 1, dash="3 3")
+    s.text(450, 200, "지연 = 사건이 일어난 뒤 반응이 시작되기까지의 시간 (숫자는 µs 예시)", 12, color=INK)
+    # 분포
+    y0, h = 380, 130
+    s.line(160, y0, 760, y0, LINE, 1.4, arrow=True)
+    s.line(160, y0, 160, y0 - h - 10, LINE, 1.4, arrow=True)
+    s.text(760, y0 + 20, "지연", 11, "end", MUTED)
+    s.text(150, y0 - h, "횟수", 11, "end", MUTED)
+    bars = [0, 2, 10, 34, 60, 42, 20, 8, 3, 1, 0, 0, 1]
+    for k, v in enumerate(bars):
+        bx = 180 + k * 40
+        s.rect(bx, y0 - v * 2, 30, v * 2, BLUE_BG, BLUE, 0, 1)
+    s.line(222, y0 - 150, 222, y0 + 4, GREEN, 1.4, dash="4 3")
+    s.text(222, y0 - 156, "최소", 11, color=GREEN, weight="bold")
+    s.line(678, y0 - 150, 678, y0 + 4, RED, 1.4, dash="4 3")
+    s.text(678, y0 - 156, "최대 (최악)", 11, color=RED, weight="bold")
+    s.line(222, y0 - 132, 678, y0 - 132, LINE, 1.2, both=True)
+    s.text(450, y0 - 138, "지터 = 최대 − 최소: 반응 시각이 얼마나 흔들리는가", 12, weight="bold")
+    s.text(450, y0 + 40, "실시간 시스템에서 중요한 것은 평균이 아니라 최대값이다. 드물게 나타나는 오른쪽 끝이 마감을 넘기는지 본다", 11, color=MUTED)
+    s.save("ch28/fig28-1-latency-jitter.svg")
+
+
+def fig_28_2():
+    s = Svg(900, 400)
+    s.text(450, 30, "그림 28-2  비율 단조 스케줄링 예시 간트 차트", 16, weight="bold")
+    x0, sc = 170, 13
+    G = "#cbd2d9"
+    segs = []
+    # ctrl: C=1, T=5 (우선순위 가장 높음)
+    for k in range(10):
+        segs.append((0, 5 * k, 5 * k + 1, GREEN))
+    # comm: C=4, T=20 → 1~5, 21~25
+    segs += [(1, 1, 5, BLUE), (1, 21, 25, BLUE)]
+    # log: C=10, T=50 → 남는 칸: 6~10, 11~15, 16~18(완료 18)
+    segs += [(2, 6, 10, ORANGE), (2, 11, 15, ORANGE), (2, 16, 18, ORANGE)]
+    segs += [(3, 18, 20, G), (3, 26, 30, G), (3, 31, 35, G), (3, 36, 40, G), (3, 41, 45, G), (3, 46, 50, G)]
+    lane_timeline(s, x0, 60, ["ctrl  C1 T5", "comm  C4 T20", "log  C10 T50", "Idle"], segs, 50, sc, 40)
+    for t in range(0, 51, 5):
+        s.line(x0 + t * sc, 216, x0 + t * sc, 222, LINE, 1)
+        s.text(x0 + t * sc, 236, str(t), 10, color=MUTED)
+    for t in (0, 20, 40):
+        s.poly([(x0 + t * sc - 4, 104), (x0 + t * sc + 4, 104), (x0 + t * sc, 110)], BLUE, BLUE)
+    s.poly([(x0 - 4, 144), (x0 + 4, 144), (x0, 150)], ORANGE, ORANGE)
+    s.line(x0 + 18 * sc, 140, x0 + 18 * sc, 180, RED, 1.6)
+    s.text(x0 + 18 * sc + 6, 152, "log 완료: R = 18 ms", 11, "start", RED, "bold")
+    s.line(x0 + 5 * sc, 100, x0 + 5 * sc, 140, RED, 1.2, dash="3 3")
+    s.text(x0 + 5 * sc + 8, 124, "comm 완료: R = 5 ms", 10, "start", RED)
+    s.text(x0 + 25 * sc, 252, "시간 (ms)", 11, color=MUTED)
+    s.text(450, 296, "주기가 짧을수록 높은 우선순위(비율 단조). 이용률 U = 1/5 + 4/20 + 10/50 = 0.6", 12, color=INK)
+    s.text(450, 320, "응답 시간 분석: R_log = 10 + ⌈R/5⌉·1 + ⌈R/20⌉·4 → 16 → 18 → 18 (마감 50 ms 이내)", 12, color=INK)
+    s.text(450, 344, "▼ 표시는 태스크가 깨어나는 시각. 0 ms에 모두 동시에 깨어나는 경우가 최악이다 (임계 순간)", 11, color=MUTED)
+    s.save("ch28/fig28-2-rms-gantt.svg")
+
+
+def fig_28_3():
+    s = Svg(900, 470)
+    s.text(450, 30, "그림 28-3  트레이스 도구 화면 해석", 16, weight="bold")
+    s.rect(40, 50, 820, 300, "#fbfcfd", "#9aa5b1", 6, 1.2)
+    s.rect(40, 50, 820, 26, GRAY_BG, "#9aa5b1", 6, 1)
+    s.text(56, 68, "trace view   0 ms ──────────────────────────────── 20 ms", 11, "start", MUTED)
+    x0, sc = 170, 32
+    G = "#cbd2d9"
+    segs = [(0, 0.6, 0.65, RED), (0, 5.6, 5.65, RED), (0, 10.6, 10.65, RED), (0, 15.6, 15.65, RED),
+            (1, 0, 1, GREEN), (1, 5, 6, GREEN), (1, 10, 11, GREEN), (1, 15, 16, GREEN),
+            (2, 1, 5, BLUE), (3, 6, 10, ORANGE), (3, 11, 13.5, ORANGE),
+            (4, 13.5, 15, "#9b59b6"), (3, 16, 19.5, ORANGE), (5, 19.5, 20, G)]
+    lane_timeline(s, x0, 86, ["TIM2 ISR", "ctrl", "comm", "log", "console", "Idle"], segs, 20, sc, 40)
+    s.line(x0 + 13.5 * sc, 214, x0 + 13.5 * sc, 250, RED, 1.2, dash="3 3")
+    s.text(x0 + 13.5 * sc, 330, "② log가 뮤텍스를 기다리는 동안 그것을 쥔 console이 실행", 10, color=RED)
+    s.text(x0 + 0.6 * sc + 4, 98, "① ISR: 세로 막대", 10, "start", RED)
+    s.text(x0 + 6 * sc, 338, "③ 높은 태스크에 밀려 log가 쪼개짐 (선점)", 10, color=MUTED)
+    notes = ["① ISR이 언제, 얼마나 자주, 얼마나 오래 실행되는지 → 인터럽트 부하",
+             "② 태스크가 무엇을 기다리며 멈췄는지(큐, 뮤텍스) → 우선순위 역전, 데드락의 단서",
+             "③ 각 태스크가 깨어나서 끝날 때까지의 응답 시간과 선점 횟수 → 28.4절의 분석과 비교",
+             "④ Idle 비율 = 남은 CPU 여유. Idle이 거의 없으면 마감을 놓치기 직전이다"]
+    for k, t in enumerate(notes):
+        s.text(60, 380 + k * 22, t, 12, "start", INK)
+    s.save("ch28/fig28-3-trace-view.svg")
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("fig_") and callable(fn):
