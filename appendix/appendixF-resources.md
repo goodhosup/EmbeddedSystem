@@ -26,7 +26,7 @@
 - Miro Samek, *Practical UML Statecharts in C/C++*: 24장의 상태 머신과 액티브 객체를 체계적으로 다룹니다.
 
 **RTOS와 실시간**
-- *Mastering the FreeRTOS Real Time Kernel*: FreeRTOS 공식 안내서로, freertos.org에서 무료로 받을 수 있습니다(26~27장).
+- *Mastering the FreeRTOS Real Time Kernel*: FreeRTOS 공식 안내서로, 무료로 볼 수 있습니다(26~27장). 지금은 GitHub의 FreeRTOS/FreeRTOS-Kernel-Book 저장소에서 관리되고, freertos.org에서도 연결됩니다. [확인 필요: 출간 시점의 주소]
 - Jane W. S. Liu, *Real-Time Systems*: 28장의 스케줄 가능성 분석의 이론적 배경.
 
 **리눅스**
