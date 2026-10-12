@@ -4092,6 +4092,90 @@ def fig_24_3():
     s.save("ch24/fig24-3-layers.svg")
 
 
+# ---------------------------------------------------------------------------
+# 25장 메모리 관리
+# ---------------------------------------------------------------------------
+
+def fig_25_1():
+    s = Svg(900, 470)
+    s.text(450, 30, "그림 25-1  힙 단편화가 생기는 과정", 16, weight="bold")
+    x0, W = 200, 600
+    unit = W / 12
+    rows = [("① 할당", [("A", 2), ("B", 2), ("C", 2), ("D", 2), ("E", 2), (None, 2)], "A~E를 2 KB씩 차례로 받는다"),
+            ("② 해제", [(None, 2), ("B", 2), (None, 2), ("D", 2), (None, 2), (None, 2)], "A, C, E를 돌려준다: 빈 공간 합계 8 KB"),
+            ("③ 작은 할당", [("F", 1), (None, 1), ("B", 2), ("G", 1), (None, 1), ("D", 2), (None, 4)], "1 KB 두 개(F, G)를 받는다: 빈 공간이 1 KB 조각으로 갈라진다"),
+            ("④ 큰 할당", [("F", 1), (None, 1), ("B", 2), ("G", 1), (None, 1), ("D", 2), (None, 4)], "5 KB 요청 → 실패. 빈 공간 합계는 6 KB인데 이어진 곳은 최대 4 KB")]
+    for r, (lab, blocks, note) in enumerate(rows):
+        y = 64 + r * 96
+        s.text(x0 - 16, y + 27, lab, 13, "end", weight="bold")
+        x = x0
+        for name, n in blocks:
+            w = n * unit
+            if name:
+                s.rect(x, y, w, 40, BLUE_BG if name in "ABCDE" else ORANGE_BG, BLUE if name in "ABCDE" else ORANGE, 0, 1.4)
+                s.text(x + w / 2, y + 26, name, 13, weight="bold")
+            else:
+                s.rect(x, y, w, 40, "#ffffff", "#9aa5b1", 0, 1)
+            x += w
+        s.text(x0, y + 62, note, 12, "start", RED if r == 3 else MUTED, "bold" if r == 3 else "normal")
+    s.text(x0 + W, 56, "1칸 = 1 KB, 힙 12 KB", 11, "end", MUTED)
+    s.text(450, 452, "단편화는 메모리가 모자라서가 아니라 빈 공간이 흩어져서 실패한다. 오래 켜 두는 장치일수록 위험하다", 12, color=INK)
+    s.save("ch25/fig25-1-fragmentation.svg")
+
+
+def fig_25_2():
+    s = Svg(900, 420)
+    s.text(450, 30, "그림 25-2  고정 크기 메모리 풀 구조", 16, weight="bold")
+    x0, w, h, y = 120, 110, 54, 150
+    used = [True, False, True, False, False, True]
+    for i, u in enumerate(used):
+        x = x0 + i * w
+        s.rect(x, y, w, h, ORANGE_BG if u else "#ffffff", ORANGE if u else BLUE, 0, 1.5)
+        s.text(x + w / 2, y + 24, f"블록 {i}", 13, weight="bold")
+        s.text(x + w / 2, y + 42, "사용 중" if u else "빈 블록", 11, color=ORANGE if u else BLUE)
+    s.text(x0 - 10, y + 32, "풀", 13, "end", weight="bold")
+    s.text(x0 + 3 * w, y - 54, "같은 크기(예: 24 B) 블록 N개를 정적 배열로 미리 잡아 둔다", 12, color=MUTED)
+    # free list
+    s.box(20, 270, 120, 46, "free_list", None, BLUE_BG, BLUE, 13)
+    free = [4, 3, 1]
+    s.path(f"M140,293 L{x0 + 4 * w + w / 2:.0f},293 L{x0 + 4 * w + w / 2:.0f},{y + h + 4}", BLUE, 1.8, arrow=True)
+    s.path(f"M{x0 + 4 * w + 20:.0f},{y - 4} C{x0 + 4 * w:.0f},{y - 40} {x0 + 3 * w + w / 2 + 20:.0f},{y - 40} {x0 + 3 * w + w / 2:.0f},{y - 4}", BLUE, 1.6, arrow=True)
+    s.path(f"M{x0 + 3 * w + 20:.0f},{y - 4} C{x0 + 3 * w - 20:.0f},{y - 50} {x0 + w + w / 2 + 40:.0f},{y - 50} {x0 + w + w / 2:.0f},{y - 4}", BLUE, 1.6, arrow=True)
+    s.text(x0 + w + w / 2, y + h + 22, "다음 = NULL", 11, color=BLUE)
+    s.text(450, 346, "빈 블록의 첫 워드에 다음 빈 블록의 주소를 적어 사슬로 잇는다 (추가 메모리 0)", 12, color=INK)
+    s.text(450, 372, "할당: 사슬 맨 앞 블록을 떼어 준다   해제: 돌려받은 블록을 맨 앞에 붙인다", 12, color=INK)
+    s.text(450, 398, "둘 다 O(1), 크기가 모두 같으므로 단편화가 생기지 않는다", 12, color=GREEN, weight="bold")
+    s.save("ch25/fig25-2-pool.svg")
+
+
+def fig_25_3():
+    s = Svg(900, 430)
+    s.text(450, 30, "그림 25-3  구조체 패딩과 정렬", 16, weight="bold")
+    def row(y, title, cells, total):
+        s.text(40, y - 10, title, 13, "start", weight="bold")
+        x = 40
+        cw = 50
+        for name, n, kind in cells:
+            w = n * cw
+            fill = {"m": BLUE_BG, "p": "#ffffff"}[kind]
+            st = {"m": BLUE, "p": "#9aa5b1"}[kind]
+            s.rect(x, y, w, 44, fill, st, 0, 1.3)
+            s.text(x + w / 2, y + 27, name, 12, weight="bold" if kind == "m" else "normal", color=INK if kind == "m" else MUTED)
+            x += w
+        s.text(x + 14, y + 27, total, 13, "start", weight="bold")
+        for i in range(0, 13):
+            if 40 + i * cw <= x:
+                s.text(40 + i * cw, y + 60, str(i), 9, color=MUTED)
+    row(76, "struct sensor_bad { uint8_t id; uint32_t timestamp; uint8_t flags; uint16_t value; }",
+        [("id", 1, "m"), ("패딩", 3, "p"), ("timestamp", 4, "m"), ("flags", 1, "m"), ("패딩", 1, "p"), ("value", 2, "m")], "12 B")
+    row(196, "struct sensor_good { uint32_t timestamp; uint16_t value; uint8_t id; uint8_t flags; }",
+        [("timestamp", 4, "m"), ("value", 2, "m"), ("id", 1, "m"), ("flags", 1, "m")], "8 B")
+    row(316, "struct __attribute__((packed)) sensor_packed: 같은 순서, 패딩 없음",
+        [("id", 1, "m"), ("timestamp", 4, "m"), ("flags", 1, "m"), ("value", 2, "m")], "8 B, timestamp가 1번 주소 (정렬 안 됨)")
+    s.text(450, 412, "각 멤버는 자기 크기의 배수 주소에 놓인다 (uint32_t → 4의 배수). 큰 멤버부터 배치하면 패딩이 줄어든다", 12, color=INK)
+    s.save("ch25/fig25-3-padding.svg")
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("fig_") and callable(fn):

@@ -474,6 +474,22 @@ typedef struct {
 #define SCB_SCR_SLEEPONEXIT (1u << 1)
 #define SCB_SCR_SLEEPDEEP   (1u << 2)
 
+/* ---- MPU (0xE000 ED90): PM0214 4.2절. 25장 ---- */
+#define MPU_TYPE            (*(volatile uint32_t *)0xE000ED90u)
+#define MPU_CTRL            (*(volatile uint32_t *)0xE000ED94u)
+#define MPU_RNR             (*(volatile uint32_t *)0xE000ED98u)
+#define MPU_RBAR            (*(volatile uint32_t *)0xE000ED9Cu)
+#define MPU_RASR            (*(volatile uint32_t *)0xE000EDA0u)
+#define MPU_CTRL_ENABLE     (1u << 0)
+#define MPU_CTRL_HFNMIENA   (1u << 1)
+#define MPU_CTRL_PRIVDEFENA (1u << 2)   /* 영역 밖은 기본 메모리 맵으로 (특권 모드) */
+#define MPU_RASR_ENABLE     (1u << 0)
+#define MPU_RASR_SIZE_Pos   1u          /* 영역 크기 = 2^(SIZE+1) 바이트 */
+#define MPU_RASR_AP_Pos     24u         /* 000 = 접근 금지 */
+#define MPU_RASR_XN         (1u << 28)  /* 실행 금지 */
+#define MPU_RASR_S          (1u << 18)
+#define MPU_RASR_C          (1u << 17)
+
 static inline void wfi(void) { __asm volatile ("wfi" ::: "memory"); }
 
 /* ---- ADC1 (0x4001 2000), 공통 레지스터 (0x4001 2300) ---- */

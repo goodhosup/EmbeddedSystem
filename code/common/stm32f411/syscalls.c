@@ -50,7 +50,8 @@ int _read(int fd, char *buf, int len)
     return n;
 }
 
-void *_sbrk(int incr)
+/* weak: 힙 한계를 다르게 정하고 싶은 예제(25장)는 같은 이름의 함수를 만들어 바꾼다 */
+__attribute__((weak)) void *_sbrk(int incr)
 {
     static uint8_t *heap_end;
     if (heap_end == 0) {
