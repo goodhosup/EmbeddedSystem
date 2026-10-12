@@ -1,0 +1,13 @@
+/*
+ * 29장: NUCLEO-F411RE용 devicetree 오버레이
+ * 15장과 같은 연결: BMP280 SDA → D14(PB9), SCL → D15(PB8), SDO → GND (주소 0x76)
+ * i2c1과 그 핀(PB8, PB9)은 보드 devicetree에 이미 정의되어 있으므로 센서 노드만 붙인다.
+ */
+&i2c1 {
+	clock-frequency = <I2C_BITRATE_STANDARD>;   /* 100 kHz: 15장과 같게 */
+
+	bmp280: bmp280@76 {
+		compatible = "bosch,bme280";
+		reg = <0x76>;
+	};
+};

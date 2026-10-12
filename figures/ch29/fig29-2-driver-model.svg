@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="450" viewBox="0 0 900 450" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 29-2  Zephyr 드라이버 모델 구조</text>
+  <rect x="60.0" y="70.0" width="330.0" height="56.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="225.0" y="95.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">애플리케이션</text>
+  <text x="225.0" y="114.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">sensor_sample_fetch(dev), gpio_pin_toggle_dt(&amp;led)</text>
+  <rect x="510.0" y="70.0" width="330.0" height="56.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="675.0" y="95.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">devicetree</text>
+  <text x="675.0" y="114.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">DEVICE_DT_GET(DT_NODELABEL(bmp280))</text>
+  <line x1="392.0" y1="98.0" x2="506.0" y2="98.0" stroke="#334e68" stroke-width="1.4" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+  <text x="450.0" y="90.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">어느 장치?</text>
+  <rect x="60.0" y="170.0" width="330.0" height="56.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="225.0" y="195.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">서브시스템 API (일반화된 함수)</text>
+  <text x="225.0" y="214.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">sensor.h, gpio.h, i2c.h</text>
+  <line x1="225.0" y1="128.0" x2="225.0" y2="166.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <rect x="60.0" y="262.0" width="330.0" height="120.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.6"/>
+  <text x="225.0" y="286.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">struct device  (장치 하나마다)</text>
+  <text x="80.0" y="310.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="bold">name</text>
+  <text x="150.0" y="310.0" font-size="11" text-anchor="start" fill="#616e7c" font-weight="normal">"bmp280@76"</text>
+  <text x="80.0" y="330.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="bold">config</text>
+  <text x="150.0" y="330.0" font-size="11" text-anchor="start" fill="#616e7c" font-weight="normal">주소 0x76, 버스 = i2c1 (빌드 시 확정, Flash)</text>
+  <text x="80.0" y="350.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="bold">data</text>
+  <text x="150.0" y="350.0" font-size="11" text-anchor="start" fill="#616e7c" font-weight="normal">보정값, 마지막 측정값 (RAM)</text>
+  <text x="80.0" y="370.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="bold">api</text>
+  <text x="150.0" y="370.0" font-size="11" text-anchor="start" fill="#616e7c" font-weight="normal">→ 함수 포인터 표</text>
+  <line x1="225.0" y1="228.0" x2="225.0" y2="258.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="232.0" y="246.0" font-size="11" text-anchor="start" fill="#616e7c" font-weight="normal">dev-&gt;api-&gt;sample_fetch(dev)</text>
+  <rect x="510.0" y="262.0" width="330.0" height="120.0" rx="8" fill="#ffffff" stroke="#d9730d" stroke-width="1.4"/>
+  <text x="675.0" y="286.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">드라이버 (bme280.c)</text>
+  <text x="530.0" y="312.0" font-size="11" text-anchor="start" fill="#1f2933" font-weight="normal">.sample_fetch = bme280_sample_fetch</text>
+  <text x="530.0" y="332.0" font-size="11" text-anchor="start" fill="#1f2933" font-weight="normal">.channel_get  = bme280_channel_get</text>
+  <text x="530.0" y="356.0" font-size="11" text-anchor="start" fill="#616e7c" font-weight="normal">→ 내부에서 i2c_write_read(bus, ...) 호출</text>
+  <line x1="392.0" y1="362.0" x2="506.0" y2="362.0" stroke="#d9730d" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <rect x="510.0" y="170.0" width="330.0" height="56.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="675.0" y="195.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">I2C 드라이버 (STM32)</text>
+  <text x="675.0" y="214.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">i2c1: 같은 모델의 또 다른 장치</text>
+  <line x1="675.0" y1="260.0" x2="675.0" y2="230.0" stroke="#334e68" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <text x="450.0" y="414.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">앱은 칩 이름도 핀도 모른다. 보드나 센서를 바꾸면 devicetree만 바뀌고 앱 코드는 그대로다 (24장의 HAL과 같은 생각)</text>
+  <text x="450.0" y="436.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">장치는 부팅 때 정해진 순서(init level, 우선순위)로 초기화되며, 앱은 device_is_ready()로 성공 여부를 확인한다</text>
+</svg>

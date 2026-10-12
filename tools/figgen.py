@@ -4535,6 +4535,70 @@ def fig_28_3():
     s.save("ch28/fig28-3-trace-view.svg")
 
 
+# ---------------------------------------------------------------------------
+# 29장 Zephyr
+# ---------------------------------------------------------------------------
+
+def fig_29_1():
+    s = Svg(900, 485)
+    s.text(450, 30, "그림 29-1  Zephyr 빌드 흐름 (devicetree + Kconfig → 생성 헤더 → 빌드)", 16, weight="bold")
+    s.text(160, 66, "하드웨어 기술", 13, weight="bold", color=BLUE)
+    s.box(40, 80, 240, 46, "SoC .dtsi", "stm32f411.dtsi: 주변장치 주소", BLUE_BG, BLUE, 13)
+    s.box(40, 136, 240, 46, "보드 .dts", "nucleo_f411re.dts: 핀, LED, 클럭", BLUE_BG, BLUE, 13)
+    s.box(40, 192, 240, 46, "앱 오버레이", "boards/nucleo_f411re.overlay", BLUE_BG, BLUE, 13)
+    s.box(40, 248, 240, 46, "바인딩 (.yaml)", "속성의 형식과 필수 여부", GRAY_BG, LINE, 13)
+    s.text(160, 326, "기능 설정", 13, weight="bold", color=ORANGE)
+    s.box(40, 340, 240, 46, "Kconfig 기본값 + 보드 defconfig", None, ORANGE_BG, ORANGE, 12)
+    s.box(40, 396, 240, 46, "prj.conf", "앱이 켤 기능", ORANGE_BG, ORANGE, 13)
+    s.box(360, 150, 170, 60, "devicetree 도구", "dtc + Python", GRAY_BG, LINE, 13)
+    s.box(360, 370, 170, 60, "Kconfig 도구", "Python (kconfiglib)", GRAY_BG, LINE, 13)
+    for y in (103, 159, 215, 271):
+        s.line(282, y, 356, 180, LINE, 1.4, arrow=True)
+    for y in (363, 419):
+        s.line(282, y, 356, 400, LINE, 1.4, arrow=True)
+    s.box(600, 150, 250, 60, "devicetree_generated.h", "DT_... 매크로 (주소, IRQ, 핀)", GREEN_BG, GREEN, 13)
+    s.box(600, 370, 250, 60, "autoconf.h  +  .config", "CONFIG_... 매크로", GREEN_BG, GREEN, 13)
+    s.line(532, 180, 596, 180, LINE, 1.8, arrow=True)
+    s.line(532, 400, 596, 400, LINE, 1.8, arrow=True)
+    s.box(620, 262, 210, 56, "CMake + Ninja → 컴파일", "커널 + 드라이버 + 앱", GRAY_BG, LINE, 13)
+    s.line(725, 212, 725, 258, LINE, 1.8, arrow=True)
+    s.line(725, 368, 725, 322, LINE, 1.8, arrow=True)
+    s.text(725, 466, "→ zephyr.elf / zephyr.bin   (west build, west flash)", 12, weight="bold")
+    s.save("ch29/fig29-1-build-flow.svg")
+
+
+def fig_29_2():
+    s = Svg(900, 450)
+    s.text(450, 30, "그림 29-2  Zephyr 드라이버 모델 구조", 16, weight="bold")
+    s.box(60, 70, 330, 56, "애플리케이션", "sensor_sample_fetch(dev), gpio_pin_toggle_dt(&led)", GREEN_BG, GREEN, 14)
+    s.box(510, 70, 330, 56, "devicetree", "DEVICE_DT_GET(DT_NODELABEL(bmp280))", BLUE_BG, BLUE, 14)
+    s.line(392, 98, 506, 98, LINE, 1.4, both=True)
+    s.text(450, 90, "어느 장치?", 11, color=MUTED)
+    s.box(60, 170, 330, 56, "서브시스템 API (일반화된 함수)", "sensor.h, gpio.h, i2c.h", GRAY_BG, LINE, 13)
+    s.line(225, 128, 225, 166, LINE, 1.8, arrow=True)
+    # struct device
+    s.rect(60, 262, 330, 120, ORANGE_BG, ORANGE, 8, 1.6)
+    s.text(225, 286, "struct device  (장치 하나마다)", 13, weight="bold")
+    rows = [("name", "\"bmp280@76\""), ("config", "주소 0x76, 버스 = i2c1 (빌드 시 확정, Flash)"),
+            ("data", "보정값, 마지막 측정값 (RAM)"), ("api", "→ 함수 포인터 표")]
+    for k, (a, b) in enumerate(rows):
+        s.text(80, 310 + k * 20, a, 12, "start", weight="bold")
+        s.text(150, 310 + k * 20, b, 11, "start", MUTED)
+    s.line(225, 228, 225, 258, LINE, 1.8, arrow=True)
+    s.text(232, 246, "dev->api->sample_fetch(dev)", 11, "start", MUTED)
+    s.rect(510, 262, 330, 120, "#ffffff", ORANGE, 8, 1.4)
+    s.text(675, 286, "드라이버 (bme280.c)", 13, weight="bold")
+    s.text(530, 312, ".sample_fetch = bme280_sample_fetch", 11, "start", INK)
+    s.text(530, 332, ".channel_get  = bme280_channel_get", 11, "start", INK)
+    s.text(530, 356, "→ 내부에서 i2c_write_read(bus, ...) 호출", 11, "start", MUTED)
+    s.line(392, 362, 506, 362, ORANGE, 1.6, arrow=True)
+    s.box(510, 170, 330, 56, "I2C 드라이버 (STM32)", "i2c1: 같은 모델의 또 다른 장치", GRAY_BG, LINE, 13)
+    s.line(675, 260, 675, 230, LINE, 1.6, arrow=True)
+    s.text(450, 414, "앱은 칩 이름도 핀도 모른다. 보드나 센서를 바꾸면 devicetree만 바뀌고 앱 코드는 그대로다 (24장의 HAL과 같은 생각)", 12, color=INK)
+    s.text(450, 436, "장치는 부팅 때 정해진 순서(init level, 우선순위)로 초기화되며, 앱은 device_is_ready()로 성공 여부를 확인한다", 11, color=MUTED)
+    s.save("ch29/fig29-2-driver-model.svg")
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("fig_") and callable(fn):
