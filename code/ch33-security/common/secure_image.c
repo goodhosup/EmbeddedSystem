@@ -10,7 +10,7 @@ sv_result_t secure_verify(const uint8_t *img, uint32_t avail, const uint8_t pubk
     if (h->magic != SIMG_MAGIC || h->hdr_size != SIMG_HDR_SIZE) {
         return SV_BAD_MAGIC;
     }
-    if (h->img_size == 0 || h->img_size > avail - SIMG_HDR_SIZE) {
+    if (avail < SIMG_HDR_SIZE || h->img_size == 0 || h->img_size > avail - SIMG_HDR_SIZE) {
         return SV_BAD_SIZE;
     }
 
@@ -18,11 +18,14 @@ sv_result_t secure_verify(const uint8_t *img, uint32_t avail, const uint8_t pubk
     uint8_t hash[32];
     mbedtls_sha256_context sha;
     mbedtls_sha256_init(&sha);
-    mbedtls_sha256_starts(&sha, 0);                     /* 0 = SHA-256 (1이면 SHA-224) */
-    mbedtls_sha256_update(&sha, img, SIMG_SIGNED_HDR);
-    mbedtls_sha256_update(&sha, img + SIMG_HDR_SIZE, h->img_size);
-    mbedtls_sha256_finish(&sha, hash);
+    int err = mbedtls_sha256_starts(&sha, 0);           /* 0 = SHA-256 (1이면 SHA-224) */
+    if (err == 0) err = mbedtls_sha256_update(&sha, img, SIMG_SIGNED_HDR);
+    if (err == 0) err = mbedtls_sha256_update(&sha, img + SIMG_HDR_SIZE, h->img_size);
+    if (err == 0) err = mbedtls_sha256_finish(&sha, hash);
     mbedtls_sha256_free(&sha);
+    if (err != 0) {                                     /* 하드웨어 가속기로 바꾸면 실패할 수 있다 */
+        return SV_BAD_SIGNATURE;
+    }
 
     /* 2. 서명 검증: 공개 키 Q와 (r, s) */
     sv_result_t res = SV_BAD_SIGNATURE;

@@ -59,6 +59,8 @@ int main(int argc, char **argv)
     CHECK(secure_verify(old, SLOT, signing_pubkey, 0) == SV_OK);           /* 서명은 정상 */
     CHECK(secure_verify(old, SLOT, signing_pubkey, 2) == SV_ROLLBACK);     /* 하지만 너무 오래됨 */
 
+    CHECK(secure_verify(good, 0x100, signing_pubkey, 0) == SV_BAD_SIZE);       /* 머리말보다 작은 영역 */
+
     static uint8_t empty[SLOT];
     memset(empty, 0xFF, sizeof empty);
     CHECK(secure_verify(empty, SLOT, signing_pubkey, 0) == SV_BAD_MAGIC);

@@ -4913,7 +4913,7 @@ def fig_33_2():
              "4. 통과하면 점프, 아니면 실행하지 않음 (이전 슬롯 또는 복구 모드)"]
     for k, t in enumerate(steps):
         s.text(346, 294 + k * 22, t, 12, "start", INK)
-    s.text(450, 400, "각 단계가 다음 단계를 검증한다. 맨 아래 뿌리가 바뀔 수 없으므로 전체를 믿을 수 있다", 12, color=INK)
+    s.text(450, 400, "각 단계가 다음 단계를 검증한다. 맨 왼쪽(뿌리)이 바뀔 수 없으므로 전체를 믿을 수 있다", 12, color=INK)
     s.text(450, 420, "개인 키는 장치에 없다: 장치는 공개 키로 확인만 하고, 서명은 회사의 보호된 서버가 한다", 11, color=MUTED)
     s.save("ch33/fig33-2-chain-of-trust.svg")
 
@@ -4938,7 +4938,7 @@ def fig_33_3():
     s.text(450, 240, "직접 접근", 10, color=RED, weight="bold")
     s.text(450, 272, "→ 폴트", 10, color=RED, weight="bold")
     s.text(450, 404, "비보안 코드가 해킹당해도 보안 영역의 키와 코드는 읽거나 바꿀 수 없다. 정해진 입구(NSC, SG 명령)로만 서비스를 부른다", 12, color=INK)
-    s.text(450, 426, "Armv8-M(Cortex-M23, M33, M55, M85)의 기능. 이 책의 STM32F411(Cortex-M4)에는 없다: STM32L5, U5, H5 등", 11, color=MUTED)
+    s.text(450, 426, "Armv8-M(Cortex-M23, M33, M35P, M55, M85)의 기능. 이 책의 STM32F411(Cortex-M4)에는 없다: STM32L5, U5, H5 등", 11, color=MUTED)
     s.save("ch33/fig33-3-trustzone.svg")
 
 

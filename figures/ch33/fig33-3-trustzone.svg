@@ -29,5 +29,5 @@
   <text x="450.0" y="240.0" font-size="10" text-anchor="middle" fill="#d64545" font-weight="bold">직접 접근</text>
   <text x="450.0" y="272.0" font-size="10" text-anchor="middle" fill="#d64545" font-weight="bold">→ 폴트</text>
   <text x="450.0" y="404.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">비보안 코드가 해킹당해도 보안 영역의 키와 코드는 읽거나 바꿀 수 없다. 정해진 입구(NSC, SG 명령)로만 서비스를 부른다</text>
-  <text x="450.0" y="426.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">Armv8-M(Cortex-M23, M33, M55, M85)의 기능. 이 책의 STM32F411(Cortex-M4)에는 없다: STM32L5, U5, H5 등</text>
+  <text x="450.0" y="426.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">Armv8-M(Cortex-M23, M33, M35P, M55, M85)의 기능. 이 책의 STM32F411(Cortex-M4)에는 없다: STM32L5, U5, H5 등</text>
 </svg>
