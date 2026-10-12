@@ -56,8 +56,9 @@
 | `chapters/ch38-linux-drivers.md` | 140 | [확인 필요: 모듈을 올린 실측] |
 | `chapters/ch38-linux-drivers.md` | 229 | [확인 필요: Pi 5에서 실행 중 오버레이 적용 동작] |
 | `chapters/ch38-linux-drivers.md` | 287 | [확인 필요: 센서와 오버레이를 적용한 실측] |
-| `chapters/ch39-embedded-rust.md` | 24 | [확인 필요: 인증받은 Rust 툴체인 이름과 인증 범위] |
-| `chapters/ch39-embedded-rust.md` | 28 | [확인 필요: 각 예제의 빌드와 보드 실행] |
+| `chapters/ch39-embedded-rust.md` | 24 | [확인 필요: 출간 시점의 인증 범위] |
+| `chapters/ch39-embedded-rust.md` | 28 | [확인 필요: 두 예제의 빌드와 보드 실행] |
+| `chapters/ch39-embedded-rust.md` | 214 | [확인 필요: 출간 시점 AVR 대상 이름] |
 | `chapters/ch39-embedded-rust.md` | 214 | [확인 필요: avr-hal의 ATmega128 지원 여부와 현재 AVR 대상 이름] |
 | `code/ch18-usb/README.md` | 23 | [확인 필요: CN10 핀 번호] |
 | `code/ch18-usb/stm32/usb_descriptors.c` | 6 | [확인 필요: pid.codes 시험용 PID 정책] |
@@ -79,6 +80,6 @@
 | `code/ch37-linux/README.md` | 18 | [확인 필요: 버튼·LED·BMP280을 연결한 실행 결과] |
 | `code/ch37-linux/gpio_button_led.c` | 21 | [확인 필요: 다른 모델·커널] |
 | `code/ch38-drivers/README.md` | 17 | [확인 필요: 모듈을 올리고 센서를 연결한 실행 결과] |
-| `code/ch39-rust/README.md` | 16 | [확인 필요: Rust 툴체인으로 세 예제의 빌드와 보드 실행 확인 (원고 작성 환경에 Rust 미설치)] |
+| `code/ch39-rust/README.md` | 18 | [확인 필요: hal-blinky, embassy-async의 빌드와 보드 실행] |
 
-총 75건
+총 76건

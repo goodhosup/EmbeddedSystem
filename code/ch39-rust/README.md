@@ -13,4 +13,6 @@ cargo install probe-rs-tools
 
 크레이트 버전은 2026년 하반기 crates.io 기준이며, API는 각 크레이트의 해당 태그 예제에 맞췄습니다.
 
-[확인 필요: Rust 툴체인으로 세 예제의 빌드와 보드 실행 확인 (원고 작성 환경에 Rust 미설치)]
+ffi-c는 PC에서 테스트 2개 통과를 확인했습니다(검토 환경, rustc 1.97).
+
+[확인 필요: hal-blinky, embassy-async의 빌드와 보드 실행]
