@@ -21,4 +21,4 @@ cd ../stm32 && make flash   # 보드
 python3 ../hil/run_on_target.py --port /dev/ttyACM0 --flash
 ```
 
-[확인 필요: 보드 실행 결과와 HIL 스크립트 동작]
+[확인 필요: stm32 빌드(Unity 포함) 경고, 보드 실행 결과와 HIL 스크립트 동작]

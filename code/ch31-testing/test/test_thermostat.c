@@ -147,7 +147,7 @@ static void test_setpoint_range_is_checked(void)
 
 void run_thermostat_tests(void)
 {
-    Unity.TestFile = __FILE__;                     /* 결과에 이 파일 이름이 나오게 */
+    UnitySetTestFile(__FILE__);                    /* 결과에 이 파일 이름이 나오게 */
     RUN_TEST(test_init_turns_heater_off);
     RUN_TEST(test_heater_turns_on_below_band);
     RUN_TEST(test_heater_does_not_turn_on_at_band_edge);

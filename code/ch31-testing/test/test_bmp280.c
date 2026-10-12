@@ -60,7 +60,7 @@ static void test_temperature_matches_datasheet_example(void)
 
 void run_bmp280_tests(void)
 {
-    Unity.TestFile = __FILE__;                     /* 결과에 이 파일 이름이 나오게 */
+    UnitySetTestFile(__FILE__);                    /* 결과에 이 파일 이름이 나오게 */
     RUN_TEST(test_init_reads_id_and_calibration_then_configures);
     RUN_TEST(test_init_rejects_wrong_chip);
     RUN_TEST(test_init_passes_nack_through);

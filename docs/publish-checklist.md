@@ -42,6 +42,6 @@
 | `code/ch30-logger/DESIGN.md` | 100 | [확인 필요: 보드 실측] |
 | `code/ch30-logger/README.md` | 33 | [확인 필요: arm-none-eabi-gcc로 FreeRTOS와 FatFs까지 포함한 전체 빌드의 경고 확인, 보드 통합 시험(30.8절)] |
 | `code/ch30-logger/ffconf.h` | 4 | [확인 필요: 다른 버전을 쓸 때] |
-| `code/ch31-testing/README.md` | 24 | [확인 필요: 보드 실행 결과와 HIL 스크립트 동작] |
+| `code/ch31-testing/README.md` | 24 | [확인 필요: stm32 빌드(Unity 포함) 경고, 보드 실행 결과와 HIL 스크립트 동작] |
 
 총 38건
