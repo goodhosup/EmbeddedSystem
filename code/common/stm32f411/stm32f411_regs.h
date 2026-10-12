@@ -163,6 +163,11 @@ static inline void gpio_set_af(GPIO_TypeDef *port, uint32_t pin, uint32_t af)
 /* ---- FLASH 인터페이스 (0x4002 3C00) ---- */
 typedef struct {
     __IO uint32_t ACR;         /* 0x00 */
+    __IO uint32_t KEYR;        /* 0x04 잠금 해제 키 (32장) */
+    __IO uint32_t OPTKEYR;     /* 0x08 */
+    __IO uint32_t SR;          /* 0x0C */
+    __IO uint32_t CR;          /* 0x10 */
+    __IO uint32_t OPTCR;       /* 0x14 */
 } FLASH_TypeDef;
 
 #define FLASH ((FLASH_TypeDef *)0x40023C00u)
@@ -171,6 +176,39 @@ typedef struct {
 #define FLASH_ACR_PRFTEN      (1u << 8)
 #define FLASH_ACR_ICEN        (1u << 9)
 #define FLASH_ACR_DCEN        (1u << 10)
+
+/* Flash 지우기/쓰기 (RM0383 3.5절, 3.8절): 32장 */
+#define FLASH_KEY1            0x45670123u
+#define FLASH_KEY2            0xCDEF89ABu
+#define FLASH_SR_EOP          (1u << 0)
+#define FLASH_SR_OPERR        (1u << 1)
+#define FLASH_SR_WRPERR       (1u << 4)
+#define FLASH_SR_PGAERR       (1u << 5)
+#define FLASH_SR_PGPERR       (1u << 6)
+#define FLASH_SR_PGSERR       (1u << 7)
+#define FLASH_SR_RDERR        (1u << 8)
+#define FLASH_SR_BSY          (1u << 16)
+#define FLASH_SR_ERRORS       (FLASH_SR_OPERR | FLASH_SR_WRPERR | FLASH_SR_PGAERR | FLASH_SR_PGPERR | FLASH_SR_PGSERR | FLASH_SR_RDERR)
+#define FLASH_CR_PG           (1u << 0)
+#define FLASH_CR_SER          (1u << 1)
+#define FLASH_CR_SNB_Pos      3u
+#define FLASH_CR_SNB_Msk      (0xFu << 3)
+#define FLASH_CR_PSIZE_32     (2u << 8)      /* 32비트씩 (전원 2.7~3.6 V) */
+#define FLASH_CR_STRT         (1u << 16)
+#define FLASH_CR_LOCK         (1u << 31)
+
+/* ---- 독립 워치독 IWDG (0x4000 3000): RM0383 17장. 32장, 35장 ---- */
+typedef struct {
+    __IO uint32_t KR;          /* 0x00 키: 0x5555 설정 허용, 0xAAAA 갱신, 0xCCCC 시작 */
+    __IO uint32_t PR;          /* 0x04 분주: 0 = /4 ... 6 = /256 */
+    __IO uint32_t RLR;         /* 0x08 다시 채울 값 (12비트) */
+    __IO uint32_t SR;          /* 0x0C PVU, RVU: 갱신 중 */
+} IWDG_TypeDef;
+
+#define IWDG ((IWDG_TypeDef *)0x40003000u)
+#define IWDG_KEY_ACCESS       0x5555u
+#define IWDG_KEY_RELOAD       0xAAAAu
+#define IWDG_KEY_START        0xCCCCu
 
 /* ---- PWR (0x4000 7000) ---- */
 typedef struct {
@@ -459,6 +497,9 @@ typedef struct {
 #define RTC_WKUP_IRQn        3
 
 /* ---- SCB 시스템 제어 레지스터 (0xE000 ED10) ---- */
+#define SCB_VTOR            (*(volatile uint32_t *)0xE000ED08u)   /* 벡터 테이블 위치 (32장) */
+#define SCB_AIRCR           (*(volatile uint32_t *)0xE000ED0Cu)
+#define SCB_AIRCR_SYSRESET  ((0x5FAu << 16) | (1u << 2))             /* VECTKEY + SYSRESETREQ */
 #define SCB_SCR             (*(volatile uint32_t *)0xE000ED10u)
 #define SCB_CCR             (*(volatile uint32_t *)0xE000ED14u)
 #define SCB_SHCSR           (*(volatile uint32_t *)0xE000ED24u)

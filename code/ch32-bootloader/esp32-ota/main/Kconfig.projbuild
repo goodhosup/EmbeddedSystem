@@ -1,0 +1,24 @@
+menu "Example configuration"
+
+    config EXAMPLE_WIFI_SSID
+        string "Wi-Fi SSID"
+        default "your-ssid"
+
+    config EXAMPLE_WIFI_PASSWORD
+        string "Wi-Fi password"
+        default "your-password"
+
+    config EXAMPLE_OTA_URL
+        string "Firmware URL"
+        default "http://192.168.0.10:8000/ch32-ota.bin"
+        help
+            같은 네트워크의 PC에서 build 폴더로 가서 python3 -m http.server 8000 을 실행하고
+            그 PC의 IP를 넣는다. 제품에서는 https:// 와 서버 인증서를 쓴다.
+
+    config EXAMPLE_SIMULATE_BAD_IMAGE
+        bool "Make the self-test fail (rollback demo)"
+        default n
+        help
+            켜고 빌드한 이미지는 자가 진단에 실패해 스스로 롤백한다.
+
+endmenu

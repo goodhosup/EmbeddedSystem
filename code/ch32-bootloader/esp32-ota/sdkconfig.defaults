@@ -1,0 +1,8 @@
+# 32장: OTA에 필요한 설정
+CONFIG_ESPTOOLPY_FLASHSIZE_4MB=y
+CONFIG_PARTITION_TABLE_CUSTOM=y
+CONFIG_PARTITION_TABLE_CUSTOM_FILENAME="partitions.csv"
+# 새 이미지는 "검증 대기" 상태로 부팅하고, 앱이 확인하지 않으면 다음 부팅에 이전 슬롯으로
+CONFIG_BOOTLOADER_APP_ROLLBACK_ENABLE=y
+# 실습용: HTTP로도 받게 한다. 제품에서는 반드시 HTTPS와 서버 인증서 검증 (20장, 33장)
+CONFIG_ESP_HTTPS_OTA_ALLOW_HTTP=y

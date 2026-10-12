@@ -31,6 +31,10 @@
 | `chapters/ch30-project-data-logger.md` | 306 | [확인 필요: PVD 절 번호] |
 | `chapters/ch31-testable-firmware.md` | 205 | [확인 필요: 출간 시점 CMock/Ceedling 버전과 설치 방법] |
 | `chapters/ch31-testable-firmware.md` | 230 | [확인 필요: 보드 실행 결과] |
+| `chapters/ch32-bootloader-update.md` | 206 | [확인 필요: STM32F411 128 KB 섹터 지우기 시간 (DS10314)] |
+| `chapters/ch32-bootloader-update.md` | 253 | [확인 필요: 보드 실측] |
+| `chapters/ch32-bootloader-update.md` | 288 | [확인 필요: 출간 시점 Zephyr sysbuild와 MCUboot 설정 방법] |
+| `chapters/ch32-bootloader-update.md` | 335 | [확인 필요: ESP-IDF 5.x 기준 빌드와 실행] |
 | `code/ch18-usb/README.md` | 23 | [확인 필요: CN10 핀 번호] |
 | `code/ch18-usb/stm32/usb_descriptors.c` | 6 | [확인 필요: pid.codes 시험용 PID 정책] |
 | `code/ch19-wireless/esp32-arduino/ble_sensor/ble_sensor.ino` | 9 | [확인 필요: 코어 버전별 BLE 라이브러리 API] |
@@ -43,5 +47,6 @@
 | `code/ch30-logger/README.md` | 33 | [확인 필요: arm-none-eabi-gcc로 FreeRTOS와 FatFs까지 포함한 전체 빌드의 경고 확인, 보드 통합 시험(30.8절)] |
 | `code/ch30-logger/ffconf.h` | 4 | [확인 필요: 다른 버전을 쓸 때] |
 | `code/ch31-testing/README.md` | 24 | [확인 필요: stm32 빌드(Unity 포함) 경고, 보드 실행 결과와 HIL 스크립트 동작] |
+| `code/ch32-bootloader/README.md` | 34 | [확인 필요: arm-none-eabi-gcc 빌드 경고, 보드에서 업데이트·롤백 실측, ESP-IDF 5.x 빌드와 OTA 실행] |
 
-총 38건
+총 43건

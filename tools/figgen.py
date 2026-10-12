@@ -4750,6 +4750,109 @@ def fig_31_2():
     s.save("ch31/fig31-2-hil.svg")
 
 
+# ---------------------------------------------------------------------------
+# 32장 부트로더와 펌웨어 업데이트
+# ---------------------------------------------------------------------------
+
+def fig_32_1():
+    s = Svg(900, 500)
+    s.text(450, 30, "그림 32-1  Flash 파티션 배치 (STM32F411RE 512 KB)", 16, weight="bold")
+    parts = [("0x0800 0000", "부트로더", "섹터 0~1, 32 KB", GRAY_BG, LINE, 32),
+             ("0x0800 8000", "부트 상태 0", "섹터 2, 16 KB", ORANGE_BG, ORANGE, 16),
+             ("0x0800 C000", "부트 상태 1", "섹터 3, 16 KB", ORANGE_BG, ORANGE, 16),
+             ("0x0801 0000", "(앱 데이터)", "섹터 4, 64 KB", "#ffffff", "#9aa5b1", 64),
+             ("0x0802 0000", "슬롯 A", "섹터 5, 128 KB", BLUE_BG, BLUE, 128),
+             ("0x0804 0000", "슬롯 B", "섹터 6, 128 KB", GREEN_BG, GREEN, 128),
+             ("0x0806 0000", "(비어 있음)", "섹터 7, 128 KB", "#ffffff", "#9aa5b1", 128)]
+    x, w = 220, 260
+    y = 56
+    for addr, name, sub, f, st, kb in parts:
+        h = max(30, kb * 0.62)
+        s.rect(x, y, w, h, f, st, 0, 1.4)
+        s.text(x + w / 2, y + h / 2 + (0 if h < 40 else -4), name, 13, weight="bold")
+        if h >= 40:
+            s.text(x + w / 2, y + h / 2 + 14, sub, 11, color=MUTED)
+        else:
+            s.text(x + w + 10, y + h / 2 + 4, sub, 10, "start", MUTED)
+        s.text(x - 10, y + 12, addr, 11, "end", MUTED)
+        y += h
+    # 슬롯 내부 확대
+    sx, sy = 600, 250
+    s.text(sx + 120, sy - 14, "슬롯 하나의 내부", 12, weight="bold")
+    s.rect(sx, sy, 240, 34, ORANGE_BG, ORANGE, 0, 1.3)
+    s.text(sx + 120, sy + 22, "머리말 512 B (magic, 크기, 버전, CRC)", 11)
+    s.rect(sx, sy + 34, 240, 40, BLUE_BG, BLUE, 0, 1.3)
+    s.text(sx + 120, sy + 58, "벡터 테이블 (+0x200, VTOR)", 11)
+    s.rect(sx, sy + 74, 240, 70, BLUE_BG, BLUE, 0, 1.3)
+    s.text(sx + 120, sy + 114, "앱 코드와 상수", 11)
+    s.line(482, 330, 596, 268, LINE, 1.2, dash="4 3")
+    s.text(450, 470, "섹터 크기가 고르지 않으므로(16/64/128 KB) 지울 단위를 생각해 나눈다. 부트 상태는 작은 섹터 두 개를 번갈아 쓴다", 11, color=INK)
+    s.text(450, 490, "부트로더 영역은 앱이 지울 수 없게 막고(flash_f4.c), 제품에서는 쓰기 보호(옵션 바이트)도 건다(33장)", 11, color=MUTED)
+    s.save("ch32/fig32-1-partitions.svg")
+
+
+def fig_32_2():
+    s = Svg(900, 460)
+    s.text(450, 30, "그림 32-2  업데이트와 롤백 상태 다이어그램", 16, weight="bold")
+    W, H = 200, 64
+    st = {"A 확정": (60, 90), "B 받는 중": (350, 90), "B 시험 부팅": (640, 90), "B 확정": (640, 300), "A 확정 (롤백)": (60, 300)}
+    sub = {"A 확정": "active = A", "B 받는 중": "B 지우고 쓰기", "B 시험 부팅": "pending = B, tries 1~3",
+           "B 확정": "active = B", "A 확정 (롤백)": "pending 지움"}
+    col = {"A 확정": (BLUE_BG, BLUE), "B 받는 중": (GRAY_BG, LINE), "B 시험 부팅": (ORANGE_BG, ORANGE),
+           "B 확정": (GREEN_BG, GREEN), "A 확정 (롤백)": (BLUE_BG, BLUE)}
+    for n, (x, y) in st.items():
+        f, c = col[n]
+        s.rect(x, y, W, H, f, c, 18, 1.6)
+        s.text(x + W / 2, y + 28, n, 14, weight="bold")
+        s.text(x + W / 2, y + 48, sub[n], 11, color=MUTED)
+    s.line(262, 122, 346, 122, LINE, 1.8, arrow=True)
+    s.text(304, 112, "u: 받기 시작", 11, weight="bold")
+    s.line(552, 122, 636, 122, LINE, 1.8, arrow=True)
+    s.text(594, 112, "CRC 확인 → 리셋", 11, weight="bold")
+    s.path("M450,156 L450,200 L160,200 L160,158", RED, 1.4, arrow=True)
+    s.text(305, 194, "받다가 끊김, 검증 실패: A 그대로", 11, color=RED, weight="bold")
+    s.line(740, 156, 740, 296, GREEN, 1.8, arrow=True)
+    s.text(750, 214, "자가 진단 통과", 11, "start", GREEN, "bold")
+    s.text(750, 230, "→ c (확정)", 11, "start", GREEN, "bold")
+    s.path("M640,140 L560,140 L560,250 L300,250 L300,296", ORANGE, 1.6, arrow=True)
+    s.text(430, 268, "확정 없이 리셋 3번 (멈춤 → 워치독)", 11, color=ORANGE, weight="bold")
+    s.path("M840,122 C880,90 880,160 842,140", ORANGE, 1.4, arrow=True)
+    s.text(872, 84, "리셋", 10, "middle", ORANGE)
+    s.text(450, 410, "핵심 규칙: 새 이미지는 스스로 \"잘 된다\"고 확정할 때까지 시험 중이다. 확정 전에 몇 번 리셋되면 이전 이미지로 돌아간다", 12, color=INK)
+    s.text(450, 432, "MCUboot의 test/confirm, ESP-IDF의 PENDING_VERIFY → VALID가 같은 생각이다", 11, color=MUTED)
+    s.save("ch32/fig32-2-update-states.svg")
+
+
+def fig_32_3():
+    s = Svg(900, 500)
+    s.text(450, 30, "그림 32-3  OTA 전체 시퀀스 (서버 → 다운로드 → 검증 → 교체 → 재부팅)", 16, weight="bold")
+    cols = [("업데이트 서버", 130), ("앱 (현재 슬롯)", 370), ("Flash (다른 슬롯)", 590), ("부트로더", 790)]
+    for n, x in cols:
+        s.box(x - 85, 52, 170, 40, n, None, GRAY_BG, LINE, 12)
+        s.line(x, 94, x, 470, "#cbd2d9", 1.4, dash="4 4")
+    msgs = [(370, 130, 118, "새 버전 있나? (버전 비교)", BLUE),
+            (130, 370, 146, "이미지 머리말 → 앱 설명, 크기", BLUE),
+            (370, 590, 184, "다른 슬롯 지우기", LINE),
+            (130, 370, 214, "조각조각 다운로드 (HTTPS)", BLUE),
+            (370, 590, 236, "받은 만큼 쓰기", LINE),
+            (590, 370, 270, "다시 읽어 검증 (해시, 서명: 33장)", ORANGE),
+            (370, 790, 304, "다음 부팅 = 새 슬롯 (시험)", ORANGE),
+            (370, 370, 330, "재부팅", RED),
+            (790, 590, 364, "새 슬롯 확인 후 점프", ORANGE),
+            (590, 590, 398, "자가 진단 → 확정 (실패하면 롤백)", GREEN)]
+    for a, b, y, t, c in msgs:
+        if a == b:
+            bw = 90 if len(t) < 8 else 230
+            s.rect(a - bw / 2, y - 14, bw, 24, "#ffffff", c, 4, 1.2)
+            s.text(a, y + 3, t, 11, color=c, weight="bold")
+        else:
+            s.line(a, y, b, y, c, 1.6, arrow=True)
+            s.text((a + b) / 2, y - 6, t, 11, color=c, weight="bold" if c != LINE else "normal")
+    s.text(450, 448, "현재 슬롯은 끝까지 건드리지 않는다. 어느 단계에서 끊겨도 현재 이미지로 다시 부팅할 수 있다", 12, color=INK)
+    s.text(450, 472, "ESP-IDF: esp_https_ota_begin → get_img_desc → perform → finish → esp_restart → mark_app_valid", 11, color=MUTED)
+    s.save("ch32/fig32-3-ota-sequence.svg")
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("fig_") and callable(fn):

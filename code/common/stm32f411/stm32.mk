@@ -11,6 +11,9 @@ CC      = arm-none-eabi-gcc
 OBJCOPY = arm-none-eabi-objcopy
 SIZE    = arm-none-eabi-size
 
+# 링커 스크립트: 예제가 바꾸지 않으면 공통 스크립트 (32장의 부트로더와 앱은 각자의 것을 쓴다)
+LDSCRIPT ?= $(COMMON_DIR)stm32f411.ld
+
 CPU     = -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard
 # -MMD -MP: 소스마다 .d 파일에 "어떤 헤더를 포함했는지" 적어 두어, 헤더만 고쳐도 다시 빌드되게 한다 (22장)
 CFLAGS += $(CPU) -std=c11 -Og -g3 -Wall -Wextra -MMD -MP \
@@ -18,12 +21,12 @@ CFLAGS += $(CPU) -std=c11 -Og -g3 -Wall -Wextra -MMD -MP \
           -fno-tree-loop-distribute-patterns -I$(COMMON_DIR)
 ifdef USE_NEWLIB
 # 표준 C 라이브러리(newlib-nano)를 쓴다: printf, snprintf, strtol 등 (14장)
-LDFLAGS += $(CPU) --specs=nano.specs -nostartfiles -T$(COMMON_DIR)stm32f411.ld \
+LDFLAGS += $(CPU) --specs=nano.specs -nostartfiles -T$(LDSCRIPT) \
            -Wl,--gc-sections -Wl,-Map=build/$(TARGET).map
 LDLIBS  += -lc -lgcc
 SRCS    += $(COMMON_DIR)syscalls.c
 else
-LDFLAGS += $(CPU) -nostdlib -T$(COMMON_DIR)stm32f411.ld \
+LDFLAGS += $(CPU) -nostdlib -T$(LDSCRIPT) \
            -Wl,--gc-sections -Wl,-Map=build/$(TARGET).map
 LDLIBS  += -lgcc
 endif
