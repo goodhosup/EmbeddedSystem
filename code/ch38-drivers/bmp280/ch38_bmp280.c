@@ -76,6 +76,9 @@ static int ch38_probe(struct i2c_client *client)
 	u8 c[6];
 	int id, ret;
 
+	if (!i2c_check_functionality(client->adapter, I2C_FUNC_SMBUS_READ_I2C_BLOCK | I2C_FUNC_SMBUS_BYTE_DATA))
+		return dev_err_probe(&client->dev, -EOPNOTSUPP, "adapter lacks SMBus block read\n");
+
 	id = i2c_smbus_read_byte_data(client, REG_CHIP_ID);
 	if (id < 0)
 		return dev_err_probe(&client->dev, id, "no answer at 0x%02x\n", client->addr);
@@ -107,8 +110,10 @@ static int ch38_probe(struct i2c_client *client)
 	indio->channels = ch38_channels;
 	indio->num_channels = ARRAY_SIZE(ch38_channels);
 	indio->modes = INDIO_DIRECT_MODE;
-	dev_info(&client->dev, "chip id 0x%02x, IIO device registered\n", id);
-	return devm_iio_device_register(&client->dev, indio);
+	ret = devm_iio_device_register(&client->dev, indio);
+	if (!ret)
+		dev_info(&client->dev, "chip id 0x%02x, IIO device registered\n", id);
+	return ret;
 }
 
 static const struct of_device_id ch38_of_match[] = {

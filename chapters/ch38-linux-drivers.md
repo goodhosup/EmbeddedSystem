@@ -66,7 +66,7 @@ lsmod | grep hello
 sudo rmmod hello              # 내리기
 ```
 
-`MODULE_LICENSE("GPL")`은 장식이 아닙니다. 커널의 많은 함수는 GPL 모듈에만 공개되어(`EXPORT_SYMBOL_GPL`) 있어서, 라이선스가 다르면 그 함수를 쓸 수 없습니다. 커널은 GPL v2이고, 커널에 링크되는 모듈의 라이선스는 제품의 법적 검토가 필요한 문제입니다.
+`MODULE_LICENSE("GPL")`은 장식이 아닙니다. 커널의 많은 함수는 `EXPORT_SYMBOL_GPL`로 공개되어 있어서, `MODULE_LICENSE`로 GPL과 호환되는 라이선스를 선언한 모듈만 쓸 수 있습니다. 커널은 GPL v2이고, 커널에 링크되는 모듈의 라이선스는 제품의 법적 검토가 필요한 문제입니다.
 
 ### 커널 코드의 규칙
 
@@ -120,6 +120,8 @@ module_misc_device(counter_dev);
 ```
 
 `struct file_operations`가 핵심입니다. "이 파일을 읽으면 이 함수를, 쓰면 이 함수를 불러라"는 표입니다. 24장의 `washer_io_t`, 29장 Zephyr의 드라이버 API처럼 함수 포인터 표로 인터페이스를 만드는 같은 방법입니다.
+
+예제는 실습하기 쉽게 누구나 읽고 쓰도록(`0666`) 했지만, 제품에서는 `0660`으로 하고 udev 규칙으로 특정 그룹에만 권한을 줍니다(33장의 최소 권한).
 
 문자 장치는 원래 **주 번호(major)** 와 **부 번호(minor)** 를 할당받고 `cdev`를 등록하는 몇 단계가 필요하지만, `miscdevice`로 등록하면 커널이 그 일을 대신 하고 udev가 `/dev`에 파일까지 만들어 줍니다. 작은 드라이버에 알맞습니다.
 
@@ -220,7 +222,7 @@ cd code/ch38-drivers/bmp280
 dtc -@ -I dts -O dtb -o ch38-bmp280.dtbo ch38-bmp280-overlay.dts
 sudo cp ch38-bmp280.dtbo /boot/firmware/overlays/
 echo "dtoverlay=ch38-bmp280" | sudo tee -a /boot/firmware/config.txt
-make && sudo make -C /lib/modules/$(uname -r)/build M=$PWD modules_install && sudo depmod
+make && sudo make -C /lib/modules/$(uname -r)/build M=$PWD modules_install   # → /lib/modules/$(uname -r)/updates/, depmod까지 해 준다
 sudo reboot
 ```
 
@@ -308,4 +310,4 @@ cat /sys/bus/iio/devices/iio:device0/in_temp_input  # 24870 → 24.87 °C
 3. `counter_read()`에서 `copy_to_user()` 대신 `memcpy(buf, tmp, n)`을 쓰면 어떤 위험이 있나요? 사용자가 `buf`에 커널 주소를 넘기는 경우를 생각해 보세요.
 4. `ch38_bmp280.c`에 기압 채널(`IIO_PRESSURE`)을 추가하려면 무엇을 바꿔야 하나요? 15장의 연습 문제에서 만든 기압 보정 코드를 어디에 넣을지 쓰세요.
 5. 같은 I2C 버스의 0x76에 BMP280이 있는데 디바이스 트리에 본류 드라이버(`bosch,bmp280`)와 이 장의 드라이버(`book,ch38-bmp280`) 노드를 둘 다 넣으면 어떻게 될까요?
-6. (실습) 본류 드라이버를 `dtoverlay=i2c-sensor,bmp280`으로 켜고, 이 장의 드라이버와 같은 `in_temp_input` 값이 나오는지 비교하세요. 본류 드라이버는 그 밖에 어떤 파일(채널, 설정)을 제공하나요?
+6. (실습) 먼저 `config.txt`에서 `dtoverlay=ch38-bmp280` 줄을 지우고 재부팅한 뒤(같은 주소 0x76에 노드가 둘이면 두 번째 장치는 만들어지지 않습니다), 본류 드라이버를 `dtoverlay=i2c-sensor,bmp280`으로 켜고, 이 장의 드라이버와 같은 `in_temp_input` 값이 나오는지 비교하세요. 본류 드라이버는 그 밖에 어떤 파일(채널, 설정)을 제공하나요?
