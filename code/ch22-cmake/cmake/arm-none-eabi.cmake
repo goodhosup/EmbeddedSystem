@@ -17,8 +17,9 @@ set(CMAKE_C_FLAGS_INIT             "${CPU_FLAGS} -ffunction-sections -fdata-sect
 set(CMAKE_EXE_LINKER_FLAGS_INIT    "${CPU_FLAGS} -Wl,--gc-sections")
 
 # 빌드 종류별 최적화: CMake 기본값(-O3 등) 대신 임베디드에 맞게
-set(CMAKE_C_FLAGS_DEBUG_INIT       "-Og -g3")
-set(CMAKE_C_FLAGS_RELEASE_INIT     "-Os -g -DNDEBUG")      # 릴리스도 디버그 정보는 남긴다(.elf에만 들어감)
+# *_INIT으로 정하면 CMake가 뒤에 자기 기본값(" -O3 -DNDEBUG")을 덧붙이므로 캐시 변수로 정한다
+set(CMAKE_C_FLAGS_DEBUG            "-Og -g3"         CACHE STRING "")
+set(CMAKE_C_FLAGS_RELEASE          "-Os -g -DNDEBUG" CACHE STRING "")   # 릴리스도 디버그 정보는 남긴다(.elf에만 들어감)
 
 # 라이브러리와 헤더를 PC가 아니라 툴체인 쪽에서만 찾는다
 set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)

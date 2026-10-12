@@ -9,6 +9,7 @@ project(ch22_firmware C)
 
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
+set(CMAKE_C_EXTENSIONS OFF)          # -std=gnu11이 아니라 -std=c11 (Makefile과 같게)
 set(COMMON ${CMAKE_CURRENT_SOURCE_DIR}/../common/stm32f411)
 
 # ---- 버전 정보: git에서 가져와 헤더로 만든다 (22.6절) ----

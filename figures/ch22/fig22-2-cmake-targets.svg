@@ -26,9 +26,9 @@
   <rect x="130.0" y="360.0" width="180.0" height="46.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
   <text x="220.0" y="380.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="bold">app</text>
   <text x="220.0" y="399.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">정적 라이브러리 (보드 독립)</text>
-  <rect x="590.0" y="360.0" width="180.0" height="46.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
-  <text x="680.0" y="380.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="bold">board</text>
-  <text x="680.0" y="399.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">오브젝트 라이브러리 (startup 등)</text>
+  <rect x="560.0" y="360.0" width="220.0" height="46.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="670.0" y="380.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="bold">board</text>
+  <text x="670.0" y="399.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">오브젝트 라이브러리 (startup 등)</text>
   <line x1="410.0" y1="342.0" x2="260.0" y2="358.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
   <line x1="490.0" y1="342.0" x2="640.0" y2="358.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
   <text x="220.0" y="428.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">app은 31장에서 PC용 테스트에도 그대로 쓴다</text>

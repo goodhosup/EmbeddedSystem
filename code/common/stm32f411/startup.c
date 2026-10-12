@@ -208,6 +208,11 @@ const vector_t vector_table[16 + NUM_IRQ] = {
 
 void Reset_Handler(void)
 {
+    /* FPU 켜기: CPACR의 CP10, CP11을 전체 접근으로 (PM0214 4.6.1절).
+       -mfloat-abi=hard로 빌드하므로 컴파일러가 언제든 FPU 명령을 만들 수 있다 */
+    *(volatile uint32_t *)0xE000ED88u |= 0xFu << 20;
+    __asm volatile ("dsb\n isb");
+
     SystemInit();
 
     /* .data: Flash에 있는 초기값을 RAM으로 복사 */

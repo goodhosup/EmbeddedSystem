@@ -3858,11 +3858,138 @@ def fig_22_2():
     s.text(450, 270, "타깃 의존 관계", 13, weight="bold")
     s.box(370, 290, 160, 50, "firmware", "실행 파일 (.elf)", GREEN_BG, GREEN, 13)
     s.box(130, 360, 180, 46, "app", "정적 라이브러리 (보드 독립)", BLUE_BG, BLUE, 11)
-    s.box(590, 360, 180, 46, "board", "오브젝트 라이브러리 (startup 등)", ORANGE_BG, ORANGE, 11)
+    s.box(560, 360, 220, 46, "board", "오브젝트 라이브러리 (startup 등)", ORANGE_BG, ORANGE, 11)
     s.line(410, 342, 260, 358, LINE, 1.8, arrow=True)
     s.line(490, 342, 640, 358, LINE, 1.8, arrow=True)
     s.text(220, 428, "app은 31장에서 PC용 테스트에도 그대로 쓴다", 11, color=MUTED)
     s.save("ch22/fig22-2-cmake-targets.svg")
+
+
+# ---------------------------------------------------------------------------
+# 23장 디버깅
+# ---------------------------------------------------------------------------
+
+def fig_23_1():
+    s = Svg(900, 380)
+    s.text(450, 30, "그림 23-1  SWD 신호 연결", 16, weight="bold")
+    s.box(40, 80, 170, 200, "PC", "GDB · OpenOCD", GRAY_BG, LINE, 14)
+    s.box(300, 120, 160, 120, "디버그 프로브", "ST-LINK, J-Link 등", ORANGE_BG, ORANGE, 13)
+    s.line(212, 180, 296, 180, LINE, 3, both=True)
+    s.text(254, 172, "USB", 11, color=MUTED)
+    s.rect(560, 70, 300, 230, BLUE_BG, BLUE, 10, 2)
+    s.text(710, 94, "STM32 (Cortex-M 디버그 포트)", 13, weight="bold")
+    sig = [("SWCLK", "PA14", "클럭", 130), ("SWDIO", "PA13", "양방향 데이터", 165), ("NRST", "NRST", "리셋 (선택, 권장)", 200),
+           ("SWO", "PB3", "추적 출력 (선택)", 235), ("GND", "GND", "", 270)]
+    for i, (n, pin, d, y) in enumerate(sig):
+        yy = 112 + i * 30
+        s.line(462, yy + 8, 556, yy + 8, ORANGE if i < 2 else LINE, 2.2 if i < 2 else 1.5)
+        s.text(509, yy + 2, n, 11, weight="bold")
+        s.text(580, yy + 12, pin, 12, "start", weight="bold")
+        s.text(640, yy + 12, d, 11, "start", MUTED)
+    s.text(450, 330, "SWD는 두 선(SWCLK, SWDIO)으로 CPU를 멈추고, 레지스터와 메모리를 읽고 쓰고, Flash에 프로그램을 올린다", 12, color=INK)
+    s.text(450, 352, "NUCLEO는 보드 위에 ST-LINK가 있어 이 연결이 이미 되어 있다. JTAG(4~5선)은 SWD 이전의 방식이다", 11, color=MUTED)
+    s.save("ch23/fig23-1-swd.svg")
+
+
+def fig_23_2():
+    s = Svg(900, 440)
+    s.text(450, 30, "그림 23-2  HardFault가 일어났을 때의 예외 스택 프레임", 16, weight="bold")
+    frame = [("xPSR", "+0x1C", None), ("PC", "+0x18", "폴트가 난 명령의 주소"), ("LR", "+0x14", "그 함수를 부른 곳"),
+             ("R12", "+0x10", None), ("R3", "+0x0C", None), ("R2", "+0x08", None), ("R1", "+0x04", None), ("R0", "+0x00", "← SP")]
+    x, w, h = 320, 200, 36
+    for i, (n, off, note) in enumerate(frame):
+        y = 64 + i * h
+        hot = n in ("PC", "LR")
+        s.rect(x, y, w, h, ORANGE_BG if hot else "#ffffff", ORANGE if hot else LINE, 0, 1.5 if hot else 1)
+        s.text(x + w / 2, y + 23, n, 13, weight="bold")
+        s.text(x - 10, y + 23, off, 11, "end", MUTED)
+        if note:
+            s.text(x + w + 14, y + 23, note, 12, "start", ORANGE if hot else MUTED, "bold" if hot else "normal")
+    s.rect(60, 64, 200, 110, GRAY_BG, LINE, 8, 1)
+    s.text(160, 88, "어느 스택인가?", 12, weight="bold")
+    s.text(160, 110, "LR(EXC_RETURN)의 비트 2", 11, color=MUTED)
+    s.text(160, 130, "0 → MSP,  1 → PSP", 12, weight="bold", color=BLUE)
+    s.text(160, 152, "(RTOS 태스크는 PSP, 26장)", 10, color=MUTED)
+    s.text(450, 380, "폴트 처리기에서 스택 프레임의 PC를 읽고, 그 주소를 addr2line이나 맵 파일로 소스 줄로 바꾼다", 12, color=INK)
+    s.text(450, 402, "arm-none-eabi-addr2line -e firmware.elf 0x080004a2  →  main.c:57", 12, color=BLUE, weight="bold")
+    s.text(450, 424, "FPU를 쓰던 코드라면 S0~S15, FPSCR이 더해진 확장 프레임이 된다", 11, color=MUTED)
+    s.save("ch23/fig23-2-fault-frame.svg")
+
+
+def fig_23_3():
+    s = Svg(900, 520)
+    s.text(450, 30, "그림 23-3  CFSR 레지스터 비트 해석표 (0xE000 ED28)", 16, weight="bold")
+    groups = [("UFSR: 사용 폴트 (비트 31:16)", BLUE_BG, BLUE,
+               [("25", "DIVBYZERO", "0으로 나눔 (CCR.DIV_0_TRP = 1일 때)"), ("24", "UNALIGNED", "정렬되지 않은 접근 (UNALIGN_TRP = 1일 때)"),
+                ("19", "NOCP", "보조 프로세서 없음: FPU를 켜지 않고 float 명령"), ("18", "INVPC", "잘못된 예외 복귀"),
+                ("17", "INVSTATE", "Thumb 비트가 0인 주소로 점프"), ("16", "UNDEFINSTR", "정의되지 않은 명령")]),
+              ("BFSR: 버스 폴트 (비트 15:8)", ORANGE_BG, ORANGE,
+               [("15", "BFARVALID", "BFAR에 문제 주소가 들어 있음"), ("12", "STKERR", "예외 진입 중 스택 쓰기 실패"),
+                ("10", "IMPRECISERR", "부정확: 쓰기 버퍼 때문에 PC가 정확하지 않음"), ("9", "PRECISERR", "정확: 그 명령이 원인"),
+                ("8", "IBUSERR", "명령을 가져오다 버스 오류")]),
+              ("MMFSR: 메모리 관리 폴트 (비트 7:0)", GREEN_BG, GREEN,
+               [("7", "MMARVALID", "MMFAR에 문제 주소가 들어 있음"), ("1", "DACCVIOL", "MPU가 금지한 데이터 접근"),
+                ("0", "IACCVIOL", "실행 금지 영역에서 명령 실행")])]
+    y = 56
+    for title, f, st, rows in groups:
+        s.rect(40, y, 820, 28, f, st, 4, 1.5)
+        s.text(56, y + 19, title, 13, "start", weight="bold")
+        y += 32
+        for b, n, d in rows:
+            s.text(80, y + 15, b, 12, "end", MUTED)
+            s.text(100, y + 15, n, 12, "start", INK, "bold")
+            s.text(260, y + 15, d, 12, "start", INK)
+            y += 22
+        y += 10
+    s.text(450, 496, "HFSR(0xE000 ED2C)의 FORCED 비트가 1이면 위의 폴트가 HardFault로 올라온 것이다. 원인은 CFSR에서 찾는다", 11, color=MUTED)
+    s.text(450, 512, "출처: Cortex-M4 프로그래밍 매뉴얼(PM0214) 4.4절 System control block", 11, color=MUTED)
+    s.save("ch23/fig23-3-cfsr.svg")
+
+
+def fig_23_4():
+    import math
+    s = Svg(900, 470)
+    s.text(450, 30, "그림 23-4  오실로스코프와 로직 애널라이저로 같은 신호를 본 화면 비교", 16, weight="bold")
+    # 오실로스코프
+    s.rect(40, 60, 400, 260, "#1f2933", LINE, 8, 1)
+    s.text(240, 84, "오실로스코프: 전압의 실제 모양", 13, color="#e3edfd", weight="bold")
+    for i in range(1, 8):
+        s.line(40 + i * 50, 100, 40 + i * 50, 300, "#334155", 1)
+    for j in range(1, 5):
+        s.line(40, 100 + j * 40, 440, 100 + j * 40, "#334155", 1)
+    pts = []
+    for i in range(0, 380):
+        t = i / 380
+        bit = int(t * 6) % 2
+        base = 260 if bit == 0 else 140
+        frac = (t * 6) % 1
+        ring = 18 * math.exp(-frac * 25) * math.cos(frac * 120)
+        rise = 1 - math.exp(-frac * 30)
+        prev = 140 if bit == 0 else 260
+        v = prev + (base - prev) * rise + (ring if frac > 0.02 else 0)
+        pts.append(f"L{50 + i:.1f},{v:.1f}")
+    s.path("M50,260 " + " ".join(pts), "#fbbf24", 1.8)
+    s.text(240, 314, "링잉, 상승 시간, 전압 레벨, 잡음이 보인다", 11, color="#c9d2dc")
+    # 로직 애널라이저
+    s.rect(460, 60, 400, 260, "#ffffff", LINE, 8, 1)
+    s.text(660, 84, "로직 애널라이저: 0과 1, 그리고 해석", 13, weight="bold")
+    xs = [470 + k * 63 for k in range(7)]
+    pts2 = ["M470,250"]
+    for k in range(6):
+        y = 250 if k % 2 == 0 else 150
+        pts2.append(f"L{xs[k]},{y} L{xs[k + 1]},{y}")
+    s.path(" ".join(pts2), BLUE, 2)
+    for k in range(6):
+        s.rect(xs[k] + 2, 270, 59, 22, BLUE_BG, BLUE, 3, 1)
+        s.text(xs[k] + 31, 286, "0" if k % 2 == 0 else "1", 11, weight="bold")
+    s.text(660, 314, "여러 채널을 길게 기록하고 프로토콜을 글자로 풀어 준다", 11, color=MUTED)
+    rows = [("", "오실로스코프", "로직 애널라이저"), ("보는 것", "아날로그 전압 모양", "디지털 0/1과 시간"),
+            ("채널", "2~4개", "8~16개 이상"), ("기록 길이", "짧다", "아주 길다"), ("잘 맞는 문제", "신호 품질, 잡음, 전원", "프로토콜, 타이밍, 순서")]
+    for r, row in enumerate(rows):
+        for c, v in enumerate(row):
+            x = 160 + c * 260
+            s.text(x, 352 + r * 22, v, 12, color=INK if r else MUTED, weight="bold" if c == 0 or r == 0 else "normal")
+    s.save("ch23/fig23-4-scope-vs-la.svg")
 
 
 if __name__ == "__main__":

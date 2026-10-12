@@ -134,7 +134,7 @@ CFLAGS += -MMD -MP
 
 ## 22.5 CMake
 
-Make는 단순하고 강력하지만, 프로젝트가 커지면 Makefile을 관리하기가 점점 어려워집니다. 여러 폴더의 라이브러리, 운영체제마다 다른 명령, IDE 지원, PC용 테스트 빌드와 보드용 빌드를 함께 관리하려면 한 단계 위의 도구가 필요합니다. 현재 C/C++ 프로젝트에서 가장 널리 쓰이는 것이 **CMake**입니다. ESP-IDF(5장, 19장), Zephyr(29장), STM32CubeIDE의 새 버전, 그리고 대부분의 오픈소스 라이브러리가 CMake를 씁니다.
+Make는 단순하고 강력하지만, 프로젝트가 커지면 Makefile을 관리하기가 점점 어려워집니다. 여러 폴더의 라이브러리, 운영체제마다 다른 명령, IDE 지원, PC용 테스트 빌드와 보드용 빌드를 함께 관리하려면 한 단계 위의 도구가 필요합니다. 현재 C/C++ 프로젝트에서 가장 널리 쓰이는 것이 **CMake**입니다. ESP-IDF(5장, 19장), Zephyr(29장), STM32CubeMX가 만드는 CMake 프로젝트(VS Code용 STM32 확장에서 씀), 그리고 대부분의 오픈소스 라이브러리가 CMake를 씁니다.
 
 CMake는 직접 빌드하지 않고, Ninja나 Make용 **빌드 파일을 생성**합니다.
 
@@ -162,11 +162,13 @@ set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 set(CPU_FLAGS "-mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard")
 set(CMAKE_C_FLAGS_INIT          "${CPU_FLAGS} -ffunction-sections -fdata-sections")
 set(CMAKE_EXE_LINKER_FLAGS_INIT "${CPU_FLAGS} -Wl,--gc-sections")
-set(CMAKE_C_FLAGS_DEBUG_INIT    "-Og -g3")
-set(CMAKE_C_FLAGS_RELEASE_INIT  "-Os -g -DNDEBUG")
+set(CMAKE_C_FLAGS_DEBUG        "-Og -g3"         CACHE STRING "")
+set(CMAKE_C_FLAGS_RELEASE      "-Os -g -DNDEBUG" CACHE STRING "")
 ```
 
 `CMAKE_TRY_COMPILE_TARGET_TYPE` 줄이 중요합니다. CMake는 구성 단계에서 작은 프로그램을 빌드해 컴파일러가 동작하는지 시험하는데, 링커 스크립트 없이 Arm 실행 파일을 링크하면 실패합니다. 이 줄은 그 시험을 라이브러리 빌드로 바꿔 줍니다. CMake의 기본 릴리스 옵션(`-O3`)은 임베디드에 맞지 않으므로 빌드 종류별 옵션도 툴체인 파일에서 정했습니다.
+
+> ⚠️ 주의: 빌드 종류별 옵션을 `CMAKE_C_FLAGS_RELEASE_INIT`처럼 `_INIT` 변수로 정하면 안 됩니다. CMake의 GCC 모듈이 툴체인 파일을 읽은 뒤 그 값에 자기 기본값(Release는 ` -O3 -DNDEBUG`, Debug는 ` -g`)을 덧붙이기 때문입니다. 그러면 실제 명령이 `-Os -g -DNDEBUG -O3 -DNDEBUG`가 되고, 뒤에 나온 `-O3`이 이겨서 릴리스가 `-O3`으로 빌드됩니다. 위처럼 캐시 변수(`CMAKE_C_FLAGS_RELEASE ... CACHE STRING ""`)로 정해야 원하는 옵션만 남습니다. 빌드 명령은 `ninja -v`로 직접 확인하는 습관을 들이세요. 또 CMake는 한 번 구성한 값을 build 폴더의 캐시(`CMakeCache.txt`)에 남기므로, 툴체인 파일을 고친 뒤에는 build 폴더를 지우고 다시 구성해야 바뀐 값이 적용됩니다.
 
 ### 타깃
 
