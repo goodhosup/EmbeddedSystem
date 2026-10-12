@@ -60,9 +60,14 @@
 | `chapters/ch39-embedded-rust.md` | 28 | [확인 필요: 두 예제의 빌드와 보드 실행] |
 | `chapters/ch39-embedded-rust.md` | 214 | [확인 필요: 출간 시점 AVR 대상 이름] |
 | `chapters/ch39-embedded-rust.md` | 214 | [확인 필요: avr-hal의 ATmega128 지원 여부와 현재 AVR 대상 이름] |
-| `chapters/ch40-final-project.md` | 205 | [확인 필요: 보안 부트로더의 실제 크기와 최종 Flash 배치] |
-| `chapters/ch40-final-project.md` | 221 | [확인 필요: 16 MHz에서 서명 확인 시간과 워치독 여유 실측] |
-| `chapters/ch40-final-project.md` | 257 | [확인 필요] |
+| `chapters/ch40-final-project.md` | 209 | [확인 필요: 보안 부트로더의 실제 크기와 최종 Flash 배치] |
+| `chapters/ch40-final-project.md` | 225 | [확인 필요: 16 MHz에서 서명 확인 시간과 워치독 여유 실측] |
+| `chapters/ch40-final-project.md` | 261 | [확인 필요] |
+| `appendix/appendixA-datasheets.md` | 18 | [확인 필요: 각 문서 번호의 최신 판] |
+| `appendix/appendixC-instruments.md` | 70 | [확인 필요: 출간 시점에 많이 쓰이는 저가 로직 애널라이저와 sigrok 지원 여부] |
+| `appendix/appendixE-parts.md` | 25 | [확인 필요: 11장 회로의 부품] |
+| `appendix/appendixE-parts.md` | 66 | [확인 필요: 출간 시점 국내 판매처와 품목 구성] |
+| `appendix/appendixF-resources.md` | 3 | [확인 필요: 각 자료의 최신 판과 주소] |
 | `code/ch18-usb/README.md` | 23 | [확인 필요: CN10 핀 번호] |
 | `code/ch18-usb/stm32/usb_descriptors.c` | 6 | [확인 필요: pid.codes 시험용 PID 정책] |
 | `code/ch19-wireless/esp32-arduino/ble_sensor/ble_sensor.ino` | 9 | [확인 필요: 코어 버전별 BLE 라이브러리 API] |
@@ -87,4 +92,4 @@
 | `code/ch40-sensor-node/README.md` | 23 | [확인 필요: 보안 부트로더 크기와 Flash 배치, 노드·연결부 빌드, 전체 시스템 OTA와 롤백 실측] |
 | `code/ch40-sensor-node/stm32-boot/boot.ld` | 2 | [확인 필요: 실제 크기] |
 
-총 81건
+총 86건
