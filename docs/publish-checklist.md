@@ -13,7 +13,10 @@
 | `chapters/ch11-low-power.md` | 186 | [확인 필요: 보드 리비전별 X2 장착 여부] |
 | `chapters/ch12-project-thermometer.md` | 73 | [확인 필요: TMP36 출력 용량성 부하 한계] |
 | `chapters/ch17-can.md` | 163 | [확인 필요: STM32F411 PA6의 FT 여부와 MCP2515 모듈별 전원 구성] |
+| `chapters/ch18-usb.md` | 206 | [확인 필요: TinyUSB 0.17.0으로 make 빌드 확인] |
+| `chapters/ch19-wireless.md` | 220 | [확인 필요: ESP32 데이터시트의 전력 소비 표 값과 조건] |
 | `code/ch18-usb/README.md` | 23 | [확인 필요: CN10 핀 번호] |
 | `code/ch18-usb/stm32/usb_descriptors.c` | 6 | [확인 필요: pid.codes 시험용 PID 정책] |
+| `code/ch19-wireless/esp32-arduino/ble_sensor/ble_sensor.ino` | 9 | [확인 필요: 코어 버전별 BLE 라이브러리 API] |
 
-총 10건
+총 13건

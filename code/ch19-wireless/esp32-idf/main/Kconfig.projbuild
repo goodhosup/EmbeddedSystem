@@ -1,0 +1,15 @@
+menu "Example configuration"
+
+    config EXAMPLE_WIFI_SSID
+        string "Wi-Fi SSID"
+        default "your-ssid"
+
+    config EXAMPLE_WIFI_PASSWORD
+        string "Wi-Fi password"
+        default "your-password"
+
+    config EXAMPLE_HTTP_URL
+        string "URL to GET"
+        default "http://example.com/"
+
+endmenu

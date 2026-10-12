@@ -5,3 +5,8 @@
 *.o
 build/
 ch18-usb/stm32/lib/
+# PC에서 빌드한 호스트 테스트 실행 파일
+ch04-c-for-embedded/pitfalls
+ch13-error-detection/errdet
+*/test/test_*
+!*/test/test_*.c

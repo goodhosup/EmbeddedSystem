@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="420" viewBox="0 0 900 420" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 19-3  GATT 계층 구조 (환경 감지 장치의 예)</text>
+  <rect x="330.0" y="56.0" width="240.0" height="50.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="450.0" y="78.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">GATT 서버 (ESP32)</text>
+  <text x="450.0" y="97.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">프로파일 = 서비스들의 모음</text>
+  <rect x="80.0" y="140.0" width="300.0" height="56.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="230.0" y="165.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">서비스: 환경 감지 (0x181A)</text>
+  <text x="230.0" y="184.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">표준 16비트 UUID</text>
+  <rect x="520.0" y="140.0" width="300.0" height="56.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="670.0" y="165.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">서비스: LED 제어</text>
+  <text x="670.0" y="184.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">직접 정한 128비트 UUID</text>
+  <line x1="420.0" y1="108.0" x2="230.0" y2="138.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <line x1="480.0" y1="108.0" x2="670.0" y2="138.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <rect x="80.0" y="236.0" width="300.0" height="64.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="230.0" y="265.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">특성: 온도 (0x2A6E)</text>
+  <text x="230.0" y="284.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">값: int16, 0.01 °C · 속성: 읽기, 알림</text>
+  <rect x="520.0" y="236.0" width="300.0" height="64.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="670.0" y="265.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">특성: LED 상태</text>
+  <text x="670.0" y="284.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">값: 1바이트 (0 꺼짐, 1 켜짐) · 속성: 쓰기</text>
+  <line x1="230.0" y1="198.0" x2="230.0" y2="234.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <line x1="670.0" y1="198.0" x2="670.0" y2="234.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <rect x="110.0" y="330.0" width="240.0" height="50.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="230.0" y="352.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">디스크립터: CCCD (0x2902)</text>
+  <text x="230.0" y="371.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">클라이언트가 알림 켜기/끄기</text>
+  <line x1="230.0" y1="302.0" x2="230.0" y2="328.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="670.0" y="350.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">스마트폰(GATT 클라이언트)은 서비스를 찾아</text>
+  <text x="670.0" y="370.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">특성을 읽고, 쓰고, 알림을 구독한다</text>
+</svg>

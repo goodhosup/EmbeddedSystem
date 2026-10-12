@@ -3329,8 +3329,8 @@ def fig_18_1():
     wires = [("VBUS (+5 V)", 110, RED), ("D+", 160, ORANGE), ("D−", 200, BLUE), ("GND", 250, INK)]
     for n, y, col in wires:
         s.line(212, y, 686, y, col, 3)
-        s.text(449, y - 8, n, 12, color=col, weight="bold")
-    s.text(449, 182, "꼬인 쌍선 (90 Ω 차동 임피던스)", 10, color=MUTED)
+        s.text(560, y - 8, n, 12, color=col, weight="bold")
+    s.text(330, 182, "꼬인 쌍선 (90 Ω 차동 임피던스)", 10, color=MUTED)
     # 1.5k 풀업 (디바이스 안쪽, 3.3 V로)
     supply(s, 730, 214, "3.3 V")
     s.line(730, 214, 730, 222, LINE, 1.5)
@@ -3439,6 +3439,144 @@ def fig_18_5():
     s.text(450, 300, "인터럽트 전송도 인터럽트가 아니다: 호스트가 정해진 간격으로 \"보낼 것 있나?\" 하고 물어 가는 폴링이다", 12, color=INK)
     s.text(450, 322, "Full Speed 최대 패킷 크기: 컨트롤 64, 벌크 64, 인터럽트 64, 등시 1023바이트", 11, color=MUTED)
     s.save("ch18/fig18-5-transfer-types.svg")
+
+
+# ---------------------------------------------------------------------------
+# 19장 무선
+# ---------------------------------------------------------------------------
+
+def fig_19_1():
+    import math
+    s = Svg(900, 470)
+    s.text(450, 30, "그림 19-1  무선 통신 방식 비교 (거리 × 속도, 원의 크기 = 소비 전력, 개념도)", 16, weight="bold")
+    x0, y0, W, H = 110, 400, 740, 330
+    def X(m):
+        return x0 + W * (math.log10(m) - 0) / (math.log10(20000) - 0)
+    def Y(bps):
+        return y0 - H * (math.log10(bps) - 2) / (9 - 2)
+    s.line(x0, y0, x0 + W + 10, y0, MUTED, 1.2, arrow=True)
+    s.line(x0, y0, x0, y0 - H - 10, MUTED, 1.2, arrow=True)
+    for m, l in ((1, "1 m"), (10, "10 m"), (100, "100 m"), (1000, "1 km"), (10000, "10 km")):
+        s.text(X(m), y0 + 18, l, 11, color=MUTED)
+    for b, l in ((1e2, "100 bps"), (1e4, "10 kbps"), (1e6, "1 Mbps"), (1e8, "100 Mbps")):
+        s.text(x0 - 8, Y(b) + 4, l, 11, "end", MUTED)
+    s.text(x0 + W, y0 + 36, "거리 →", 12, "end", MUTED)
+    s.text(x0 - 8, y0 - H - 14, "속도 ↑", 12, "end", MUTED)
+    techs = [("BLE", 30, 1e6, 10, BLUE), ("Classic BT", 20, 2e6, 16, "#7048e8"), ("Wi-Fi", 50, 1e8, 30, ORANGE),
+             ("Zigbee · Thread", 40, 2.5e5, 10, GREEN), ("LoRa", 5000, 3e3, 14, RED),
+             ("NB-IoT · LTE-M", 10000, 1e5, 24, "#0c8599"), ("NFC", 1.1, 4e5, 6, LINE)]
+    for n, d, b, r, col in techs:
+        s.add(f'<circle cx="{X(d):.1f}" cy="{Y(b):.1f}" r="{r}" fill="{col}" fill-opacity="0.25" stroke="{col}" stroke-width="2"/>')
+        below = n.startswith("Zigbee")
+        s.text(X(d), Y(b) + r + 16 if below else Y(b) - r - 6, n, 12, color=col, weight="bold")
+    s.text(450, 450, "자리는 일반적인 사용 범위의 대략이다. 같은 기술도 안테나, 출력, 환경에 따라 크게 달라진다", 11, color=MUTED)
+    s.save("ch19/fig19-1-wireless-map.svg")
+
+
+def fig_19_2():
+    s = Svg(900, 460)
+    s.text(450, 30, "그림 19-2  BLE 광고와 스캔, 연결 시퀀스", 16, weight="bold")
+    yP, yC = 120, 260
+    s.text(100, yP + 5, "주변장치", 13, "end", BLUE, "bold")
+    s.text(100, yP + 22, "(ESP32)", 11, "end", MUTED)
+    s.text(100, yC + 5, "중앙장치", 13, "end", ORANGE, "bold")
+    s.text(100, yC + 22, "(스마트폰)", 11, "end", MUTED)
+    s.line(110, yP, 860, yP, "#dde3ea", 1)
+    s.line(110, yC, 860, yC, "#dde3ea", 1)
+    # 광고 이벤트 (ch37, 38, 39)
+    for k, x in enumerate((130, 330)):
+        for j, ch in enumerate(("37", "38", "39")):
+            xx = x + j * 22
+            s.rect(xx, yP - 22, 18, 22, BLUE_BG, BLUE, 2, 1)
+            s.text(xx + 9, yP - 28, ch, 9, color=MUTED)
+        s.text(x + 33, yP + 22, "광고 (ADV_IND)", 10, color=BLUE)
+    s.line(166, 70, 366, 70, LINE, 1.2, both=True)
+    s.text(266, 64, "광고 간격 (20 ms ~ 10.24 s)", 11, weight="bold")
+    s.rect(300, yC - 10, 170, 20, ORANGE_BG, ORANGE, 3, 1)
+    s.text(385, yC + 5, "스캔 중", 10)
+    s.line(352, yP + 2, 352, yC - 12, BLUE, 1.5, arrow=True)
+    s.text(360, 190, "광고를 받음", 10, "start", MUTED)
+    s.line(420, yC - 12, 420, yP + 2, ORANGE, 1.8, arrow=True)
+    s.text(428, 190, "연결 요청 (CONNECT_IND)", 10, "start", ORANGE)
+    # 연결 이벤트
+    for i in range(4):
+        x = 520 + i * 85
+        s.rect(x, yP - 18, 14, 18, GREEN_BG, GREEN, 2, 1)
+        s.rect(x, yC - 18, 14, 18, GREEN_BG, GREEN, 2, 1)
+        s.line(x + 7, yC - 20, x + 7, yP + 2, GREEN, 1, "3 3")
+    s.line(527, 300, 612, 300, LINE, 1.2, both=True)
+    s.text(570, 318, "연결 간격", 11, weight="bold")
+    s.text(690, 346, "연결 이벤트: 정해진 간격마다 만나 데이터를 주고받는다", 11, color=GREEN)
+    s.text(450, 396, "광고는 데이터 채널 37개를 피한 광고 전용 채널 3개(37, 38, 39)에서 보낸다. 연결 뒤에는 데이터 채널을 바꿔 가며(주파수 도약) 통신한다", 11, color=MUTED)
+    s.text(450, 418, "연결하지 않고 광고 패킷에 데이터를 실어 보내기만 하는 방식(비콘)도 있다", 11, color=MUTED)
+    s.save("ch19/fig19-2-ble-adv-connect.svg")
+
+
+def fig_19_3():
+    s = Svg(900, 420)
+    s.text(450, 30, "그림 19-3  GATT 계층 구조 (환경 감지 장치의 예)", 16, weight="bold")
+    s.box(330, 56, 240, 50, "GATT 서버 (ESP32)", "프로파일 = 서비스들의 모음", GRAY_BG, LINE, 13)
+    s.box(80, 140, 300, 56, "서비스: 환경 감지 (0x181A)", "표준 16비트 UUID", BLUE_BG, BLUE, 13)
+    s.box(520, 140, 300, 56, "서비스: LED 제어", "직접 정한 128비트 UUID", BLUE_BG, BLUE, 13)
+    s.line(420, 108, 230, 138, LINE, 1.8, arrow=True)
+    s.line(480, 108, 670, 138, LINE, 1.8, arrow=True)
+    s.box(80, 236, 300, 64, "특성: 온도 (0x2A6E)", "값: int16, 0.01 °C · 속성: 읽기, 알림", ORANGE_BG, ORANGE, 12)
+    s.box(520, 236, 300, 64, "특성: LED 상태", "값: 1바이트 (0 꺼짐, 1 켜짐) · 속성: 쓰기", ORANGE_BG, ORANGE, 12)
+    s.line(230, 198, 230, 234, LINE, 1.8, arrow=True)
+    s.line(670, 198, 670, 234, LINE, 1.8, arrow=True)
+    s.box(110, 330, 240, 50, "디스크립터: CCCD (0x2902)", "클라이언트가 알림 켜기/끄기", GREEN_BG, GREEN, 12)
+    s.line(230, 302, 230, 328, LINE, 1.8, arrow=True)
+    s.text(670, 350, "스마트폰(GATT 클라이언트)은 서비스를 찾아", 12, color=MUTED)
+    s.text(670, 370, "특성을 읽고, 쓰고, 알림을 구독한다", 12, color=MUTED)
+    s.save("ch19/fig19-3-gatt.svg")
+
+
+def fig_19_4():
+    s = Svg(900, 360)
+    s.text(450, 30, "그림 19-4  BLE 연결 이벤트와 슬립 구간: 대부분의 시간 동안 잔다", 16, weight="bold")
+    x0, y0, w = 110, 260, 740
+    s.line(x0, y0, x0 + w + 10, y0, MUTED, 1.2, arrow=True)
+    s.line(x0, y0, x0, 80, MUTED, 1.2, arrow=True)
+    s.text(x0 - 8, 86, "전류", 12, "end", INK, "bold")
+    s.text(x0 + w + 10, y0 + 20, "시간", 12, "end", MUTED)
+    pts = [f"M{x0},{y0 - 8}"]
+    for i in range(5):
+        a = x0 + 30 + i * 150
+        pts.append(f"L{a},{y0 - 8} L{a},{y0 - 60} L{a + 6},{y0 - 60} L{a + 6},{y0 - 150} L{a + 14},{y0 - 150} "
+                   f"L{a + 14},{y0 - 130} L{a + 22},{y0 - 130} L{a + 22},{y0 - 60} L{a + 28},{y0 - 60} L{a + 28},{y0 - 8}")
+    pts.append(f"L{x0 + w},{y0 - 8}")
+    s.path(" ".join(pts), BLUE, 2)
+    s.text(x0 + 44, y0 - 160, "송신", 10, color=BLUE)
+    s.text(x0 + 70, y0 - 136, "수신", 10, color=BLUE)
+    s.text(x0 + 110, y0 - 16, "슬립 (µA 수준)", 11, "start", MUTED)
+    s.line(x0 + 30, y0 + 22, x0 + 180, y0 + 22, LINE, 1.2, both=True)
+    s.text(x0 + 105, y0 + 40, "연결 간격 (예: 100 ms)", 11, weight="bold")
+    s.text(x0 + 330, y0 + 40, "이벤트 하나 = 수 ms 이하", 11, color=MUTED)
+    s.text(450, 330, "연결 간격을 늘리면 평균 전류가 줄고 반응이 느려진다. 11장의 평균 전류 계산이 그대로 적용된다", 12, color=INK)
+    s.save("ch19/fig19-4-ble-connection-events.svg")
+
+
+def fig_19_5():
+    s = Svg(900, 400)
+    s.text(450, 30, "그림 19-5  TCP/IP 계층과 ESP-IDF 구성 요소의 대응", 16, weight="bold")
+    layers = [("응용 계층", "HTTP, MQTT(20장), SNTP, DNS", "esp_http_client, esp-mqtt, esp_sntp", BLUE_BG, BLUE),
+              ("전송 계층", "TCP (연결, 재전송), UDP", "LwIP (소켓 API)", GREEN_BG, GREEN),
+              ("네트워크 계층", "IP 주소, 라우팅", "LwIP, esp_netif (DHCP로 IP 받기)", GREEN_BG, GREEN),
+              ("링크 계층", "Wi-Fi(802.11) MAC, 암호화(WPA2/WPA3)", "esp_wifi 드라이버", ORANGE_BG, ORANGE),
+              ("물리 계층", "2.4 GHz 무선, 안테나", "ESP32 칩 내장 RF", GRAY_BG, LINE)]
+    for i, (n, d, comp, f, st) in enumerate(layers):
+        y = 60 + i * 60
+        s.rect(40, y, 160, 50, f, st, 6, 1.5)
+        s.text(120, y + 30, n, 13, weight="bold")
+        s.rect(210, y, 320, 50, "#ffffff", st, 6, 1)
+        s.text(370, y + 30, d, 12)
+        s.line(532, y + 25, 566, y + 25, LINE, 1.5, arrow=True)
+        s.rect(570, y, 300, 50, f, st, 6, 1)
+        s.text(720, y + 30, comp, 12, weight="bold")
+    s.text(370, 52, "하는 일", 12, color=MUTED)
+    s.text(720, 52, "ESP-IDF에서 맡는 부분", 12, color=MUTED)
+    s.text(450, 380, "LwIP는 임베디드용 경량 TCP/IP 스택이다. 우리 코드는 대개 맨 위 계층의 API만 부른다", 12, color=MUTED)
+    s.save("ch19/fig19-5-tcpip-layers.svg")
 
 
 if __name__ == "__main__":
