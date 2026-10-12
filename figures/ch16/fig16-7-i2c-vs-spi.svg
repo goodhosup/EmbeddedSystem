@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="440" viewBox="0 0 900 440" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 16-7  I2C와 SPI 비교</text>
+  <rect x="30.0" y="56.0" width="200.0" height="38.0" rx="0" fill="#eef1f4" stroke="#334e68" stroke-width="1"/>
+  <text x="130.0" y="80.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">항목</text>
+  <rect x="230.0" y="56.0" width="320.0" height="38.0" rx="0" fill="#e1f4e5" stroke="#334e68" stroke-width="1"/>
+  <text x="390.0" y="80.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">I2C</text>
+  <rect x="550.0" y="56.0" width="320.0" height="38.0" rx="0" fill="#e3edfd" stroke="#334e68" stroke-width="1"/>
+  <text x="710.0" y="80.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">SPI</text>
+  <rect x="30.0" y="94.0" width="200.0" height="38.0" rx="0" fill="#eef1f4" stroke="#334e68" stroke-width="1"/>
+  <text x="130.0" y="118.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">선의 수</text>
+  <rect x="230.0" y="94.0" width="320.0" height="38.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="390.0" y="118.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">2 (SDA, SCL)</text>
+  <rect x="550.0" y="94.0" width="320.0" height="38.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="710.0" y="118.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">4 + 슬레이브마다 CS</text>
+  <rect x="30.0" y="132.0" width="200.0" height="38.0" rx="0" fill="#eef1f4" stroke="#334e68" stroke-width="1"/>
+  <text x="130.0" y="156.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">슬레이브 선택</text>
+  <rect x="230.0" y="132.0" width="320.0" height="38.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="390.0" y="156.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">7비트 주소</text>
+  <rect x="550.0" y="132.0" width="320.0" height="38.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="710.0" y="156.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">CS 선</text>
+  <rect x="30.0" y="170.0" width="200.0" height="38.0" rx="0" fill="#eef1f4" stroke="#334e68" stroke-width="1"/>
+  <text x="130.0" y="194.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">이중</text>
+  <rect x="230.0" y="170.0" width="320.0" height="38.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="390.0" y="194.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">반이중</text>
+  <rect x="550.0" y="170.0" width="320.0" height="38.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="710.0" y="194.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">전이중</text>
+  <rect x="30.0" y="208.0" width="200.0" height="38.0" rx="0" fill="#eef1f4" stroke="#334e68" stroke-width="1"/>
+  <text x="130.0" y="232.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">출력 형태</text>
+  <rect x="230.0" y="208.0" width="320.0" height="38.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="390.0" y="232.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">오픈 드레인 + 풀업</text>
+  <rect x="550.0" y="208.0" width="320.0" height="38.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="710.0" y="232.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">푸시풀</text>
+  <rect x="30.0" y="246.0" width="200.0" height="38.0" rx="0" fill="#eef1f4" stroke="#334e68" stroke-width="1"/>
+  <text x="130.0" y="270.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">속도</text>
+  <rect x="230.0" y="246.0" width="320.0" height="38.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="390.0" y="270.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">100 k / 400 k / 1 Mbps</text>
+  <rect x="550.0" y="246.0" width="320.0" height="38.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="710.0" y="270.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">수 MHz ~ 수십 MHz</text>
+  <rect x="30.0" y="284.0" width="200.0" height="38.0" rx="0" fill="#eef1f4" stroke="#334e68" stroke-width="1"/>
+  <text x="130.0" y="308.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">받았다는 확인</text>
+  <rect x="230.0" y="284.0" width="320.0" height="38.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="390.0" y="308.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">바이트마다 ACK</text>
+  <rect x="550.0" y="284.0" width="320.0" height="38.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="710.0" y="308.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">없음 (프로토콜이 정함)</text>
+  <rect x="30.0" y="322.0" width="200.0" height="38.0" rx="0" fill="#eef1f4" stroke="#334e68" stroke-width="1"/>
+  <text x="130.0" y="346.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">규격</text>
+  <rect x="230.0" y="322.0" width="320.0" height="38.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="390.0" y="346.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">엄격 (NXP UM10204)</text>
+  <rect x="550.0" y="322.0" width="320.0" height="38.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="710.0" y="346.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">느슨 (장치마다 모드·순서 다름)</text>
+  <rect x="30.0" y="360.0" width="200.0" height="38.0" rx="0" fill="#eef1f4" stroke="#334e68" stroke-width="1"/>
+  <text x="130.0" y="384.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">잘 맞는 곳</text>
+  <rect x="230.0" y="360.0" width="320.0" height="38.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="390.0" y="384.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">센서, 설정용 칩, 적은 핀</text>
+  <rect x="550.0" y="360.0" width="320.0" height="38.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="710.0" y="384.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="normal">플래시, 디스플레이, ADC, 대량 데이터</text>
+  <text x="450.0" y="428.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">두 방식은 경쟁 관계가 아니다. 한 보드에 센서는 I2C로, 플래시와 화면은 SPI로 함께 쓰는 경우가 대부분이다</text>
+</svg>

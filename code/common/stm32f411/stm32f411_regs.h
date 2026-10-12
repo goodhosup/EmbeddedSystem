@@ -13,6 +13,7 @@
  *   - DMA: RM0383 9.5절 "DMA registers"
  *   - USART: RM0383 19.6절 "USART registers"
  *   - I2C: RM0383 18.6절 "I2C registers"
+ *   - SPI: RM0383 20.5절 "SPI and I2S registers"
  *   - RTC: RM0383 17.6절 "RTC registers", 저전력 모드: RM0383 5.3절
  *   - SCB_SCR: PM0214 4.4절 "System control block"
  *   - DWT 사이클 카운터: Cortex-M4 기술 참조 매뉴얼, ARMv7-M 아키텍처 참조 매뉴얼
@@ -109,6 +110,7 @@ typedef struct {
 #define RCC_APB2ENR_USART1EN (1u << 4)
 #define RCC_APB2ENR_USART6EN (1u << 5)
 #define RCC_APB2ENR_ADC1EN   (1u << 8)
+#define RCC_APB2ENR_SPI1EN   (1u << 12)
 #define RCC_APB2ENR_SYSCFGEN (1u << 14)
 
 /* RCC_BDCR (백업 영역) */
@@ -392,6 +394,38 @@ typedef struct {
 #define I2C_SR1_AF          (1u << 10)
 #define I2C_SR2_BUSY        (1u << 1)
 #define I2C_CCR_FS          (1u << 15)
+
+/* ---- SPI (SPI1 0x4001 3000) ---- */
+typedef struct {
+    __IO uint32_t CR1;         /* 0x00 */
+    __IO uint32_t CR2;         /* 0x04 */
+    __IO uint32_t SR;          /* 0x08 */
+    __IO uint32_t DR;          /* 0x0C */
+    __IO uint32_t CRCPR;       /* 0x10 */
+    __IO uint32_t RXCRCR;      /* 0x14 */
+    __IO uint32_t TXCRCR;      /* 0x18 */
+    __IO uint32_t I2SCFGR;     /* 0x1C */
+    __IO uint32_t I2SPR;       /* 0x20 */
+} SPI_TypeDef;
+
+#define SPI1 ((SPI_TypeDef *)0x40013000u)
+
+#define SPI_CR1_CPHA        (1u << 0)
+#define SPI_CR1_CPOL        (1u << 1)
+#define SPI_CR1_MSTR        (1u << 2)
+#define SPI_CR1_BR_Pos      3              /* fPCLK / 2^(BR+1) */
+#define SPI_CR1_SPE         (1u << 6)
+#define SPI_CR1_LSBFIRST    (1u << 7)
+#define SPI_CR1_SSI         (1u << 8)
+#define SPI_CR1_SSM         (1u << 9)
+#define SPI_CR1_DFF         (1u << 11)
+#define SPI_CR2_RXDMAEN     (1u << 0)
+#define SPI_CR2_TXDMAEN     (1u << 1)
+#define SPI_SR_RXNE         (1u << 0)
+#define SPI_SR_TXE          (1u << 1)
+#define SPI_SR_MODF         (1u << 5)
+#define SPI_SR_OVR          (1u << 6)
+#define SPI_SR_BSY          (1u << 7)
 
 /* ---- RTC (0x4000 2800) ---- */
 typedef struct {

@@ -74,7 +74,9 @@
 ├── figures/              # 그림 (chNN/figN-M-주제.svg)
 ├── tools/
 │   ├── figgen.py         # 그림 생성 스크립트
-│   └── checklist.py      # 출판 전 확인 목록 생성
+│   ├── checklist.py      # 출판 전 확인 목록 생성
+│   ├── check_figs.py     # 그림 번호·파일·목록 검사
+│   └── check_refs.py     # 절 번호 참조 검사
 ├── appendix/             # 부록 원고
 └── code/                 # 장별 예제 코드 (chNN-주제/)
 ```
@@ -98,5 +100,5 @@
 | 13 | 통신의 기초 | 초고 완료 |
 | 14 | UART | 초고 완료 |
 | 15 | I2C | 초고 완료 |
-| 16 | SPI | 샘플 그림 완료 |
+| 16 | SPI | 초고 완료 |
 | 그 외 | | 목차 확정 후 집필 예정 |

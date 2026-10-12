@@ -3046,6 +3046,82 @@ def fig_16_5():
     s.save("ch16/fig16-5-spi-multi-slave.svg")
 
 
+def fig_16_4():
+    out = "10100101"   # 0xA5
+    inn = "00111100"   # 0x3C
+    t = Timing(11, 56, 120, 70, "그림 16-4  한 바이트 전송 파형 (모드 0, MSB 먼저): 0xA5를 보내며 0x3C를 받는다")
+    t.signal("CS", [(1, "h", None, None), (9, "l", None, None), (1, "h", None, None)])
+    t.signal("SCLK", [(1.5, "l", None, None)] + [(0.5, "h" if k % 2 == 0 else "l", None, None) for k in range(16)]
+             + [(1.5, "l", None, None)])
+    t.signal("MOSI", [(1, "z", None, None)] + [(1, "d", b, BLUE_BG) for b in out] + [(2, "z", None, None)], sub="마스터 → 슬레이브")
+    t.signal("MISO", [(1, "z", None, None)] + [(1, "d", b, ORANGE_BG) for b in inn] + [(2, "z", None, None)], sub="슬레이브 → 마스터")
+    t.note("sample", row=2, ts=[1.5 + i for i in range(8)], color=RED)
+    t.note("sample", row=3, ts=[1.5 + i for i in range(8)], color=RED)
+    t.note("span", row=0, t0=1, t1=10, label="CS가 Low인 동안만 슬레이브가 대답한다", color=ORANGE, below=False)
+    t.note("text", t=5.5, y=t.top + 4 * t.ROW + 18, label="▲ SCLK 상승 에지에서 양쪽이 동시에 읽고, 하강 에지에서 다음 비트를 내놓는다", size=12)
+    t.render("ch16/fig16-4-spi-byte.svg", 40)
+
+
+def fig_16_6():
+    s = Svg(900, 340)
+    s.text(450, 30, "그림 16-6  SPI 플래시 읽기 명령 시퀀스 (Read Data, 0x03)", 16, weight="bold")
+    x = 120
+    cells = [("명령 0x03", 110, BLUE_BG, BLUE), ("주소 [23:16]", 100, BLUE_BG, BLUE), ("주소 [15:8]", 100, BLUE_BG, BLUE),
+             ("주소 [7:0]", 100, BLUE_BG, BLUE), ("데이터 0", 90, ORANGE_BG, ORANGE), ("데이터 1", 90, ORANGE_BG, ORANGE),
+             ("…", 50, "#ffffff", MUTED), ("데이터 N", 90, ORANGE_BG, ORANGE)]
+    s.text(105, 104, "MOSI", 13, "end", BLUE, "bold")
+    s.text(105, 164, "MISO", 13, "end", ORANGE, "bold")
+    s.text(105, 64, "CS", 13, "end", weight="bold")
+    total = sum(c[1] for c in cells)
+    s.path(f"M70,50 L{x},50 L{x},72 L{x + total},72 L{x + total},50 L{x + total + 40},50", INK, 2)
+    for i, (lbl, w, f, st) in enumerate(cells):
+        if st == BLUE:
+            s.rect(x, 85, w, 34, f, st, 3)
+            s.text(x + w / 2, 107, lbl, 12, weight="bold")
+            s.rect(x, 145, w, 34, "#ffffff", "#dde3ea", 3, 1)
+            s.text(x + w / 2, 167, "(무시)", 11, color=MUTED)
+        else:
+            s.rect(x, 85, w, 34, "#ffffff", "#dde3ea", 3, 1)
+            s.text(x + w / 2, 107, "0xFF" if lbl != "…" else "…", 11, color=MUTED)
+            s.rect(x, 145, w, 34, f, st, 3)
+            s.text(x + w / 2, 167, lbl, 12, weight="bold")
+        x += w
+    s.text(450, 214, "CS를 Low로 내리고 명령과 24비트 주소를 보낸 뒤, 계속 클럭을 주면 플래시가 주소를 늘려 가며 데이터를 내보낸다", 12, color=INK)
+    s.text(450, 236, "읽기는 원하는 만큼 이어서 할 수 있다. CS를 High로 올리는 순간 명령이 끝난다", 12, color=MUTED)
+    s.rect(120, 262, 660, 60, "#fafbfc", MUTED, 8, 1)
+    s.text(450, 284, "쓰기(Page Program, 0x02)는 그 전에 Write Enable(0x06)이 필요하고, 한 번에 한 페이지(256바이트) 안에서만 된다", 12, weight="bold")
+    s.text(450, 306, "지우기(0x20 = 4 KB 섹터)는 모든 비트를 1(0xFF)로 만든다. 쓰기는 1 → 0만 할 수 있다", 12, color=MUTED)
+    s.save("ch16/fig16-6-spi-flash-read.svg")
+
+
+def fig_16_7():
+    s = Svg(900, 440)
+    s.text(450, 30, "그림 16-7  I2C와 SPI 비교", 16, weight="bold")
+    rows = [("항목", "I2C", "SPI"),
+            ("선의 수", "2 (SDA, SCL)", "4 + 슬레이브마다 CS"),
+            ("슬레이브 선택", "7비트 주소", "CS 선"),
+            ("이중", "반이중", "전이중"),
+            ("출력 형태", "오픈 드레인 + 풀업", "푸시풀"),
+            ("속도", "100 k / 400 k / 1 Mbps", "수 MHz ~ 수십 MHz"),
+            ("받았다는 확인", "바이트마다 ACK", "없음 (프로토콜이 정함)"),
+            ("규격", "엄격 (NXP UM10204)", "느슨 (장치마다 모드·순서 다름)"),
+            ("잘 맞는 곳", "센서, 설정용 칩, 적은 핀", "플래시, 디스플레이, ADC, 대량 데이터")]
+    ws = [200, 320, 320]
+    x0, y0, rh = 30, 56, 38
+    for r, row in enumerate(rows):
+        x = x0
+        for c, (v, w) in enumerate(zip(row, ws)):
+            if r == 0:
+                fill = GRAY_BG if c == 0 else (GREEN_BG if c == 1 else BLUE_BG)
+            else:
+                fill = "#ffffff" if c else GRAY_BG
+            s.rect(x, y0 + r * rh, w, rh, fill, LINE, 0, 1)
+            s.text(x + w / 2, y0 + r * rh + 24, v, 13 if r else 14, weight="bold" if r == 0 or c == 0 else "normal")
+            x += w
+    s.text(450, 428, "두 방식은 경쟁 관계가 아니다. 한 보드에 센서는 I2C로, 플래시와 화면은 SPI로 함께 쓰는 경우가 대부분이다", 12, color=MUTED)
+    s.save("ch16/fig16-7-i2c-vs-spi.svg")
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("fig_") and callable(fn):

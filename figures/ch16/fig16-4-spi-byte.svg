@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="766" height="342" viewBox="0 0 766 342" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="383.0" y="24.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 16-4  한 바이트 전송 파형 (모드 0, MSB 먼저): 0xA5를 보내며 0x3C를 받는다</text>
+  <text x="106.0" y="88.0" font-size="14" text-anchor="end" fill="#1f2933" font-weight="bold">CS</text>
+  <line x1="120.0" y1="70.0" x2="176.0" y2="70.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="176.0" y1="70.0" x2="176.0" y2="96.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="176.0" y1="96.0" x2="680.0" y2="96.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="680.0" y1="70.0" x2="680.0" y2="96.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="680.0" y1="70.0" x2="736.0" y2="70.0" stroke="#334e68" stroke-width="2"/>
+  <text x="106.0" y="146.0" font-size="14" text-anchor="end" fill="#1f2933" font-weight="bold">SCLK</text>
+  <line x1="120.0" y1="154.0" x2="204.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="204.0" y1="128.0" x2="204.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="204.0" y1="128.0" x2="232.0" y2="128.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="232.0" y1="128.0" x2="232.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="232.0" y1="154.0" x2="260.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="260.0" y1="128.0" x2="260.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="260.0" y1="128.0" x2="288.0" y2="128.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="288.0" y1="128.0" x2="288.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="288.0" y1="154.0" x2="316.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="316.0" y1="128.0" x2="316.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="316.0" y1="128.0" x2="344.0" y2="128.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="344.0" y1="128.0" x2="344.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="344.0" y1="154.0" x2="372.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="372.0" y1="128.0" x2="372.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="372.0" y1="128.0" x2="400.0" y2="128.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="400.0" y1="128.0" x2="400.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="400.0" y1="154.0" x2="428.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="428.0" y1="128.0" x2="428.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="428.0" y1="128.0" x2="456.0" y2="128.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="456.0" y1="128.0" x2="456.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="456.0" y1="154.0" x2="484.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="484.0" y1="128.0" x2="484.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="484.0" y1="128.0" x2="512.0" y2="128.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="512.0" y1="128.0" x2="512.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="512.0" y1="154.0" x2="540.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="540.0" y1="128.0" x2="540.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="540.0" y1="128.0" x2="568.0" y2="128.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="568.0" y1="128.0" x2="568.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="568.0" y1="154.0" x2="596.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="596.0" y1="128.0" x2="596.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="596.0" y1="128.0" x2="624.0" y2="128.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="624.0" y1="128.0" x2="624.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="624.0" y1="154.0" x2="652.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="652.0" y1="154.0" x2="736.0" y2="154.0" stroke="#334e68" stroke-width="2"/>
+  <text x="106.0" y="199.0" font-size="14" text-anchor="end" fill="#1f2933" font-weight="bold">MOSI</text>
+  <text x="106.0" y="216.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">마스터 → 슬레이브</text>
+  <line x1="120.0" y1="199.0" x2="176.0" y2="199.0" stroke="#616e7c" stroke-width="2" stroke-dasharray="6 4"/>
+  <polygon points="176.0,199.0 182.0,186.0 226.0,186.0 232.0,199.0 226.0,212.0 182.0,212.0" fill="#e3edfd" stroke="#334e68" stroke-width="1.5"/>
+  <text x="204.0" y="204.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">1</text>
+  <polygon points="232.0,199.0 238.0,186.0 282.0,186.0 288.0,199.0 282.0,212.0 238.0,212.0" fill="#e3edfd" stroke="#334e68" stroke-width="1.5"/>
+  <text x="260.0" y="204.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">0</text>
+  <polygon points="288.0,199.0 294.0,186.0 338.0,186.0 344.0,199.0 338.0,212.0 294.0,212.0" fill="#e3edfd" stroke="#334e68" stroke-width="1.5"/>
+  <text x="316.0" y="204.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">1</text>
+  <polygon points="344.0,199.0 350.0,186.0 394.0,186.0 400.0,199.0 394.0,212.0 350.0,212.0" fill="#e3edfd" stroke="#334e68" stroke-width="1.5"/>
+  <text x="372.0" y="204.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">0</text>
+  <polygon points="400.0,199.0 406.0,186.0 450.0,186.0 456.0,199.0 450.0,212.0 406.0,212.0" fill="#e3edfd" stroke="#334e68" stroke-width="1.5"/>
+  <text x="428.0" y="204.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">0</text>
+  <polygon points="456.0,199.0 462.0,186.0 506.0,186.0 512.0,199.0 506.0,212.0 462.0,212.0" fill="#e3edfd" stroke="#334e68" stroke-width="1.5"/>
+  <text x="484.0" y="204.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">1</text>
+  <polygon points="512.0,199.0 518.0,186.0 562.0,186.0 568.0,199.0 562.0,212.0 518.0,212.0" fill="#e3edfd" stroke="#334e68" stroke-width="1.5"/>
+  <text x="540.0" y="204.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">0</text>
+  <polygon points="568.0,199.0 574.0,186.0 618.0,186.0 624.0,199.0 618.0,212.0 574.0,212.0" fill="#e3edfd" stroke="#334e68" stroke-width="1.5"/>
+  <text x="596.0" y="204.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">1</text>
+  <line x1="624.0" y1="199.0" x2="736.0" y2="199.0" stroke="#616e7c" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="106.0" y="257.0" font-size="14" text-anchor="end" fill="#1f2933" font-weight="bold">MISO</text>
+  <text x="106.0" y="274.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">슬레이브 → 마스터</text>
+  <line x1="120.0" y1="257.0" x2="176.0" y2="257.0" stroke="#616e7c" stroke-width="2" stroke-dasharray="6 4"/>
+  <polygon points="176.0,257.0 182.0,244.0 226.0,244.0 232.0,257.0 226.0,270.0 182.0,270.0" fill="#fdebd7" stroke="#334e68" stroke-width="1.5"/>
+  <text x="204.0" y="262.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">0</text>
+  <polygon points="232.0,257.0 238.0,244.0 282.0,244.0 288.0,257.0 282.0,270.0 238.0,270.0" fill="#fdebd7" stroke="#334e68" stroke-width="1.5"/>
+  <text x="260.0" y="262.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">0</text>
+  <polygon points="288.0,257.0 294.0,244.0 338.0,244.0 344.0,257.0 338.0,270.0 294.0,270.0" fill="#fdebd7" stroke="#334e68" stroke-width="1.5"/>
+  <text x="316.0" y="262.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">1</text>
+  <polygon points="344.0,257.0 350.0,244.0 394.0,244.0 400.0,257.0 394.0,270.0 350.0,270.0" fill="#fdebd7" stroke="#334e68" stroke-width="1.5"/>
+  <text x="372.0" y="262.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">1</text>
+  <polygon points="400.0,257.0 406.0,244.0 450.0,244.0 456.0,257.0 450.0,270.0 406.0,270.0" fill="#fdebd7" stroke="#334e68" stroke-width="1.5"/>
+  <text x="428.0" y="262.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">1</text>
+  <polygon points="456.0,257.0 462.0,244.0 506.0,244.0 512.0,257.0 506.0,270.0 462.0,270.0" fill="#fdebd7" stroke="#334e68" stroke-width="1.5"/>
+  <text x="484.0" y="262.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">1</text>
+  <polygon points="512.0,257.0 518.0,244.0 562.0,244.0 568.0,257.0 562.0,270.0 518.0,270.0" fill="#fdebd7" stroke="#334e68" stroke-width="1.5"/>
+  <text x="540.0" y="262.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">0</text>
+  <polygon points="568.0,257.0 574.0,244.0 618.0,244.0 624.0,257.0 618.0,270.0 574.0,270.0" fill="#fdebd7" stroke="#334e68" stroke-width="1.5"/>
+  <text x="596.0" y="262.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">0</text>
+  <line x1="624.0" y1="257.0" x2="736.0" y2="257.0" stroke="#616e7c" stroke-width="2" stroke-dasharray="6 4"/>
+  <polygon points="204.0,218.0 199.0,227.0 209.0,227.0" fill="#d64545" stroke="#d64545" stroke-width="1"/>
+  <polygon points="260.0,218.0 255.0,227.0 265.0,227.0" fill="#d64545" stroke="#d64545" stroke-width="1"/>
+  <polygon points="316.0,218.0 311.0,227.0 321.0,227.0" fill="#d64545" stroke="#d64545" stroke-width="1"/>
+  <polygon points="372.0,218.0 367.0,227.0 377.0,227.0" fill="#d64545" stroke="#d64545" stroke-width="1"/>
+  <polygon points="428.0,218.0 423.0,227.0 433.0,227.0" fill="#d64545" stroke="#d64545" stroke-width="1"/>
+  <polygon points="484.0,218.0 479.0,227.0 489.0,227.0" fill="#d64545" stroke="#d64545" stroke-width="1"/>
+  <polygon points="540.0,218.0 535.0,227.0 545.0,227.0" fill="#d64545" stroke="#d64545" stroke-width="1"/>
+  <polygon points="596.0,218.0 591.0,227.0 601.0,227.0" fill="#d64545" stroke="#d64545" stroke-width="1"/>
+  <polygon points="204.0,276.0 199.0,285.0 209.0,285.0" fill="#d64545" stroke="#d64545" stroke-width="1"/>
+  <polygon points="260.0,276.0 255.0,285.0 265.0,285.0" fill="#d64545" stroke="#d64545" stroke-width="1"/>
+  <polygon points="316.0,276.0 311.0,285.0 321.0,285.0" fill="#d64545" stroke="#d64545" stroke-width="1"/>
+  <polygon points="372.0,276.0 367.0,285.0 377.0,285.0" fill="#d64545" stroke="#d64545" stroke-width="1"/>
+  <polygon points="428.0,276.0 423.0,285.0 433.0,285.0" fill="#d64545" stroke="#d64545" stroke-width="1"/>
+  <polygon points="484.0,276.0 479.0,285.0 489.0,285.0" fill="#d64545" stroke="#d64545" stroke-width="1"/>
+  <polygon points="540.0,276.0 535.0,285.0 545.0,285.0" fill="#d64545" stroke="#d64545" stroke-width="1"/>
+  <polygon points="596.0,276.0 591.0,285.0 601.0,285.0" fill="#d64545" stroke="#d64545" stroke-width="1"/>
+  <path d="M178.0,63.0 L178.0,58.0 L678.0,58.0 L678.0,63.0" stroke="#d9730d" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+  <text x="428.0" y="52.0" font-size="12" text-anchor="middle" fill="#d9730d" font-weight="bold">CS가 Low인 동안만 슬레이브가 대답한다</text>
+  <text x="428.0" y="320.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">▲ SCLK 상승 에지에서 양쪽이 동시에 읽고, 하강 에지에서 다음 비트를 내놓는다</text>
+</svg>

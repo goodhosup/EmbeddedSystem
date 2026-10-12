@@ -157,7 +157,7 @@ int uart_getc_blocking(void)
 }
 ```
 
-UDRE0(Data Register Empty)과 TXC0(Transmit Complete)의 차이를 알아 두세요. UDR0에 쓴 바이트는 곧바로 내부의 **시프트 레지스터**로 옮겨져 한 비트씩 나가고, UDR0은 다음 바이트를 받을 수 있게 비워집니다. UDRE0은 "다음 바이트를 써도 된다", TXC0은 "시프트 레지스터의 마지막 비트까지 선 위로 다 나갔다"는 뜻입니다. 연속으로 보낼 때는 UDRE0을 보고, 14.10절의 RS-485처럼 "다 나간 뒤에 무언가를 해야 할 때"는 TXC0을 봅니다.
+UDRE0(Data Register Empty)과 TXC0(Transmit Complete)의 차이를 알아 두세요. UDR0에 쓴 바이트는 곧바로 내부의 **시프트 레지스터**로 옮겨져 한 비트씩 나가고, UDR0은 다음 바이트를 받을 수 있게 비워집니다. UDRE0은 "다음 바이트를 써도 된다", TXC0은 "시프트 레지스터의 마지막 비트까지 선 위로 다 나갔다"는 뜻입니다. 연속으로 보낼 때는 UDRE0을 보고, 14.11절의 RS-485처럼 "다 나간 뒤에 무언가를 해야 할 때"는 TXC0을 봅니다.
 
 > 🔧 ATmega128에서는: USART가 두 개(USART0, USART1) 있습니다. USART0은 PE0(RXD0), PE1(TXD0)에, USART1은 PD2(RXD1), PD3(TXD1)에 있고, 레지스터 이름은 UDR0, UCSR0A처럼 번호만 다릅니다. 5장에서 본 것처럼 **PE0, PE1은 ISP 프로그래밍 핀과 같습니다.** USART0에 다른 장치를 연결해 두면 ISP 업로드가 실패할 수 있으므로, 키트에서는 PC와의 통신에 USART1을 쓰는 경우가 많습니다. 또 UBRR이 UBRR0H, UBRR0L로 나뉘어 있어 16비트로 한 번에 쓸 수 없으니 상위 바이트를 먼저 씁니다.
 
