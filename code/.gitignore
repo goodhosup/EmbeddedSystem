@@ -11,3 +11,4 @@ ch13-error-detection/errdet
 */test/test_*
 !*/test/test_*.c
 build-*/
+ch28-realtime/host/rta
