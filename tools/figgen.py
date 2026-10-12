@@ -3894,7 +3894,7 @@ def fig_23_1():
 def fig_23_2():
     s = Svg(900, 440)
     s.text(450, 30, "그림 23-2  HardFault가 일어났을 때의 예외 스택 프레임", 16, weight="bold")
-    frame = [("xPSR", "+0x1C", None), ("PC", "+0x18", "폴트가 난 명령의 주소"), ("LR", "+0x14", "폴트 난 함수의 복귀 주소 (오래된 값일 수 있음)"),
+    frame = [("xPSR", "+0x1C", None), ("PC", "+0x18", "폴트가 난 명령의 주소"), ("LR", "+0x14", "복귀 주소 (오래된 값일 수 있음)"),
              ("R12", "+0x10", None), ("R3", "+0x0C", None), ("R2", "+0x08", None), ("R1", "+0x04", None), ("R0", "+0x00", "← SP")]
     x, w, h = 320, 200, 36
     for i, (n, off, note) in enumerate(frame):
@@ -3990,6 +3990,106 @@ def fig_23_4():
             x = 160 + c * 260
             s.text(x, 352 + r * 22, v, 12, color=INK if r else MUTED, weight="bold" if c == 0 or r == 0 else "normal")
     s.save("ch23/fig23-4-scope-vs-la.svg")
+
+
+# ---------------------------------------------------------------------------
+# 24장 펌웨어 아키텍처
+# ---------------------------------------------------------------------------
+
+def fig_24_1():
+    s = Svg(900, 470)
+    s.text(450, 30, "그림 24-1  슈퍼루프와 이벤트 기반 구조 비교", 16, weight="bold")
+    # 왼쪽: 슈퍼루프
+    s.text(220, 64, "슈퍼루프", 14, weight="bold", color=BLUE)
+    steps = ["버튼 읽기", "센서 읽기", "계산", "표시 갱신", "통신 처리"]
+    for i, t in enumerate(steps):
+        y = 84 + i * 58
+        s.box(140, y, 160, 40, t, None, BLUE_BG, BLUE, 13)
+        if i < len(steps) - 1:
+            s.line(220, y + 41, 220, y + 56, LINE, 1.6, arrow=True)
+    s.path("M140,348 L100,348 L100,104 L136,104", LINE, 1.6, arrow=True)
+    s.text(220, 412, "모든 일을 정해진 순서로 계속 돈다", 12, color=INK)
+    s.text(220, 432, "한 단계가 느리면 나머지가 모두 늦어진다", 11, color=MUTED)
+    s.line(450, 60, 450, 440, "#cbd2d9", 1, dash="4 4")
+    # 오른쪽: 이벤트 기반
+    s.text(680, 64, "이벤트 기반", 14, weight="bold", color=ORANGE)
+    srcs = [("버튼 ISR", 96), ("UART ISR", 146), ("타이머 태스크", 196), ("센서 태스크", 246)]
+    for t, y in srcs:
+        s.box(490, y, 120, 38, t, None, GRAY_BG, LINE, 12)
+        s.line(612, y + 19, 660, 190, LINE, 1.4, arrow=True)
+    s.rect(664, 160, 80, 60, ORANGE_BG, ORANGE, 6, 1.5)
+    s.text(704, 186, "이벤트", 12, weight="bold")
+    s.text(704, 204, "큐", 12, weight="bold")
+    s.line(704, 222, 704, 262, LINE, 1.8, arrow=True)
+    s.box(624, 266, 160, 50, "디스패처", "이벤트를 하나씩 꺼냄", ORANGE_BG, ORANGE, 13)
+    s.line(704, 318, 704, 346, LINE, 1.8, arrow=True)
+    s.box(624, 350, 160, 46, "상태 머신", None, GREEN_BG, GREEN, 13)
+    s.text(680, 422, "일이 생긴 곳은 이벤트만 넣고, 처리는 한 곳에서", 12, color=INK)
+    s.text(680, 442, "할 일이 없으면 잠든다 (WFI)", 11, color=MUTED)
+    s.save("ch24/fig24-1-superloop-vs-event.svg")
+
+
+def fig_24_2():
+    s = Svg(900, 500)
+    s.text(450, 30, "그림 24-2  상태 머신 다이어그램 예시 (세탁기)", 16, weight="bold")
+    st = {"IDLE": (60, 90), "FILLING": (250, 90), "WASHING": (440, 90), "DRAINING": (630, 90),
+          "SPINNING": (630, 250), "DONE": (440, 250), "PAUSED": (250, 380)}
+    entry = {"FILLING": "문 잠금, 밸브 열기", "WASHING": "모터 세탁, 10초", "DRAINING": "펌프 켜기",
+             "SPINNING": "펌프, 모터 탈수, 5초", "DONE": "문 잠금 해제", "IDLE": "모두 정지", "PAUSED": "출력 모두 정지"}
+    W, H = 170, 62
+    for n, (x, y) in st.items():
+        run = n in ("FILLING", "WASHING", "DRAINING", "SPINNING")
+        s.rect(x, y, W, H, BLUE_BG if run else (ORANGE_BG if n == "PAUSED" else GRAY_BG),
+               BLUE if run else (ORANGE if n == "PAUSED" else LINE), 18, 1.6)
+        s.text(x + W / 2, y + 26, n, 14, weight="bold")
+        s.text(x + W / 2, y + 46, entry[n], 11, color=MUTED)
+    def lab(x, y, t):
+        s.text(x, y, t, 12, weight="bold", color=INK)
+    s.line(232, 121, 248, 121, LINE, 1.8, arrow=True); lab(240, 112, "")
+    s.text(240, 80, "START", 11, weight="bold")
+    s.line(422, 121, 438, 121, LINE, 1.8, arrow=True); s.text(430, 80, "FULL", 11, weight="bold")
+    s.line(612, 121, 628, 121, LINE, 1.8, arrow=True); s.text(620, 80, "TIMEOUT", 11, weight="bold")
+    s.line(715, 154, 715, 248, LINE, 1.8, arrow=True); s.text(722, 206, "EMPTY", 11, "start", weight="bold")
+    s.line(628, 281, 612, 281, LINE, 1.8, arrow=True); s.text(620, 334, "TIMEOUT", 11, weight="bold")
+    s.path("M440,281 L145,281 L145,154", LINE, 1.8, arrow=True); s.text(290, 274, "DOOR_OPEN", 11, weight="bold")
+    # 일시정지
+    s.path("M335,154 L335,376", ORANGE, 1.6, arrow=True)
+    s.text(345, 352, "동작 중(파란 상태 어디서든)", 11, "start", ORANGE, "bold")
+    s.text(345, 368, "START", 11, "start", ORANGE, "bold")
+    s.path("M250,411 L120,411 L120,250 L270,250 L270,156", ORANGE, 1.4, arrow=True)
+    s.text(110, 430, "START: 멈췄던 단계로", 11, "start", ORANGE, "bold")
+    s.rect(500, 370, 360, 100, "#ffffff", "#cbd2d9", 6, 1)
+    s.text(516, 394, "읽는 법", 12, "start", weight="bold")
+    s.text(516, 414, "상자 = 상태, 아래 글자 = 들어갈 때 하는 일(entry)", 11, "start", MUTED)
+    s.text(516, 434, "화살표 = 이벤트로 일어나는 전이", 11, "start", MUTED)
+    s.text(516, 454, "표시 없는 이벤트는 그 상태에서 무시 (예: 세탁 중 DOOR_OPEN)", 11, "start", MUTED)
+    s.save("ch24/fig24-2-washer-fsm.svg")
+
+
+def fig_24_3():
+    s = Svg(900, 500)
+    s.text(450, 30, "그림 24-3  계층형 펌웨어 구조", 16, weight="bold")
+    layers = [("애플리케이션", "세탁 순서, 온도 조절 규칙 (washer.c)", GREEN_BG, GREEN),
+              ("서비스", "이벤트 큐, 스케줄러, 로그, 설정 저장 (evq.c, sched.c)", BLUE_BG, BLUE),
+              ("디바이스 드라이버", "BMP280, W25Q, 모터 드라이버: 칩을 다루는 법 (15·16장)", BLUE_BG, BLUE),
+              ("HAL (하드웨어 추상화)", "i2c_write(), spi_xfer(), gpio_set(): MCU마다 다른 부분", ORANGE_BG, ORANGE),
+              ("하드웨어", "STM32F411 레지스터, ATmega328P 레지스터", GRAY_BG, LINE)]
+    x, w, h = 160, 520, 62
+    for i, (n, d, f, st) in enumerate(layers):
+        y = 60 + i * (h + 12)
+        s.rect(x, y, w, h, f, st, 8, 1.6)
+        s.text(x + w / 2, y + 27, n, 14, weight="bold")
+        s.text(x + w / 2, y + 47, d, 11, color=MUTED)
+    s.line(720, 70, 720, 410, LINE, 2, arrow=True)
+    s.text(732, 236, "의존 방향:", 12, "start", weight="bold")
+    s.text(732, 256, "위가 아래를 부른다", 12, "start")
+    s.text(732, 276, "아래는 위를 모른다", 12, "start")
+    s.path("M150,236 L110,236 L110,128 L156,128", ORANGE, 1.6, arrow=True)
+    s.text(102, 170, "콜백,", 11, "end", ORANGE, "bold")
+    s.text(102, 186, "이벤트", 11, "end", ORANGE, "bold")
+    s.text(450, 448, "HAL 아래만 바꾸면 위 계층은 다른 MCU나 PC 테스트(31장)에서 그대로 쓴다", 12, color=INK)
+    s.text(450, 470, "아래 계층이 위에 알릴 일은 함수 포인터(콜백)나 이벤트로 거꾸로 전한다", 11, color=MUTED)
+    s.save("ch24/fig24-3-layers.svg")
 
 
 if __name__ == "__main__":

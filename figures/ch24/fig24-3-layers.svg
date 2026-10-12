@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="500" viewBox="0 0 900 500" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 24-3  계층형 펌웨어 구조</text>
+  <rect x="160.0" y="60.0" width="520.0" height="62.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.6"/>
+  <text x="420.0" y="87.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">애플리케이션</text>
+  <text x="420.0" y="107.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">세탁 순서, 온도 조절 규칙 (washer.c)</text>
+  <rect x="160.0" y="134.0" width="520.0" height="62.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.6"/>
+  <text x="420.0" y="161.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">서비스</text>
+  <text x="420.0" y="181.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">이벤트 큐, 스케줄러, 로그, 설정 저장 (evq.c, sched.c)</text>
+  <rect x="160.0" y="208.0" width="520.0" height="62.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.6"/>
+  <text x="420.0" y="235.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">디바이스 드라이버</text>
+  <text x="420.0" y="255.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">BMP280, W25Q, 모터 드라이버: 칩을 다루는 법 (15·16장)</text>
+  <rect x="160.0" y="282.0" width="520.0" height="62.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.6"/>
+  <text x="420.0" y="309.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">HAL (하드웨어 추상화)</text>
+  <text x="420.0" y="329.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">i2c_write(), spi_xfer(), gpio_set(): MCU마다 다른 부분</text>
+  <rect x="160.0" y="356.0" width="520.0" height="62.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.6"/>
+  <text x="420.0" y="383.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">하드웨어</text>
+  <text x="420.0" y="403.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">STM32F411 레지스터, ATmega328P 레지스터</text>
+  <line x1="720.0" y1="70.0" x2="720.0" y2="410.0" stroke="#334e68" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="732.0" y="236.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="bold">의존 방향:</text>
+  <text x="732.0" y="256.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="normal">위가 아래를 부른다</text>
+  <text x="732.0" y="276.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="normal">아래는 위를 모른다</text>
+  <path d="M150,236 L110,236 L110,128 L156,128" stroke="#d9730d" stroke-width="1.6" fill="none" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <text x="102.0" y="170.0" font-size="11" text-anchor="end" fill="#d9730d" font-weight="bold">콜백,</text>
+  <text x="102.0" y="186.0" font-size="11" text-anchor="end" fill="#d9730d" font-weight="bold">이벤트</text>
+  <text x="450.0" y="448.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">HAL 아래만 바꾸면 위 계층은 다른 MCU나 PC 테스트(31장)에서 그대로 쓴다</text>
+  <text x="450.0" y="470.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">아래 계층이 위에 알릴 일은 함수 포인터(콜백)나 이벤트로 거꾸로 전한다</text>
+</svg>
