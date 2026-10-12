@@ -13,7 +13,6 @@
 | `chapters/ch11-low-power.md` | 186 | [확인 필요: 보드 리비전별 X2 장착 여부] |
 | `chapters/ch12-project-thermometer.md` | 73 | [확인 필요: TMP36 출력 용량성 부하 한계] |
 | `chapters/ch17-can.md` | 163 | [확인 필요: STM32F411 PA6의 FT 여부와 MCP2515 모듈별 전원 구성] |
-| `chapters/ch18-usb.md` | 206 | [확인 필요: TinyUSB 0.17.0으로 make 빌드 확인] |
 | `chapters/ch19-wireless.md` | 220 | [확인 필요: ESP32 데이터시트의 전력 소비 표 값과 조건] |
 | `chapters/ch23-debugging.md` | 202 | [확인 필요: OpenOCD 버전별 SWO 설정 명령, NUCLEO의 SWO 솔더 브리지 기본 상태] |
 | `chapters/ch23-debugging.md` | 238 | [확인 필요: 보드 실측] |
@@ -60,9 +59,8 @@
 | `chapters/ch39-embedded-rust.md` | 28 | [확인 필요: 두 예제의 빌드와 보드 실행] |
 | `chapters/ch39-embedded-rust.md` | 214 | [확인 필요: 출간 시점 AVR 대상 이름] |
 | `chapters/ch39-embedded-rust.md` | 214 | [확인 필요: avr-hal의 ATmega128 지원 여부와 현재 AVR 대상 이름] |
-| `chapters/ch40-final-project.md` | 209 | [확인 필요: 보안 부트로더의 실제 크기와 최종 Flash 배치] |
-| `chapters/ch40-final-project.md` | 225 | [확인 필요: 16 MHz에서 서명 확인 시간과 워치독 여유 실측] |
-| `chapters/ch40-final-project.md` | 261 | [확인 필요] |
+| `chapters/ch40-final-project.md` | 235 | [확인 필요: 16 MHz에서 서명 확인 시간과 워치독 여유 실측] |
+| `chapters/ch40-final-project.md` | 271 | [확인 필요] |
 | `appendix/appendixA-datasheets.md` | 18 | [확인 필요: 각 문서 번호의 최신 판] |
 | `appendix/appendixC-instruments.md` | 70 | [확인 필요: 출간 시점에 많이 쓰이는 저가 로직 애널라이저와 sigrok 지원 여부] |
 | `appendix/appendixE-parts.md` | 25 | [확인 필요: 11장 회로의 부품] |
@@ -93,4 +91,4 @@
 | `code/ch40-sensor-node/README.md` | 23 | [확인 필요: 보안 부트로더 크기와 Flash 배치, 노드·연결부 빌드, 전체 시스템 OTA와 롤백 실측] |
 | `code/ch40-sensor-node/stm32-boot/boot.ld` | 2 | [확인 필요: 실제 크기] |
 
-총 87건
+총 85건
