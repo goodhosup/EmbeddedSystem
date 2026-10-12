@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="470" viewBox="0 0 900 470" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 20-2  QoS 0, 1, 2의 메시지 교환 (발행자 → 브로커)</text>
+  <text x="160.0" y="70.0" font-size="14" text-anchor="middle" fill="#2f6fdf" font-weight="bold">QoS 0: 최대 한 번</text>
+  <text x="60.0" y="96.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">발행자</text>
+  <text x="260.0" y="96.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">브로커</text>
+  <line x1="60.0" y1="104.0" x2="60.0" y2="380.0" stroke="#616e7c" stroke-width="1" stroke-dasharray="4 3"/>
+  <line x1="260.0" y1="104.0" x2="260.0" y2="380.0" stroke="#616e7c" stroke-width="1" stroke-dasharray="4 3"/>
+  <line x1="62.0" y1="140.0" x2="258.0" y2="160.0" stroke="#2f6fdf" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="160.0" y="138.0" font-size="11" text-anchor="middle" fill="#2f6fdf" font-weight="bold">PUBLISH</text>
+  <text x="160.0" y="410.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="normal">보내고 끝. 잃어버릴 수 있다</text>
+  <text x="450.0" y="70.0" font-size="14" text-anchor="middle" fill="#2f6fdf" font-weight="bold">QoS 1: 최소 한 번</text>
+  <text x="350.0" y="96.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">발행자</text>
+  <text x="550.0" y="96.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">브로커</text>
+  <line x1="350.0" y1="104.0" x2="350.0" y2="380.0" stroke="#616e7c" stroke-width="1" stroke-dasharray="4 3"/>
+  <line x1="550.0" y1="104.0" x2="550.0" y2="380.0" stroke="#616e7c" stroke-width="1" stroke-dasharray="4 3"/>
+  <line x1="352.0" y1="140.0" x2="548.0" y2="160.0" stroke="#2f6fdf" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="450.0" y="138.0" font-size="11" text-anchor="middle" fill="#2f6fdf" font-weight="bold">PUBLISH</text>
+  <line x1="548.0" y1="196.0" x2="352.0" y2="216.0" stroke="#d9730d" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="450.0" y="194.0" font-size="11" text-anchor="middle" fill="#d9730d" font-weight="bold">PUBACK</text>
+  <text x="450.0" y="410.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="normal">확인을 받을 때까지 다시 보낸다. 중복될 수 있다</text>
+  <text x="740.0" y="70.0" font-size="14" text-anchor="middle" fill="#2f6fdf" font-weight="bold">QoS 2: 정확히 한 번</text>
+  <text x="640.0" y="96.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">발행자</text>
+  <text x="840.0" y="96.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">브로커</text>
+  <line x1="640.0" y1="104.0" x2="640.0" y2="380.0" stroke="#616e7c" stroke-width="1" stroke-dasharray="4 3"/>
+  <line x1="840.0" y1="104.0" x2="840.0" y2="380.0" stroke="#616e7c" stroke-width="1" stroke-dasharray="4 3"/>
+  <line x1="642.0" y1="140.0" x2="838.0" y2="160.0" stroke="#2f6fdf" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="740.0" y="138.0" font-size="11" text-anchor="middle" fill="#2f6fdf" font-weight="bold">PUBLISH</text>
+  <line x1="838.0" y1="196.0" x2="642.0" y2="216.0" stroke="#d9730d" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="740.0" y="194.0" font-size="11" text-anchor="middle" fill="#d9730d" font-weight="bold">PUBREC</text>
+  <line x1="642.0" y1="252.0" x2="838.0" y2="272.0" stroke="#2f6fdf" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="740.0" y="250.0" font-size="11" text-anchor="middle" fill="#2f6fdf" font-weight="bold">PUBREL</text>
+  <line x1="838.0" y1="308.0" x2="642.0" y2="328.0" stroke="#d9730d" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="740.0" y="306.0" font-size="11" text-anchor="middle" fill="#d9730d" font-weight="bold">PUBCOMP</text>
+  <text x="740.0" y="410.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="normal">4단계로 중복 없이. 가장 느리다</text>
+  <text x="450.0" y="450.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">브로커에서 구독자로 갈 때도 같은 방식이며, 실제 QoS는 발행 QoS와 구독 QoS 중 낮은 쪽이다</text>
+</svg>

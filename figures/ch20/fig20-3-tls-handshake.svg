@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="480" viewBox="0 0 900 480" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 20-3  TLS 핸드셰이크 (TLS 1.3을 단순화)</text>
+  <rect x="130.0" y="50.0" width="180.0" height="40.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="220.0" y="75.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">클라이언트 (ESP32)</text>
+  <rect x="590.0" y="50.0" width="180.0" height="40.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="680.0" y="75.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">서버 (브로커)</text>
+  <line x1="220.0" y1="92.0" x2="220.0" y2="420.0" stroke="#616e7c" stroke-width="1.2" stroke-dasharray="4 4"/>
+  <line x1="680.0" y1="92.0" x2="680.0" y2="420.0" stroke="#616e7c" stroke-width="1.2" stroke-dasharray="4 4"/>
+  <line x1="224.0" y1="124.0" x2="676.0" y2="136.0" stroke="#2f6fdf" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="450.0" y="120.0" font-size="12" text-anchor="middle" fill="#2f6fdf" font-weight="normal">ClientHello: 지원하는 암호 방식, 키 교환용 공개값</text>
+  <line x1="676.0" y1="164.0" x2="224.0" y2="176.0" stroke="#d9730d" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="450.0" y="160.0" font-size="12" text-anchor="middle" fill="#d9730d" font-weight="normal">ServerHello: 고른 암호 방식, 키 교환용 공개값</text>
+  <line x1="676.0" y1="204.0" x2="224.0" y2="216.0" stroke="#d64545" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="450.0" y="200.0" font-size="12" text-anchor="middle" fill="#d64545" font-weight="normal">Certificate: 서버 인증서 (공개키 + CA 서명)</text>
+  <line x1="676.0" y1="244.0" x2="224.0" y2="256.0" stroke="#d9730d" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="450.0" y="240.0" font-size="12" text-anchor="middle" fill="#d9730d" font-weight="normal">CertificateVerify, Finished</text>
+  <line x1="224.0" y1="284.0" x2="676.0" y2="296.0" stroke="#2f6fdf" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="450.0" y="280.0" font-size="12" text-anchor="middle" fill="#2f6fdf" font-weight="normal">Finished (필요하면 클라이언트 인증서도)</text>
+  <line x1="224.0" y1="324.0" x2="676.0" y2="336.0" stroke="#2f9e44" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="450.0" y="320.0" font-size="12" text-anchor="middle" fill="#2f9e44" font-weight="normal">암호화된 응용 데이터 (MQTT CONNECT ...)</text>
+  <line x1="676.0" y1="364.0" x2="224.0" y2="376.0" stroke="#2f9e44" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="450.0" y="360.0" font-size="12" text-anchor="middle" fill="#2f9e44" font-weight="normal">암호화된 응용 데이터</text>
+  <rect x="60.0" y="418.0" width="780.0" height="50.0" rx="8" fill="#fdecec" stroke="#d64545" stroke-width="1"/>
+  <text x="450.0" y="438.0" font-size="11" text-anchor="middle" fill="#d64545" font-weight="bold">클라이언트는 서버 인증서가 믿을 수 있는 CA의 서명을 받았는지, 이름(호스트명)이 맞는지, 기한이 지나지 않았는지 확인해야 한다</text>
+  <text x="450.0" y="456.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="normal">이 확인을 생략하면 암호화는 되지만 가짜 서버와 통신할 수 있다 (기한 확인을 위해 정확한 시각도 필요하다)</text>
+</svg>

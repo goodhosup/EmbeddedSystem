@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="360" viewBox="0 0 900 360" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 20-4  센서 노드에서 클라우드 대시보드까지 데이터 흐름</text>
+  <rect x="20.0" y="90.0" width="130.0" height="64.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="85.0" y="119.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">센서</text>
+  <text x="85.0" y="138.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">I2C · ADC</text>
+  <line x1="152.0" y1="122.0" x2="165.0" y2="122.0" stroke="#334e68" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="167.0" y="90.0" width="130.0" height="64.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="232.0" y="119.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">MCU</text>
+  <text x="232.0" y="138.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">측정 · 필터 · 형식화</text>
+  <line x1="299.0" y1="122.0" x2="312.0" y2="122.0" stroke="#334e68" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="314.0" y="90.0" width="130.0" height="64.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="379.0" y="119.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">Wi-Fi</text>
+  <text x="379.0" y="138.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">TLS · MQTT</text>
+  <line x1="446.0" y1="122.0" x2="459.0" y2="122.0" stroke="#334e68" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="461.0" y="90.0" width="130.0" height="64.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="526.0" y="119.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">브로커</text>
+  <text x="526.0" y="138.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">토픽 라우팅</text>
+  <line x1="593.0" y1="122.0" x2="606.0" y2="122.0" stroke="#334e68" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="608.0" y="90.0" width="130.0" height="64.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="673.0" y="119.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">저장</text>
+  <text x="673.0" y="138.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">시계열 DB</text>
+  <line x1="740.0" y1="122.0" x2="753.0" y2="122.0" stroke="#334e68" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="755.0" y="90.0" width="130.0" height="64.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="820.0" y="119.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">대시보드</text>
+  <text x="820.0" y="138.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">그래프 · 알림</text>
+  <text x="150.0" y="80.0" font-size="12" text-anchor="middle" fill="#2f6fdf" font-weight="bold">장치 (이 책의 범위)</text>
+  <text x="670.0" y="80.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="bold">서버 쪽</text>
+  <line x1="20.0" y1="186.0" x2="870.0" y2="186.0" stroke="#dde3ea" stroke-width="1"/>
+  <path d="M780,200 L780,240 L240,240 L240,200" stroke="#d64545" stroke-width="1.8" fill="none" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <text x="510.0" y="262.0" font-size="12" text-anchor="middle" fill="#d64545" font-weight="normal">명령: 대시보드 → 브로커 → 장치 (예: LED 켜기, 설정 바꾸기, 펌웨어 업데이트 알림)</text>
+  <text x="450.0" y="300.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">장치마다 고유한 ID와 인증 정보가 필요하고, 그것을 공장이나 처음 설치할 때 넣는 일이 프로비저닝이다</text>
+  <text x="450.0" y="322.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">장치는 연결이 끊겨도 잃지 않도록 측정값을 잠시 저장했다가 다시 연결되면 보내는 것이 좋다</text>
+</svg>

@@ -1,0 +1,18 @@
+menu "Example configuration"
+
+    config EXAMPLE_WIFI_SSID
+        string "Wi-Fi SSID"
+        default "your-ssid"
+
+    config EXAMPLE_WIFI_PASSWORD
+        string "Wi-Fi password"
+        default "your-password"
+
+    config EXAMPLE_BROKER_URI
+        string "MQTT broker URI"
+        default "mqtt://192.168.0.10"
+        help
+            같은 네트워크의 PC에서 Mosquitto를 실행하고 그 PC의 IP를 넣는다.
+            TLS를 쓰려면 mqtts://호스트:8883 형식과 CA 인증서가 필요하다(20.5절).
+
+endmenu

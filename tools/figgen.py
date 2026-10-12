@@ -3464,7 +3464,7 @@ def fig_19_1():
     s.text(x0 - 8, y0 - H - 14, "속도 ↑", 12, "end", MUTED)
     techs = [("BLE", 30, 1e6, 10, BLUE), ("Classic BT", 20, 2e6, 16, "#7048e8"), ("Wi-Fi", 50, 1e8, 30, ORANGE),
              ("Zigbee · Thread", 40, 2.5e5, 10, GREEN), ("LoRa", 5000, 3e3, 14, RED),
-             ("NB-IoT · LTE-M", 10000, 1e5, 24, "#0c8599"), ("NFC", 1.1, 4e5, 6, LINE)]
+             ("NB-IoT · LTE-M", 10000, 1e5, 24, "#0c8599")]
     for n, d, b, r, col in techs:
         s.add(f'<circle cx="{X(d):.1f}" cy="{Y(b):.1f}" r="{r}" fill="{col}" fill-opacity="0.25" stroke="{col}" stroke-width="2"/>')
         below = n.startswith("Zigbee")
@@ -3548,7 +3548,7 @@ def fig_19_4():
     s.path(" ".join(pts), BLUE, 2)
     s.text(x0 + 44, y0 - 160, "송신", 10, color=BLUE)
     s.text(x0 + 70, y0 - 136, "수신", 10, color=BLUE)
-    s.text(x0 + 110, y0 - 16, "슬립 (µA 수준)", 11, "start", MUTED)
+    s.text(x0 + 70, y0 - 30, "슬립 (µA 수준)", 11, "start", MUTED)
     s.line(x0 + 30, y0 + 22, x0 + 180, y0 + 22, LINE, 1.2, both=True)
     s.text(x0 + 105, y0 + 40, "연결 간격 (예: 100 ms)", 11, weight="bold")
     s.text(x0 + 330, y0 + 40, "이벤트 하나 = 수 ms 이하", 11, color=MUTED)
@@ -3577,6 +3577,106 @@ def fig_19_5():
     s.text(720, 52, "ESP-IDF에서 맡는 부분", 12, color=MUTED)
     s.text(450, 380, "LwIP는 임베디드용 경량 TCP/IP 스택이다. 우리 코드는 대개 맨 위 계층의 API만 부른다", 12, color=MUTED)
     s.save("ch19/fig19-5-tcpip-layers.svg")
+
+
+# ---------------------------------------------------------------------------
+# 20장 IoT 프로토콜
+# ---------------------------------------------------------------------------
+
+def fig_20_1():
+    s = Svg(900, 420)
+    s.text(450, 30, "그림 20-1  MQTT 브로커와 발행/구독 구조", 16, weight="bold")
+    s.box(360, 150, 180, 90, "브로커", "Mosquitto, 클라우드 서비스", ORANGE_BG, ORANGE, 15)
+    pubs = [("거실 센서", "발행: home/living/temp", 70), ("방 센서", "발행: home/room/temp", 180), ("ESP32", "발행: home/esp32/status", 290)]
+    for n, t, y in pubs:
+        s.box(30, y, 150, 56, n, None, BLUE_BG, BLUE, 13)
+        s.text(105, y + 72, t, 10, color=BLUE)
+        s.line(182, y + 28, 356, 195, BLUE, 1.6, arrow=True)
+    subs = [("대시보드", "구독: home/+/temp", 70), ("스마트폰 앱", "구독: home/#", 180), ("기록 서버", "구독: home/living/temp", 290)]
+    for n, t, y in subs:
+        s.box(720, y, 150, 56, n, None, GREEN_BG, GREEN, 13)
+        s.text(795, y + 72, t, 10, color=GREEN)
+        s.line(542, 195, 716, y + 28, GREEN, 1.6, arrow=True)
+    s.text(450, 270, "발행자와 구독자는 서로를 모른다. 브로커가 토픽으로 연결해 준다", 12, color=INK)
+    s.text(450, 380, "와일드카드: +는 한 단계(home/+/temp), #은 그 아래 전부(home/#)", 12, color=MUTED)
+    s.text(450, 400, "장치는 브로커에 TCP 연결을 하나만 유지하면 되고, 받는 쪽이 늘어도 장치의 코드는 그대로다", 12, color=MUTED)
+    s.save("ch20/fig20-1-mqtt-pubsub.svg")
+
+
+def fig_20_2():
+    s = Svg(900, 470)
+    s.text(450, 30, "그림 20-2  QoS 0, 1, 2의 메시지 교환 (발행자 → 브로커)", 16, weight="bold")
+    cols = [("QoS 0: 최대 한 번", 160, ["PUBLISH →"], "보내고 끝. 잃어버릴 수 있다"),
+            ("QoS 1: 최소 한 번", 450, ["PUBLISH →", "← PUBACK"], "확인을 받을 때까지 다시 보낸다. 중복될 수 있다"),
+            ("QoS 2: 정확히 한 번", 740, ["PUBLISH →", "← PUBREC", "PUBREL →", "← PUBCOMP"], "4단계로 중복 없이. 가장 느리다")]
+    for title, cx, msgs, note in cols:
+        s.text(cx, 70, title, 14, weight="bold", color=BLUE)
+        xl, xr = cx - 100, cx + 100
+        s.text(xl, 96, "발행자", 11, color=MUTED)
+        s.text(xr, 96, "브로커", 11, color=MUTED)
+        s.line(xl, 104, xl, 380, MUTED, 1, "4 3")
+        s.line(xr, 104, xr, 380, MUTED, 1, "4 3")
+        for i, m in enumerate(msgs):
+            y = 140 + i * 56
+            if m.endswith("→"):
+                s.line(xl + 2, y, xr - 2, y + 20, BLUE, 1.8, arrow=True)
+                s.text(cx, y - 2, m[:-2], 11, color=BLUE, weight="bold")
+            else:
+                s.line(xr - 2, y, xl + 2, y + 20, ORANGE, 1.8, arrow=True)
+                s.text(cx, y - 2, m[2:], 11, color=ORANGE, weight="bold")
+        s.text(cx, 410, note, 11, color=INK)
+    s.text(450, 450, "브로커에서 구독자로 갈 때도 같은 방식이며, 실제 QoS는 발행 QoS와 구독 QoS 중 낮은 쪽이다", 11, color=MUTED)
+    s.save("ch20/fig20-2-mqtt-qos.svg")
+
+
+def fig_20_3():
+    s = Svg(900, 480)
+    s.text(450, 30, "그림 20-3  TLS 핸드셰이크 (TLS 1.3을 단순화)", 16, weight="bold")
+    xc, xs = 220, 680
+    s.box(xc - 90, 50, 180, 40, "클라이언트 (ESP32)", None, BLUE_BG, BLUE, 13)
+    s.box(xs - 90, 50, 180, 40, "서버 (브로커)", None, ORANGE_BG, ORANGE, 13)
+    s.line(xc, 92, xc, 420, MUTED, 1.2, "4 4")
+    s.line(xs, 92, xs, 420, MUTED, 1.2, "4 4")
+    steps = [("c", "ClientHello: 지원하는 암호 방식, 키 교환용 공개값", None),
+             ("s", "ServerHello: 고른 암호 방식, 키 교환용 공개값", None),
+             ("s", "Certificate: 서버 인증서 (공개키 + CA 서명)", RED),
+             ("s", "CertificateVerify, Finished", None),
+             ("c", "Finished (필요하면 클라이언트 인증서도)", None),
+             ("c", "암호화된 응용 데이터 (MQTT CONNECT ...)", GREEN),
+             ("s", "암호화된 응용 데이터", GREEN)]
+    for i, (who, t, col) in enumerate(steps):
+        y = 124 + i * 40
+        c = col or (BLUE if who == "c" else ORANGE)
+        if who == "c":
+            s.line(xc + 4, y, xs - 4, y + 12, c, 1.8, arrow=True)
+        else:
+            s.line(xs - 4, y, xc + 4, y + 12, c, 1.8, arrow=True)
+        s.text(450, y - 4, t, 12, color=c)
+    s.rect(60, 418, 780, 50, "#fdecec", RED, 8, 1)
+    s.text(450, 438, "클라이언트는 서버 인증서가 믿을 수 있는 CA의 서명을 받았는지, 이름(호스트명)이 맞는지, 기한이 지나지 않았는지 확인해야 한다", 11, weight="bold", color=RED)
+    s.text(450, 456, "이 확인을 생략하면 암호화는 되지만 가짜 서버와 통신할 수 있다 (기한 확인을 위해 정확한 시각도 필요하다)", 11, color=INK)
+    s.save("ch20/fig20-3-tls-handshake.svg")
+
+
+def fig_20_4():
+    s = Svg(900, 360)
+    s.text(450, 30, "그림 20-4  센서 노드에서 클라우드 대시보드까지 데이터 흐름", 16, weight="bold")
+    steps = [("센서", "I2C · ADC", GREEN_BG, GREEN), ("MCU", "측정 · 필터 · 형식화", BLUE_BG, BLUE),
+             ("Wi-Fi", "TLS · MQTT", BLUE_BG, BLUE), ("브로커", "토픽 라우팅", ORANGE_BG, ORANGE),
+             ("저장", "시계열 DB", GRAY_BG, LINE), ("대시보드", "그래프 · 알림", GRAY_BG, LINE)]
+    for i, (a, b, f, st) in enumerate(steps):
+        x = 20 + i * 147
+        s.box(x, 90, 130, 64, a, b, f, st, 14)
+        if i < 5:
+            s.line(x + 132, 122, x + 145, 122, LINE, 2, arrow=True)
+    s.text(150, 80, "장치 (이 책의 범위)", 12, color=BLUE, weight="bold")
+    s.text(670, 80, "서버 쪽", 12, color=MUTED, weight="bold")
+    s.line(20, 186, 870, 186, "#dde3ea", 1)
+    s.path("M780,200 L780,240 L240,240 L240,200", RED, 1.8, arrow=True)
+    s.text(510, 262, "명령: 대시보드 → 브로커 → 장치 (예: LED 켜기, 설정 바꾸기, 펌웨어 업데이트 알림)", 12, color=RED)
+    s.text(450, 300, "장치마다 고유한 ID와 인증 정보가 필요하고, 그것을 공장이나 처음 설치할 때 넣는 일이 프로비저닝이다", 12, color=INK)
+    s.text(450, 322, "장치는 연결이 끊겨도 잃지 않도록 측정값을 잠시 저장했다가 다시 연결되면 보내는 것이 좋다", 12, color=MUTED)
+    s.save("ch20/fig20-4-iot-dataflow.svg")
 
 
 if __name__ == "__main__":

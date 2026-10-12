@@ -7,6 +7,7 @@
 //
 // 스마트폰의 nRF Connect 같은 BLE 앱으로 "ch19-ble"에 연결해 확인한다.
 // 아두이노 ESP32 코어 3.x 기준. [확인 필요: 코어 버전별 BLE 라이브러리 API]
+// (코어 3.3 이후 NimBLE 지원과 함께 BLE2902가 deprecated로 바뀌고 CCCD가 자동 추가된다는 변경이 있었던 것으로 보임. 출간 시점에 확인)
 
 #include <BLE2902.h>
 #include <BLEDevice.h>
