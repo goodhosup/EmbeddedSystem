@@ -43,7 +43,9 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: fw-${{ strategy.job-index }}
-          path: code/${{ matrix.example }}/build/*.[eb]*  # .elf, .bin
+          path: |
+            code/${{ matrix.example }}/build/*.elf
+            code/${{ matrix.example }}/build/*.bin
           retention-days: 30
 
   hil:                               # 4단계: 실제 보드 (31장 HIL) — 보드가 연결된 자체 러너에서만

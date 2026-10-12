@@ -49,7 +49,7 @@
 | `chapters/ch35-functional-safety.md` | 211 | [확인 필요: 출간 시점 ST 클래스 B 라이브러리 이름과 지원 MCU] |
 | `chapters/ch36-cicd-production.md` | 179 | [확인 필요: 보드 실측] |
 | `chapters/ch36-cicd-production.md` | 193 | [확인 필요: 출간 시점 ESP-IDF 양산 도구 이름과 사용법] |
-| `chapters/ch36-cicd-production.md` | 234 | [확인 필요: 출간 시점 ESP-IDF 코어 덤프 설정 이름] |
+| `chapters/ch36-cicd-production.md` | 236 | [확인 필요: 출간 시점 ESP-IDF 코어 덤프 설정 이름] |
 | `code/ch18-usb/README.md` | 23 | [확인 필요: CN10 핀 번호] |
 | `code/ch18-usb/stm32/usb_descriptors.c` | 6 | [확인 필요: pid.codes 시험용 PID 정책] |
 | `code/ch19-wireless/esp32-arduino/ble_sensor/ble_sensor.ino` | 9 | [확인 필요: 코어 버전별 BLE 라이브러리 API] |
