@@ -29,6 +29,8 @@
 | `chapters/ch30-project-data-logger.md` | 219 | [확인 필요: 이 구성의 잠, 측정, SD 쓰기 전류 실측값] |
 | `chapters/ch30-project-data-logger.md` | 293 | [확인 필요: 보드 실측] |
 | `chapters/ch30-project-data-logger.md` | 306 | [확인 필요: PVD 절 번호] |
+| `chapters/ch31-testable-firmware.md` | 205 | [확인 필요: 출간 시점 CMock/Ceedling 버전과 설치 방법] |
+| `chapters/ch31-testable-firmware.md` | 230 | [확인 필요: 보드 실행 결과] |
 | `code/ch18-usb/README.md` | 23 | [확인 필요: CN10 핀 번호] |
 | `code/ch18-usb/stm32/usb_descriptors.c` | 6 | [확인 필요: pid.codes 시험용 PID 정책] |
 | `code/ch19-wireless/esp32-arduino/ble_sensor/ble_sensor.ino` | 9 | [확인 필요: 코어 버전별 BLE 라이브러리 API] |
@@ -40,5 +42,6 @@
 | `code/ch30-logger/DESIGN.md` | 100 | [확인 필요: 보드 실측] |
 | `code/ch30-logger/README.md` | 33 | [확인 필요: arm-none-eabi-gcc로 FreeRTOS와 FatFs까지 포함한 전체 빌드의 경고 확인, 보드 통합 시험(30.8절)] |
 | `code/ch30-logger/ffconf.h` | 4 | [확인 필요: 다른 버전을 쓸 때] |
+| `code/ch31-testing/README.md` | 24 | [확인 필요: 보드 실행 결과와 HIL 스크립트 동작] |
 
-총 35건
+총 38건

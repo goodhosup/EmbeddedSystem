@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="430" viewBox="0 0 900 430" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 31-2  HIL 테스트 구성</text>
+  <rect x="40.0" y="90.0" width="210.0" height="120.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="145.0" y="147.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">테스트 PC / CI 러너</text>
+  <text x="145.0" y="166.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">pytest, run_on_target.py</text>
+  <rect x="360.0" y="70.0" width="200.0" height="70.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="460.0" y="102.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">디버그 프로브</text>
+  <text x="460.0" y="121.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">ST-LINK: 업로드, 리셋</text>
+  <rect x="360.0" y="160.0" width="200.0" height="60.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="460.0" y="187.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">USB-UART</text>
+  <text x="460.0" y="206.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">결과 출력, 명령</text>
+  <rect x="360.0" y="240.0" width="200.0" height="60.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="460.0" y="267.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">제어 가능한 전원</text>
+  <text x="460.0" y="286.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">켜고 끄기, 전류 측정</text>
+  <rect x="360.0" y="320.0" width="200.0" height="60.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="460.0" y="347.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">신호 발생 / 측정</text>
+  <text x="460.0" y="366.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">GPIO, DAC, 로직 애널라이저</text>
+  <rect x="660.0" y="110.0" width="200.0" height="230.0" rx="10" fill="#e3edfd" stroke="#2f6fdf" stroke-width="2"/>
+  <text x="760.0" y="140.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">대상 보드 (DUT)</text>
+  <text x="760.0" y="164.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">시험할 펌웨어</text>
+  <rect x="680.0" y="200.0" width="160.0" height="50.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="760.0" y="222.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">센서 / 액추에이터</text>
+  <text x="760.0" y="241.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">또는 그 흉내</text>
+  <line x1="252.0" y1="150.0" x2="356.0" y2="105.0" stroke="#334e68" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <line x1="562.0" y1="105.0" x2="656.0" y2="130.0" stroke="#334e68" stroke-width="1.6" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+  <line x1="252.0" y1="150.0" x2="356.0" y2="190.0" stroke="#334e68" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <line x1="562.0" y1="190.0" x2="656.0" y2="190.0" stroke="#334e68" stroke-width="1.6" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+  <line x1="252.0" y1="150.0" x2="356.0" y2="270.0" stroke="#334e68" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <line x1="562.0" y1="270.0" x2="656.0" y2="270.0" stroke="#334e68" stroke-width="1.6" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+  <line x1="252.0" y1="150.0" x2="356.0" y2="350.0" stroke="#334e68" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <line x1="562.0" y1="350.0" x2="656.0" y2="320.0" stroke="#334e68" stroke-width="1.6" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+  <text x="450.0" y="406.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">사람이 보드에서 하던 일(올리기, 누르기, 보기, 전원 뽑기)을 프로그램이 하게 만들어 매 커밋마다 반복한다 (36장)</text>
+</svg>

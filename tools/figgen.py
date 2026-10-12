@@ -4699,6 +4699,57 @@ def fig_30_3():
     s.save("ch30/fig30-3-current.svg")
 
 
+# ---------------------------------------------------------------------------
+# 31장 테스트 가능한 펌웨어
+# ---------------------------------------------------------------------------
+
+def fig_31_1():
+    s = Svg(900, 450)
+    s.text(450, 30, "그림 31-1  하드웨어 의존 코드와 로직 분리 구조", 16, weight="bold")
+    s.text(230, 64, "제품 빌드 (보드)", 14, weight="bold", color=BLUE)
+    s.text(670, 64, "테스트 빌드 (PC)", 14, weight="bold", color=GREEN)
+    # 공통 로직
+    s.rect(300, 90, 300, 110, GREEN_BG, GREEN, 10, 2)
+    s.text(450, 118, "로직 (하드웨어를 모름)", 14, weight="bold")
+    s.text(450, 142, "thermostat.c, logger.c, bmp280.c", 12, color=MUTED)
+    s.text(450, 162, "인터페이스만 안다: thermo_io_t, i2c.h, spi.h", 12, color=MUTED)
+    s.text(450, 186, "→ 두 빌드에 같은 파일이 그대로 들어간다", 11, color=GREEN, weight="bold")
+    # left: 진짜 구현
+    s.box(60, 260, 260, 56, "진짜 구현", "i2c_stm32.c, 히터 GPIO", BLUE_BG, BLUE, 13)
+    s.box(60, 350, 260, 50, "STM32 레지스터", None, GRAY_BG, LINE, 13)
+    s.line(190, 318, 190, 346, LINE, 1.6, arrow=True)
+    s.line(360, 202, 220, 256, LINE, 1.6, arrow=True)
+    # right: 테스트 더블
+    s.box(580, 240, 260, 50, "테스트 코드 (Unity)", "test_thermostat.c", ORANGE_BG, ORANGE, 13)
+    s.rect(580, 310, 260, 96, ORANGE_BG, ORANGE, 8, 1.5)
+    s.text(710, 332, "테스트 더블", 13, weight="bold")
+    s.text(710, 360, "스텁: 정한 값을 돌려줌 (fake_read)", 11, color=INK)
+    s.text(710, 378, "스파이: 호출을 기록 (spy_heater)", 11, color=INK)
+    s.text(710, 396, "목: 기대한 호출을 검사 (mock_i2c)", 11, color=INK)
+    s.line(540, 202, 680, 236, LINE, 1.6, arrow=True)
+    s.text(450, 432, "경계(인터페이스)를 어디에 두느냐가 테스트할 수 있는 코드의 양을 정한다. 경계 아래는 얇게, 위는 두껍게", 12, color=INK)
+    s.save("ch31/fig31-1-separation.svg")
+
+
+def fig_31_2():
+    s = Svg(900, 430)
+    s.text(450, 30, "그림 31-2  HIL 테스트 구성", 16, weight="bold")
+    s.box(40, 90, 210, 120, "테스트 PC / CI 러너", "pytest, run_on_target.py", GRAY_BG, LINE, 13)
+    s.box(360, 70, 200, 70, "디버그 프로브", "ST-LINK: 업로드, 리셋", ORANGE_BG, ORANGE, 13)
+    s.box(360, 160, 200, 60, "USB-UART", "결과 출력, 명령", ORANGE_BG, ORANGE, 13)
+    s.box(360, 240, 200, 60, "제어 가능한 전원", "켜고 끄기, 전류 측정", ORANGE_BG, ORANGE, 13)
+    s.box(360, 320, 200, 60, "신호 발생 / 측정", "GPIO, DAC, 로직 애널라이저", ORANGE_BG, ORANGE, 13)
+    s.rect(660, 110, 200, 230, BLUE_BG, BLUE, 10, 2)
+    s.text(760, 140, "대상 보드 (DUT)", 14, weight="bold")
+    s.text(760, 164, "시험할 펌웨어", 11, color=MUTED)
+    s.box(680, 200, 160, 50, "센서 / 액추에이터", "또는 그 흉내", GREEN_BG, GREEN, 12)
+    for y in (105, 190, 270, 350):
+        s.line(252, 150, 356, y, LINE, 1.4, arrow=True)
+        s.line(562, y, 656, min(max(y, 130), 320), LINE, 1.6, both=True)
+    s.text(450, 406, "사람이 보드에서 하던 일(올리기, 누르기, 보기, 전원 뽑기)을 프로그램이 하게 만들어 매 커밋마다 반복한다 (36장)", 12, color=INK)
+    s.save("ch31/fig31-2-hil.svg")
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("fig_") and callable(fn):

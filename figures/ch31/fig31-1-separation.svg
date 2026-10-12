@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="450" viewBox="0 0 900 450" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 31-1  하드웨어 의존 코드와 로직 분리 구조</text>
+  <text x="230.0" y="64.0" font-size="14" text-anchor="middle" fill="#2f6fdf" font-weight="bold">제품 빌드 (보드)</text>
+  <text x="670.0" y="64.0" font-size="14" text-anchor="middle" fill="#2f9e44" font-weight="bold">테스트 빌드 (PC)</text>
+  <rect x="300.0" y="90.0" width="300.0" height="110.0" rx="10" fill="#e1f4e5" stroke="#2f9e44" stroke-width="2"/>
+  <text x="450.0" y="118.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">로직 (하드웨어를 모름)</text>
+  <text x="450.0" y="142.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">thermostat.c, logger.c, bmp280.c</text>
+  <text x="450.0" y="162.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">인터페이스만 안다: thermo_io_t, i2c.h, spi.h</text>
+  <text x="450.0" y="186.0" font-size="11" text-anchor="middle" fill="#2f9e44" font-weight="bold">→ 두 빌드에 같은 파일이 그대로 들어간다</text>
+  <rect x="60.0" y="260.0" width="260.0" height="56.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="190.0" y="285.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">진짜 구현</text>
+  <text x="190.0" y="304.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">i2c_stm32.c, 히터 GPIO</text>
+  <rect x="60.0" y="350.0" width="260.0" height="50.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="190.0" y="380.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">STM32 레지스터</text>
+  <line x1="190.0" y1="318.0" x2="190.0" y2="346.0" stroke="#334e68" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <line x1="360.0" y1="202.0" x2="220.0" y2="256.0" stroke="#334e68" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <rect x="580.0" y="240.0" width="260.0" height="50.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="710.0" y="262.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">테스트 코드 (Unity)</text>
+  <text x="710.0" y="281.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">test_thermostat.c</text>
+  <rect x="580.0" y="310.0" width="260.0" height="96.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="710.0" y="332.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">테스트 더블</text>
+  <text x="710.0" y="360.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="normal">스텁: 정한 값을 돌려줌 (fake_read)</text>
+  <text x="710.0" y="378.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="normal">스파이: 호출을 기록 (spy_heater)</text>
+  <text x="710.0" y="396.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="normal">목: 기대한 호출을 검사 (mock_i2c)</text>
+  <line x1="540.0" y1="202.0" x2="680.0" y2="236.0" stroke="#334e68" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <text x="450.0" y="432.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">경계(인터페이스)를 어디에 두느냐가 테스트할 수 있는 코드의 양을 정한다. 경계 아래는 얇게, 위는 두껍게</text>
+</svg>
