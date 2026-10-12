@@ -1,0 +1,19 @@
+# 39장: Embassy의 async 태스크 (NUCLEO-F411RE)
+[package]
+name = "ch39-embassy-async"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+embassy-stm32 = { version = "0.6", features = ["defmt", "stm32f411re", "memory-x", "time-driver-tim2", "exti", "unstable-pac"] }
+embassy-executor = { version = "0.10", features = ["platform-cortex-m", "executor-thread", "defmt"] }
+embassy-time = { version = "0.5", features = ["defmt", "tick-hz-32_768"] }
+embassy-sync = { version = "0.8", features = ["defmt"] }
+cortex-m = { version = "0.7", features = ["inline-asm", "critical-section-single-core"] }
+cortex-m-rt = "0.7"
+defmt = "1.0"
+defmt-rtt = "1.0"
+panic-probe = { version = "1.0", features = ["print-defmt"] }
+
+[profile.release]
+debug = 2

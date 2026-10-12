@@ -1,0 +1,8 @@
+[build]
+target = "thumbv7em-none-eabihf"
+
+[target.'cfg(all(target_arch = "arm", target_os = "none"))']
+runner = "probe-rs run --chip STM32F411RETx"   # defmt 로그를 디버그 프로브로 받아 보여 준다
+
+[env]
+DEFMT_LOG = "info"

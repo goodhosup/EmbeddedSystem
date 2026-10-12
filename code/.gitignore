@@ -26,3 +26,5 @@ ch38-drivers/*/*.mod*
 ch38-drivers/*/.*.cmd
 ch38-drivers/*/Module.symvers
 ch38-drivers/*/modules.order
+ch39-rust/*/target/
+ch39-rust/*/Cargo.lock

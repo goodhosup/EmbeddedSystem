@@ -5263,6 +5263,61 @@ def fig_38_2():
     s.save("ch38/fig38-1-i2c-subsystem.svg")
 
 
+# ---------------------------------------------------------------------------
+# 39장 임베디드 Rust
+# ---------------------------------------------------------------------------
+
+def fig_39_1():
+    s = Svg(900, 470)
+    s.text(450, 30, "그림 39-1  Rust 임베디드 크레이트 계층", 16, weight="bold")
+    rows = [("애플리케이션", "src/main.rs", "", GREEN_BG, GREEN),
+            ("BSP (보드 지원)", "nucleo-f411re 등: 보드의 LED, 버튼 이름", "선택", GRAY_BG, LINE),
+            ("HAL", "stm32f4xx-hal, embassy-stm32: 안전한 주변장치 API", "", BLUE_BG, BLUE),
+            ("PAC (주변장치 접근 크레이트)", "stm32f4: SVD에서 자동 생성한 레지스터", "4장의 regs.h", ORANGE_BG, ORANGE),
+            ("코어 지원", "cortex-m (NVIC, SysTick), cortex-m-rt (벡터 테이블, 시작 코드)", "21장의 startup.c", ORANGE_BG, ORANGE)]
+    y = 60
+    for n, d, side, f, c in rows:
+        s.rect(80, y, 520, 60, f, c, 8, 1.6)
+        s.text(100, y + 25, n, 14, "start", weight="bold")
+        s.text(100, y + 45, d, 11, "start", MUTED)
+        if side:
+            s.text(620, y + 35, "← " + side, 12, "start", MUTED)
+        y += 72
+    s.line(602, 236, 638, 236, BLUE, 1.4, both=True)
+    s.rect(640, 200, 230, 70, "#ffffff", BLUE, 8, 1.4)
+    s.text(755, 226, "embedded-hal 1.0", 13, weight="bold", color=BLUE)
+    s.text(755, 246, "I2C, SPI, GPIO, 지연의 공통 트레이트", 10, color=MUTED)
+    s.text(755, 262, "센서 드라이버는 이것만 쓴다 (15장의 i2c.h)", 10, color=MUTED)
+    s.text(450, 440, "아래로 갈수록 칩에 가깝고 unsafe가 많다. 위 계층은 아래가 감싼 안전한 API만 쓴다", 12, color=INK)
+    s.text(450, 460, "센서 드라이버 크레이트는 embedded-hal 트레이트로 쓰여 있어 어느 MCU의 HAL과도 조합된다", 11, color=MUTED)
+    s.save("ch39/fig39-1-crate-layers.svg")
+
+
+def fig_39_2():
+    s = Svg(900, 450)
+    s.text(450, 30, "그림 39-2  소유권 이동으로 핀 설정 실수를 막는 원리", 16, weight="bold")
+    s.box(40, 70, 230, 60, "dp = Peripherals::take()", "주변장치 전체: 단 하나", GRAY_BG, LINE, 12)
+    s.line(272, 100, 318, 100, LINE, 1.6, arrow=True)
+    s.box(322, 70, 230, 60, "gpioa = dp.GPIOA.split()", "dp.GPIOA는 이제 쓸 수 없다", GRAY_BG, LINE, 12)
+    s.line(554, 100, 600, 100, LINE, 1.6, arrow=True)
+    s.box(604, 70, 260, 60, "gpioa.pa5", "타입: PA5<Input> (리셋 상태)", BLUE_BG, BLUE, 12)
+    s.line(734, 132, 734, 168, LINE, 1.6, arrow=True)
+    s.text(726, 156, "into_push_pull_output(): pa5를 소비", 11, "end", MUTED)
+    s.box(604, 172, 260, 60, "led", "타입: PA5<Output<PushPull>>", GREEN_BG, GREEN, 12)
+    s.rect(40, 170, 520, 150, "#fff5f5", RED, 8, 1.4)
+    s.text(60, 196, "컴파일러가 막는 실수", 13, "start", RED, "bold")
+    errs = ["led2 = gpioa.pa5.into_alternate()   → pa5는 이미 이동됨 (use of moved value)",
+            "led.is_high_input()                  → 출력 핀 타입에 그런 메서드가 없다",
+            "spi = Spi::new(..., pa5_as_input ...) → SCK 자리에 맞는 대체 기능 타입이 아님",
+            "Peripherals::take() 두 번째           → None: 두 모듈이 같은 GPIOA를 가질 수 없다"]
+    for i, e in enumerate(errs):
+        s.text(60, 222 + i * 24, e, 11, "start", INK)
+    s.text(450, 360, "6장에서 \"다른 코드가 같은 핀의 MODER를 바꾸면 안 된다\"고 주의했던 것을 사람이 아니라 컴파일러가 검사한다", 12, color=INK)
+    s.text(450, 382, "핀의 상태는 타입에만 있고 실행 코드에는 남지 않는다: 이 검사의 실행 비용은 0이다", 11, color=MUTED)
+    s.text(450, 404, "16장의 PA5 = LD2 = SPI1 SCK 충돌도 같은 방법으로 빌드 단계에서 드러난다", 11, color=MUTED)
+    s.save("ch39/fig39-2-ownership-pins.svg")
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("fig_") and callable(fn):

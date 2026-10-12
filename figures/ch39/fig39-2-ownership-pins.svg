@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="450" viewBox="0 0 900 450" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 39-2  소유권 이동으로 핀 설정 실수를 막는 원리</text>
+  <rect x="40.0" y="70.0" width="230.0" height="60.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="155.0" y="97.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">dp = Peripherals::take()</text>
+  <text x="155.0" y="116.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">주변장치 전체: 단 하나</text>
+  <line x1="272.0" y1="100.0" x2="318.0" y2="100.0" stroke="#334e68" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <rect x="322.0" y="70.0" width="230.0" height="60.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="437.0" y="97.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">gpioa = dp.GPIOA.split()</text>
+  <text x="437.0" y="116.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">dp.GPIOA는 이제 쓸 수 없다</text>
+  <line x1="554.0" y1="100.0" x2="600.0" y2="100.0" stroke="#334e68" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <rect x="604.0" y="70.0" width="260.0" height="60.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="734.0" y="97.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">gpioa.pa5</text>
+  <text x="734.0" y="116.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">타입: PA5&lt;Input&gt; (리셋 상태)</text>
+  <line x1="734.0" y1="132.0" x2="734.0" y2="168.0" stroke="#334e68" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <text x="726.0" y="156.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">into_push_pull_output(): pa5를 소비</text>
+  <rect x="604.0" y="172.0" width="260.0" height="60.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="734.0" y="199.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">led</text>
+  <text x="734.0" y="218.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">타입: PA5&lt;Output&lt;PushPull&gt;&gt;</text>
+  <rect x="40.0" y="170.0" width="520.0" height="150.0" rx="8" fill="#fff5f5" stroke="#d64545" stroke-width="1.4"/>
+  <text x="60.0" y="196.0" font-size="13" text-anchor="start" fill="#d64545" font-weight="bold">컴파일러가 막는 실수</text>
+  <text x="60.0" y="222.0" font-size="11" text-anchor="start" fill="#1f2933" font-weight="normal">led2 = gpioa.pa5.into_alternate()   → pa5는 이미 이동됨 (use of moved value)</text>
+  <text x="60.0" y="246.0" font-size="11" text-anchor="start" fill="#1f2933" font-weight="normal">led.is_high_input()                  → 출력 핀 타입에 그런 메서드가 없다</text>
+  <text x="60.0" y="270.0" font-size="11" text-anchor="start" fill="#1f2933" font-weight="normal">spi = Spi::new(..., pa5_as_input ...) → SCK 자리에 맞는 대체 기능 타입이 아님</text>
+  <text x="60.0" y="294.0" font-size="11" text-anchor="start" fill="#1f2933" font-weight="normal">Peripherals::take() 두 번째           → None: 두 모듈이 같은 GPIOA를 가질 수 없다</text>
+  <text x="450.0" y="360.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">6장에서 "다른 코드가 같은 핀의 MODER를 바꾸면 안 된다"고 주의했던 것을 사람이 아니라 컴파일러가 검사한다</text>
+  <text x="450.0" y="382.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">핀의 상태는 타입에만 있고 실행 코드에는 남지 않는다: 이 검사의 실행 비용은 0이다</text>
+  <text x="450.0" y="404.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">16장의 PA5 = LD2 = SPI1 SCK 충돌도 같은 방법으로 빌드 단계에서 드러난다</text>
+</svg>

@@ -1,0 +1,8 @@
+# 39장: Rust에서 C 함수 부르기 (PC에서 cargo test로 확인)
+[package]
+name = "ch39-ffi-c"
+version = "0.1.0"
+edition = "2021"
+
+[build-dependencies]
+cc = "1"

@@ -1,0 +1,6 @@
+[build]
+target = "thumbv7em-none-eabihf"          # Cortex-M4F, 하드웨어 FPU
+
+[target.thumbv7em-none-eabihf]
+runner = "probe-rs run --chip STM32F411RETx"
+rustflags = ["-C", "link-arg=-Tlink.x"]   # cortex-m-rt의 링커 스크립트 (memory.x를 포함한다)

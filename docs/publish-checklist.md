@@ -53,9 +53,12 @@
 | `chapters/ch37-embedded-linux.md` | 88 | [확인 필요: Pi 5 sysfs GPIO 번호 오프셋] |
 | `chapters/ch37-embedded-linux.md` | 140 | [확인 필요: 버튼과 LED를 연결한 실측] |
 | `chapters/ch37-embedded-linux.md` | 177 | [확인 필요: 센서 연결 실측] |
-| `chapters/ch38-linux-drivers.md` | 138 | [확인 필요: 모듈을 올린 실측] |
-| `chapters/ch38-linux-drivers.md` | 227 | [확인 필요: Pi 5에서 실행 중 오버레이 적용 동작] |
-| `chapters/ch38-linux-drivers.md` | 285 | [확인 필요: 센서와 오버레이를 적용한 실측] |
+| `chapters/ch38-linux-drivers.md` | 140 | [확인 필요: 모듈을 올린 실측] |
+| `chapters/ch38-linux-drivers.md` | 229 | [확인 필요: Pi 5에서 실행 중 오버레이 적용 동작] |
+| `chapters/ch38-linux-drivers.md` | 287 | [확인 필요: 센서와 오버레이를 적용한 실측] |
+| `chapters/ch39-embedded-rust.md` | 24 | [확인 필요: 인증받은 Rust 툴체인 이름과 인증 범위] |
+| `chapters/ch39-embedded-rust.md` | 28 | [확인 필요: 각 예제의 빌드와 보드 실행] |
+| `chapters/ch39-embedded-rust.md` | 214 | [확인 필요: avr-hal의 ATmega128 지원 여부와 현재 AVR 대상 이름] |
 | `code/ch18-usb/README.md` | 23 | [확인 필요: CN10 핀 번호] |
 | `code/ch18-usb/stm32/usb_descriptors.c` | 6 | [확인 필요: pid.codes 시험용 PID 정책] |
 | `code/ch19-wireless/esp32-arduino/ble_sensor/ble_sensor.ino` | 9 | [확인 필요: 코어 버전별 BLE 라이브러리 API] |
@@ -76,5 +79,6 @@
 | `code/ch37-linux/README.md` | 18 | [확인 필요: 버튼·LED·BMP280을 연결한 실행 결과] |
 | `code/ch37-linux/gpio_button_led.c` | 21 | [확인 필요: 다른 모델·커널] |
 | `code/ch38-drivers/README.md` | 17 | [확인 필요: 모듈을 올리고 센서를 연결한 실행 결과] |
+| `code/ch39-rust/README.md` | 16 | [확인 필요: Rust 툴체인으로 세 예제의 빌드와 보드 실행 확인 (원고 작성 환경에 Rust 미설치)] |
 
-총 71건
+총 75건
