@@ -25,11 +25,11 @@
   <rect x="248.0" y="146.0" width="52.0" height="28.0" rx="2" fill="#d9730d" stroke="#d9730d" stroke-width="1"/>
   <rect x="313.0" y="146.0" width="52.0" height="28.0" rx="2" fill="#d9730d" stroke="#d9730d" stroke-width="1"/>
   <rect x="378.0" y="146.0" width="26.0" height="28.0" rx="2" fill="#d9730d" stroke="#d9730d" stroke-width="1"/>
+  <rect x="703.0" y="106.0" width="52.0" height="28.0" rx="2" fill="#2f6fdf" stroke="#2f6fdf" stroke-width="1"/>
   <rect x="404.0" y="186.0" width="26.0" height="28.0" rx="2" fill="#cbd2d9" stroke="#cbd2d9" stroke-width="1"/>
   <rect x="508.0" y="186.0" width="52.0" height="28.0" rx="2" fill="#cbd2d9" stroke="#cbd2d9" stroke-width="1"/>
   <rect x="573.0" y="186.0" width="52.0" height="28.0" rx="2" fill="#cbd2d9" stroke="#cbd2d9" stroke-width="1"/>
   <rect x="638.0" y="186.0" width="52.0" height="28.0" rx="2" fill="#cbd2d9" stroke="#cbd2d9" stroke-width="1"/>
-  <rect x="703.0" y="186.0" width="52.0" height="28.0" rx="2" fill="#cbd2d9" stroke="#cbd2d9" stroke-width="1"/>
   <rect x="768.0" y="186.0" width="52.0" height="28.0" rx="2" fill="#cbd2d9" stroke="#cbd2d9" stroke-width="1"/>
   <line x1="170.0" y1="216.0" x2="170.0" y2="222.0" stroke="#334e68" stroke-width="1"/>
   <text x="170.0" y="236.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">0</text>
