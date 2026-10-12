@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="400" viewBox="0 0 900 400" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 27-4  데드락이 생기는 자원 대기 그래프</text>
+  <rect x="120.0" y="90.0" width="170.0" height="60.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="205.0" y="125.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">태스크 A</text>
+  <rect x="610.0" y="90.0" width="170.0" height="60.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="695.0" y="125.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">태스크 B</text>
+  <rect x="130.0" y="250.0" width="150.0" height="56.0" rx="28" fill="#eef1f4" stroke="#334e68" stroke-width="1.6"/>
+  <text x="205.0" y="284.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">뮤텍스 M1 (I2C)</text>
+  <rect x="620.0" y="250.0" width="150.0" height="56.0" rx="28" fill="#eef1f4" stroke="#334e68" stroke-width="1.6"/>
+  <text x="695.0" y="284.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">뮤텍스 M2 (SPI)</text>
+  <line x1="205.0" y1="248.0" x2="205.0" y2="154.0" stroke="#2f9e44" stroke-width="2.2" marker-end="url(#arrow)"/>
+  <text x="196.0" y="206.0" font-size="12" text-anchor="end" fill="#2f9e44" font-weight="bold">쥐고 있음</text>
+  <line x1="695.0" y1="248.0" x2="695.0" y2="154.0" stroke="#2f9e44" stroke-width="2.2" marker-end="url(#arrow)"/>
+  <text x="704.0" y="206.0" font-size="12" text-anchor="start" fill="#2f9e44" font-weight="bold">쥐고 있음</text>
+  <line x1="292.0" y1="140.0" x2="622.0" y2="254.0" stroke="#d64545" stroke-width="2.2" marker-end="url(#arrow)"/>
+  <line x1="608.0" y1="140.0" x2="278.0" y2="254.0" stroke="#d64545" stroke-width="2.2" marker-end="url(#arrow)"/>
+  <text x="450.0" y="168.0" font-size="12" text-anchor="middle" fill="#d64545" font-weight="bold">기다림</text>
+  <text x="450.0" y="238.0" font-size="12" text-anchor="middle" fill="#d64545" font-weight="bold">기다림</text>
+  <text x="450.0" y="346.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">A는 M1을 쥐고 M2를, B는 M2를 쥐고 M1을 기다린다: 대기 그래프에 고리가 생기면 둘 다 영원히 멈춘다</text>
+  <text x="450.0" y="370.0" font-size="12" text-anchor="middle" fill="#2f9e44" font-weight="bold">해결: 모든 태스크가 같은 순서(M1 → M2)로 잡는다. 시간 제한을 두고 실패하면 놓고 다시 시도한다</text>
+</svg>

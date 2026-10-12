@@ -24,5 +24,6 @@
 | `code/ch18-usb/stm32/usb_descriptors.c` | 6 | [확인 필요: pid.codes 시험용 PID 정책] |
 | `code/ch19-wireless/esp32-arduino/ble_sensor/ble_sensor.ino` | 9 | [확인 필요: 코어 버전별 BLE 라이브러리 API] |
 | `code/ch26-freertos/README.md` | 18 | [확인 필요: arm-none-eabi-gcc로 FreeRTOS 커널까지 포함한 전체 빌드의 경고 확인 (외부 코드라 검토 환경에서 미빌드)] |
+| `code/ch27-sync/README.md` | 20 | [확인 필요: arm-none-eabi-gcc로 FreeRTOS 커널까지 포함한 전체 빌드의 경고 확인, r·i 명령의 보드 실측값] |
 
-총 19건
+총 20건

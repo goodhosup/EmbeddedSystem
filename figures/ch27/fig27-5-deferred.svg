@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="440" viewBox="0 0 900 440" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 27-5  ISR에서 태스크로 일을 넘기는 지연 처리 구조</text>
+  <rect x="40.0" y="80.0" width="150.0" height="56.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="115.0" y="105.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">하드웨어</text>
+  <text x="115.0" y="124.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">버튼, UART, DMA</text>
+  <line x1="192.0" y1="108.0" x2="246.0" y2="108.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <rect x="250.0" y="80.0" width="190.0" height="56.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="345.0" y="105.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">ISR (짧게)</text>
+  <text x="345.0" y="124.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">플래그 지우기 + 알림</text>
+  <line x1="442.0" y1="108.0" x2="506.0" y2="108.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="474.0" y="98.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">FromISR</text>
+  <rect x="510.0" y="80.0" width="160.0" height="56.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="590.0" y="105.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">알림 / 큐</text>
+  <text x="590.0" y="124.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">세마포어, 스트림 버퍼</text>
+  <line x1="672.0" y1="108.0" x2="716.0" y2="108.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <rect x="720.0" y="80.0" width="150.0" height="56.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="795.0" y="105.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">처리 태스크</text>
+  <text x="795.0" y="124.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">높은 우선순위</text>
+  <text x="160.0" y="210.0" font-size="12" text-anchor="end" fill="#1f2933" font-weight="bold">ISR</text>
+  <line x1="170.0" y1="222.0" x2="770.0" y2="222.0" stroke="#d9dee3" stroke-width="1"/>
+  <text x="160.0" y="250.0" font-size="12" text-anchor="end" fill="#1f2933" font-weight="bold">처리 태스크</text>
+  <line x1="170.0" y1="262.0" x2="770.0" y2="262.0" stroke="#d9dee3" stroke-width="1"/>
+  <text x="160.0" y="290.0" font-size="12" text-anchor="end" fill="#1f2933" font-weight="bold">다른 태스크</text>
+  <line x1="170.0" y1="302.0" x2="770.0" y2="302.0" stroke="#d9dee3" stroke-width="1"/>
+  <rect x="170.0" y="272.0" width="90.0" height="28.0" rx="2" fill="#cbd2d9" stroke="#cbd2d9" stroke-width="1"/>
+  <rect x="260.0" y="192.0" width="18.0" height="28.0" rx="2" fill="#d9730d" stroke="#d9730d" stroke-width="1"/>
+  <rect x="278.0" y="232.0" width="132.0" height="28.0" rx="2" fill="#2f9e44" stroke="#2f9e44" stroke-width="1"/>
+  <rect x="410.0" y="272.0" width="360.0" height="28.0" rx="2" fill="#cbd2d9" stroke="#cbd2d9" stroke-width="1"/>
+  <line x1="260.0" y1="180.0" x2="260.0" y2="306.0" stroke="#d64545" stroke-width="1.2" stroke-dasharray="3 3"/>
+  <text x="260.0" y="176.0" font-size="11" text-anchor="middle" fill="#d64545" font-weight="bold">인터럽트</text>
+  <text x="269.0" y="324.0" font-size="10" text-anchor="middle" fill="#d9730d" font-weight="normal">ISR은 µs 단위</text>
+  <text x="350.0" y="324.0" font-size="10" text-anchor="start" fill="#2f9e44" font-weight="normal">portYIELD_FROM_ISR로 바로 이어서 실행</text>
+  <text x="450.0" y="368.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">ISR은 일이 생겼다는 사실만 알리고 끝난다. 실제 처리(디바운싱, 파싱, I2C 통신)는 태스크에서 한다</text>
+  <text x="450.0" y="392.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">태스크에서는 블로킹 API, printf, 뮤텍스를 쓸 수 있고, 다른 인터럽트를 막지 않는다</text>
+</svg>

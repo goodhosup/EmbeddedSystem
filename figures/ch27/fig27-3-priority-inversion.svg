@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 27-3  우선순위 역전 타임라인과 우선순위 상속으로 해결한 모습</text>
+  <text x="60.0" y="66.0" font-size="13" text-anchor="start" fill="#d64545" font-weight="bold">이진 세마포어 (상속 없음)</text>
+  <text x="160.0" y="97.0" font-size="12" text-anchor="end" fill="#1f2933" font-weight="bold">high (4)</text>
+  <line x1="170.0" y1="106.0" x2="858.0" y2="106.0" stroke="#d9dee3" stroke-width="1"/>
+  <text x="160.0" y="131.0" font-size="12" text-anchor="end" fill="#1f2933" font-weight="bold">med (3)</text>
+  <line x1="170.0" y1="140.0" x2="858.0" y2="140.0" stroke="#d9dee3" stroke-width="1"/>
+  <text x="160.0" y="165.0" font-size="12" text-anchor="end" fill="#1f2933" font-weight="bold">low (1)</text>
+  <line x1="170.0" y1="174.0" x2="858.0" y2="174.0" stroke="#d9dee3" stroke-width="1"/>
+  <rect x="170.0" y="150.0" width="25.8" height="22.0" rx="2" fill="#2f6fdf" stroke="#2f6fdf" stroke-width="1"/>
+  <rect x="195.8" y="82.0" width="17.2" height="22.0" rx="2" fill="#2f9e44" stroke="#2f9e44" stroke-width="1"/>
+  <rect x="213.0" y="116.0" width="430.0" height="22.0" rx="2" fill="#d9730d" stroke="#d9730d" stroke-width="1"/>
+  <rect x="643.0" y="150.0" width="154.8" height="22.0" rx="2" fill="#2f6fdf" stroke="#2f6fdf" stroke-width="1"/>
+  <rect x="797.8" y="82.0" width="25.8" height="22.0" rx="2" fill="#2f9e44" stroke="#2f9e44" stroke-width="1"/>
+  <text x="195.8" y="186.0" font-size="10" text-anchor="middle" fill="#2f6fdf" font-weight="normal">low가 자원 잡음</text>
+  <line x1="213.0" y1="72.0" x2="213.0" y2="182.0" stroke="#d64545" stroke-width="1.2" stroke-dasharray="3 3"/>
+  <line x1="797.8" y1="72.0" x2="797.8" y2="182.0" stroke="#d64545" stroke-width="1.2" stroke-dasharray="3 3"/>
+  <text x="505.4" y="70.0" font-size="11" text-anchor="middle" fill="#d64545" font-weight="bold">high 대기 ≈ 70 ms: 자원과 무관한 med 때문에 늦어진다</text>
+  <text x="60.0" y="246.0" font-size="13" text-anchor="start" fill="#2f9e44" font-weight="bold">뮤텍스 (우선순위 상속)</text>
+  <text x="160.0" y="277.0" font-size="12" text-anchor="end" fill="#1f2933" font-weight="bold">high (4)</text>
+  <line x1="170.0" y1="286.0" x2="858.0" y2="286.0" stroke="#d9dee3" stroke-width="1"/>
+  <text x="160.0" y="311.0" font-size="12" text-anchor="end" fill="#1f2933" font-weight="bold">med (3)</text>
+  <line x1="170.0" y1="320.0" x2="858.0" y2="320.0" stroke="#d9dee3" stroke-width="1"/>
+  <text x="160.0" y="345.0" font-size="12" text-anchor="end" fill="#1f2933" font-weight="bold">low (1→4)</text>
+  <line x1="170.0" y1="354.0" x2="858.0" y2="354.0" stroke="#d9dee3" stroke-width="1"/>
+  <rect x="170.0" y="330.0" width="25.8" height="22.0" rx="2" fill="#2f6fdf" stroke="#2f6fdf" stroke-width="1"/>
+  <rect x="195.8" y="262.0" width="17.2" height="22.0" rx="2" fill="#2f9e44" stroke="#2f9e44" stroke-width="1"/>
+  <rect x="213.0" y="330.0" width="154.8" height="22.0" rx="2" fill="#7aa5ef" stroke="#7aa5ef" stroke-width="1"/>
+  <rect x="367.8" y="262.0" width="25.8" height="22.0" rx="2" fill="#2f9e44" stroke="#2f9e44" stroke-width="1"/>
+  <rect x="393.6" y="296.0" width="430.0" height="22.0" rx="2" fill="#d9730d" stroke="#d9730d" stroke-width="1"/>
+  <line x1="213.0" y1="252.0" x2="213.0" y2="362.0" stroke="#2f9e44" stroke-width="1.2" stroke-dasharray="3 3"/>
+  <line x1="367.8" y1="252.0" x2="367.8" y2="362.0" stroke="#2f9e44" stroke-width="1.2" stroke-dasharray="3 3"/>
+  <text x="290.4" y="250.0" font-size="11" text-anchor="middle" fill="#2f9e44" font-weight="bold">high 대기 ≈ 20 ms</text>
+  <text x="290.4" y="376.0" font-size="10" text-anchor="middle" fill="#2f6fdf" font-weight="normal">low가 잠시 우선순위 4로 올라 med에게 밀리지 않는다</text>
+  <line x1="170.0" y1="400.0" x2="858.0" y2="400.0" stroke="#334e68" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <text x="858.0" y="418.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">시간 (ms)</text>
+  <text x="450.0" y="452.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="normal">우선순위 역전: 높은 태스크가 낮은 태스크의 자원을 기다리는 동안, 중간 태스크가 낮은 태스크를 밀어내 높은 태스크까지 늦춘다</text>
+  <text x="450.0" y="474.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">뮤텍스는 자원을 쥔 태스크의 우선순위를 기다리는 태스크 중 가장 높은 것으로 잠시 올린다 (예제의 i 명령)</text>
+</svg>

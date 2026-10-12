@@ -4340,7 +4340,7 @@ def fig_27_1():
 
 
 def fig_27_2():
-    s = Svg(900, 380)
+    s = Svg(900, 350)
     s.text(450, 30, "그림 27-2  큐를 통한 생산자–소비자 구조", 16, weight="bold")
     s.box(40, 90, 170, 56, "producer", "100 ms마다 측정", BLUE_BG, BLUE, 14)
     s.box(40, 170, 170, 56, "UART ISR", "xQueueSendFromISR", ORANGE_BG, ORANGE, 14)
@@ -4368,24 +4368,24 @@ def fig_27_2():
 def fig_27_3():
     s = Svg(900, 520)
     s.text(450, 30, "그림 27-3  우선순위 역전 타임라인과 우선순위 상속으로 해결한 모습", 16, weight="bold")
-    x0, sc = 170, 11
+    x0, sc = 170, 8.6
     G = "#cbd2d9"
     s.text(60, 66, "이진 세마포어 (상속 없음)", 13, "start", RED, "bold")
     segs = [(2, 0, 3, BLUE), (0, 3, 5, GREEN), (1, 5, 55, ORANGE), (2, 55, 73, BLUE), (0, 73, 76, GREEN)]
-    lane_timeline(s, x0, 76, ["high (4)", "med (3)", "low (1)"], segs, 60, sc)
+    lane_timeline(s, x0, 76, ["high (4)", "med (3)", "low (1)"], segs, 80, sc)
     s.text(x0 + 3 * sc, 186, "low가 자원 잡음", 10, color=BLUE)
     s.line(x0 + 5 * sc, 72, x0 + 5 * sc, 182, RED, 1.2, dash="3 3")
     s.line(x0 + 73 * sc, 72, x0 + 73 * sc, 182, RED, 1.2, dash="3 3")
     s.text(x0 + 39 * sc, 70, "high 대기 ≈ 70 ms: 자원과 무관한 med 때문에 늦어진다", 11, color=RED, weight="bold")
     s.text(60, 246, "뮤텍스 (우선순위 상속)", 13, "start", GREEN, "bold")
     segs2 = [(2, 0, 3, BLUE), (0, 3, 5, GREEN), (2, 5, 23, "#7aa5ef"), (0, 23, 26, GREEN), (1, 26, 76, ORANGE)]
-    lane_timeline(s, x0, 256, ["high (4)", "med (3)", "low (1→4)"], segs2, 60, sc)
+    lane_timeline(s, x0, 256, ["high (4)", "med (3)", "low (1→4)"], segs2, 80, sc)
     s.line(x0 + 5 * sc, 252, x0 + 5 * sc, 362, GREEN, 1.2, dash="3 3")
     s.line(x0 + 23 * sc, 252, x0 + 23 * sc, 362, GREEN, 1.2, dash="3 3")
     s.text(x0 + 14 * sc, 250, "high 대기 ≈ 20 ms", 11, color=GREEN, weight="bold")
     s.text(x0 + 14 * sc, 376, "low가 잠시 우선순위 4로 올라 med에게 밀리지 않는다", 10, color=BLUE)
-    s.line(x0, 400, x0 + 66 * sc, 400, LINE, 1.4, arrow=True)
-    s.text(x0 + 66 * sc, 418, "시간 (ms)", 11, "end", MUTED)
+    s.line(x0, 400, x0 + 80 * sc, 400, LINE, 1.4, arrow=True)
+    s.text(x0 + 80 * sc, 418, "시간 (ms)", 11, "end", MUTED)
     s.text(450, 452, "우선순위 역전: 높은 태스크가 낮은 태스크의 자원을 기다리는 동안, 중간 태스크가 낮은 태스크를 밀어내 높은 태스크까지 늦춘다", 11, color=INK)
     s.text(450, 474, "뮤텍스는 자원을 쥔 태스크의 우선순위를 기다리는 태스크 중 가장 높은 것으로 잠시 올린다 (예제의 i 명령)", 11, color=MUTED)
     s.save("ch27/fig27-3-priority-inversion.svg")
