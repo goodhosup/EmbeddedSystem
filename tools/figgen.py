@@ -4989,6 +4989,74 @@ def fig_34_2():
     s.save("ch34/fig34-1-q15.svg")
 
 
+# ---------------------------------------------------------------------------
+# 35장 기능 안전과 코딩 표준
+# ---------------------------------------------------------------------------
+
+def fig_35_1():
+    s = Svg(900, 490)
+    s.text(450, 30, "그림 35-1  V 모델 개발 프로세스", 16, weight="bold")
+    left = [("요구 사항 분석", "안전 목표, 시스템 요구 사항", 70), ("시스템 설계", "하드웨어/소프트웨어 나누기", 150),
+            ("소프트웨어 설계", "구조, 모듈, 인터페이스 (24장)", 230), ("상세 설계", "함수, 자료 구조", 310)]
+    right = [("인수 시험", "요구 사항을 만족하는가 (30.8절)", 70), ("시스템 통합 시험", "HIL, 실제 하드웨어 (31장)", 150),
+             ("소프트웨어 통합 시험", "모듈 조합 (30장 가짜 SD)", 230), ("단위 시험", "함수 단위 (31장 Unity)", 310)]
+    for i, (n, d, y) in enumerate(left):
+        x = 60 + i * 40
+        s.rect(x, y, 230, 54, BLUE_BG, BLUE, 8, 1.5)
+        s.text(x + 115, y + 23, n, 13, weight="bold")
+        s.text(x + 115, y + 42, d, 10, color=MUTED)
+    for i, (n, d, y) in enumerate(right):
+        x = 610 - i * 40
+        s.rect(x, y, 230, 54, GREEN_BG, GREEN, 8, 1.5)
+        s.text(x + 115, y + 23, n, 13, weight="bold")
+        s.text(x + 115, y + 42, d, 10, color=MUTED)
+        lx = 60 + i * 40 + 232
+        s.line(lx, y + 27, x - 2, y + 27, "#9aa5b1", 1.2, dash="5 4", both=True)
+    s.rect(330, 390, 240, 50, ORANGE_BG, ORANGE, 8, 1.5)
+    s.text(450, 414, "구현 (코딩)", 13, weight="bold")
+    s.text(450, 432, "코딩 표준, 정적 분석 (35.2절)", 10, color=MUTED)
+    s.line(305, 366, 345, 388, LINE, 1.6, arrow=True)
+    s.line(555, 388, 595, 366, LINE, 1.6, arrow=True)
+    s.text(450, 58, "점선: 왼쪽 단계의 결과를 오른쪽 단계가 확인한다 (추적성)", 11, color=MUTED)
+    s.text(450, 476, "왼쪽으로 내려가며 나누고, 오른쪽으로 올라가며 확인한다. 각 요구 사항이 어느 시험으로 확인되었는지 추적할 수 있어야 한다", 11, color=INK)
+    s.save("ch35/fig35-1-v-model.svg")
+
+
+def fig_35_2():
+    s = Svg(900, 440)
+    s.text(450, 30, "그림 35-2  독립 워치독 동작 타임라인", 16, weight="bold")
+    x0, sc = 120, 32
+    # 카운터 톱니
+    y_top, y_bot = 90, 230
+    pts = []
+    kicks = [2.5, 5.0, 7.5, 10.0]
+    t = 0.0
+    d = f"M{x0},{y_top}"
+    for k in kicks:
+        d += f" L{x0 + k * sc:.1f},{y_top + (k - t) / 4 * (y_bot - y_top):.1f} L{x0 + k * sc:.1f},{y_top}"
+        t = k
+    d += f" L{x0 + (t + 4) * sc:.1f},{y_bot}"
+    s.path(d, BLUE, 2)
+    s.line(x0, y_bot, x0 + 21 * sc, y_bot, RED, 1.2, dash="5 4")
+    s.text(x0 + 21 * sc, y_bot - 6, "0 → 리셋", 11, "end", RED, "bold")
+    s.text(x0 - 10, y_top + 4, "RLR", 11, "end", MUTED)
+    s.text(x0 - 10, (y_top + y_bot) / 2, "카운터", 11, "end", MUTED)
+    for k in kicks:
+        s.poly([(x0 + k * sc - 5, 76), (x0 + k * sc + 5, 76), (x0 + k * sc, 86)], GREEN, GREEN)
+    s.text(x0 + 6.25 * sc, 70, "모든 태스크가 체크인 → 갱신 (0xAAAA)", 11, color=GREEN, weight="bold")
+    s.line(x0 + 10 * sc, 240, x0 + 10 * sc, 300, ORANGE, 1.2, dash="3 3")
+    s.text(x0 + 10 * sc - 6, 316, "control 태스크 멈춤", 11, "end", ORANGE, "bold")
+    s.text(x0 + 10 * sc - 6, 332, "감시자가 갱신을 멈춤", 11, "end", ORANGE)
+    s.line(x0 + 14 * sc, 240, x0 + 14 * sc, 300, RED, 1.6)
+    s.text(x0 + 14 * sc + 6, 316, "카운터 0: 칩 리셋", 11, "start", RED, "bold")
+    s.text(x0 + 14 * sc + 6, 332, "부팅 후 RCC_CSR의 IWDGRSTF로 원인 확인", 11, "start", RED)
+    s.line(x0, 360, x0 + 21 * sc, 360, LINE, 1.4, arrow=True)
+    s.text(x0 + 21 * sc, 378, "시간", 11, "end", MUTED)
+    s.text(450, 408, "IWDG는 LSI라는 별도 클럭으로 동작해 메인 클럭이 멈춰도 리셋한다. 한 번 켜면 끌 수 없다", 12, color=INK)
+    s.text(450, 428, "창 워치독(WWDG)은 너무 늦어도, 너무 일러도 리셋한다: 폭주해서 갱신만 반복하는 코드를 잡는다", 11, color=MUTED)
+    s.save("ch35/fig35-2-watchdog.svg")
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("fig_") and callable(fn):

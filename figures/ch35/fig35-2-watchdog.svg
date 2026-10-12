@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="440" viewBox="0 0 900 440" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 35-2  독립 워치독 동작 타임라인</text>
+  <path d="M120,90 L200.0,177.5 L200.0,90 L280.0,177.5 L280.0,90 L360.0,177.5 L360.0,90 L440.0,177.5 L440.0,90 L568.0,230" stroke="#2f6fdf" stroke-width="2" fill="none" stroke-linejoin="round"/>
+  <line x1="120.0" y1="230.0" x2="792.0" y2="230.0" stroke="#d64545" stroke-width="1.2" stroke-dasharray="5 4"/>
+  <text x="792.0" y="224.0" font-size="11" text-anchor="end" fill="#d64545" font-weight="bold">0 → 리셋</text>
+  <text x="110.0" y="94.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">RLR</text>
+  <text x="110.0" y="160.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">카운터</text>
+  <polygon points="195.0,76.0 205.0,76.0 200.0,86.0" fill="#2f9e44" stroke="#2f9e44" stroke-width="1.5"/>
+  <polygon points="275.0,76.0 285.0,76.0 280.0,86.0" fill="#2f9e44" stroke="#2f9e44" stroke-width="1.5"/>
+  <polygon points="355.0,76.0 365.0,76.0 360.0,86.0" fill="#2f9e44" stroke="#2f9e44" stroke-width="1.5"/>
+  <polygon points="435.0,76.0 445.0,76.0 440.0,86.0" fill="#2f9e44" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="320.0" y="70.0" font-size="11" text-anchor="middle" fill="#2f9e44" font-weight="bold">모든 태스크가 체크인 → 갱신 (0xAAAA)</text>
+  <line x1="440.0" y1="240.0" x2="440.0" y2="300.0" stroke="#d9730d" stroke-width="1.2" stroke-dasharray="3 3"/>
+  <text x="434.0" y="316.0" font-size="11" text-anchor="end" fill="#d9730d" font-weight="bold">control 태스크 멈춤</text>
+  <text x="434.0" y="332.0" font-size="11" text-anchor="end" fill="#d9730d" font-weight="normal">감시자가 갱신을 멈춤</text>
+  <line x1="568.0" y1="240.0" x2="568.0" y2="300.0" stroke="#d64545" stroke-width="1.6"/>
+  <text x="574.0" y="316.0" font-size="11" text-anchor="start" fill="#d64545" font-weight="bold">카운터 0: 칩 리셋</text>
+  <text x="574.0" y="332.0" font-size="11" text-anchor="start" fill="#d64545" font-weight="normal">부팅 후 RCC_CSR의 IWDGRSTF로 원인 확인</text>
+  <line x1="120.0" y1="360.0" x2="792.0" y2="360.0" stroke="#334e68" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <text x="792.0" y="378.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">시간</text>
+  <text x="450.0" y="408.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">IWDG는 LSI라는 별도 클럭으로 동작해 메인 클럭이 멈춰도 리셋한다. 한 번 켜면 끌 수 없다</text>
+  <text x="450.0" y="428.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">창 워치독(WWDG)은 너무 늦어도, 너무 일러도 리셋한다: 폭주해서 갱신만 반복하는 코드를 잡는다</text>
+</svg>

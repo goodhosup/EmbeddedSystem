@@ -41,8 +41,10 @@
 | `chapters/ch33-embedded-security.md` | 176 | [확인 필요: RDP 수준 1, 2의 세부 동작 (RM0383 3.6.3절)] |
 | `chapters/ch33-embedded-security.md` | 186 | [확인 필요: ATmega128에서 ECDSA P-256 검증 시간] |
 | `chapters/ch33-embedded-security.md` | 260 | [확인 필요: 보드 실측] |
-| `chapters/ch34-performance.md` | 194 | [확인 필요: 출간 시점 CMSIS-DSP 저장소와 빌드 방법] |
-| `chapters/ch34-performance.md` | 219 | [확인 필요: 보드 실측값으로 표와 그림 34-2 갱신] |
+| `chapters/ch34-performance.md` | 199 | [확인 필요: 출간 시점 CMSIS-DSP 저장소와 빌드 방법] |
+| `chapters/ch34-performance.md` | 224 | [확인 필요: 보드 실측값으로 표와 그림 34-2 갱신] |
+| `chapters/ch35-functional-safety.md` | 147 | [확인 필요: 보드 실측] |
+| `chapters/ch35-functional-safety.md` | 203 | [확인 필요: 출간 시점 ST 클래스 B 라이브러리 이름과 지원 MCU] |
 | `code/ch18-usb/README.md` | 23 | [확인 필요: CN10 핀 번호] |
 | `code/ch18-usb/stm32/usb_descriptors.c` | 6 | [확인 필요: pid.codes 시험용 PID 정책] |
 | `code/ch19-wireless/esp32-arduino/ble_sensor/ble_sensor.ino` | 9 | [확인 필요: 코어 버전별 BLE 라이브러리 API] |
@@ -58,5 +60,6 @@
 | `code/ch32-bootloader/README.md` | 34 | [확인 필요: arm-none-eabi-gcc 빌드 경고, 보드에서 업데이트·롤백 실측, ESP-IDF 5.x 빌드와 OTA 실행] |
 | `code/ch33-security/README.md` | 25 | [확인 필요: arm-none-eabi-gcc 빌드(Mbed TLS 포함) 크기와 경고, 보드에서 검증 시간] |
 | `code/ch34-performance/README.md` | 18 | [확인 필요: 보드 실측값 (34.7절 표)] |
+| `code/ch35-safety/README.md` | 21 | [확인 필요: 보드 실행 결과] |
 
-총 53건
+총 56건
