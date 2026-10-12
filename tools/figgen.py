@@ -5318,6 +5318,95 @@ def fig_39_2():
     s.save("ch39/fig39-2-ownership-pins.svg")
 
 
+# ---------------------------------------------------------------------------
+# 40장 최종 프로젝트
+# ---------------------------------------------------------------------------
+
+def fig_40_1():
+    s = Svg(900, 460)
+    s.text(450, 30, "그림 40-1  시스템 전체 구성도", 16, weight="bold")
+    s.box(40, 150, 160, 70, "BMP280", "I2C (15장)", GRAY_BG, LINE, 13)
+    s.rect(240, 110, 210, 150, BLUE_BG, BLUE, 10, 2)
+    s.text(345, 138, "STM32 센서 노드", 14, weight="bold")
+    for i, t in enumerate(["보안 부트로더 (32·33장)", "슬롯 A / B", "측정, OTA 쓰기, 워치독"]):
+        s.text(345, 166 + i * 24, t, 11, color=MUTED)
+    s.line(202, 185, 236, 185, LINE, 1.6, both=True)
+    s.rect(500, 110, 190, 150, ORANGE_BG, ORANGE, 10, 2)
+    s.text(595, 138, "ESP32 연결부", 14, weight="bold")
+    for i, t in enumerate(["Wi-Fi (19장)", "MQTT / TLS (20장)", "이미지 받아 전달"]):
+        s.text(595, 166 + i * 24, t, 11, color=MUTED)
+    s.line(452, 170, 496, 170, LINE, 2, both=True)
+    s.text(474, 160, "UART", 10, weight="bold")
+    s.text(474, 200, "COBS", 10, color=MUTED)
+    s.text(474, 214, "CRC", 10, color=MUTED)
+    s.text(474, 228, "ARQ", 10, color=MUTED)
+    s.rect(730, 70, 140, 110, GRAY_BG, LINE, 10, 1.5)
+    s.text(800, 98, "클라우드", 13, weight="bold")
+    s.text(800, 122, "MQTT 브로커", 11, color=MUTED)
+    s.text(800, 142, "업데이트 서버", 11, color=MUTED)
+    s.text(800, 162, "(HTTPS)", 11, color=MUTED)
+    s.line(692, 160, 726, 140, LINE, 1.6, both=True)
+    s.box(730, 220, 140, 60, "빌드 서버", "CI + 서명 (36장)", GREEN_BG, GREEN, 12)
+    s.line(800, 218, 800, 182, LINE, 1.4, arrow=True)
+    s.text(450, 320, "신뢰 경계: 서명 확인은 STM32 노드가 한다. ESP32와 네트워크는 믿지 않는다", 12, color=RED, weight="bold")
+    s.line(470, 100, 470, 280, RED, 1.4, dash="6 4")
+    s.text(450, 360, "측정값: BMP280 → 노드 → (UART) → 연결부 → (MQTT/TLS) → 브로커", 12, color=INK)
+    s.text(450, 384, "업데이트: 빌드 서버(서명) → 업데이트 서버 → (HTTPS) → 연결부 → (UART) → 노드(서명 확인) → 시험 부팅", 12, color=INK)
+    s.text(450, 418, "37.1절의 \"리눅스/통신 칩 + MCU\" 구조: 통신은 ESP32가, 측정과 안전은 STM32가 맡는다", 11, color=MUTED)
+    s.save("ch40/fig40-1-system.svg")
+
+
+def fig_40_2():
+    s = Svg(900, 470)
+    s.text(450, 30, "그림 40-2  소프트웨어 아키텍처", 16, weight="bold")
+    s.text(230, 62, "STM32 노드", 14, weight="bold", color=BLUE)
+    s.text(670, 62, "ESP32 연결부", 14, weight="bold", color=ORANGE)
+    node = [("앱: main.c (보고, 자가 진단, 확정)", GREEN_BG, GREEN), ("ota_writer.c", BLUE_BG, BLUE),
+            ("link.c (공통)", "#ffffff", RED), ("bmp280.c · bootmeta · bootlogic · secure_verify", BLUE_BG, BLUE),
+            ("HAL: i2c_stm32 · flash_f4 · link_uart", ORANGE_BG, ORANGE), ("보안 부트로더 (Mbed TLS)", GRAY_BG, LINE)]
+    br = [("app_main: MQTT 명령 → 큐", GREEN_BG, GREEN), ("link_task / ota_task (FreeRTOS)", BLUE_BG, BLUE),
+          ("link.c (공통)", "#ffffff", RED), ("esp-mqtt · esp_http_client · cJSON", BLUE_BG, BLUE),
+          ("ESP-IDF 드라이버: UART, Wi-Fi (wifi.c, 20장)", ORANGE_BG, ORANGE), ("ESP-IDF 부트로더", GRAY_BG, LINE)]
+    for col, items in ((40, node), (480, br)):
+        y = 76
+        for t, f, c in items:
+            s.rect(col, y, 380, 46, f, c, 6, 1.4 if c != RED else 2)
+            s.text(col + 190, y + 28, t, 12, weight="bold" if c == RED else "normal")
+            y += 54
+    s.line(422, 207, 478, 207, RED, 2, both=True)
+    s.text(450, 420, "같은 link.c를 두 보드가 빌드하고, PC 테스트가 잡음 채널 위에서 확인한다 (31장)", 12, color=INK)
+    s.text(450, 444, "하드웨어와 무관한 모듈(link, ota_writer, bootlogic, secure_image)은 모두 PC에서 시험된다", 11, color=MUTED)
+    s.save("ch40/fig40-2-software.svg")
+
+
+def fig_40_3():
+    s = Svg(900, 470)
+    s.text(450, 30, "그림 40-3  배포와 업데이트 흐름", 16, weight="bold")
+    steps = [("1. 태그 v1.1.0", "CI: 테스트, 빌드 (36장)", GREEN_BG, GREEN),
+             ("2. 서명", "보안 카운터 포함 (33장)", GREEN_BG, GREEN),
+             ("3. 서버에 올림", "HTTPS URL", GRAY_BG, LINE),
+             ("4. MQTT 명령", "nodes/<id>/ota", GRAY_BG, LINE),
+             ("5. 연결부가 받아 전달", "UART, ARQ", ORANGE_BG, ORANGE),
+             ("6. 노드가 쓰고 서명 확인", "다른 슬롯", BLUE_BG, BLUE),
+             ("7. 시험 부팅", "tries ≤ 3", BLUE_BG, BLUE),
+             ("8. 자가 진단 → 확정", "또는 롤백 (32장)", BLUE_BG, BLUE)]
+    for i, (n, d, f, c) in enumerate(steps):
+        col, row = i % 4, i // 4
+        x, y = 30 + col * 214, 70 + row * 130
+        s.rect(x, y, 196, 70, f, c, 8, 1.5)
+        s.text(x + 98, y + 30, n, 13, weight="bold")
+        s.text(x + 98, y + 52, d, 11, color=MUTED)
+        if col < 3:
+            s.line(x + 198, y + 35, x + 212, y + 35, LINE, 1.6, arrow=True)
+    s.path("M840,142 L840,170 L128,170 L128,198", LINE, 1.4, arrow=True)
+    s.text(450, 316, "단계적 배포: 먼저 시험 장치 몇 대 → 문제가 없으면 1% → 10% → 전체", 12, color=INK, weight="bold")
+    s.text(450, 340, "각 단계에서 텔레메트리의 \"ota\": \"accepted\"와 확정 후 버전, 크래시 기록(36장)을 확인하고 이상하면 멈춘다", 11, color=MUTED)
+    s.rect(120, 368, 660, 70, "#fff5f5", RED, 8, 1.2)
+    s.text(450, 394, "실패해도 안전한 이유", 12, color=RED, weight="bold")
+    s.text(450, 416, "받다가 끊김 → 기존 슬롯 그대로 / 서명 틀림 → 시험 요청 안 함 / 새 이미지 멈춤 → 워치독 + 롤백", 11, color=INK)
+    s.save("ch40/fig40-3-deploy.svg")
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("fig_") and callable(fn):

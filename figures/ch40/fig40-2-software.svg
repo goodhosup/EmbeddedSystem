@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="470" viewBox="0 0 900 470" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 40-2  소프트웨어 아키텍처</text>
+  <text x="230.0" y="62.0" font-size="14" text-anchor="middle" fill="#2f6fdf" font-weight="bold">STM32 노드</text>
+  <text x="670.0" y="62.0" font-size="14" text-anchor="middle" fill="#d9730d" font-weight="bold">ESP32 연결부</text>
+  <rect x="40.0" y="76.0" width="380.0" height="46.0" rx="6" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.4"/>
+  <text x="230.0" y="104.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">앱: main.c (보고, 자가 진단, 확정)</text>
+  <rect x="40.0" y="130.0" width="380.0" height="46.0" rx="6" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.4"/>
+  <text x="230.0" y="158.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">ota_writer.c</text>
+  <rect x="40.0" y="184.0" width="380.0" height="46.0" rx="6" fill="#ffffff" stroke="#d64545" stroke-width="2"/>
+  <text x="230.0" y="212.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">link.c (공통)</text>
+  <rect x="40.0" y="238.0" width="380.0" height="46.0" rx="6" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.4"/>
+  <text x="230.0" y="266.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">bmp280.c · bootmeta · bootlogic · secure_verify</text>
+  <rect x="40.0" y="292.0" width="380.0" height="46.0" rx="6" fill="#fdebd7" stroke="#d9730d" stroke-width="1.4"/>
+  <text x="230.0" y="320.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">HAL: i2c_stm32 · flash_f4 · link_uart</text>
+  <rect x="40.0" y="346.0" width="380.0" height="46.0" rx="6" fill="#eef1f4" stroke="#334e68" stroke-width="1.4"/>
+  <text x="230.0" y="374.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">보안 부트로더 (Mbed TLS)</text>
+  <rect x="480.0" y="76.0" width="380.0" height="46.0" rx="6" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.4"/>
+  <text x="670.0" y="104.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">app_main: MQTT 명령 → 큐</text>
+  <rect x="480.0" y="130.0" width="380.0" height="46.0" rx="6" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.4"/>
+  <text x="670.0" y="158.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">link_task / ota_task (FreeRTOS)</text>
+  <rect x="480.0" y="184.0" width="380.0" height="46.0" rx="6" fill="#ffffff" stroke="#d64545" stroke-width="2"/>
+  <text x="670.0" y="212.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">link.c (공통)</text>
+  <rect x="480.0" y="238.0" width="380.0" height="46.0" rx="6" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.4"/>
+  <text x="670.0" y="266.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">esp-mqtt · esp_http_client · cJSON</text>
+  <rect x="480.0" y="292.0" width="380.0" height="46.0" rx="6" fill="#fdebd7" stroke="#d9730d" stroke-width="1.4"/>
+  <text x="670.0" y="320.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">ESP-IDF 드라이버: UART, Wi-Fi (wifi.c, 20장)</text>
+  <rect x="480.0" y="346.0" width="380.0" height="46.0" rx="6" fill="#eef1f4" stroke="#334e68" stroke-width="1.4"/>
+  <text x="670.0" y="374.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">ESP-IDF 부트로더</text>
+  <line x1="422.0" y1="207.0" x2="478.0" y2="207.0" stroke="#d64545" stroke-width="2" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+  <text x="450.0" y="420.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">같은 link.c를 두 보드가 빌드하고, PC 테스트가 잡음 채널 위에서 확인한다 (31장)</text>
+  <text x="450.0" y="444.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">하드웨어와 무관한 모듈(link, ota_writer, bootlogic, secure_image)은 모두 PC에서 시험된다</text>
+</svg>

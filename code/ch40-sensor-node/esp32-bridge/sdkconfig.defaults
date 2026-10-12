@@ -1,0 +1,2 @@
+# 40장: 연결부 기본 설정
+CONFIG_ESPTOOLPY_FLASHSIZE_4MB=y

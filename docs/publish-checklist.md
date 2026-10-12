@@ -60,6 +60,9 @@
 | `chapters/ch39-embedded-rust.md` | 28 | [확인 필요: 두 예제의 빌드와 보드 실행] |
 | `chapters/ch39-embedded-rust.md` | 214 | [확인 필요: 출간 시점 AVR 대상 이름] |
 | `chapters/ch39-embedded-rust.md` | 214 | [확인 필요: avr-hal의 ATmega128 지원 여부와 현재 AVR 대상 이름] |
+| `chapters/ch40-final-project.md` | 205 | [확인 필요: 보안 부트로더의 실제 크기와 최종 Flash 배치] |
+| `chapters/ch40-final-project.md` | 221 | [확인 필요: 16 MHz에서 서명 확인 시간과 워치독 여유 실측] |
+| `chapters/ch40-final-project.md` | 257 | [확인 필요] |
 | `code/ch18-usb/README.md` | 23 | [확인 필요: CN10 핀 번호] |
 | `code/ch18-usb/stm32/usb_descriptors.c` | 6 | [확인 필요: pid.codes 시험용 PID 정책] |
 | `code/ch19-wireless/esp32-arduino/ble_sensor/ble_sensor.ino` | 9 | [확인 필요: 코어 버전별 BLE 라이브러리 API] |
@@ -81,5 +84,7 @@
 | `code/ch37-linux/gpio_button_led.c` | 21 | [확인 필요: 다른 모델·커널] |
 | `code/ch38-drivers/README.md` | 17 | [확인 필요: 모듈을 올리고 센서를 연결한 실행 결과] |
 | `code/ch39-rust/README.md` | 18 | [확인 필요: hal-blinky, embassy-async의 빌드와 보드 실행] |
+| `code/ch40-sensor-node/README.md` | 23 | [확인 필요: 보안 부트로더 크기와 Flash 배치, 노드·연결부 빌드, 전체 시스템 OTA와 롤백 실측] |
+| `code/ch40-sensor-node/stm32-boot/boot.ld` | 2 | [확인 필요: 실제 크기] |
 
-총 76건
+총 81건

@@ -1,0 +1,14 @@
+menu "Example configuration"
+    config EXAMPLE_WIFI_SSID
+        string "Wi-Fi SSID"
+        default "your-ssid"
+    config EXAMPLE_WIFI_PASSWORD
+        string "Wi-Fi password"
+        default "your-password"
+    config EXAMPLE_BROKER_URI
+        string "MQTT broker URI (mqtts://host:8883)"
+        default "mqtts://192.168.0.10:8883"
+    config EXAMPLE_NODE_ID
+        string "Node ID used in MQTT topics"
+        default "node-001"
+endmenu
