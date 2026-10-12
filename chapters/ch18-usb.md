@@ -203,7 +203,7 @@ cd code/ch18-usb/stm32
 make flash
 ```
 
-[확인 필요: TinyUSB 0.17.0으로 make 빌드 확인]
+TinyUSB 0.17.0과 arm-none-eabi-gcc 14.2.1로 빌드하면 text 13,680 B, data 24 B, bss 848 B입니다.
 
 USB 케이블을 PC에 연결하면 새 시리얼 포트가 생깁니다. 리눅스라면 `dmesg`에 `cdc_acm ... ttyACM1: USB ACM device` 같은 메시지가 보이고, `lsusb`에 `1209:0001 ... ch18 CDC Demo`가 나타납니다. 터미널로 그 포트를 열면 안내 문구가 나오고, 입력한 글자가 대문자로 돌아옵니다. 보드의 LD2는 열거가 끝나면 1초 간격으로, 아니면 0.25초 간격으로 깜빡여 상태를 알려 줍니다.
 
