@@ -4240,6 +4240,7 @@ def fig_26_2():
     s.text(640, 90, "vTaskSuspend() (자기 자신)", 11, "middle", MUTED)
     s.path("M425,132 L425,160 L292,180", LINE, 1.2, arrow=True)
     s.text(432, 152, "vTaskResume()", 11, "start", MUTED)
+    s.text(450, 416, "어느 상태에서든 vTaskSuspend()로 Suspended가 된다", 11, color=MUTED)
     s.text(450, 440, "Blocked 태스크는 CPU를 전혀 쓰지 않는다. 대부분의 태스크는 대부분의 시간을 Blocked로 보낸다", 12, color=INK)
     s.save("ch26/fig26-3-task-states.svg")
 
@@ -4269,10 +4270,10 @@ def fig_26_3():
     s.text(62, (y_sw + y) / 2 + 12, "처리기", 11, "end", ORANGE, "bold")
     steps = ["① 틱이나 API 호출이 PendSV를 요청 (가장 낮은 우선순위)",
              "② 예외 진입: 하드웨어가 R0~R3, R12, LR, PC, xPSR을 PSP 스택에 쌓음",
-             "③ PendSV: (FPU를 썼다면 S16~S31,) EXC_RETURN, R4~R11을 같은 스택에 쌓음",
+             "③ PendSV: (FPU를 썼다면 S16~S31) EXC_RETURN, R4~R11을 같은 스택에 쌓음",
              "④ 현재 PSP를 태스크 A의 TCB에 저장",
              "⑤ 다음에 실행할 태스크 B를 고르고 B의 TCB에서 PSP를 꺼냄",
-             "⑥ B의 스택에서 R4~R11을 꺼내고 예외 복귀",
+             "⑥ B의 스택에서 R4~R11과 EXC_RETURN을 꺼내고 예외 복귀",
              "⑦ 하드웨어가 나머지를 꺼냄 → B가 멈췄던 곳부터 계속"]
     for k, t in enumerate(steps):
         s.text(380, 100 + k * 40, t, 12, "start", ORANGE if k in (2, 4) else INK, "bold" if k in (2, 4) else "normal")
@@ -4302,6 +4303,137 @@ def fig_26_4():
     s.text(x0 + 21 * sc, 358, "시간", 11, "end", MUTED)
     s.text(450, 392, "sample은 hog가 CPU를 독차지해도 정해진 시각에 바로 실행된다. 높은 우선순위가 준비되면 낮은 것은 즉시 밀려난다", 12, color=INK)
     s.save("ch26/fig26-2-preemption.svg")
+
+
+# ---------------------------------------------------------------------------
+# 27장 동기화와 통신
+# ---------------------------------------------------------------------------
+
+def fig_27_1():
+    s = Svg(900, 470)
+    s.text(450, 30, "그림 27-1  경쟁 조건으로 값이 틀어지는 순서", 16, weight="bold")
+    s.text(230, 66, "태스크 A", 14, weight="bold", color=BLUE)
+    s.text(470, 66, "태스크 B", 14, weight="bold", color=ORANGE)
+    s.text(720, 66, "counter (메모리)", 14, weight="bold")
+    steps = [("A", "v = counter;   → v = 5", "5"), ("", "── 문맥 전환 ──", None),
+             ("B", "v = counter;   → v = 5", "5"), ("B", "counter = v + 1;", "6"),
+             ("", "── 문맥 전환 ──", None), ("A", "counter = v + 1;", "6")]
+    y = 92
+    for who, txt, val in steps:
+        if who == "A":
+            s.rect(120, y, 220, 38, BLUE_BG, BLUE, 6, 1.4)
+            s.text(230, y + 24, txt, 12)
+        elif who == "B":
+            s.rect(360, y, 220, 38, ORANGE_BG, ORANGE, 6, 1.4)
+            s.text(470, y + 24, txt, 12)
+        else:
+            s.text(350, y + 24, txt, 11, color=MUTED)
+        if val:
+            s.rect(680, y + 4, 80, 30, "#ffffff", LINE, 4, 1.2)
+            s.text(720, y + 24, val, 14, weight="bold", color=RED if (who == "A" and val == "6") else INK)
+        y += 50
+    s.line(60, 92, 60, y - 10, LINE, 1.4, arrow=True)
+    s.text(52, (92 + y) / 2, "시간", 11, "end", MUTED)
+    s.text(450, y + 20, "두 번 더했는데 6. B의 결과를 A가 덮어써서 증가 한 번이 사라졌다", 13, color=RED, weight="bold")
+    s.text(450, y + 44, "읽기–수정–쓰기 사이에 다른 태스크가 끼어들 수 있으면, 그 구간 전체를 하나로 묶어 보호해야 한다", 12, color=MUTED)
+    s.save("ch27/fig27-1-race.svg")
+
+
+def fig_27_2():
+    s = Svg(900, 380)
+    s.text(450, 30, "그림 27-2  큐를 통한 생산자–소비자 구조", 16, weight="bold")
+    s.box(40, 90, 170, 56, "producer", "100 ms마다 측정", BLUE_BG, BLUE, 14)
+    s.box(40, 170, 170, 56, "UART ISR", "xQueueSendFromISR", ORANGE_BG, ORANGE, 14)
+    s.line(212, 118, 296, 150, LINE, 1.8, arrow=True)
+    s.line(212, 198, 296, 168, LINE, 1.8, arrow=True)
+    s.text(254, 104, "xQueueSend", 11, color=MUTED)
+    x0 = 300
+    for i in range(8):
+        f = GREEN_BG if i >= 5 else "#ffffff"
+        s.rect(x0 + i * 46, 136, 46, 46, f, GREEN if i >= 5 else "#9aa5b1", 0, 1.3)
+        if i >= 5:
+            s.text(x0 + i * 46 + 23, 164, "값", 11, color=GREEN)
+    s.text(x0 + 4 * 46, 124, "큐 (길이 8, 항목은 복사되어 들어간다)", 12, weight="bold")
+    s.text(x0 + 8 * 46, 200, "← 먼저 들어온 것이 먼저 나간다", 10, "end", MUTED)
+    s.line(670, 159, 724, 159, LINE, 1.8, arrow=True)
+    s.box(728, 131, 140, 56, "consumer", "xQueueReceive", GREEN_BG, GREEN, 14)
+    notes = ["큐가 비었으면 consumer는 Blocked (CPU를 쓰지 않음) → 값이 들어오는 순간 깨어난다",
+             "큐가 가득 차면 producer는 기다리거나(시간 제한) 바로 실패를 돌려받는다. ISR은 절대 기다리지 않는다",
+             "생산자와 소비자는 서로를 모른다. 속도 차이는 큐 길이가 흡수한다"]
+    for i, t in enumerate(notes):
+        s.text(450, 262 + i * 28, t, 12, color=INK if i < 2 else MUTED)
+    s.save("ch27/fig27-2-queue.svg")
+
+
+def fig_27_3():
+    s = Svg(900, 520)
+    s.text(450, 30, "그림 27-3  우선순위 역전 타임라인과 우선순위 상속으로 해결한 모습", 16, weight="bold")
+    x0, sc = 170, 11
+    G = "#cbd2d9"
+    s.text(60, 66, "이진 세마포어 (상속 없음)", 13, "start", RED, "bold")
+    segs = [(2, 0, 3, BLUE), (0, 3, 5, GREEN), (1, 5, 55, ORANGE), (2, 55, 73, BLUE), (0, 73, 76, GREEN)]
+    lane_timeline(s, x0, 76, ["high (4)", "med (3)", "low (1)"], segs, 60, sc)
+    s.text(x0 + 3 * sc, 186, "low가 자원 잡음", 10, color=BLUE)
+    s.line(x0 + 5 * sc, 72, x0 + 5 * sc, 182, RED, 1.2, dash="3 3")
+    s.line(x0 + 73 * sc, 72, x0 + 73 * sc, 182, RED, 1.2, dash="3 3")
+    s.text(x0 + 39 * sc, 70, "high 대기 ≈ 70 ms: 자원과 무관한 med 때문에 늦어진다", 11, color=RED, weight="bold")
+    s.text(60, 246, "뮤텍스 (우선순위 상속)", 13, "start", GREEN, "bold")
+    segs2 = [(2, 0, 3, BLUE), (0, 3, 5, GREEN), (2, 5, 23, "#7aa5ef"), (0, 23, 26, GREEN), (1, 26, 76, ORANGE)]
+    lane_timeline(s, x0, 256, ["high (4)", "med (3)", "low (1→4)"], segs2, 60, sc)
+    s.line(x0 + 5 * sc, 252, x0 + 5 * sc, 362, GREEN, 1.2, dash="3 3")
+    s.line(x0 + 23 * sc, 252, x0 + 23 * sc, 362, GREEN, 1.2, dash="3 3")
+    s.text(x0 + 14 * sc, 250, "high 대기 ≈ 20 ms", 11, color=GREEN, weight="bold")
+    s.text(x0 + 14 * sc, 376, "low가 잠시 우선순위 4로 올라 med에게 밀리지 않는다", 10, color=BLUE)
+    s.line(x0, 400, x0 + 66 * sc, 400, LINE, 1.4, arrow=True)
+    s.text(x0 + 66 * sc, 418, "시간 (ms)", 11, "end", MUTED)
+    s.text(450, 452, "우선순위 역전: 높은 태스크가 낮은 태스크의 자원을 기다리는 동안, 중간 태스크가 낮은 태스크를 밀어내 높은 태스크까지 늦춘다", 11, color=INK)
+    s.text(450, 474, "뮤텍스는 자원을 쥔 태스크의 우선순위를 기다리는 태스크 중 가장 높은 것으로 잠시 올린다 (예제의 i 명령)", 11, color=MUTED)
+    s.save("ch27/fig27-3-priority-inversion.svg")
+
+
+def fig_27_4():
+    s = Svg(900, 400)
+    s.text(450, 30, "그림 27-4  데드락이 생기는 자원 대기 그래프", 16, weight="bold")
+    s.box(120, 90, 170, 60, "태스크 A", None, BLUE_BG, BLUE, 15)
+    s.box(610, 90, 170, 60, "태스크 B", None, ORANGE_BG, ORANGE, 15)
+    s.rect(130, 250, 150, 56, GRAY_BG, LINE, 28, 1.6)
+    s.text(205, 284, "뮤텍스 M1 (I2C)", 13, weight="bold")
+    s.rect(620, 250, 150, 56, GRAY_BG, LINE, 28, 1.6)
+    s.text(695, 284, "뮤텍스 M2 (SPI)", 13, weight="bold")
+    s.line(205, 248, 205, 154, GREEN, 2.2, arrow=True)
+    s.text(196, 206, "쥐고 있음", 12, "end", GREEN, "bold")
+    s.line(695, 248, 695, 154, GREEN, 2.2, arrow=True)
+    s.text(704, 206, "쥐고 있음", 12, "start", GREEN, "bold")
+    s.line(292, 140, 622, 254, RED, 2.2, arrow=True)
+    s.line(608, 140, 278, 254, RED, 2.2, arrow=True)
+    s.text(450, 168, "기다림", 12, color=RED, weight="bold")
+    s.text(450, 238, "기다림", 12, color=RED, weight="bold")
+    s.text(450, 346, "A는 M1을 쥐고 M2를, B는 M2를 쥐고 M1을 기다린다: 대기 그래프에 고리가 생기면 둘 다 영원히 멈춘다", 12, color=INK)
+    s.text(450, 370, "해결: 모든 태스크가 같은 순서(M1 → M2)로 잡는다. 시간 제한을 두고 실패하면 놓고 다시 시도한다", 12, color=GREEN, weight="bold")
+    s.save("ch27/fig27-4-deadlock.svg")
+
+
+def fig_27_5():
+    s = Svg(900, 440)
+    s.text(450, 30, "그림 27-5  ISR에서 태스크로 일을 넘기는 지연 처리 구조", 16, weight="bold")
+    s.box(40, 80, 150, 56, "하드웨어", "버튼, UART, DMA", GRAY_BG, LINE, 14)
+    s.line(192, 108, 246, 108, LINE, 1.8, arrow=True)
+    s.box(250, 80, 190, 56, "ISR (짧게)", "플래그 지우기 + 알림", ORANGE_BG, ORANGE, 14)
+    s.line(442, 108, 506, 108, LINE, 1.8, arrow=True)
+    s.text(474, 98, "FromISR", 10, color=MUTED)
+    s.box(510, 80, 160, 56, "알림 / 큐", "세마포어, 스트림 버퍼", BLUE_BG, BLUE, 13)
+    s.line(672, 108, 716, 108, LINE, 1.8, arrow=True)
+    s.box(720, 80, 150, 56, "처리 태스크", "높은 우선순위", GREEN_BG, GREEN, 14)
+    x0, sc = 170, 30
+    segs = [(2, 0, 3, "#cbd2d9"), (0, 3, 3.6, ORANGE), (1, 3.6, 8, GREEN), (2, 8, 20, "#cbd2d9")]
+    lane_timeline(s, x0, 186, ["ISR", "처리 태스크", "다른 태스크"], segs, 20, sc, 40)
+    s.line(x0 + 3 * sc, 180, x0 + 3 * sc, 306, RED, 1.2, dash="3 3")
+    s.text(x0 + 3 * sc, 176, "인터럽트", 11, color=RED, weight="bold")
+    s.text(x0 + 3.3 * sc, 324, "ISR은 µs 단위", 10, color=ORANGE)
+    s.text(x0 + 6 * sc, 324, "portYIELD_FROM_ISR로 바로 이어서 실행", 10, "start", GREEN)
+    s.text(450, 368, "ISR은 일이 생겼다는 사실만 알리고 끝난다. 실제 처리(디바운싱, 파싱, I2C 통신)는 태스크에서 한다", 12, color=INK)
+    s.text(450, 392, "태스크에서는 블로킹 API, printf, 뮤텍스를 쓸 수 있고, 다른 인터럽트를 막지 않는다", 12, color=MUTED)
+    s.save("ch27/fig27-5-deferred.svg")
 
 
 if __name__ == "__main__":

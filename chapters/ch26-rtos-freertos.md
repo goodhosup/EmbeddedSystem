@@ -232,7 +232,7 @@ FreeRTOS는 TCB, 스택, 큐를 `pvPortMalloc()`으로 할당하며, 그 구현�
 - **`configUSE_MALLOC_FAILED_HOOK`**: 힙이 모자라 태스크나 큐를 만들지 못하면 부릅니다.
 - **`uxTaskGetStackHighWaterMark()`**: 태스크별로 스택이 가장 적게 남았던 크기(워드 단위). 25장의 스택 칠하기를 커널이 해 줍니다.
 
-> 🔧 ATmega128에서는: FreeRTOS에는 AVR용 포트도 있습니다. 아두이노 우노(ATmega328P)에서는 `Arduino_FreeRTOS` 라이브러리로 쓸 수 있는데, 타이머를 아두이노 코어에 양보하려고 워치독 타이머를 틱으로 써서 틱이 약 15 ms로 거칩니다. [확인 필요: Arduino_FreeRTOS 라이브러리의 기본 틱 소스와 주기] 무엇보다 SRAM 2 KB에 태스크마다 스택을 주면 태스크 서너 개가 한계입니다. SRAM 4 KB인 ATmega128에서도 사정은 크게 다르지 않습니다. 8비트 AVR에서는 RTOS보다 24장의 협력형 구조가 대개 더 알맞고, RTOS가 필요할 만큼 일이 많아졌다면 그것이 32비트 MCU로 옮길 때라는 신호이기도 합니다.
+> 🔧 ATmega128에서는: FreeRTOS에는 AVR용 포트도 있습니다. 아두이노 우노(ATmega328P)에서는 `Arduino_FreeRTOS` 라이브러리로 쓸 수 있는데, 타이머를 아두이노 코어에 양보하려고 워치독 타이머를 틱으로 써서 틱이 약 15 ms로 거칩니다. 무엇보다 SRAM 2 KB에 태스크마다 스택을 주면 태스크 서너 개가 한계입니다. SRAM 4 KB인 ATmega128에서도 사정은 크게 다르지 않습니다. 8비트 AVR에서는 RTOS보다 24장의 협력형 구조가 대개 더 알맞고, RTOS가 필요할 만큼 일이 많아졌다면 그것이 32비트 MCU로 옮길 때라는 신호이기도 합니다.
 
 > 💡 팁: 19장의 ESP32 예제도 사실 FreeRTOS 위에서 돌았습니다. ESP-IDF의 `app_main()`은 부트 과정에서 만든 "main" 태스크 안에서 실행되고, Wi-Fi와 TCP/IP 스택도 각자 태스크로 돕니다. ESP32는 코어가 두 개라서 ESP-IDF는 FreeRTOS를 다중 코어(SMP)용으로 고쳐서 쓰며, `xTaskCreatePinnedToCore()`로 태스크를 실행할 코어를 정할 수 있습니다. 이 장에서 배운 개념이 그대로 적용됩니다.
 
@@ -252,15 +252,15 @@ FreeRTOS는 TCB, 스택, 큐를 `pvPortMalloc()`으로 할당하며, 그 구현�
 ```
 task       state      prio free stack
 console    Running       2   1568 B
-IDLE       Ready         0    472 B
+IDLE       Ready         0    436 B
 blink      Blocked       1    432 B
 sample     Blocked       3    912 B
 Tmr Svc    Blocked       4    920 B
-hog        Suspended     1    480 B
+hog        Suspended     1    444 B
 heap free 17096 B (min ever 17096 B), idle loops 2093517
 ```
 
-(값은 예시입니다.) 직접 만들지 않은 `IDLE`과 `Tmr Svc`(타이머 태스크, 27장)가 있는 것, 그리고 대부분의 태스크가 Blocked인 것을 확인하세요. "free stack"은 지금까지 가장 적게 남았던 스택입니다. console의 스택이 가장 많이 쓰인 것은 `printf` 때문입니다.
+(값은 예시입니다. 스택 128워드인 태스크는 처음부터 초기 레지스터 프레임 17워드(68 B)가 쌓여 있으므로, 한 번도 실행되지 않은 hog도 남은 스택이 약 444 B입니다.) 직접 만들지 않은 `IDLE`과 `Tmr Svc`(타이머 태스크, 27장)가 있는 것, 그리고 대부분의 태스크가 Blocked인 것을 확인하세요. "free stack"은 지금까지 가장 적게 남았던 스택입니다. console의 스택이 가장 많이 쓰인 것은 `printf` 때문입니다.
 
 이제 실험해 봅시다.
 
@@ -273,7 +273,9 @@ heap free 17096 B (min ever 17096 B), idle loops 2093517
 *** stack overflow in task: tiny ***
 ```
 
-이 마지막 실험은 26.7절에서 말한 한계도 보여 줍니다. 훅이 불리기 전에 배열이 이미 스택 아래쪽의 힙을 덮어썼으므로, 이 시점의 시스템은 계속 돌리면 안 되는 상태입니다. 훅에서 할 수 있는 일은 기록을 남기고 리셋하는 것뿐입니다.
+(출력은 예시입니다. [확인 필요: 보드 실측])
+
+이 마지막 실험은 26.7절에서 말한 한계도 보여 줍니다. 훅이 불리기 전에 배열이 이미 스택 아래쪽의 힙을 덮어썼으므로(heap_4는 낮은 주소부터 차례로 할당하므로 바로 앞에 만들어진 Tmr Svc 태스크의 TCB 끝부분과 힙 관리 헤더가 망가졌을 수 있습니다), 이 시점의 시스템은 계속 돌리면 안 되는 상태입니다. 훅에서 할 수 있는 일은 기록을 남기고 리셋하는 것뿐입니다.
 
 ---
 

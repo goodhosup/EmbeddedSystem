@@ -14,3 +14,5 @@ make flash               # 터미널 115200 bps
 | `o` | 스택이 작은 태스크를 만들어 스택 오버플로 훅을 확인 |
 
 hog를 켜면 Idle 훅 카운터가 멈추고 blink는 hog와 번갈아 실행되지만, 더 높은 우선순위의 sample과 console은 영향을 거의 받지 않습니다.
+
+[확인 필요: arm-none-eabi-gcc로 FreeRTOS 커널까지 포함한 전체 빌드의 경고 확인 (외부 코드라 검토 환경에서 미빌드)]

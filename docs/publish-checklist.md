@@ -19,9 +19,10 @@
 | `chapters/ch23-debugging.md` | 238 | [확인 필요: 보드 실측] |
 | `chapters/ch25-memory-management.md` | 63 | [확인 필요: 보드 실측] |
 | `chapters/ch25-memory-management.md` | 287 | [확인 필요: 보드 실측] |
-| `chapters/ch26-rtos-freertos.md` | 235 | [확인 필요: Arduino_FreeRTOS 라이브러리의 기본 틱 소스와 주기] |
+| `chapters/ch26-rtos-freertos.md` | 276 | [확인 필요: 보드 실측] |
 | `code/ch18-usb/README.md` | 23 | [확인 필요: CN10 핀 번호] |
 | `code/ch18-usb/stm32/usb_descriptors.c` | 6 | [확인 필요: pid.codes 시험용 PID 정책] |
 | `code/ch19-wireless/esp32-arduino/ble_sensor/ble_sensor.ino` | 9 | [확인 필요: 코어 버전별 BLE 라이브러리 API] |
+| `code/ch26-freertos/README.md` | 18 | [확인 필요: arm-none-eabi-gcc로 FreeRTOS 커널까지 포함한 전체 빌드의 경고 확인 (외부 코드라 검토 환경에서 미빌드)] |
 
-총 18건
+총 19건
