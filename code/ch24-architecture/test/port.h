@@ -6,6 +6,7 @@
 
 static inline uint32_t port_crit_enter(void) { return 0; }
 static inline void     port_crit_exit(uint32_t key) { (void)key; }
-static inline uint32_t port_us(void) { return 0; }
+static inline uint32_t port_cycles(void) { return 0; }
+#define PORT_CYCLES_PER_US 1u
 
 #endif

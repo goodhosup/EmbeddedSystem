@@ -7,7 +7,8 @@
 static inline uint32_t port_crit_enter(void) { return irq_save(); }
 static inline void     port_crit_exit(uint32_t key) { irq_restore(key); }
 
-/* DWT 사이클 카운터(34장)로 µs 단위 시각. 16 MHz HSI 기준 */
-static inline uint32_t port_us(void) { return DWT_CYCCNT / 16u; }
+/* DWT 사이클 카운터(34장). 실행 시간은 사이클 차이를 먼저 구한 뒤 µs로 나눈다 */
+static inline uint32_t port_cycles(void) { return DWT_CYCCNT; }
+#define PORT_CYCLES_PER_US 16u      /* 16 MHz HSI */
 
 #endif
