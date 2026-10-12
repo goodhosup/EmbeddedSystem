@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="420" viewBox="0 0 900 420" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
   <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
   <rect width="100%" height="100%" fill="#ffffff"/>
-  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 26-4  우선순위 기반 선점 스케줄링 타임라인</text>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 26-2  우선순위 기반 선점 스케줄링 타임라인</text>
   <text x="180.0" y="84.0" font-size="12" text-anchor="end" fill="#1f2933" font-weight="bold">sample (3)</text>
   <line x1="190.0" y1="96.0" x2="820.0" y2="96.0" stroke="#d9dee3" stroke-width="1"/>
   <text x="180.0" y="124.0" font-size="12" text-anchor="end" fill="#1f2933" font-weight="bold">console (2)</text>

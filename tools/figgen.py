@@ -4216,7 +4216,7 @@ def fig_26_1():
 
 def fig_26_2():
     s = Svg(900, 460)
-    s.text(450, 30, "그림 26-2  태스크 상태 전이", 16, weight="bold")
+    s.text(450, 30, "그림 26-3  태스크 상태 전이", 16, weight="bold")
     st = {"Ready": (120, 180), "Running": (560, 180), "Blocked": (340, 340), "Suspended": (340, 70)}
     W, H = 170, 60
     fills = {"Ready": (BLUE_BG, BLUE), "Running": (GREEN_BG, GREEN), "Blocked": (ORANGE_BG, ORANGE), "Suspended": (GRAY_BG, LINE)}
@@ -4241,12 +4241,12 @@ def fig_26_2():
     s.path("M425,132 L425,160 L292,180", LINE, 1.2, arrow=True)
     s.text(432, 152, "vTaskResume()", 11, "start", MUTED)
     s.text(450, 440, "Blocked 태스크는 CPU를 전혀 쓰지 않는다. 대부분의 태스크는 대부분의 시간을 Blocked로 보낸다", 12, color=INK)
-    s.save("ch26/fig26-2-task-states.svg")
+    s.save("ch26/fig26-3-task-states.svg")
 
 
 def fig_26_3():
     s = Svg(900, 520)
-    s.text(450, 30, "그림 26-3  컨텍스트 스위칭 시 스택에 저장되는 레지스터", 16, weight="bold")
+    s.text(450, 30, "그림 26-4  컨텍스트 스위칭 시 스택에 저장되는 레지스터", 16, weight="bold")
     x, rh = 90, 22
     s.text(x + 90, 64, "태스크 A의 스택", 13, weight="bold")
     hw = ["xPSR", "PC", "LR", "R12", "R3", "R2", "R1", "R0"]
@@ -4277,12 +4277,12 @@ def fig_26_3():
     for k, t in enumerate(steps):
         s.text(380, 100 + k * 40, t, 12, "start", ORANGE if k in (2, 4) else INK, "bold" if k in (2, 4) else "normal")
     s.text(450, 496, "태스크마다 자기 스택이 있고, 멈춘 순간의 레지스터가 그 스택에 보관된다. 그래서 각 태스크는 혼자 CPU를 쓰는 것처럼 보인다", 11, color=MUTED)
-    s.save("ch26/fig26-3-context-switch.svg")
+    s.save("ch26/fig26-4-context-switch.svg")
 
 
 def fig_26_4():
     s = Svg(900, 420)
-    s.text(450, 30, "그림 26-4  우선순위 기반 선점 스케줄링 타임라인", 16, weight="bold")
+    s.text(450, 30, "그림 26-2  우선순위 기반 선점 스케줄링 타임라인", 16, weight="bold")
     x0, sc = 190, 30
     names = ["sample (3)", "console (2)", "blink (1)", "hog (1)", "Idle (0)"]
     G = "#cbd2d9"
@@ -4301,7 +4301,7 @@ def fig_26_4():
     s.line(x0, 340, x0 + 21 * sc, 340, LINE, 1.4, arrow=True)
     s.text(x0 + 21 * sc, 358, "시간", 11, "end", MUTED)
     s.text(450, 392, "sample은 hog가 CPU를 독차지해도 정해진 시각에 바로 실행된다. 높은 우선순위가 준비되면 낮은 것은 즉시 밀려난다", 12, color=INK)
-    s.save("ch26/fig26-4-preemption.svg")
+    s.save("ch26/fig26-2-preemption.svg")
 
 
 if __name__ == "__main__":
