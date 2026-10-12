@@ -3679,6 +3679,130 @@ def fig_20_4():
     s.save("ch20/fig20-4-iot-dataflow.svg")
 
 
+# ---------------------------------------------------------------------------
+# 21장 부트 과정
+# ---------------------------------------------------------------------------
+
+def fig_21_1():
+    s = Svg(900, 520)
+    s.text(450, 30, "그림 21-1  전원 인가부터 main()까지의 순서 (STM32F411)", 16, weight="bold")
+    steps = [("전원 인가 / 리셋", "리셋 회로가 안정될 때까지 붙잡는다", GRAY_BG, LINE),
+             ("부트 모드 결정", "BOOT0 = 0 → Flash를 0x0000 0000에 겹쳐 보임", GRAY_BG, LINE),
+             ("하드웨어가 벡터 테이블 읽기", "0x0: 초기 SP → MSP,  0x4: Reset_Handler 주소 → PC", ORANGE_BG, ORANGE),
+             ("Reset_Handler", "여기부터 우리 코드 (startup.c)", BLUE_BG, BLUE),
+             ("SystemInit()", "아주 이른 초기화 (클럭 등, 선택)", BLUE_BG, BLUE),
+             (".data 복사", "Flash의 초기값 → SRAM의 전역 변수", BLUE_BG, BLUE),
+             (".bss 0으로 채우기", "초기값 없는 전역 변수 = 0", BLUE_BG, BLUE),
+             ("생성자 실행", ".init_array의 함수들 (C++ 전역 객체 등)", BLUE_BG, BLUE),
+             ("main()", "드디어", GREEN_BG, GREEN)]
+    for i, (a, b, f, st) in enumerate(steps):
+        y = 52 + i * 50
+        s.rect(200, y, 500, 40, f, st, 6, 1.5)
+        s.text(220, y + 25, a, 13, "start", weight="bold")
+        s.text(690, y + 25, b, 11, "end", MUTED)
+        if i < len(steps) - 1:
+            s.line(450, y + 41, 450, y + 49, LINE, 1.5, arrow=True)
+    s.text(110, 52 + 2 * 50 + 25, "하드웨어", 12, "end", ORANGE, "bold")
+    s.text(110, 52 + 5 * 50 + 25, "소프트웨어", 12, "end", BLUE, "bold")
+    s.line(120, 52, 120, 52 + 3 * 50 - 6, ORANGE, 2)
+    s.line(120, 52 + 3 * 50, 120, 52 + 9 * 50 - 10, BLUE, 2)
+    s.save("ch21/fig21-1-boot-sequence.svg")
+
+
+def fig_21_2():
+    s = Svg(900, 510)
+    s.text(450, 30, "그림 21-2  Flash와 SRAM에 배치된 섹션 (LMA와 VMA)", 16, weight="bold")
+    # Flash
+    fx, fw = 120, 240
+    s.text(fx + fw / 2, 64, "Flash (0x0800 0000~)", 13, weight="bold", color=GREEN)
+    fl = [(".isr_vector", "벡터 테이블", 40, GRAY_BG), (".text", "코드", 90, GREEN_BG), (".rodata", "const 상수, 문자열", 50, GREEN_BG),
+          (".init_array", "생성자 목록", 30, GREEN_BG), (".data 초기값", "LMA: 여기에 저장", 50, ORANGE_BG), ("(빈 공간)", "", 120, "#ffffff")]
+    y = 80
+    pos = {}
+    for n, d, h, f in fl:
+        s.rect(fx, y, fw, h, f, LINE, 0, 1)
+        s.text(fx + 12, y + h / 2 + 5, n, 12, "start", weight="bold")
+        s.text(fx + fw - 10, y + h / 2 + 5, d, 11, "end", MUTED)
+        pos[n] = (y, h)
+        y += h
+    # SRAM
+    rx, rw = 540, 240
+    s.text(rx + rw / 2, 64, "SRAM (0x2000 0000~)", 13, weight="bold", color=BLUE)
+    rl = [(".data", "VMA: 실행 중 여기 있음", 50, ORANGE_BG), (".bss", "0으로 시작", 60, BLUE_BG), ("힙 ↓", "malloc", 60, "#ffffff"),
+          ("(빈 공간)", "", 80, "#ffffff"), ("스택 ↑", "지역 변수, 호출", 90, "#efe6fb")]
+    y = 80
+    for n, d, h, f in rl:
+        s.rect(rx, y, rw, h, f, LINE, 0, 1)
+        s.text(rx + 12, y + h / 2 + 5, n, 12, "start", weight="bold")
+        s.text(rx + rw - 10, y + h / 2 + 5, d, 11, "end", MUTED)
+        pos["R" + n] = (y, h)
+        y += h
+    a = pos[".data 초기값"]
+    b = pos["R.data"]
+    s.path(f"M{fx + fw + 2},{a[0] + a[1] / 2} C{fx + fw + 90},{a[0] + a[1] / 2} {rx - 90},{b[0] + b[1] / 2} {rx - 2},{b[0] + b[1] / 2}", ORANGE, 2, arrow=True)
+    s.text(450, 200, "Reset_Handler가 복사", 12, color=ORANGE, weight="bold")
+    s.text(rx + rw + 10, 80 + 4, "← _sdata", 11, "start", MUTED)
+    s.text(rx + rw + 10, 80 + 50 + 4, "← _edata, _sbss", 11, "start", MUTED)
+    s.text(rx + rw + 10, 80 + 110 + 4, "← _ebss = end", 11, "start", MUTED)
+    s.text(rx + rw + 10, 80 + 340 + 4, "← _estack", 11, "start", MUTED)
+    s.text(450, 482, "LMA(Load Memory Address): 이미지가 저장된 곳.  VMA(Virtual Memory Address): 실행 중에 그 데이터가 있는 곳", 12, color=INK)
+    s.text(450, 500, "그림에서는 아래로 갈수록 주소가 커진다", 11, color=MUTED)
+    s.save("ch21/fig21-2-sections-lma-vma.svg")
+
+
+def fig_21_3():
+    s = Svg(900, 330)
+    s.text(450, 30, "그림 21-3  .data 복사와 .bss 초기화", 16, weight="bold")
+    s.text(450, 62, "uint32_t count = 7;   uint8_t buf[4] = {1, 2, 3, 4};   uint32_t total;   static uint8_t flags[4];", 12, color=INK)
+    s.text(160, 98, "Flash (.data 초기값)", 12, weight="bold", color=GREEN)
+    vals = ["07 00 00 00", "01 02 03 04"]
+    for i, v in enumerate(vals):
+        s.rect(60, 110 + i * 34, 200, 30, ORANGE_BG, ORANGE, 2, 1)
+        s.text(160, 130 + i * 34, v, 12, weight="bold")
+    s.text(640, 98, "SRAM", 12, weight="bold", color=BLUE)
+    names = [("count", "07 00 00 00", ORANGE_BG), ("buf", "01 02 03 04", ORANGE_BG), ("total", "00 00 00 00", BLUE_BG), ("flags", "00 00 00 00", BLUE_BG)]
+    for i, (n, v, f) in enumerate(names):
+        s.rect(560, 110 + i * 34, 200, 30, f, LINE, 2, 1)
+        s.text(660, 130 + i * 34, v, 12, weight="bold")
+        s.text(550, 130 + i * 34, n, 12, "end", MUTED)
+    s.line(262, 125, 556, 125, ORANGE, 1.8, arrow=True)
+    s.line(262, 159, 556, 159, ORANGE, 1.8, arrow=True)
+    s.text(410, 118, "복사", 11, color=ORANGE, weight="bold")
+    s.rect(330, 186, 160, 50, BLUE_BG, BLUE, 6, 1.5)
+    s.text(410, 216, "0으로 채우기", 12, weight="bold")
+    s.line(492, 211, 556, 193, BLUE, 1.6, arrow=True)
+    s.line(492, 211, 556, 227, BLUE, 1.6, arrow=True)
+    s.text(450, 282, "초기값이 있는 전역 변수(.data)는 값을 Flash에 저장해 두었다가 복사하고, 없는 것(.bss)은 Flash에 아무것도 저장하지 않고 0으로 채운다", 11, color=MUTED)
+    s.text(450, 302, "그래서 큰 배열을 0으로 초기화할 때는 \"= {0}\"을 써도 .bss로 가서 Flash를 차지하지 않는다", 11, color=MUTED)
+    s.save("ch21/fig21-3-data-bss-init.svg")
+
+
+def fig_21_4():
+    s = Svg(900, 420)
+    s.text(450, 30, "그림 21-4  스택과 힙이 마주 보며 자라는 모습", 16, weight="bold")
+    x, w = 320, 260
+    s.rect(x, 60, w, 320, "#ffffff", LINE, 0, 1.5)
+    s.rect(x, 300, w, 80, BLUE_BG, LINE, 0, 1)
+    s.text(x + w / 2, 345, ".data + .bss", 13, weight="bold")
+    s.rect(x, 230, w, 70, GREEN_BG, LINE, 0, 1)
+    s.text(x + w / 2, 270, "힙 (malloc)", 13, weight="bold")
+    s.line(x + w / 2, 228, x + w / 2, 200, GREEN, 2.5, arrow=True)
+    s.rect(x, 60, w, 90, "#efe6fb", LINE, 0, 1)
+    s.text(x + w / 2, 110, "스택", 13, weight="bold")
+    s.line(x + w / 2, 152, x + w / 2, 182, "#7048e8", 2.5, arrow=True)
+    s.text(x + w / 2, 194, "빈 공간", 12, color=MUTED)
+    s.text(x - 10, 64, "0x2002 0000 (_estack): 초기 SP", 11, "end", MUTED)
+    s.text(x - 10, 384, "0x2000 0000", 11, "end", MUTED)
+    s.text(x + w + 14, 120, "함수를 부를 때마다 아래로 자란다", 12, "start", "#7048e8")
+    s.text(x + w + 14, 140, "(복귀 주소, 지역 변수, 저장된 레지스터)", 11, "start", MUTED)
+    s.text(x + w + 14, 260, "malloc을 부를 때마다 위로 자란다", 12, "start", GREEN)
+    s.rect(60, 180, 220, 50, "#fdecec", RED, 6, 1.5)
+    s.text(170, 202, "둘이 만나면?", 13, weight="bold", color=RED)
+    s.text(170, 220, "경고 없이 서로를 덮어쓴다", 11, color=RED)
+    s.text(450, 408, "MCU에는 이것을 막아 주는 운영체제가 없다. 크기를 계산하고 감시하는 방법은 25장에서 다룬다", 12, color=MUTED)
+    s.save("ch21/fig21-4-stack-heap.svg")
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("fig_") and callable(fn):

@@ -15,6 +15,15 @@
 extern uint32_t _estack;
 extern uint32_t _sidata, _sdata, _edata, _sbss, _ebss;
 
+typedef void (*init_fn_t)(void);
+extern init_fn_t __init_array_start[], __init_array_end[];
+
+/* 클럭 등 아주 이른 초기화를 넣을 자리. 만들지 않으면 아무것도 하지 않는다 (CMSIS의 SystemInit과 같은 역할) */
+void SystemInit(void) __attribute__((weak));
+void SystemInit(void)
+{
+}
+
 int main(void);
 
 void Reset_Handler(void);
@@ -199,6 +208,8 @@ const vector_t vector_table[16 + NUM_IRQ] = {
 
 void Reset_Handler(void)
 {
+    SystemInit();
+
     /* .data: Flash에 있는 초기값을 RAM으로 복사 */
     uint32_t *src = &_sidata;
     for (uint32_t *dst = &_sdata; dst < &_edata; ) {
@@ -207,6 +218,11 @@ void Reset_Handler(void)
     /* .bss: 0으로 채우기 */
     for (uint32_t *dst = &_sbss; dst < &_ebss; ) {
         *dst++ = 0;
+    }
+
+    /* 생성자 실행. newlib의 __libc_init_array 대신 직접 돈다(-nostartfiles라 _init이 없으므로) */
+    for (init_fn_t *f = __init_array_start; f < __init_array_end; f++) {
+        (*f)();
     }
 
     main();

@@ -35,6 +35,16 @@ SECTIONS
         _etext = .;
     } > FLASH
 
+    /* 생성자 함수 포인터 목록: C의 __attribute__((constructor)), C++ 전역 객체 (21장) */
+    .init_array :
+    {
+        . = ALIGN(4);
+        __init_array_start = .;
+        KEEP(*(SORT(.init_array.*)))
+        KEEP(*(.init_array))
+        __init_array_end = .;
+    } > FLASH
+
     /* 초기값이 있는 전역 변수: Flash에 저장해 두었다가 시작할 때 RAM으로 복사 */
     _sidata = LOADADDR(.data);
     .data :

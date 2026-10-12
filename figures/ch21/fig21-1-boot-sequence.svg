@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 21-1  전원 인가부터 main()까지의 순서 (STM32F411)</text>
+  <rect x="200.0" y="52.0" width="500.0" height="40.0" rx="6" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="220.0" y="77.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold">전원 인가 / 리셋</text>
+  <text x="690.0" y="77.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">리셋 회로가 안정될 때까지 붙잡는다</text>
+  <line x1="450.0" y1="93.0" x2="450.0" y2="101.0" stroke="#334e68" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="200.0" y="102.0" width="500.0" height="40.0" rx="6" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="220.0" y="127.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold">부트 모드 결정</text>
+  <text x="690.0" y="127.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">BOOT0 = 0 → Flash를 0x0000 0000에 겹쳐 보임</text>
+  <line x1="450.0" y1="143.0" x2="450.0" y2="151.0" stroke="#334e68" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="200.0" y="152.0" width="500.0" height="40.0" rx="6" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="220.0" y="177.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold">하드웨어가 벡터 테이블 읽기</text>
+  <text x="690.0" y="177.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">0x0: 초기 SP → MSP,  0x4: Reset_Handler 주소 → PC</text>
+  <line x1="450.0" y1="193.0" x2="450.0" y2="201.0" stroke="#334e68" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="200.0" y="202.0" width="500.0" height="40.0" rx="6" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="220.0" y="227.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold">Reset_Handler</text>
+  <text x="690.0" y="227.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">여기부터 우리 코드 (startup.c)</text>
+  <line x1="450.0" y1="243.0" x2="450.0" y2="251.0" stroke="#334e68" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="200.0" y="252.0" width="500.0" height="40.0" rx="6" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="220.0" y="277.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold">SystemInit()</text>
+  <text x="690.0" y="277.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">아주 이른 초기화 (클럭 등, 선택)</text>
+  <line x1="450.0" y1="293.0" x2="450.0" y2="301.0" stroke="#334e68" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="200.0" y="302.0" width="500.0" height="40.0" rx="6" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="220.0" y="327.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold">.data 복사</text>
+  <text x="690.0" y="327.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">Flash의 초기값 → SRAM의 전역 변수</text>
+  <line x1="450.0" y1="343.0" x2="450.0" y2="351.0" stroke="#334e68" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="200.0" y="352.0" width="500.0" height="40.0" rx="6" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="220.0" y="377.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold">.bss 0으로 채우기</text>
+  <text x="690.0" y="377.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">초기값 없는 전역 변수 = 0</text>
+  <line x1="450.0" y1="393.0" x2="450.0" y2="401.0" stroke="#334e68" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="200.0" y="402.0" width="500.0" height="40.0" rx="6" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="220.0" y="427.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold">생성자 실행</text>
+  <text x="690.0" y="427.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">.init_array의 함수들 (C++ 전역 객체 등)</text>
+  <line x1="450.0" y1="443.0" x2="450.0" y2="451.0" stroke="#334e68" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="200.0" y="452.0" width="500.0" height="40.0" rx="6" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="220.0" y="477.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold">main()</text>
+  <text x="690.0" y="477.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">드디어</text>
+  <text x="110.0" y="177.0" font-size="12" text-anchor="end" fill="#d9730d" font-weight="bold">하드웨어</text>
+  <text x="110.0" y="327.0" font-size="12" text-anchor="end" fill="#2f6fdf" font-weight="bold">소프트웨어</text>
+  <line x1="120.0" y1="52.0" x2="120.0" y2="196.0" stroke="#d9730d" stroke-width="2"/>
+  <line x1="120.0" y1="202.0" x2="120.0" y2="492.0" stroke="#2f6fdf" stroke-width="2"/>
+</svg>

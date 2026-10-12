@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="510" viewBox="0 0 900 510" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 21-2  Flash와 SRAM에 배치된 섹션 (LMA와 VMA)</text>
+  <text x="240.0" y="64.0" font-size="13" text-anchor="middle" fill="#2f9e44" font-weight="bold">Flash (0x0800 0000~)</text>
+  <rect x="120.0" y="80.0" width="240.0" height="40.0" rx="0" fill="#eef1f4" stroke="#334e68" stroke-width="1"/>
+  <text x="132.0" y="105.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="bold">.isr_vector</text>
+  <text x="350.0" y="105.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">벡터 테이블</text>
+  <rect x="120.0" y="120.0" width="240.0" height="90.0" rx="0" fill="#e1f4e5" stroke="#334e68" stroke-width="1"/>
+  <text x="132.0" y="170.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="bold">.text</text>
+  <text x="350.0" y="170.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">코드</text>
+  <rect x="120.0" y="210.0" width="240.0" height="50.0" rx="0" fill="#e1f4e5" stroke="#334e68" stroke-width="1"/>
+  <text x="132.0" y="240.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="bold">.rodata</text>
+  <text x="350.0" y="240.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">const 상수, 문자열</text>
+  <rect x="120.0" y="260.0" width="240.0" height="30.0" rx="0" fill="#e1f4e5" stroke="#334e68" stroke-width="1"/>
+  <text x="132.0" y="280.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="bold">.init_array</text>
+  <text x="350.0" y="280.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">생성자 목록</text>
+  <rect x="120.0" y="290.0" width="240.0" height="50.0" rx="0" fill="#fdebd7" stroke="#334e68" stroke-width="1"/>
+  <text x="132.0" y="320.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="bold">.data 초기값</text>
+  <text x="350.0" y="320.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">LMA: 여기에 저장</text>
+  <rect x="120.0" y="340.0" width="240.0" height="120.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="132.0" y="405.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="bold">(빈 공간)</text>
+  <text x="350.0" y="405.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal"></text>
+  <text x="660.0" y="64.0" font-size="13" text-anchor="middle" fill="#2f6fdf" font-weight="bold">SRAM (0x2000 0000~)</text>
+  <rect x="540.0" y="80.0" width="240.0" height="50.0" rx="0" fill="#fdebd7" stroke="#334e68" stroke-width="1"/>
+  <text x="552.0" y="110.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="bold">.data</text>
+  <text x="770.0" y="110.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">VMA: 실행 중 여기 있음</text>
+  <rect x="540.0" y="130.0" width="240.0" height="60.0" rx="0" fill="#e3edfd" stroke="#334e68" stroke-width="1"/>
+  <text x="552.0" y="165.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="bold">.bss</text>
+  <text x="770.0" y="165.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">0으로 시작</text>
+  <rect x="540.0" y="190.0" width="240.0" height="60.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="552.0" y="225.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="bold">힙 ↓</text>
+  <text x="770.0" y="225.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">malloc</text>
+  <rect x="540.0" y="250.0" width="240.0" height="80.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="552.0" y="295.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="bold">(빈 공간)</text>
+  <text x="770.0" y="295.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal"></text>
+  <rect x="540.0" y="330.0" width="240.0" height="90.0" rx="0" fill="#efe6fb" stroke="#334e68" stroke-width="1"/>
+  <text x="552.0" y="380.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="bold">스택 ↑</text>
+  <text x="770.0" y="380.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">지역 변수, 호출</text>
+  <path d="M362,315.0 C450,315.0 450,105.0 538,105.0" stroke="#d9730d" stroke-width="2" fill="none" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <text x="450.0" y="200.0" font-size="12" text-anchor="middle" fill="#d9730d" font-weight="bold">Reset_Handler가 복사</text>
+  <text x="790.0" y="84.0" font-size="11" text-anchor="start" fill="#616e7c" font-weight="normal">← _sdata</text>
+  <text x="790.0" y="134.0" font-size="11" text-anchor="start" fill="#616e7c" font-weight="normal">← _edata, _sbss</text>
+  <text x="790.0" y="194.0" font-size="11" text-anchor="start" fill="#616e7c" font-weight="normal">← _ebss = end</text>
+  <text x="790.0" y="424.0" font-size="11" text-anchor="start" fill="#616e7c" font-weight="normal">← _estack</text>
+  <text x="450.0" y="482.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">LMA(Load Memory Address): 이미지가 저장된 곳.  VMA(Virtual Memory Address): 실행 중에 그 데이터가 있는 곳</text>
+  <text x="450.0" y="500.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">그림에서는 아래로 갈수록 주소가 커진다</text>
+</svg>
