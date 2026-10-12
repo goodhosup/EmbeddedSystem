@@ -25,7 +25,6 @@
 | `chapters/ch28-realtime-analysis.md` | 259 | [확인 필요: 각 도구의 무료 사용 조건] |
 | `chapters/ch29-zephyr.md` | 31 | [확인 필요: 출간 시점 Zephyr 버전의 설치 명령] |
 | `chapters/ch29-zephyr.md` | 258 | [확인 필요: Zephyr v4.4 기준 빌드와 보드 실행] |
-| `chapters/ch29-zephyr.md` | 315 | [확인 필요: Zephyr 입력 서브시스템의 콜백 실행 문맥 설정(CONFIG_INPUT_MODE)] |
 | `code/ch18-usb/README.md` | 23 | [확인 필요: CN10 핀 번호] |
 | `code/ch18-usb/stm32/usb_descriptors.c` | 6 | [확인 필요: pid.codes 시험용 PID 정책] |
 | `code/ch19-wireless/esp32-arduino/ble_sensor/ble_sensor.ino` | 9 | [확인 필요: 코어 버전별 BLE 라이브러리 API] |
@@ -34,4 +33,4 @@
 | `code/ch28-realtime/README.md` | 31 | [확인 필요: arm-none-eabi-gcc로 FreeRTOS 커널까지 포함한 전체 빌드의 경고 확인] |
 | `code/ch29-zephyr/README.md` | 21 | [확인 필요: Zephyr v4.4 기준 west build와 보드 실행 확인 (외부 코드라 검토 환경에서 미빌드)] |
 
-총 28건
+총 27건

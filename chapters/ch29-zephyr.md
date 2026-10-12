@@ -31,7 +31,7 @@ Zephyr는 여러 저장소(커널, 제조사별 HAL, 외부 라이브러리)로 
 설치 과정은 대략 다음과 같습니다. 정확한 명령은 Zephyr 버전마다 조금씩 바뀌므로 공식 문서의 "Getting Started Guide"를 함께 보세요. [확인 필요: 출간 시점 Zephyr 버전의 설치 명령]
 
 ```bash
-python3 -m venv ~/zephyrproject/.venv           # Python 가상 환경
+python3 -m venv ~/zephyrproject/.venv           # Python 가상 환경 (최근 배포판은 시스템 pip 설치를 막는다)
 source ~/zephyrproject/.venv/bin/activate
 pip install west
 west init ~/zephyrproject                       # Zephyr 저장소와 manifest(west.yml) 받기
@@ -194,7 +194,7 @@ static void button_cb(struct input_event *evt, void *user_data)
 INPUT_CALLBACK_DEFINE(NULL, button_cb, NULL);
 ```
 
-7장에서 EXTI, 디바운싱 타이머, 플래그를 직접 만들었던 일이 이 몇 줄로 줄었습니다. 반대로 말하면 그 아래에서 무슨 일이 일어나는지는 7장의 지식으로 이해해야 합니다. 플랫폼은 일을 대신해 줄 뿐, 원리를 몰라도 되게 해 주지는 않습니다.
+7장에서 EXTI, 디바운싱 타이머, 플래그를 직접 만들었던 일이 이 몇 줄로 줄었습니다. 기본 설정(`CONFIG_INPUT_MODE_THREAD`)에서 gpio-keys 드라이버는 디바운싱을 시스템 작업 큐에서 처리한 뒤 이벤트를 보고하고, 콜백은 입력 서브시스템의 전용 스레드에서 불립니다. ISR이 아니므로 대부분의 API를 쓸 수 있지만, 콜백에서 오래 기다리면 그동안 다른 모든 입력 이벤트가 늦어집니다. 반대로 말하면 그 아래에서 무슨 일이 일어나는지는 7장의 지식으로 이해해야 합니다. 플랫폼은 일을 대신해 줄 뿐, 원리를 몰라도 되게 해 주지는 않습니다.
 
 ## 29.6 커널 객체
 
@@ -260,7 +260,7 @@ sampling paused
 - `main.c`에는 핀 번호, I2C 주소, 레지스터가 하나도 없습니다. 모두 devicetree에서 옵니다.
 - 클럭 설정도 없습니다. Zephyr의 NUCLEO-F411RE 보드 파일은 ST-LINK가 주는 8 MHz를 PLL로 올려 96 MHz로 동작하게 설정되어 있습니다. 지금까지의 예제(HSI 16 MHz)와 다르지만, UART 보레이트와 타이머는 드라이버가 클럭 트리(3장)를 읽어 알아서 맞춥니다.
 - 15장의 BMP280 드라이버(보정 계산 포함)를 다시 쓰지 않았습니다. Zephyr의 드라이버가 같은 일을 합니다.
-- 빌드 결과의 크기를 `west build -t rom_report`, `ram_report`로 보면, 같은 기능의 레지스터 예제보다 Flash를 훨씬 많이 쓰는 것을 확인할 수 있습니다. 플랫폼이 주는 편리함의 값입니다.
+- 빌드 결과의 크기를 `west build -t rom_report`, `west build -t ram_report`로 보면, 같은 기능의 레지스터 예제보다 Flash를 훨씬 많이 쓰는 것을 확인할 수 있습니다. 플랫폼이 주는 편리함의 값입니다.
 
 ## 29.8 보드 이식
 
@@ -312,6 +312,6 @@ sampling paused
 1. 예제의 BMP280을 I2C1이 아니라 I2C3(보드 파일의 기본 핀: PA8 = SCL, PB4 = SDA)에 연결했다고 합시다. 오버레이를 어떻게 바꿔야 하나요? `main.c`는 바꿔야 하나요? [힌트: 보드 파일의 i2c3 노드에는 `status = "okay"`가 없습니다.]
 2. `prj.conf`에서 `CONFIG_SENSOR=y`를 지우고 빌드하면 어떤 오류가 나는지 예측하고 실제로 확인하세요. 오류 메시지에서 원인을 찾는 순서를 적어 보세요.
 3. 26장의 `sample` 태스크(우선순위 3, 10 ms 주기)와 `blink` 태스크(우선순위 1)를 Zephyr로 옮기세요. 우선순위 숫자를 무엇으로 정하겠습니까?
-4. 예제의 버튼 콜백은 어느 문맥(ISR, 어떤 스레드)에서 실행될까요? 그 안에서 `k_msleep()`을 부르면 어떤 문제가 생길 수 있는지 조사해 보세요. [확인 필요: Zephyr 입력 서브시스템의 콜백 실행 문맥 설정(CONFIG_INPUT_MODE)]
+4. 예제의 버튼 콜백은 어느 문맥(ISR, 어떤 스레드)에서 실행될까요? 그 안에서 `k_msleep()`을 부르면 어떤 문제가 생길 수 있는지 조사해 보세요.
 5. FreeRTOS와 Zephyr 중 하나를 골라야 하는 프로젝트 두 가지를 상상해 보고(예: 단일 MCU의 모터 컨트롤러, 여러 칩을 지원해야 하는 BLE 센서 제품군), 각각 어느 쪽을 고르겠는지 이유와 함께 쓰세요.
 6. (실습) `west build -t rom_report`로 예제의 Flash 사용량을 보고, 가장 큰 항목 세 개가 무엇인지 확인하세요. `CONFIG_PRINTK=n`이나 로그 관련 설정을 바꿔 크기를 줄여 보세요.

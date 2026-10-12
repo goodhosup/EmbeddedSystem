@@ -16,6 +16,7 @@
 #include <zephyr/input/input.h>
 #include <zephyr/sys/atomic.h>
 #include <zephyr/sys/printk.h>
+#include <stdlib.h>
 
 /* devicetree에서 장치 가져오기: 빌드할 때 확정되며, 없는 노드면 빌드 오류 */
 static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(DT_ALIAS(led0), gpios);
@@ -99,8 +100,8 @@ int main(void)
 		/* 온도: val1 + val2/1e6 °C, 기압: kPa → hPa로 보여 준다 */
 		int32_t t_centi = s.temp.val1 * 100 + s.temp.val2 / 10000;
 		int32_t p_deci_hpa = s.press.val1 * 100 + s.press.val2 / 10000;   /* kPa×100 = hPa×10 */
-		printk("#%u %u ms  T = %d.%02d C  P = %d.%d hPa\n", s.seq, s.uptime_ms,
-		       t_centi / 100, (t_centi < 0 ? -t_centi : t_centi) % 100,
+		printk("#%u %u ms  T = %s%d.%02d C  P = %d.%d hPa\n", s.seq, s.uptime_ms,
+		       t_centi < 0 ? "-" : "", abs(t_centi) / 100, abs(t_centi) % 100,
 		       p_deci_hpa / 10, p_deci_hpa % 10);
 	}
 	return 0;

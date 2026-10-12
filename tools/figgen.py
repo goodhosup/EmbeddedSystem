@@ -4550,7 +4550,7 @@ def fig_29_1():
     s.text(160, 326, "기능 설정", 13, weight="bold", color=ORANGE)
     s.box(40, 340, 240, 46, "Kconfig 기본값 + 보드 defconfig", None, ORANGE_BG, ORANGE, 12)
     s.box(40, 396, 240, 46, "prj.conf", "앱이 켤 기능", ORANGE_BG, ORANGE, 13)
-    s.box(360, 150, 170, 60, "devicetree 도구", "dtc + Python", GRAY_BG, LINE, 13)
+    s.box(360, 150, 170, 60, "devicetree 도구", "Python(edtlib), dtc는 검사", GRAY_BG, LINE, 13)
     s.box(360, 370, 170, 60, "Kconfig 도구", "Python (kconfiglib)", GRAY_BG, LINE, 13)
     for y in (103, 159, 215, 271):
         s.line(282, y, 356, 180, LINE, 1.4, arrow=True)

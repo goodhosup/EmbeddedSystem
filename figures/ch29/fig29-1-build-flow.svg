@@ -23,7 +23,7 @@
   <text x="160.0" y="435.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">앱이 켤 기능</text>
   <rect x="360.0" y="150.0" width="170.0" height="60.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
   <text x="445.0" y="177.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">devicetree 도구</text>
-  <text x="445.0" y="196.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">dtc + Python</text>
+  <text x="445.0" y="196.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">Python(edtlib), dtc는 검사</text>
   <rect x="360.0" y="370.0" width="170.0" height="60.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
   <text x="445.0" y="397.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">Kconfig 도구</text>
   <text x="445.0" y="416.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">Python (kconfiglib)</text>
