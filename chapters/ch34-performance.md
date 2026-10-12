@@ -118,7 +118,7 @@ make disasm          # arm-none-eabi-objdump -d -S → build/ch34-performance.ls
 | `str`, `strh`, `strb` | 메모리에 쓰기 | |
 | `add`, `sub`, `mul`, `mla` | 산술, 곱셈, 곱해서 더하기 | `mla r0, r2, r3, r0` (r0 += r2 × r3) |
 | `smlal`, `smlald` | 64비트에 곱해서 더하기, 16비트 두 쌍을 한 번에 | |
-| `vldr`, `vfma.f32` | FPU 레지스터로 읽기, float 곱해서 더하기 | |
+| `vldr`, `vmul.f32`, `vadd.f32`, `vfma.f32` | FPU 레지스터로 읽기, float 곱셈, 덧셈, 곱해서 더하기 | |
 | `cmp`, `b`, `bne`, `cbz` | 비교와 분기 | |
 | `bl`, `bx lr` | 함수 호출, 돌아가기 | |
 | `push`, `pop` | 레지스터를 스택에 저장, 복원 | |
@@ -128,6 +128,7 @@ make disasm          # arm-none-eabi-objdump -d -S → build/ch34-performance.ls
 - **안쪽 루프에 명령이 몇 개인가?** 탭 하나에 명령 10개라면 줄일 여지가 많습니다.
 - **불필요한 메모리 접근이 있는가?** 같은 값을 매번 메모리에서 다시 읽는다면, 포인터 별칭 때문에 컴파일러가 확신하지 못하는 것일 수 있습니다. 포인터 인자에 `restrict`를 붙이면 "이 포인터들은 겹치지 않는다"고 알려 줄 수 있습니다.
 - **함수 호출이 있는가?** 안쪽 루프에서 `bl`이 보인다면 인라인되지 않은 것입니다. 나눗셈(`__aeabi_idiv`)이나 `double` 연산(`__aeabi_dmul`)이 라이브러리 호출로 들어가 있는 경우가 흔합니다.
+- **곱셈과 덧셈이 묶였는가?** 예제의 `fir_f32`를 역어셈블하면 `-O2`, `-O3` 모두 `vfma.f32` 대신 `vmul.f32`와 `vadd.f32`가 따로 나옵니다. 이 책의 공통 Makefile이 `-std=c11`(ISO 모드)로 빌드하는데, 이때 GCC는 기본값으로 `-ffp-contract=off`를 써서 곱셈과 덧셈을 하나의 FMA로 **묶지(축약하지) 않기** 때문입니다. FMA는 곱셈 결과를 반올림하지 않고 바로 더하므로 결과가 마지막 비트에서 달라질 수 있고, ISO C는 이를 허락할지 프로그래머가 정하게 합니다. `-ffp-contract=fast`를 주거나 `-std=gnu11`(GNU 모드의 기본값은 fast)로 빌드하거나, 소스에서 `fmaf()`를 직접 부르면 `vfma.f32`가 나옵니다. (C 표준의 `#pragma STDC FP_CONTRACT ON`은 GCC가 지원하지 않습니다.) 속도와 결과의 재현성 중 무엇이 중요한지에 따라 고릅니다.
 - **`double`이 숨어 있는가?** Cortex-M4F의 FPU는 단정밀도(`float`)만 하드웨어로 처리합니다. `0.5` 같은 상수에 `f`를 빠뜨리면(`x * 0.5`) `double` 연산이 되어 소프트웨어 루틴으로 수십 배 느려집니다. 22장의 `-Wdouble-promotion`이 이것을 잡아 줍니다.
 
 ## 34.5 고정소수점
@@ -155,7 +156,7 @@ static inline q15_t q15_mul(q15_t a, q15_t b)
 
 ## 34.6 SIMD와 CMSIS-DSP
 
-Cortex-M4와 M7에는 **DSP 확장** 명령이 있습니다. 32비트 레지스터 하나에 16비트 값 두 개(또는 8비트 네 개)를 담아 한 명령으로 함께 처리하는 **SIMD(Single Instruction, Multiple Data)** 명령입니다. 예제의 `fir_q15_fast()`는 그중 `SMLALD`를 씁니다.
+Cortex-M4, M7(그리고 Armv8-M Mainline 코어인 M33, M35P, M55의 선택 사항)에는 **DSP 확장** 명령이 있습니다. 32비트 레지스터 하나에 16비트 값 두 개(또는 8비트 네 개)를 담아 한 명령으로 함께 처리하는 **SIMD(Single Instruction, Multiple Data)** 명령입니다. 예제의 `fir_q15_fast()`는 그중 `SMLALD`를 씁니다.
 
 ```c
 /* SMLALD acc, a, b : acc += a.lo × b.lo + a.hi × b.hi  (64비트 누산) */
@@ -176,6 +177,8 @@ max |q15 - float| = 0.000034 (1.1 LSB)
 all tests passed (0 failures)
 ```
 
+역어셈블을 보면 이 구현의 안쪽 루프(`-O2`)는 두 탭에 명령 8개(`ldrh` 두 번, `ldr`, `orr` 등으로 계수 짝을 만들고 `smlald`, 루프 비교와 분기)를 씁니다. 그중 세 개는 매번 계수 두 개를 32비트로 묶는 비용입니다. 계수를 미리 32비트 쌍 배열로 만들어 두면(CMSIS-DSP가 하는 방식) 두 탭에 명령 5개 정도로 줄어듭니다. "역어셈블을 보고, 반복되는 낭비를 찾아, 데이터 배치를 바꾼다"는 것이 최적화의 전형적인 흐름입니다.
+
 Q15 결과와 `float` 결과의 차이가 약 1 LSB(2^-15)라는 것은 고정소수점으로 바꿔도 정밀도를 거의 잃지 않았다는 뜻입니다. 최적화할 때는 이렇게 **결과가 같은지를 함께 시험**해야 합니다. 빠르지만 틀린 코드는 쓸모가 없습니다.
 
 ### CMSIS-DSP
@@ -186,18 +189,20 @@ FIR, IIR, FFT, 행렬, 통계 같은 신호 처리 함수를 직접 최적화할
 #include "arm_math.h"
 
 arm_fir_instance_q15 fir;
-static q15_t state[BLOCK + TAPS - 1];
-arm_fir_init_q15(&fir, TAPS, coeffs, state, BLOCK);   /* Q15 FIR은 탭 수가 짝수, 4 이상 */
+static q15_t state[TAPS + BLOCK];                     /* Cortex-M3/M4/M7: numTaps + blockSize */
+if (arm_fir_init_q15(&fir, TAPS, coeffs, state, BLOCK) != ARM_MATH_SUCCESS) {
+    /* 탭 수가 홀수이거나 4보다 작으면 ARM_MATH_ARGUMENT_ERROR */
+}
 arm_fir_q15(&fir, input, output, BLOCK);               /* 블록 단위로 처리 */
 ```
 
-CMSIS-DSP의 FIR은 이전 블록의 표본을 상태 버퍼에 기억하므로, 연속된 신호를 블록 단위로 나눠 처리하기 편합니다. 직접 만든 함수보다 대개 빠르고, 많은 사람이 시험한 코드라는 장점이 있습니다. 실무에서는 이 장처럼 직접 구현해 원리를 이해하고, 제품에는 CMSIS-DSP를 쓰는 경우가 많습니다. [확인 필요: 출간 시점 CMSIS-DSP 저장소와 빌드 방법]
+CMSIS-DSP의 FIR 계수는 시간 역순(b[numTaps-1], …, b[0])으로 넘겨야 하고, 상태 버퍼 크기는 코어에 따라 다릅니다(Cortex-M0용 구현은 numTaps + blockSize - 1). 이전 블록의 표본을 상태 버퍼에 기억하므로, 연속된 신호를 블록 단위로 나눠 처리하기 편합니다. 직접 만든 함수보다 대개 빠르고, 많은 사람이 시험한 코드라는 장점이 있습니다. 실무에서는 이 장처럼 직접 구현해 원리를 이해하고, 제품에는 CMSIS-DSP를 쓰는 경우가 많습니다. [확인 필요: 출간 시점 CMSIS-DSP 저장소와 빌드 방법]
 
 ## 34.7 실습: 단계별로 재기
 
 ![그림 34-2 최적화 단계별 실행 시간 비교 (개념도)](../figures/ch34/fig34-2-optimization-steps.svg)
 
-예제를 최적화 수준별로 빌드해 올리고, 시리얼 터미널(115200 bps)에 나오는 값으로 아래 표를 채워 보세요. 그림 34-2은 값의 크기 관계를 짐작해 그린 개념도이며, 실제 비율은 직접 잰 값으로 확인해야 합니다.
+예제를 최적화 수준별로 빌드해 올리고, 시리얼 터미널(115200 bps)에 나오는 값으로 아래 표를 채워 보세요. 그림 34-2는 값의 크기 관계를 짐작해 그린 개념도이며, 실제 비율은 직접 잰 값으로 확인해야 합니다.
 
 ```
 ch34 FIR benchmark: 256 samples x 32 taps (build: -O2)
@@ -242,5 +247,5 @@ ch34 FIR benchmark: 256 samples x 32 taps (build: -O2)
 2. 100 MHz, Flash 대기 상태 3에서 캐시가 모두 빗나간다면 명령 하나를 가져오는 데 최대 몇 클럭이 걸리나요? 128비트 줄 하나에 Thumb 명령이 평균 6개 들어 있고 프리페치가 완벽하게 동작한다면 평균은 얼마가 되나요?
 3. Q15 값 0.7과 0.6을 더하면 어떻게 되나요? 포화 덧셈과 그냥 더한 결과(넘침)를 각각 정수와 실수로 쓰세요.
 4. 32탭 FIR의 누산기를 `int32_t`로 했을 때 넘칠 수 있는 최악의 입력을 구하세요. 왜 예제는 64비트 누산기를 쓰나요?
-5. `fir_f32`의 안쪽 루프를 역어셈블해 보세요(`make disasm`). `vfma.f32`가 쓰였나요? `-O2`와 `-O3`에서 다르다면 어떻게 다른가요?
+5. `fir_f32`의 안쪽 루프를 역어셈블해 보세요(`make disasm`). `vfma.f32`가 쓰였나요? 쓰이지 않았다면 그 이유를 34.4절에서 찾고, `-ffp-contract=fast`로 다시 빌드해 명령과 사이클이 어떻게 바뀌는지, 결과가 비트 단위로 같은지 확인하세요.
 6. (실습) CMSIS-DSP의 `arm_fir_q15()`를 받아 예제에 넣고, 같은 입력에서 `fir_q15_fast()`와 결과와 속도를 비교하세요. 결과가 다르다면 반올림과 포화 방식의 차이를 조사하세요.

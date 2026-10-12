@@ -13,7 +13,7 @@ void fir_f32(const float *x, const float *h, float *y, size_t n, size_t taps)
         float acc = 0.0f;
         const float *xp = &x[i + taps - 1];
         for (size_t k = 0; k < taps; k++) {
-            acc += h[k] * xp[-(ptrdiff_t)k];          /* FPU의 곱셈-덧셈 (VFMA로 묶일 수 있다) */
+            acc += h[k] * xp[-(ptrdiff_t)k];          /* -std=c11에서는 vmul + vadd (34.4절: FP 축약) */
         }
         y[i] = acc;
     }
