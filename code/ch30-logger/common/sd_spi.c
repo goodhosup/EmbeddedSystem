@@ -116,7 +116,7 @@ sd_err_t sd_init(void)
         for (int i = 0; i < 4; i++) {
             r7[i] = spi_xfer(0xFF);
         }
-        if (r7[2] != 0x01u || r7[3] != 0xAAu) {    /* 2.7~3.6 V 지원과 확인 패턴 */
+        if ((r7[2] & 0x0Fu) != 0x01u || r7[3] != 0xAAu) {    /* 전압 범위(하위 4비트) 2.7~3.6 V와 확인 패턴 */
             deselect();
             return SD_ERR_INIT;
         }
