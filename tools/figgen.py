@@ -4942,6 +4942,53 @@ def fig_33_3():
     s.save("ch33/fig33-3-trustzone.svg")
 
 
+# ---------------------------------------------------------------------------
+# 34장 성능 최적화
+# ---------------------------------------------------------------------------
+
+def fig_34_1():
+    s = Svg(900, 470)
+    s.text(450, 30, "그림 34-2  최적화 단계별 실행 시간 비교 (개념도)", 16, weight="bold")
+    steps = [("① -O0, 16 MHz, float", 100, GRAY_BG, LINE),
+             ("② -O2 (컴파일러 최적화)", 38, BLUE_BG, BLUE),
+             ("③ 100 MHz + Flash 대기 3, ART 끔", 16, ORANGE_BG, ORANGE),
+             ("④ 100 MHz + ART 켬 (프리페치, 캐시)", 7, ORANGE_BG, ORANGE),
+             ("⑤ Q15 + SIMD (SMLALD, 두 탭씩)", 4, GREEN_BG, GREEN)]
+    x0, w = 330, 500
+    for i, (name, v, f, c) in enumerate(steps):
+        y = 70 + i * 62
+        s.text(x0 - 12, y + 26, name, 13, "end", weight="bold")
+        s.rect(x0, y + 6, w * v / 100, 34, f, c, 3, 1.5)
+    s.line(x0, 60, x0, 380, LINE, 1.4)
+    s.text(450, 410, "막대는 상대적인 크기를 보여 주는 개념도다. 실제 값은 예제를 빌드해 34.7절의 표에 직접 채운다", 12, color=INK)
+    s.text(450, 432, "순서가 중요하다: 먼저 재고, 가장 큰 것(알고리즘, 클럭, 메모리 대기)부터. 어셈블리 수준은 마지막에", 11, color=MUTED)
+    s.save("ch34/fig34-2-optimization-steps.svg")
+
+
+def fig_34_2():
+    s = Svg(900, 430)
+    s.text(450, 30, "그림 34-1  고정소수점 Q15 형식", 16, weight="bold")
+    x0, cw, y = 90, 44, 80
+    for b in range(16):
+        x = x0 + b * cw
+        sign = b == 0
+        s.rect(x, y, cw, 44, ORANGE_BG if sign else BLUE_BG, ORANGE if sign else BLUE, 0, 1.3)
+        s.text(x + cw / 2, y + 28, "S" if sign else f"2^-{b}", 10)
+        s.text(x + cw / 2, y - 8, str(15 - b), 10, color=MUTED)
+    s.text(x0 + cw / 2, y + 66, "부호", 11, color=ORANGE, weight="bold")
+    s.text(x0 + cw * 8.5, y + 66, "소수부 15비트 (각 비트의 무게 2^-1 ~ 2^-15)", 11, color=BLUE, weight="bold")
+    s.text(450, 182, "값 = (int16_t 정수) / 32768      범위 -1.0 ~ +0.99997      분해능 2^-15 ≈ 0.0000305", 13, weight="bold")
+    rows = [("0.5", "0x4000", "16384"), ("0.25", "0x2000", "8192"), ("-0.5", "0xC000", "-16384"),
+            ("-1.0", "0x8000", "-32768"), ("0.99997", "0x7FFF", "32767")]
+    s.text(250, 222, "실수", 12, weight="bold"); s.text(450, 222, "16진수", 12, weight="bold"); s.text(650, 222, "정수", 12, weight="bold")
+    for i, (a, b, c) in enumerate(rows):
+        yy = 248 + i * 24
+        s.text(250, yy, a, 12); s.text(450, yy, b, 12, color=BLUE); s.text(650, yy, c, 12)
+    s.text(450, 384, "곱셈: Q15 × Q15 = Q30 (32비트) → 반올림하고 15비트 오른쪽으로 → Q15.  -1 × -1 = +1은 표현할 수 없어 포화", 12, color=INK)
+    s.text(450, 406, "덧셈을 여러 번 하면 넘친다: 누산기는 더 넓게(32, 64비트) 두고 마지막에 포화시킨다", 11, color=MUTED)
+    s.save("ch34/fig34-1-q15.svg")
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("fig_") and callable(fn):
