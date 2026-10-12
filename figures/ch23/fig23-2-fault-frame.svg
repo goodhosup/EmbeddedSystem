@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="440" viewBox="0 0 900 440" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 23-2  HardFault가 일어났을 때의 예외 스택 프레임</text>
+  <rect x="320.0" y="64.0" width="200.0" height="36.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="420.0" y="87.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">xPSR</text>
+  <text x="310.0" y="87.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">+0x1C</text>
+  <rect x="320.0" y="100.0" width="200.0" height="36.0" rx="0" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="420.0" y="123.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">PC</text>
+  <text x="310.0" y="123.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">+0x18</text>
+  <text x="534.0" y="123.0" font-size="12" text-anchor="start" fill="#d9730d" font-weight="bold">폴트가 난 명령의 주소</text>
+  <rect x="320.0" y="136.0" width="200.0" height="36.0" rx="0" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="420.0" y="159.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">LR</text>
+  <text x="310.0" y="159.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">+0x14</text>
+  <text x="534.0" y="159.0" font-size="12" text-anchor="start" fill="#d9730d" font-weight="bold">그 함수를 부른 곳</text>
+  <rect x="320.0" y="172.0" width="200.0" height="36.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="420.0" y="195.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">R12</text>
+  <text x="310.0" y="195.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">+0x10</text>
+  <rect x="320.0" y="208.0" width="200.0" height="36.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="420.0" y="231.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">R3</text>
+  <text x="310.0" y="231.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">+0x0C</text>
+  <rect x="320.0" y="244.0" width="200.0" height="36.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="420.0" y="267.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">R2</text>
+  <text x="310.0" y="267.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">+0x08</text>
+  <rect x="320.0" y="280.0" width="200.0" height="36.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="420.0" y="303.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">R1</text>
+  <text x="310.0" y="303.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">+0x04</text>
+  <rect x="320.0" y="316.0" width="200.0" height="36.0" rx="0" fill="#ffffff" stroke="#334e68" stroke-width="1"/>
+  <text x="420.0" y="339.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">R0</text>
+  <text x="310.0" y="339.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">+0x00</text>
+  <text x="534.0" y="339.0" font-size="12" text-anchor="start" fill="#616e7c" font-weight="normal">← SP</text>
+  <rect x="60.0" y="64.0" width="200.0" height="110.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1"/>
+  <text x="160.0" y="88.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">어느 스택인가?</text>
+  <text x="160.0" y="110.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">LR(EXC_RETURN)의 비트 2</text>
+  <text x="160.0" y="130.0" font-size="12" text-anchor="middle" fill="#2f6fdf" font-weight="bold">0 → MSP,  1 → PSP</text>
+  <text x="160.0" y="152.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">(RTOS 태스크는 PSP, 26장)</text>
+  <text x="450.0" y="380.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">폴트 처리기에서 스택 프레임의 PC를 읽고, 그 주소를 addr2line이나 맵 파일로 소스 줄로 바꾼다</text>
+  <text x="450.0" y="402.0" font-size="12" text-anchor="middle" fill="#2f6fdf" font-weight="bold">arm-none-eabi-addr2line -e firmware.elf 0x080004a2  →  main.c:57</text>
+  <text x="450.0" y="424.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">FPU를 쓰던 코드라면 S0~S15, FPSCR이 더해진 확장 프레임이 된다</text>
+</svg>

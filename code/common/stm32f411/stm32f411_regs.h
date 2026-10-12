@@ -460,6 +460,17 @@ typedef struct {
 
 /* ---- SCB 시스템 제어 레지스터 (0xE000 ED10) ---- */
 #define SCB_SCR             (*(volatile uint32_t *)0xE000ED10u)
+#define SCB_CCR             (*(volatile uint32_t *)0xE000ED14u)
+#define SCB_SHCSR           (*(volatile uint32_t *)0xE000ED24u)
+#define SCB_CFSR            (*(volatile uint32_t *)0xE000ED28u)   /* MMFSR[7:0], BFSR[15:8], UFSR[31:16] */
+#define SCB_HFSR            (*(volatile uint32_t *)0xE000ED2Cu)
+#define SCB_MMFAR           (*(volatile uint32_t *)0xE000ED34u)
+#define SCB_BFAR            (*(volatile uint32_t *)0xE000ED38u)
+#define SCB_CCR_UNALIGN_TRP (1u << 3)
+#define SCB_CCR_DIV_0_TRP   (1u << 4)
+#define SCB_SHCSR_MEMFAULTENA (1u << 16)
+#define SCB_SHCSR_BUSFAULTENA (1u << 17)
+#define SCB_SHCSR_USGFAULTENA (1u << 18)
 #define SCB_SCR_SLEEPONEXIT (1u << 1)
 #define SCB_SCR_SLEEPDEEP   (1u << 2)
 

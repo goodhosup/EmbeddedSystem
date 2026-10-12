@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="380" viewBox="0 0 900 380" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 23-1  SWD 신호 연결</text>
+  <rect x="40.0" y="80.0" width="170.0" height="200.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="125.0" y="177.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">PC</text>
+  <text x="125.0" y="196.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">GDB · OpenOCD</text>
+  <rect x="300.0" y="120.0" width="160.0" height="120.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="380.0" y="177.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">디버그 프로브</text>
+  <text x="380.0" y="196.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">ST-LINK, J-Link 등</text>
+  <line x1="212.0" y1="180.0" x2="296.0" y2="180.0" stroke="#334e68" stroke-width="3" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+  <text x="254.0" y="172.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">USB</text>
+  <rect x="560.0" y="70.0" width="300.0" height="230.0" rx="10" fill="#e3edfd" stroke="#2f6fdf" stroke-width="2"/>
+  <text x="710.0" y="94.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">STM32 (Cortex-M 디버그 포트)</text>
+  <line x1="462.0" y1="120.0" x2="556.0" y2="120.0" stroke="#d9730d" stroke-width="2.2"/>
+  <text x="509.0" y="114.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="bold">SWCLK</text>
+  <text x="580.0" y="124.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="bold">PA14</text>
+  <text x="640.0" y="124.0" font-size="11" text-anchor="start" fill="#616e7c" font-weight="normal">클럭</text>
+  <line x1="462.0" y1="150.0" x2="556.0" y2="150.0" stroke="#d9730d" stroke-width="2.2"/>
+  <text x="509.0" y="144.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="bold">SWDIO</text>
+  <text x="580.0" y="154.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="bold">PA13</text>
+  <text x="640.0" y="154.0" font-size="11" text-anchor="start" fill="#616e7c" font-weight="normal">양방향 데이터</text>
+  <line x1="462.0" y1="180.0" x2="556.0" y2="180.0" stroke="#334e68" stroke-width="1.5"/>
+  <text x="509.0" y="174.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="bold">NRST</text>
+  <text x="580.0" y="184.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="bold">NRST</text>
+  <text x="640.0" y="184.0" font-size="11" text-anchor="start" fill="#616e7c" font-weight="normal">리셋 (선택, 권장)</text>
+  <line x1="462.0" y1="210.0" x2="556.0" y2="210.0" stroke="#334e68" stroke-width="1.5"/>
+  <text x="509.0" y="204.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="bold">SWO</text>
+  <text x="580.0" y="214.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="bold">PB3</text>
+  <text x="640.0" y="214.0" font-size="11" text-anchor="start" fill="#616e7c" font-weight="normal">추적 출력 (선택)</text>
+  <line x1="462.0" y1="240.0" x2="556.0" y2="240.0" stroke="#334e68" stroke-width="1.5"/>
+  <text x="509.0" y="234.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="bold">GND</text>
+  <text x="580.0" y="244.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="bold">GND</text>
+  <text x="640.0" y="244.0" font-size="11" text-anchor="start" fill="#616e7c" font-weight="normal"></text>
+  <text x="450.0" y="330.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">SWD는 두 선(SWCLK, SWDIO)으로 CPU를 멈추고, 레지스터와 메모리를 읽고 쓰고, Flash에 프로그램을 올린다</text>
+  <text x="450.0" y="352.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">NUCLEO는 보드 위에 ST-LINK가 있어 이 연결이 이미 되어 있다. JTAG(4~5선)은 SWD 이전의 방식이다</text>
+</svg>

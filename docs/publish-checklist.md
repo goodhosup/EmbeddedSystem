@@ -15,8 +15,11 @@
 | `chapters/ch17-can.md` | 163 | [확인 필요: STM32F411 PA6의 FT 여부와 MCP2515 모듈별 전원 구성] |
 | `chapters/ch18-usb.md` | 206 | [확인 필요: TinyUSB 0.17.0으로 make 빌드 확인] |
 | `chapters/ch19-wireless.md` | 220 | [확인 필요: ESP32 데이터시트의 전력 소비 표 값과 조건] |
+| `chapters/ch23-debugging.md` | 52 | [확인 필요: Cortex-M4 FPB 비교기 수] |
+| `chapters/ch23-debugging.md` | 155 | [확인 필요: ACTLR 비트 위치] |
+| `chapters/ch23-debugging.md` | 200 | [확인 필요: OpenOCD 버전별 SWO 설정 명령, NUCLEO의 SWO 솔더 브리지 기본 상태] |
 | `code/ch18-usb/README.md` | 23 | [확인 필요: CN10 핀 번호] |
 | `code/ch18-usb/stm32/usb_descriptors.c` | 6 | [확인 필요: pid.codes 시험용 PID 정책] |
 | `code/ch19-wireless/esp32-arduino/ble_sensor/ble_sensor.ino` | 9 | [확인 필요: 코어 버전별 BLE 라이브러리 API] |
 
-총 13건
+총 16건
