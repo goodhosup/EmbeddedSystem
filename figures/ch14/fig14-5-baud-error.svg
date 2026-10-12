@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="400" viewBox="0 0 900 400" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 14-5  보레이트 오차가 누적되어 프레임이 깨지는 모습</text>
+  <text x="138.0" y="88.0" font-size="13" text-anchor="end" fill="#1f2933" font-weight="bold">보내는 쪽</text>
+  <text x="138.0" y="104.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">정확한 속도</text>
+  <rect x="150.0" y="70.0" width="66.0" height="30.0" rx="0" fill="#eef1f4" stroke="#334e68" stroke-width="1"/>
+  <text x="183.0" y="90.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="normal">시작</text>
+  <rect x="216.0" y="70.0" width="66.0" height="30.0" rx="0" fill="#e3edfd" stroke="#334e68" stroke-width="1"/>
+  <text x="249.0" y="90.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="normal">D0</text>
+  <rect x="282.0" y="70.0" width="66.0" height="30.0" rx="0" fill="#e3edfd" stroke="#334e68" stroke-width="1"/>
+  <text x="315.0" y="90.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="normal">D1</text>
+  <rect x="348.0" y="70.0" width="66.0" height="30.0" rx="0" fill="#e3edfd" stroke="#334e68" stroke-width="1"/>
+  <text x="381.0" y="90.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="normal">D2</text>
+  <rect x="414.0" y="70.0" width="66.0" height="30.0" rx="0" fill="#e3edfd" stroke="#334e68" stroke-width="1"/>
+  <text x="447.0" y="90.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="normal">D3</text>
+  <rect x="480.0" y="70.0" width="66.0" height="30.0" rx="0" fill="#e3edfd" stroke="#334e68" stroke-width="1"/>
+  <text x="513.0" y="90.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="normal">D4</text>
+  <rect x="546.0" y="70.0" width="66.0" height="30.0" rx="0" fill="#e3edfd" stroke="#334e68" stroke-width="1"/>
+  <text x="579.0" y="90.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="normal">D5</text>
+  <rect x="612.0" y="70.0" width="66.0" height="30.0" rx="0" fill="#e3edfd" stroke="#334e68" stroke-width="1"/>
+  <text x="645.0" y="90.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="normal">D6</text>
+  <rect x="678.0" y="70.0" width="66.0" height="30.0" rx="0" fill="#e3edfd" stroke="#334e68" stroke-width="1"/>
+  <text x="711.0" y="90.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="normal">D7</text>
+  <rect x="744.0" y="70.0" width="66.0" height="30.0" rx="0" fill="#eef1f4" stroke="#334e68" stroke-width="1"/>
+  <text x="777.0" y="90.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="normal">정지</text>
+  <text x="138.0" y="168.0" font-size="13" text-anchor="end" fill="#2f9e44" font-weight="bold">받는 쪽 2% 느림</text>
+  <text x="138.0" y="184.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">샘플 시점</text>
+  <line x1="150.0" y1="165.0" x2="810.0" y2="165.0" stroke="#dde3ea" stroke-width="1"/>
+  <line x1="183.0" y1="80.0" x2="183.0" y2="146.0" stroke="#c9d2dc" stroke-width="1" stroke-dasharray="3 3"/>
+  <polygon points="183.7,156.0 177.7,172.0 189.7,172.0" fill="#2f9e44" stroke="#2f9e44" stroke-width="1"/>
+  <line x1="249.0" y1="80.0" x2="249.0" y2="146.0" stroke="#c9d2dc" stroke-width="1" stroke-dasharray="3 3"/>
+  <polygon points="251.0,156.0 245.0,172.0 257.0,172.0" fill="#2f9e44" stroke="#2f9e44" stroke-width="1"/>
+  <line x1="315.0" y1="80.0" x2="315.0" y2="146.0" stroke="#c9d2dc" stroke-width="1" stroke-dasharray="3 3"/>
+  <polygon points="318.3,156.0 312.3,172.0 324.3,172.0" fill="#2f9e44" stroke="#2f9e44" stroke-width="1"/>
+  <line x1="381.0" y1="80.0" x2="381.0" y2="146.0" stroke="#c9d2dc" stroke-width="1" stroke-dasharray="3 3"/>
+  <polygon points="385.6,156.0 379.6,172.0 391.6,172.0" fill="#2f9e44" stroke="#2f9e44" stroke-width="1"/>
+  <line x1="447.0" y1="80.0" x2="447.0" y2="146.0" stroke="#c9d2dc" stroke-width="1" stroke-dasharray="3 3"/>
+  <polygon points="452.9,156.0 446.9,172.0 458.9,172.0" fill="#2f9e44" stroke="#2f9e44" stroke-width="1"/>
+  <line x1="513.0" y1="80.0" x2="513.0" y2="146.0" stroke="#c9d2dc" stroke-width="1" stroke-dasharray="3 3"/>
+  <polygon points="520.3,156.0 514.3,172.0 526.3,172.0" fill="#2f9e44" stroke="#2f9e44" stroke-width="1"/>
+  <line x1="579.0" y1="80.0" x2="579.0" y2="146.0" stroke="#c9d2dc" stroke-width="1" stroke-dasharray="3 3"/>
+  <polygon points="587.6,156.0 581.6,172.0 593.6,172.0" fill="#2f9e44" stroke="#2f9e44" stroke-width="1"/>
+  <line x1="645.0" y1="80.0" x2="645.0" y2="146.0" stroke="#c9d2dc" stroke-width="1" stroke-dasharray="3 3"/>
+  <polygon points="654.9,156.0 648.9,172.0 660.9,172.0" fill="#2f9e44" stroke="#2f9e44" stroke-width="1"/>
+  <line x1="711.0" y1="80.0" x2="711.0" y2="146.0" stroke="#c9d2dc" stroke-width="1" stroke-dasharray="3 3"/>
+  <polygon points="722.2,156.0 716.2,172.0 728.2,172.0" fill="#2f9e44" stroke="#2f9e44" stroke-width="1"/>
+  <line x1="777.0" y1="80.0" x2="777.0" y2="146.0" stroke="#c9d2dc" stroke-width="1" stroke-dasharray="3 3"/>
+  <polygon points="789.5,156.0 783.5,172.0 795.5,172.0" fill="#2f9e44" stroke="#2f9e44" stroke-width="1"/>
+  <text x="840.0" y="170.0" font-size="12" text-anchor="start" fill="#2f9e44" font-weight="bold">정지 비트 안</text>
+  <text x="138.0" y="278.0" font-size="13" text-anchor="end" fill="#d64545" font-weight="bold">받는 쪽 6% 느림</text>
+  <text x="138.0" y="294.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">샘플 시점</text>
+  <line x1="150.0" y1="275.0" x2="810.0" y2="275.0" stroke="#dde3ea" stroke-width="1"/>
+  <line x1="183.0" y1="150.0" x2="183.0" y2="256.0" stroke="#c9d2dc" stroke-width="1" stroke-dasharray="3 3"/>
+  <polygon points="185.0,266.0 179.0,282.0 191.0,282.0" fill="#d64545" stroke="#d64545" stroke-width="1"/>
+  <line x1="249.0" y1="150.0" x2="249.0" y2="256.0" stroke="#c9d2dc" stroke-width="1" stroke-dasharray="3 3"/>
+  <polygon points="254.9,266.0 248.9,282.0 260.9,282.0" fill="#d64545" stroke="#d64545" stroke-width="1"/>
+  <line x1="315.0" y1="150.0" x2="315.0" y2="256.0" stroke="#c9d2dc" stroke-width="1" stroke-dasharray="3 3"/>
+  <polygon points="324.9,266.0 318.9,282.0 330.9,282.0" fill="#d64545" stroke="#d64545" stroke-width="1"/>
+  <line x1="381.0" y1="150.0" x2="381.0" y2="256.0" stroke="#c9d2dc" stroke-width="1" stroke-dasharray="3 3"/>
+  <polygon points="394.9,266.0 388.9,282.0 400.9,282.0" fill="#d64545" stroke="#d64545" stroke-width="1"/>
+  <line x1="447.0" y1="150.0" x2="447.0" y2="256.0" stroke="#c9d2dc" stroke-width="1" stroke-dasharray="3 3"/>
+  <polygon points="464.8,266.0 458.8,282.0 470.8,282.0" fill="#d64545" stroke="#d64545" stroke-width="1"/>
+  <line x1="513.0" y1="150.0" x2="513.0" y2="256.0" stroke="#c9d2dc" stroke-width="1" stroke-dasharray="3 3"/>
+  <polygon points="534.8,266.0 528.8,282.0 540.8,282.0" fill="#d64545" stroke="#d64545" stroke-width="1"/>
+  <line x1="579.0" y1="150.0" x2="579.0" y2="256.0" stroke="#c9d2dc" stroke-width="1" stroke-dasharray="3 3"/>
+  <polygon points="604.7,266.0 598.7,282.0 610.7,282.0" fill="#d64545" stroke="#d64545" stroke-width="1"/>
+  <line x1="645.0" y1="150.0" x2="645.0" y2="256.0" stroke="#c9d2dc" stroke-width="1" stroke-dasharray="3 3"/>
+  <polygon points="674.7,266.0 668.7,282.0 680.7,282.0" fill="#d64545" stroke="#d64545" stroke-width="1"/>
+  <line x1="711.0" y1="150.0" x2="711.0" y2="256.0" stroke="#c9d2dc" stroke-width="1" stroke-dasharray="3 3"/>
+  <polygon points="744.7,266.0 738.7,282.0 750.7,282.0" fill="#d64545" stroke="#d64545" stroke-width="1"/>
+  <line x1="777.0" y1="150.0" x2="777.0" y2="256.0" stroke="#c9d2dc" stroke-width="1" stroke-dasharray="3 3"/>
+  <polygon points="814.6,266.0 808.6,282.0 820.6,282.0" fill="#d64545" stroke="#d64545" stroke-width="1"/>
+  <text x="840.0" y="280.0" font-size="12" text-anchor="start" fill="#d64545" font-weight="bold">정지 비트 밖</text>
+  <text x="450.0" y="340.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">시작 비트의 하강 에지에서 맞춘 뒤로는 오차가 비트마다 쌓인다. 마지막 비트(정지)의 중앙까지 반 비트 이상 어긋나면 틀린다</text>
+  <text x="450.0" y="360.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">8N1 프레임(10비트)이면 9.5비트 동안 0.5비트 미만: 두 장치 오차의 합이 약 5% 미만이어야 한다 (실제로는 더 여유 있게)</text>
+</svg>

@@ -11,6 +11,7 @@
  *   - EXTI: RM0383 10.3절 "EXTI registers"
  *   - TIM2~TIM5: RM0383 13.4절 "TIM2 to TIM5 registers"
  *   - DMA: RM0383 9.5절 "DMA registers"
+ *   - USART: RM0383 19.6절 "USART registers"
  *   - RTC: RM0383 17.6절 "RTC registers", 저전력 모드: RM0383 5.3절
  *   - SCB_SCR: PM0214 4.4절 "System control block"
  *   - DWT 사이클 카운터: Cortex-M4 기술 참조 매뉴얼, ARMv7-M 아키텍처 참조 매뉴얼
@@ -99,9 +100,12 @@ typedef struct {
 #define RCC_APB1ENR_TIM3EN  (1u << 1)
 #define RCC_APB1ENR_TIM4EN  (1u << 2)
 #define RCC_APB1ENR_TIM5EN  (1u << 3)
+#define RCC_APB1ENR_USART2EN (1u << 17)
 #define RCC_APB1ENR_PWREN   (1u << 28)
 
 /* RCC_APB2ENR */
+#define RCC_APB2ENR_USART1EN (1u << 4)
+#define RCC_APB2ENR_USART6EN (1u << 5)
 #define RCC_APB2ENR_ADC1EN   (1u << 8)
 #define RCC_APB2ENR_SYSCFGEN (1u << 14)
 
@@ -317,6 +321,42 @@ static inline void cycle_counter_init(void)
     DWT_CYCCNT = 0;
     DWT_CTRL |= DWT_CTRL_CYCCNTENA; /* 클럭마다 1씩 증가 */
 }
+
+/* ---- USART (USART1 0x4001 1000, USART2 0x4000 4400, USART6 0x4001 1400) ---- */
+typedef struct {
+    __IO uint32_t SR;          /* 0x00 상태 */
+    __IO uint32_t DR;          /* 0x04 데이터 */
+    __IO uint32_t BRR;         /* 0x08 보레이트 */
+    __IO uint32_t CR1;         /* 0x0C */
+    __IO uint32_t CR2;         /* 0x10 */
+    __IO uint32_t CR3;         /* 0x14 */
+    __IO uint32_t GTPR;        /* 0x18 */
+} USART_TypeDef;
+
+#define USART1 ((USART_TypeDef *)0x40011000u)
+#define USART2 ((USART_TypeDef *)0x40004400u)
+#define USART6 ((USART_TypeDef *)0x40011400u)
+
+#define USART_SR_PE         (1u << 0)
+#define USART_SR_FE         (1u << 1)
+#define USART_SR_NF         (1u << 2)
+#define USART_SR_ORE        (1u << 3)
+#define USART_SR_IDLE       (1u << 4)
+#define USART_SR_RXNE       (1u << 5)
+#define USART_SR_TC         (1u << 6)
+#define USART_SR_TXE        (1u << 7)
+#define USART_CR1_RE        (1u << 2)
+#define USART_CR1_TE        (1u << 3)
+#define USART_CR1_IDLEIE    (1u << 4)
+#define USART_CR1_RXNEIE    (1u << 5)
+#define USART_CR1_TCIE      (1u << 6)
+#define USART_CR1_TXEIE     (1u << 7)
+#define USART_CR1_PCE       (1u << 10)
+#define USART_CR1_M         (1u << 12)
+#define USART_CR1_UE        (1u << 13)
+#define USART_CR1_OVER8     (1u << 15)
+#define USART_CR3_DMAR      (1u << 6)
+#define USART_CR3_DMAT      (1u << 7)
 
 /* ---- RTC (0x4000 2800) ---- */
 typedef struct {

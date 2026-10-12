@@ -57,6 +57,10 @@ SECTIONS
         _ebss = .;
     } > RAM
 
+    /* 힙은 .bss 바로 뒤에서 시작해 스택 쪽으로 자란다 (newlib의 malloc이 _sbrk로 요청) */
+    end = _ebss;
+    _end = _ebss;
+
     /DISCARD/ :
     {
         *(.ARM.exidx*)

@@ -42,11 +42,11 @@
   <rect x="391.6" y="93.1" width="271.6" height="156.9" rx="8" fill="#fff4e0" fill-opacity="0.35" stroke="#e67700" stroke-width="1.5"/>
   <text x="214.9" y="283.1" font-size="13" text-anchor="middle" fill="#2f9e44" font-weight="bold">I2C</text>
   <text x="214.9" y="175.5" font-size="13" text-anchor="middle" fill="#2f6fdf" font-weight="bold">SPI</text>
-  <text x="438.2" y="351.5" font-size="13" text-anchor="middle" fill="#d9730d" font-weight="bold">UART</text>
-  <text x="704.2" y="346.4" font-size="13" text-anchor="middle" fill="#d64545" font-weight="bold">RS-485</text>
-  <text x="592.3" y="288.1" font-size="13" text-anchor="middle" fill="#7048e8" font-weight="bold">CAN</text>
-  <text x="370.6" y="112.2" font-size="13" text-anchor="middle" fill="#334e68" font-weight="bold">USB FS/HS</text>
+  <text x="320.6" y="346.4" font-size="13" text-anchor="middle" fill="#d9730d" font-weight="bold">UART</text>
+  <text x="752.0" y="219.8" font-size="13" text-anchor="middle" fill="#d64545" font-weight="bold">RS-485</text>
+  <text x="728.1" y="308.3" font-size="13" text-anchor="middle" fill="#7048e8" font-weight="bold">CAN</text>
+  <text x="329.7" y="123.3" font-size="13" text-anchor="middle" fill="#334e68" font-weight="bold">USB FS/HS</text>
   <text x="497.3" y="264.1" font-size="13" text-anchor="middle" fill="#0c8599" font-weight="bold">BLE</text>
-  <text x="592.3" y="167.6" font-size="13" text-anchor="middle" fill="#e67700" font-weight="bold">Wi-Fi</text>
+  <text x="581.5" y="123.3" font-size="13" text-anchor="middle" fill="#e67700" font-weight="bold">Wi-Fi</text>
   <text x="450.0" y="490.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">범위는 일반적인 사용 예를 나타낸 개념도다. 실제 한계는 규격, 칩, 케이블, 환경에 따라 크게 달라진다</text>
 </svg>

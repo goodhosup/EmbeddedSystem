@@ -2507,8 +2507,8 @@ def fig_13_6():
     for n, d0, d1, b0, b1, f, st in regions:
         s.add(f'<rect x="{X(d0):.1f}" y="{Y(b1):.1f}" width="{X(d1) - X(d0):.1f}" height="{Y(b0) - Y(b1):.1f}" '
               f'rx="8" fill="{f}" fill-opacity="0.35" stroke="{st}" stroke-width="1.5"/>')
-    labels = {"I2C": (0.05, 3e5), "SPI": (0.05, 1.5e7), "UART": (2.2, 2.5e4), "RS-485": (200, 3e4),
-              "CAN": (30, 2.5e5), "USB FS/HS": (0.7, 1.5e8), "BLE": (6, 6e5), "Wi-Fi": (30, 2e7)}
+    labels = {"I2C": (0.05, 3e5), "SPI": (0.05, 1.5e7), "UART": (0.3, 3e4), "RS-485": (450, 3e6),
+              "CAN": (300, 1.2e5), "USB FS/HS": (0.35, 1e8), "BLE": (6, 6e5), "Wi-Fi": (25, 1e8)}
     for n, d0, d1, b0, b1, f, st in regions:
         lx, ly = labels[n]
         s.text(X(lx), Y(ly), n, 13, color=st, weight="bold")
@@ -2580,9 +2580,9 @@ def fig_14_4():
     t.render("ch14/fig14-4-oversampling.svg", 70)
 
 
-def fig_14_6():
+def fig_14_7():
     s = Svg(760, 300)
-    s.text(380, 30, "그림 14-6  링 버퍼: ISR은 head에 쓰고, 메인 루프는 tail에서 읽는다", 16, weight="bold")
+    s.text(380, 30, "그림 14-7  링 버퍼: ISR은 head에 쓰고, 메인 루프는 tail에서 읽는다", 16, weight="bold")
     n, x0, y0, w = 10, 80, 110, 60
     data = {2: "'H'", 3: "'E'", 4: "'L'", 5: "'L'", 6: "'O'"}
     for i in range(n):
@@ -2599,7 +2599,97 @@ def fig_14_6():
     s.path(f"M{x0 + n * w - 10},{y0 + 92} Q{x0 + n * w + 30},{y0 + 140} {x0 + n * w / 2},{y0 + 150} Q{x0 - 30},{y0 + 140} {x0 + 10},{y0 + 98}", MUTED, 1.5)
     s.line(x0 + 14, y0 + 104, x0 + 10, y0 + 96, MUTED, 1.5, arrow=True)
     s.text(380, y0 + 172, "끝에 닿으면 0번으로 돌아간다   ·   head == tail 이면 비어 있음", 12, color=MUTED)
-    s.save("ch14/fig14-6-ring-buffer.svg")
+    s.save("ch14/fig14-7-ring-buffer.svg")
+
+
+def fig_14_5():
+    s = Svg(900, 400)
+    s.text(450, 30, "그림 14-5  보레이트 오차가 누적되어 프레임이 깨지는 모습", 16, weight="bold")
+    x0, bw = 150, 66
+    names = ["시작", "D0", "D1", "D2", "D3", "D4", "D5", "D6", "D7", "정지"]
+
+    def frame(y, label, sub):
+        s.text(x0 - 12, y + 18, label, 13, "end", weight="bold")
+        s.text(x0 - 12, y + 34, sub, 11, "end", MUTED)
+        for i, n in enumerate(names):
+            s.rect(x0 + i * bw, y, bw, 30, GRAY_BG if i in (0, 9) else BLUE_BG, LINE, 0, 1)
+            s.text(x0 + i * bw + bw / 2, y + 20, n, 11)
+
+    frame(70, "보내는 쪽", "정확한 속도")
+    # 받는 쪽 (2% 빠른 클럭 → 샘플 시점이 점점 앞당겨짐 표시: 여기서는 5% 예)
+    for k, (err, col, y) in enumerate(((0.02, GREEN, 150), (0.06, RED, 260))):
+        s.text(x0 - 12, y + 18, f"받는 쪽 {int(err * 100)}% 느림", 13, "end", col, "bold")
+        s.text(x0 - 12, y + 34, "샘플 시점", 11, "end", MUTED)
+        s.line(x0, y + 15, x0 + 10 * bw, y + 15, "#dde3ea", 1)
+        for i in range(10):
+            ideal = x0 + (i + 0.5) * bw
+            actual = x0 + (i + 0.5) * bw * (1 + err)
+            ok = abs(actual - ideal) < bw * 0.5
+            c = col if ok else RED
+            s.line(ideal, y - 70 + (0 if k == 0 else -40), ideal, y - 4, "#c9d2dc", 1, "3 3")
+            s.poly([(actual, y + 6), (actual - 6, y + 22), (actual + 6, y + 22)], c, c, 1)
+        s.text(x0 + 10 * bw + 30, y + 20, "정지 비트 안" if k == 0 else "정지 비트 밖", 12, "start", col, "bold")
+    s.text(450, 340, "시작 비트의 하강 에지에서 맞춘 뒤로는 오차가 비트마다 쌓인다. 마지막 비트(정지)의 중앙까지 반 비트 이상 어긋나면 틀린다", 12, color=MUTED)
+    s.text(450, 360, "8N1 프레임(10비트)이면 9.5비트 동안 0.5비트 미만: 두 장치 오차의 합이 약 5% 미만이어야 한다 (실제로는 더 여유 있게)", 12, color=INK)
+    s.save("ch14/fig14-5-baud-error.svg")
+
+
+def fig_14_6():
+    s = Svg(900, 330)
+    s.text(450, 30, "그림 14-6  USB–UART 변환기를 통한 PC 연결", 16, weight="bold")
+    s.box(30, 110, 150, 70, "PC", "터미널 프로그램", GRAY_BG, LINE, 15)
+    s.box(260, 110, 170, 70, "USB–UART 변환 칩", "CH340 · CP2102 · FT232", ORANGE_BG, ORANGE, 13)
+    s.box(560, 90, 140, 110, "MCU", None, BLUE_BG, BLUE, 15)
+    s.line(182, 145, 256, 145, LINE, 3, both=True)
+    s.text(219, 136, "USB", 12, color=MUTED)
+    for y, a, b, col in ((118, "TX", "RX", ORANGE), (146, "RX", "TX", BLUE), (174, "GND", "GND", INK)):
+        s.text(442, y + 4, a, 11, "start", weight="bold")
+        s.text(548, y + 4, b, 11, "end", weight="bold")
+        s.line(466, y, 524, y, col, 2, arrow=(a != "GND"))
+    s.text(495, 214, "3.3 V / 5 V 논리 레벨을 맞춘다", 11, color=RED)
+    s.text(140, 214, "PC에서는 가상 COM 포트로 보인다", 11, color=MUTED)
+    s.text(140, 232, "(리눅스 /dev/ttyUSB0, /dev/ttyACM0, 윈도우 COMx)", 11, color=MUTED)
+    s.rect(30, 256, 840, 56, "#fafbfc", MUTED, 8, 1)
+    s.text(450, 278, "우노: 보드의 ATmega16U2가 이 역할   ·   NUCLEO: ST-LINK가 USART2(PA2, PA3)를 가상 COM 포트로 연결", 12, weight="bold")
+    s.text(450, 298, "그래서 두 보드 모두 USB 케이블 하나로 업로드와 시리얼 통신을 함께 한다", 12, color=MUTED)
+    s.box(730, 110, 140, 70, "센서 · 모듈", "GPS 등 (선택)", GRAY_BG, LINE, 13)
+    s.line(702, 145, 726, 145, LINE, 1.5, both=True)
+    s.save("ch14/fig14-6-usb-uart.svg")
+
+
+def fig_14_8():
+    s = Svg(900, 400)
+    s.text(450, 30, "그림 14-8  RS-485 반이중 버스 연결", 16, weight="bold")
+    yA, yB = 230, 260
+    s.line(80, yA, 820, yA, BLUE, 3)
+    s.line(80, yB, 820, yB, ORANGE, 3)
+    s.text(70, yA + 5, "A", 13, "end", BLUE, "bold")
+    s.text(70, yB + 5, "B", 13, "end", ORANGE, "bold")
+    for x in (95, 805):
+        resistor_v(s, x, yA, yB + 0.1, None)
+        s.text(x, yB + 30, "120 Ω", 11, color=RED, weight="bold")
+    s.text(450, yB + 30, "꼬인 쌍선 (수백 m ~ 1 km 이상)", 11, color=MUTED)
+    for i, x in enumerate((180, 420, 660)):
+        s.box(x, 60, 120, 50, f"MCU {i + 1}", "UART", BLUE_BG, BLUE, 13)
+        s.rect(x, 140, 120, 56, ORANGE_BG, ORANGE, 6, 1.5)
+        s.text(x + 60, 162, "트랜시버", 12, weight="bold")
+        s.text(x + 60, 182, "MAX485 등", 10, color=MUTED)
+        for k, lbl in enumerate(("TX→DI", "RX←RO", "DE/RE")):
+            xx = x + 18 + k * 42
+            if k == 1:
+                s.line(xx, 138, xx, 112, LINE, 1.5, arrow=True)
+            else:
+                s.line(xx, 112, xx, 138, LINE, 1.5, arrow=True)
+            s.text(xx, 128, "", 1)
+        s.text(x + 60, 126, "TX · RX · 방향", 10, color=MUTED)
+        s.line(x + 40, 198, x + 40, yA - 2, BLUE, 2)
+        s.line(x + 80, 198, x + 80, yB - 2, ORANGE, 2)
+        dot(s, x + 40, yA, BLUE)
+        dot(s, x + 80, yB, ORANGE)
+    s.text(450, 316, "선 두 개(A, B)를 모두가 나눠 쓰므로 한 번에 한 장치만 보낸다. 보낼 때만 DE를 켜고, 다 보낸 뒤 바로 끈다", 12, color=INK)
+    s.text(450, 336, "버스의 양 끝에만 120 Ω 종단 저항을 단다 (중간 장치에는 달지 않는다)", 12, color=RED)
+    s.text(450, 356, "차동 신호: A − B > +200 mV 이면 1, < −200 mV 이면 0 (13장의 차동 신호)", 12, color=MUTED)
+    s.save("ch14/fig14-8-rs485.svg")
 
 
 # ---------------------------------------------------------------------------

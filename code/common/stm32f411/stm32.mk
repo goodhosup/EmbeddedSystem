@@ -12,11 +12,20 @@ OBJCOPY = arm-none-eabi-objcopy
 SIZE    = arm-none-eabi-size
 
 CPU     = -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard
-CFLAGS += $(CPU) -std=c11 -Og -g3 -Wall -Wextra -ffreestanding \
+CFLAGS += $(CPU) -std=c11 -Og -g3 -Wall -Wextra \
           -ffunction-sections -fdata-sections \
           -fno-tree-loop-distribute-patterns -I$(COMMON_DIR)
+ifdef USE_NEWLIB
+# 표준 C 라이브러리(newlib-nano)를 쓴다: printf, snprintf, strtol 등 (14장)
+LDFLAGS += $(CPU) --specs=nano.specs -nostartfiles -T$(COMMON_DIR)stm32f411.ld \
+           -Wl,--gc-sections -Wl,-Map=build/$(TARGET).map
+LDLIBS  += -lc -lgcc
+SRCS    += $(COMMON_DIR)syscalls.c
+else
 LDFLAGS += $(CPU) -nostdlib -T$(COMMON_DIR)stm32f411.ld \
            -Wl,--gc-sections -Wl,-Map=build/$(TARGET).map
+LDLIBS  += -lgcc
+endif
 
 SRCS += $(COMMON_DIR)startup.c
 OBJS  = $(addprefix build/,$(notdir $(SRCS:.c=.o)))
@@ -28,7 +37,7 @@ build/%.o: %.c | build
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 build/$(TARGET).elf: $(OBJS)
-	$(CC) $(LDFLAGS) -o $@ $^ -lgcc
+	$(CC) $(LDFLAGS) -o $@ $^ $(LDLIBS)
 	$(SIZE) $@
 
 build/$(TARGET).bin: build/$(TARGET).elf
