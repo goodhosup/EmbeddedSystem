@@ -51,6 +51,6 @@
   <text x="550.0" y="378.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">D</text>
   <rect x="600.0" y="352.0" width="200.0" height="40.0" rx="0" fill="#ffffff" stroke="#9aa5b1" stroke-width="1"/>
   <text x="200.0" y="414.0" font-size="12" text-anchor="start" fill="#d64545" font-weight="bold">5 KB 요청 → 실패. 빈 공간 합계는 6 KB인데 이어진 곳은 최대 4 KB</text>
-  <text x="800.0" y="56.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">1칸 = 1 KB, 힙 12 KB</text>
+  <text x="800.0" y="56.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">큰 칸 = 2 KB, 힙 12 KB</text>
   <text x="450.0" y="452.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">단편화는 메모리가 모자라서가 아니라 빈 공간이 흩어져서 실패한다. 오래 켜 두는 장치일수록 위험하다</text>
 </svg>

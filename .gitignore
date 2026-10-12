@@ -1,0 +1,5 @@
+# 빌드 결과와 내려받은 외부 라이브러리
+build/
+code/**/lib/
+code/**/test/test_*
+!code/**/test/test_*.c

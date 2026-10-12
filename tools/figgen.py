@@ -4118,7 +4118,7 @@ def fig_25_1():
                 s.rect(x, y, w, 40, "#ffffff", "#9aa5b1", 0, 1)
             x += w
         s.text(x0, y + 62, note, 12, "start", RED if r == 3 else MUTED, "bold" if r == 3 else "normal")
-    s.text(x0 + W, 56, "1칸 = 1 KB, 힙 12 KB", 11, "end", MUTED)
+    s.text(x0 + W, 56, "큰 칸 = 2 KB, 힙 12 KB", 11, "end", MUTED)
     s.text(450, 452, "단편화는 메모리가 모자라서가 아니라 빈 공간이 흩어져서 실패한다. 오래 켜 두는 장치일수록 위험하다", 12, color=INK)
     s.save("ch25/fig25-1-fragmentation.svg")
 
@@ -4174,6 +4174,135 @@ def fig_25_3():
         [("id", 1, "m"), ("timestamp", 4, "m"), ("flags", 1, "m"), ("value", 2, "m")], "8 B, timestamp가 1번 주소 (정렬 안 됨)")
     s.text(450, 412, "각 멤버는 자기 크기의 배수 주소에 놓인다 (uint32_t → 4의 배수). 큰 멤버부터 배치하면 패딩이 줄어든다", 12, color=INK)
     s.save("ch25/fig25-3-padding.svg")
+
+
+# ---------------------------------------------------------------------------
+# 26장 RTOS와 FreeRTOS
+# ---------------------------------------------------------------------------
+
+def lane_timeline(s, x0, y0, names, segs, t1, scale, lane_h=34, colors=None):
+    """segs: (lane, t_start, t_end, color) 목록. 시간축은 x0에서 시작, scale px/단위"""
+    for i, n in enumerate(names):
+        y = y0 + i * lane_h
+        s.text(x0 - 10, y + lane_h / 2 + 4, n, 12, "end", weight="bold")
+        s.line(x0, y + lane_h - 4, x0 + t1 * scale, y + lane_h - 4, "#d9dee3", 1)
+    for lane, a, b, c in segs:
+        y = y0 + lane * lane_h
+        s.rect(x0 + a * scale, y + 6, (b - a) * scale, lane_h - 12, c, c, 2, 1)
+
+
+def fig_26_1():
+    s = Svg(900, 470)
+    s.text(450, 30, "그림 26-1  슈퍼루프와 RTOS 태스크 실행 타임라인 비교", 16, weight="bold")
+    x0, sc = 170, 34
+    s.text(60, 66, "슈퍼루프", 13, "start", BLUE, "bold")
+    segs = [(0, 0, 1, BLUE), (1, 1, 7, ORANGE), (2, 7, 8, GREEN), (0, 8, 9, BLUE), (1, 9, 15, ORANGE), (2, 15, 16, GREEN), (0, 16, 17, BLUE), (1, 17, 20, ORANGE)]
+    lane_timeline(s, x0, 76, ["버튼 읽기", "화면 그리기", "통신"], segs, 20, sc)
+    s.line(x0 + 2.2 * sc, 70, x0 + 2.2 * sc, 182, RED, 1.6, dash="4 3")
+    s.text(x0 + 2.2 * sc, 64, "버튼 눌림", 11, color=RED, weight="bold")
+    s.line(x0 + 8 * sc, 186, x0 + 8 * sc, 196, RED, 1.6)
+    s.text(x0 + 5.1 * sc, 202, "← 화면이 끝날 때까지 기다린다 (최대 한 바퀴) →", 11, color=RED)
+    s.text(60, 246, "RTOS", 13, "start", ORANGE, "bold")
+    segs2 = [(1, 0, 2.2, ORANGE), (0, 2.2, 2.9, BLUE), (1, 2.9, 7.5, ORANGE), (2, 7.5, 8.3, GREEN), (1, 8.3, 11, ORANGE),
+             (0, 11.4, 12.1, BLUE), (1, 12.1, 16, ORANGE), (3, 16, 20, "#cbd2d9")]
+    lane_timeline(s, x0, 256, ["버튼 (높음)", "화면 (낮음)", "통신 (중간)", "Idle"], segs2, 20, sc)
+    s.line(x0 + 2.2 * sc, 250, x0 + 2.2 * sc, 396, RED, 1.6, dash="4 3")
+    s.text(x0 + 2.2 * sc, 244, "버튼 눌림 → 즉시 실행", 11, color=RED, weight="bold")
+    s.line(x0, 410, x0 + 20 * sc, 410, LINE, 1.4, arrow=True)
+    s.text(x0 + 20 * sc, 428, "시간", 11, "end", MUTED)
+    s.text(450, 452, "RTOS는 높은 우선순위 태스크가 준비되면 낮은 태스크를 멈추고(선점) 바로 실행한다. 할 일이 없으면 Idle", 12, color=INK)
+    s.save("ch26/fig26-1-superloop-vs-rtos.svg")
+
+
+def fig_26_2():
+    s = Svg(900, 460)
+    s.text(450, 30, "그림 26-2  태스크 상태 전이", 16, weight="bold")
+    st = {"Ready": (120, 180), "Running": (560, 180), "Blocked": (340, 340), "Suspended": (340, 70)}
+    W, H = 170, 60
+    fills = {"Ready": (BLUE_BG, BLUE), "Running": (GREEN_BG, GREEN), "Blocked": (ORANGE_BG, ORANGE), "Suspended": (GRAY_BG, LINE)}
+    sub = {"Ready": "실행할 수 있음", "Running": "지금 CPU를 씀 (코어당 하나)", "Blocked": "무언가를 기다림", "Suspended": "멈춰 둠"}
+    for n, (x, y) in st.items():
+        f, c = fills[n]
+        s.rect(x, y, W, H, f, c, 28, 1.8)
+        s.text(x + W / 2, y + 26, n, 15, weight="bold")
+        s.text(x + W / 2, y + 45, sub[n], 11, color=MUTED)
+    s.line(292, 196, 556, 196, LINE, 1.8, arrow=True)
+    s.text(424, 188, "스케줄러가 고름 (가장 높은 우선순위)", 11, weight="bold")
+    s.line(556, 226, 292, 226, LINE, 1.8, arrow=True)
+    s.text(424, 244, "선점당함 / taskYIELD()", 11, weight="bold")
+    s.path("M640,242 L640,370 L512,370", ORANGE, 1.8, arrow=True)
+    s.text(650, 316, "vTaskDelay, 큐·세마포어 대기", 11, "start", ORANGE, "bold")
+    s.path("M340,370 L205,370 L205,244", ORANGE, 1.8, arrow=True)
+    s.text(196, 316, "시간이 됨, 이벤트 도착", 11, "end", ORANGE, "bold")
+    s.path("M205,178 L205,100 L336,100", LINE, 1.4, arrow=True)
+    s.path("M512,100 L640,100 L640,176", LINE, 1.4, arrow=True)
+    s.text(205, 90, "vTaskSuspend()", 11, "middle", MUTED)
+    s.text(640, 90, "vTaskSuspend() (자기 자신)", 11, "middle", MUTED)
+    s.path("M425,132 L425,160 L292,180", LINE, 1.2, arrow=True)
+    s.text(432, 152, "vTaskResume()", 11, "start", MUTED)
+    s.text(450, 440, "Blocked 태스크는 CPU를 전혀 쓰지 않는다. 대부분의 태스크는 대부분의 시간을 Blocked로 보낸다", 12, color=INK)
+    s.save("ch26/fig26-2-task-states.svg")
+
+
+def fig_26_3():
+    s = Svg(900, 500)
+    s.text(450, 30, "그림 26-3  컨텍스트 스위칭 시 스택에 저장되는 레지스터", 16, weight="bold")
+    def stack(x, title, hw, sw, note, color):
+        s.text(x + 90, 64, title, 13, weight="bold")
+        y = 78
+        for r in hw:
+            s.rect(x, y, 180, 26, BLUE_BG, BLUE, 0, 1)
+            s.text(x + 90, y + 18, r, 12)
+            y += 26
+        for r in sw:
+            s.rect(x, y, 180, 26, color, ORANGE, 0, 1)
+            s.text(x + 90, y + 18, r, 12)
+            y += 26
+        s.text(x + 190, y - 6, "← PSP (TCB에 저장)", 11, "start", MUTED)
+        s.text(x + 90, y + 22, note, 11, color=MUTED)
+        return y
+    hw = ["xPSR", "PC", "LR", "R12", "R3", "R2", "R1", "R0"]
+    sw = ["R11", "R10", "R9", "R8", "R7", "R6", "R5", "R4", "EXC_RETURN (LR)"]
+    stack(80, "태스크 A의 스택", hw, sw, "", ORANGE_BG)
+    s.rect(20, 86, 40, 26 * 8 - 16, BLUE_BG, BLUE, 4, 1)
+    s.text(40, 86 + 100, "하드웨어", 11, color=BLUE, weight="bold")
+    s.text(40, 330, "PendSV", 11, color=ORANGE, weight="bold")
+    s.text(40, 346, "처리기", 11, color=ORANGE, weight="bold")
+    steps = ["① 틱이나 API 호출이 PendSV를 요청 (가장 낮은 우선순위)",
+             "② 예외 진입: 하드웨어가 R0~R3, R12, LR, PC, xPSR을 PSP 스택에 쌓음",
+             "③ PendSV: R4~R11(과 FPU를 썼다면 S16~S31)을 같은 스택에 쌓음",
+             "④ 현재 PSP를 태스크 A의 TCB에 저장",
+             "⑤ 다음에 실행할 태스크 B를 고르고 B의 TCB에서 PSP를 꺼냄",
+             "⑥ B의 스택에서 R4~R11을 꺼내고 예외 복귀",
+             "⑦ 하드웨어가 나머지를 꺼냄 → B가 멈췄던 곳부터 계속"]
+    for i, t in enumerate(steps):
+        s.text(440, 100 + i * 36, t, 12, "start", INK if i not in (2, 4) else ORANGE, "bold" if i in (2, 4) else "normal")
+    s.text(450, 476, "태스크마다 자기 스택이 있고, 멈춘 순간의 레지스터가 그 스택에 보관된다. 그래서 각 태스크는 혼자 CPU를 쓰는 것처럼 보인다", 11, color=MUTED)
+    s.save("ch26/fig26-3-context-switch.svg")
+
+
+def fig_26_4():
+    s = Svg(900, 420)
+    s.text(450, 30, "그림 26-4  우선순위 기반 선점 스케줄링 타임라인", 16, weight="bold")
+    x0, sc = 190, 30
+    names = ["sample (3)", "console (2)", "blink (1)", "hog (1)", "Idle (0)"]
+    G = "#cbd2d9"
+    segs = [(4, 0, 2, G), (0, 2, 2.6, GREEN), (4, 2.6, 5, G), (2, 5, 5.5, BLUE), (4, 5.5, 7, G),
+            (3, 7, 10, ORANGE), (0, 10, 10.6, GREEN), (3, 10.6, 11, ORANGE), (2, 11, 12, BLUE), (3, 12, 13, ORANGE), (1, 13, 14.2, BLUE),
+            (3, 14.2, 18, ORANGE), (0, 18, 18.6, GREEN), (3, 18.6, 21, ORANGE)]
+    lane_timeline(s, x0, 60, names, segs, 21, sc, 40)
+    for t in (2, 10, 18):
+        s.line(x0 + t * sc, 54, x0 + t * sc, 266, GREEN, 1.2, dash="3 3")
+    s.text(x0 + 2 * sc, 50, "10 ms", 10, color=GREEN)
+    s.text(x0 + 10 * sc, 50, "10 ms", 10, color=GREEN)
+    s.text(x0 + 18 * sc, 50, "10 ms", 10, color=GREEN)
+    s.line(x0 + 7 * sc, 270, x0 + 7 * sc, 286, RED, 1.6)
+    s.text(x0 + 7 * sc, 300, "hog 시작: Idle은 더 이상 실행되지 않음", 11, color=RED, weight="bold")
+    s.text(x0 + 12.5 * sc, 320, "같은 우선순위(blink, hog)는 틱마다 번갈아 (타임 슬라이싱)", 11, color=MUTED)
+    s.line(x0, 340, x0 + 21 * sc, 340, LINE, 1.4, arrow=True)
+    s.text(x0 + 21 * sc, 358, "시간", 11, "end", MUTED)
+    s.text(450, 392, "sample은 hog가 CPU를 독차지해도 정해진 시각에 바로 실행된다. 높은 우선순위가 준비되면 낮은 것은 즉시 밀려난다", 12, color=INK)
+    s.save("ch26/fig26-4-preemption.svg")
 
 
 if __name__ == "__main__":

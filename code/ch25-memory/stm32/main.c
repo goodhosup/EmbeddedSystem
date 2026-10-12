@@ -36,15 +36,6 @@ extern uint32_t _estack, end;
 #define GUARD_BASE   (STACK_BOTTOM - GUARD_SIZE)
 #define PAINT        0xA5A5A5A5u
 
-int __io_putchar(int ch)
-{
-    if (ch == '\n') {
-        uart2_putc('\r');
-    }
-    uart2_putc((char)ch);
-    return ch;
-}
-
 /* ---- 힙: 가드 영역 앞에서 멈추는 _sbrk (syscalls.c의 weak 함수를 대신한다) ---- */
 static uint8_t *heap_end;
 

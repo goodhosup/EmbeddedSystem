@@ -17,8 +17,10 @@
 | `chapters/ch19-wireless.md` | 220 | [확인 필요: ESP32 데이터시트의 전력 소비 표 값과 조건] |
 | `chapters/ch23-debugging.md` | 202 | [확인 필요: OpenOCD 버전별 SWO 설정 명령, NUCLEO의 SWO 솔더 브리지 기본 상태] |
 | `chapters/ch23-debugging.md` | 238 | [확인 필요: 보드 실측] |
+| `chapters/ch25-memory-management.md` | 63 | [확인 필요: 보드 실측] |
+| `chapters/ch25-memory-management.md` | 287 | [확인 필요: 보드 실측] |
 | `code/ch18-usb/README.md` | 23 | [확인 필요: CN10 핀 번호] |
 | `code/ch18-usb/stm32/usb_descriptors.c` | 6 | [확인 필요: pid.codes 시험용 PID 정책] |
 | `code/ch19-wireless/esp32-arduino/ble_sensor/ble_sensor.ino` | 9 | [확인 필요: 코어 버전별 BLE 라이브러리 API] |
 
-총 15건
+총 17건
