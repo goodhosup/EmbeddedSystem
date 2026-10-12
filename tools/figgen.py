@@ -5057,6 +5057,78 @@ def fig_35_2():
     s.save("ch35/fig35-2-watchdog.svg")
 
 
+# ---------------------------------------------------------------------------
+# 36장 CI/CD와 양산
+# ---------------------------------------------------------------------------
+
+def fig_36_1():
+    s = Svg(900, 470)
+    s.text(450, 30, "그림 36-1  커밋부터 양산까지 펌웨어 파이프라인", 16, weight="bold")
+    stages = [("커밋 / PR", "git push", GRAY_BG, LINE),
+              ("PC 테스트", "31장: 1분", BLUE_BG, BLUE),
+              ("정적 분석", "35장", BLUE_BG, BLUE),
+              ("ARM 빌드", "툴체인 고정", BLUE_BG, BLUE),
+              ("HIL", "실제 보드", ORANGE_BG, ORANGE),
+              ("릴리스", "태그 → 서명", GREEN_BG, GREEN)]
+    x = 30
+    for i, (n, d, f, c) in enumerate(stages):
+        s.rect(x, 70, 128, 64, f, c, 8, 1.6)
+        s.text(x + 64, 98, n, 13, weight="bold")
+        s.text(x + 64, 118, d, 10, color=MUTED)
+        if i < len(stages) - 1:
+            s.line(x + 130, 102, x + 146, 102, LINE, 1.8, arrow=True)
+        x += 146
+    s.text(450, 160, "← 빠르고 싸다 · 자주 · 많이                                    느리고 비싸다 · 드물게 · 적게 →", 11, color=MUTED)
+    s.text(450, 180, "앞 단계가 실패하면 뒤 단계는 실행하지 않는다. 실패한 커밋은 병합할 수 없다", 12, color=RED, weight="bold")
+    # 양산
+    s.rect(30, 220, 840, 150, "#fbfcfd", "#cbd2d9", 10, 1)
+    s.text(60, 246, "양산과 현장", 13, "start", weight="bold")
+    prod = [("서명된 이미지", "버전, 해시 기록", GREEN_BG, GREEN), ("공장 프로그래밍", "부트로더 + 앱 + RDP", ORANGE_BG, ORANGE),
+            ("공장 시험", "지그: RAM, 센서, GPIO", ORANGE_BG, ORANGE), ("프로비저닝", "일련번호, 키, 인증서", ORANGE_BG, ORANGE),
+            ("현장", "OTA 업데이트 (32장)", BLUE_BG, BLUE)]
+    x = 50
+    for i, (n, d, f, c) in enumerate(prod):
+        s.rect(x, 266, 148, 60, f, c, 8, 1.4)
+        s.text(x + 74, 292, n, 12, weight="bold")
+        s.text(x + 74, 311, d, 10, color=MUTED)
+        if i < len(prod) - 1:
+            s.line(x + 150, 296, x + 164, 296, LINE, 1.6, arrow=True)
+        x += 165
+    s.path("M790,328 L790,350 L450,350 L450,404", ORANGE, 1.4, arrow=True)
+    s.box(330, 406, 240, 50, "크래시 기록, 리셋 원인, 로그", "→ 버그 → 다시 커밋", GRAY_BG, LINE, 12)
+    s.path("M330,431 L16,431 L16,102 L26,102", LINE, 1.2, arrow=True)
+    s.line(764, 136, 764, 264, LINE, 1.2, dash="4 3", arrow=True)
+    s.text(772, 200, "릴리스 이미지", 10, "start", MUTED)
+    s.save("ch36/fig36-1-pipeline.svg")
+
+
+def fig_36_2():
+    s = Svg(900, 440)
+    s.text(450, 30, "그림 36-2  공장 테스트 지그 구성", 16, weight="bold")
+    s.box(40, 80, 200, 110, "시험 PC", "factory_station.py, 결과 DB", GRAY_BG, LINE, 13)
+    s.rect(330, 70, 300, 220, "#fbfcfd", LINE, 10, 1.6)
+    s.text(480, 94, "지그 (고정틀)", 13, weight="bold")
+    s.rect(380, 110, 200, 120, BLUE_BG, BLUE, 8, 1.6)
+    s.text(480, 136, "시험할 보드 (DUT)", 13, weight="bold")
+    s.text(480, 158, "공장 시험 펌웨어", 11, color=MUTED)
+    for k in range(8):
+        s.line(395 + k * 25, 232, 395 + k * 25, 262, ORANGE, 2)
+    s.text(480, 280, "포고 핀: 테스트 포인트에 눌러 연결", 11, color=ORANGE)
+    s.box(690, 70, 180, 60, "디버그 프로브", "펌웨어 올리기, RDP 설정", ORANGE_BG, ORANGE, 12)
+    s.box(690, 150, 180, 60, "프로그램 가능 전원", "전압, 소모 전류 측정", ORANGE_BG, ORANGE, 12)
+    s.box(690, 230, 180, 60, "자극과 측정", "GPIO 되읽기, 센서 흉내", ORANGE_BG, ORANGE, 12)
+    s.line(242, 135, 376, 160, LINE, 1.6, both=True)
+    s.text(300, 132, "UART", 11, color=MUTED)
+    for y in (100, 180, 260):
+        s.line(688, y, 632, min(max(y, 120), 250), LINE, 1.4, both=True)
+    s.line(140, 192, 140, 330, LINE, 1.2, arrow=True)
+    s.box(40, 334, 260, 56, "결과 기록 (UID, 일련번호, 시험 값)", "현장에서 돌아온 장치를 추적", GREEN_BG, GREEN, 11)
+    s.text(600, 340, "시험 시간이 곧 생산 비용이다: 몇 초 안에 끝나도록 설계한다", 12, color=INK)
+    s.text(600, 362, "보드 설계 단계에서 테스트 포인트와 SWD 핀을 남겨 둔다 (23장)", 11, color=MUTED)
+    s.text(600, 384, "통과한 장치에만 일련번호와 키를 넣고, 마지막에 디버그 포트를 잠근다 (33장)", 11, color=MUTED)
+    s.save("ch36/fig36-2-factory-jig.svg")
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("fig_") and callable(fn):

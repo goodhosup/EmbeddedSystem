@@ -1,0 +1,68 @@
+# 36장: GitHub Actions 펌웨어 파이프라인 예
+#   이 파일을 저장소의 .github/workflows/firmware.yml로 복사하면 동작한다.
+#   (이 책의 저장소에서는 일부러 .github 밖에 두었다: 예제가 실제로 실행되지 않게)
+name: firmware
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+
+jobs:
+  host-tests:                        # 1단계: PC 테스트 (31장) — 가장 빠르고 가장 많이
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y build-essential python3-cryptography
+      - run: sh code/ch36-cicd/ci/run_host_tests.sh
+
+  static-analysis:                   # 2단계: 정적 분석 (35장) — 새 경고가 있으면 실패
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y cppcheck
+      - run: >
+          cppcheck --error-exitcode=1 --enable=warning,portability --std=c11 --inline-suppr
+          -i code/ch35-safety/test/bad_examples.c
+          code/ch24-architecture code/ch25-memory/common code/ch30-logger/common
+          code/ch32-bootloader/common code/ch35-safety/common
+
+  arm-build:                         # 3단계: 보드용 빌드 (22장) — 툴체인 버전을 고정한다
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        example: [ch24-architecture/stm32, ch25-memory/stm32, ch32-bootloader/stm32/boot, ch35-safety/stm32]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0             # git describe로 버전을 만들려면 태그가 필요하다
+      - run: sudo apt-get update && sudo apt-get install -y gcc-arm-none-eabi libnewlib-arm-none-eabi
+      - run: arm-none-eabi-gcc --version | head -1
+      - run: make -C code/${{ matrix.example }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fw-${{ strategy.job-index }}
+          path: code/${{ matrix.example }}/build/*.[eb]*  # .elf, .bin
+          retention-days: 30
+
+  hil:                               # 4단계: 실제 보드 (31장 HIL) — 보드가 연결된 자체 러너에서만
+    if: github.event_name == 'push'
+    needs: [host-tests, arm-build]
+    runs-on: [self-hosted, nucleo-f411re]
+    steps:
+      - uses: actions/checkout@v4
+      - run: sh code/ch31-testing/get_unity.sh
+      - run: python3 code/ch31-testing/hil/run_on_target.py --port /dev/ttyACM0 --flash
+
+  release:                           # 5단계: 태그(v1.2.0)를 붙이면 서명한 이미지를 배포 후보로
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [host-tests, static-analysis, arm-build]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+      # 서명 키를 저장소 비밀값에 두는 것은 최소한의 방법이다. 제품이라면 HSM이나
+      # 클라우드 키 관리 서비스에 서명을 요청하고, 키는 빌드 서버에 내려받지 않는다 (33장)
+      - run: ls -R artifacts

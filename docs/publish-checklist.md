@@ -47,6 +47,9 @@
 | `chapters/ch35-functional-safety.md` | 46 | [확인 필요: 최신판과 규칙 번호 변경 여부] |
 | `chapters/ch35-functional-safety.md` | 147 | [확인 필요: 보드 실측] |
 | `chapters/ch35-functional-safety.md` | 211 | [확인 필요: 출간 시점 ST 클래스 B 라이브러리 이름과 지원 MCU] |
+| `chapters/ch36-cicd-production.md` | 179 | [확인 필요: 보드 실측] |
+| `chapters/ch36-cicd-production.md` | 193 | [확인 필요: 출간 시점 ESP-IDF 양산 도구 이름과 사용법] |
+| `chapters/ch36-cicd-production.md` | 234 | [확인 필요: 출간 시점 ESP-IDF 코어 덤프 설정 이름] |
 | `code/ch18-usb/README.md` | 23 | [확인 필요: CN10 핀 번호] |
 | `code/ch18-usb/stm32/usb_descriptors.c` | 6 | [확인 필요: pid.codes 시험용 PID 정책] |
 | `code/ch19-wireless/esp32-arduino/ble_sensor/ble_sensor.ino` | 9 | [확인 필요: 코어 버전별 BLE 라이브러리 API] |
@@ -63,5 +66,6 @@
 | `code/ch33-security/README.md` | 25 | [확인 필요: arm-none-eabi-gcc 빌드(Mbed TLS 포함) 크기와 경고, 보드에서 검증 시간] |
 | `code/ch34-performance/README.md` | 18 | [확인 필요: 보드 실측값 (34.7절 표)] |
 | `code/ch35-safety/README.md` | 21 | [확인 필요: 보드 실행 결과] |
+| `code/ch36-cicd/README.md` | 23 | [확인 필요: 공장 시험 펌웨어의 보드 실행, GitHub Actions에서 firmware.yml 실행] |
 
-총 58건
+총 62건

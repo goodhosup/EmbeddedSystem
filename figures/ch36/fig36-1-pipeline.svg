@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="470" viewBox="0 0 900 470" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 36-1  커밋부터 양산까지 펌웨어 파이프라인</text>
+  <rect x="30.0" y="70.0" width="128.0" height="64.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.6"/>
+  <text x="94.0" y="98.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">커밋 / PR</text>
+  <text x="94.0" y="118.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">git push</text>
+  <line x1="160.0" y1="102.0" x2="176.0" y2="102.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <rect x="176.0" y="70.0" width="128.0" height="64.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.6"/>
+  <text x="240.0" y="98.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">PC 테스트</text>
+  <text x="240.0" y="118.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">31장: 1분</text>
+  <line x1="306.0" y1="102.0" x2="322.0" y2="102.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <rect x="322.0" y="70.0" width="128.0" height="64.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.6"/>
+  <text x="386.0" y="98.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">정적 분석</text>
+  <text x="386.0" y="118.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">35장</text>
+  <line x1="452.0" y1="102.0" x2="468.0" y2="102.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <rect x="468.0" y="70.0" width="128.0" height="64.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.6"/>
+  <text x="532.0" y="98.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">ARM 빌드</text>
+  <text x="532.0" y="118.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">툴체인 고정</text>
+  <line x1="598.0" y1="102.0" x2="614.0" y2="102.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <rect x="614.0" y="70.0" width="128.0" height="64.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.6"/>
+  <text x="678.0" y="98.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">HIL</text>
+  <text x="678.0" y="118.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">실제 보드</text>
+  <line x1="744.0" y1="102.0" x2="760.0" y2="102.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <rect x="760.0" y="70.0" width="128.0" height="64.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.6"/>
+  <text x="824.0" y="98.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">릴리스</text>
+  <text x="824.0" y="118.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">태그 → 서명</text>
+  <text x="450.0" y="160.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">← 빠르고 싸다 · 자주 · 많이                                    느리고 비싸다 · 드물게 · 적게 →</text>
+  <text x="450.0" y="180.0" font-size="12" text-anchor="middle" fill="#d64545" font-weight="bold">앞 단계가 실패하면 뒤 단계는 실행하지 않는다. 실패한 커밋은 병합할 수 없다</text>
+  <rect x="30.0" y="220.0" width="840.0" height="150.0" rx="10" fill="#fbfcfd" stroke="#cbd2d9" stroke-width="1"/>
+  <text x="60.0" y="246.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold">양산과 현장</text>
+  <rect x="50.0" y="266.0" width="148.0" height="60.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.4"/>
+  <text x="124.0" y="292.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">서명된 이미지</text>
+  <text x="124.0" y="311.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">버전, 해시 기록</text>
+  <line x1="200.0" y1="296.0" x2="214.0" y2="296.0" stroke="#334e68" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <rect x="215.0" y="266.0" width="148.0" height="60.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.4"/>
+  <text x="289.0" y="292.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">공장 프로그래밍</text>
+  <text x="289.0" y="311.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">부트로더 + 앱 + RDP</text>
+  <line x1="365.0" y1="296.0" x2="379.0" y2="296.0" stroke="#334e68" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <rect x="380.0" y="266.0" width="148.0" height="60.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.4"/>
+  <text x="454.0" y="292.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">공장 시험</text>
+  <text x="454.0" y="311.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">지그: RAM, 센서, GPIO</text>
+  <line x1="530.0" y1="296.0" x2="544.0" y2="296.0" stroke="#334e68" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <rect x="545.0" y="266.0" width="148.0" height="60.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.4"/>
+  <text x="619.0" y="292.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">프로비저닝</text>
+  <text x="619.0" y="311.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">일련번호, 키, 인증서</text>
+  <line x1="695.0" y1="296.0" x2="709.0" y2="296.0" stroke="#334e68" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <rect x="710.0" y="266.0" width="148.0" height="60.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.4"/>
+  <text x="784.0" y="292.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">현장</text>
+  <text x="784.0" y="311.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">OTA 업데이트 (32장)</text>
+  <path d="M790,328 L790,350 L450,350 L450,404" stroke="#d9730d" stroke-width="1.4" fill="none" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <rect x="330.0" y="406.0" width="240.0" height="50.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="450.0" y="428.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">크래시 기록, 리셋 원인, 로그</text>
+  <text x="450.0" y="447.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">→ 버그 → 다시 커밋</text>
+  <path d="M330,431 L16,431 L16,102 L26,102" stroke="#334e68" stroke-width="1.2" fill="none" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <line x1="764.0" y1="136.0" x2="764.0" y2="264.0" stroke="#334e68" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+  <text x="772.0" y="200.0" font-size="10" text-anchor="start" fill="#616e7c" font-weight="normal">릴리스 이미지</text>
+</svg>
