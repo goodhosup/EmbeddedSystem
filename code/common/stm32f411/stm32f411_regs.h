@@ -12,6 +12,7 @@
  *   - TIM2~TIM5: RM0383 13.4절 "TIM2 to TIM5 registers"
  *   - DMA: RM0383 9.5절 "DMA registers"
  *   - USART: RM0383 19.6절 "USART registers"
+ *   - I2C: RM0383 18.6절 "I2C registers"
  *   - RTC: RM0383 17.6절 "RTC registers", 저전력 모드: RM0383 5.3절
  *   - SCB_SCR: PM0214 4.4절 "System control block"
  *   - DWT 사이클 카운터: Cortex-M4 기술 참조 매뉴얼, ARMv7-M 아키텍처 참조 매뉴얼
@@ -101,6 +102,7 @@ typedef struct {
 #define RCC_APB1ENR_TIM4EN  (1u << 2)
 #define RCC_APB1ENR_TIM5EN  (1u << 3)
 #define RCC_APB1ENR_USART2EN (1u << 17)
+#define RCC_APB1ENR_I2C1EN  (1u << 21)
 #define RCC_APB1ENR_PWREN   (1u << 28)
 
 /* RCC_APB2ENR */
@@ -357,6 +359,39 @@ typedef struct {
 #define USART_CR1_OVER8     (1u << 15)
 #define USART_CR3_DMAR      (1u << 6)
 #define USART_CR3_DMAT      (1u << 7)
+
+/* ---- I2C (I2C1 0x4000 5400, I2C2 0x4000 5800, I2C3 0x4000 5C00) ---- */
+typedef struct {
+    __IO uint32_t CR1;         /* 0x00 */
+    __IO uint32_t CR2;         /* 0x04 */
+    __IO uint32_t OAR1;        /* 0x08 */
+    __IO uint32_t OAR2;        /* 0x0C */
+    __IO uint32_t DR;          /* 0x10 */
+    __IO uint32_t SR1;         /* 0x14 */
+    __IO uint32_t SR2;         /* 0x18 */
+    __IO uint32_t CCR;         /* 0x1C */
+    __IO uint32_t TRISE;       /* 0x20 */
+    __IO uint32_t FLTR;        /* 0x24 */
+} I2C_TypeDef;
+
+#define I2C1 ((I2C_TypeDef *)0x40005400u)
+
+#define I2C_CR1_PE          (1u << 0)
+#define I2C_CR1_START       (1u << 8)
+#define I2C_CR1_STOP        (1u << 9)
+#define I2C_CR1_ACK         (1u << 10)
+#define I2C_CR1_POS         (1u << 11)
+#define I2C_CR1_SWRST       (1u << 15)
+#define I2C_SR1_SB          (1u << 0)
+#define I2C_SR1_ADDR        (1u << 1)
+#define I2C_SR1_BTF         (1u << 2)
+#define I2C_SR1_RXNE        (1u << 6)
+#define I2C_SR1_TXE         (1u << 7)
+#define I2C_SR1_BERR        (1u << 8)
+#define I2C_SR1_ARLO        (1u << 9)
+#define I2C_SR1_AF          (1u << 10)
+#define I2C_SR2_BUSY        (1u << 1)
+#define I2C_CCR_FS          (1u << 15)
 
 /* ---- RTC (0x4000 2800) ---- */
 typedef struct {

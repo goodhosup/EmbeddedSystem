@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="420" viewBox="0 0 900 420" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 15-9  로직 애널라이저 화면 해석 (레지스터 읽기의 예, 개념도)</text>
+  <rect x="30.0" y="50.0" width="840.0" height="300.0" rx="8" fill="#1f2933" stroke="#334e68" stroke-width="1.5"/>
+  <text x="60.0" y="120.0" font-size="13" text-anchor="start" fill="#e3edfd" font-weight="bold">SDA</text>
+  <text x="60.0" y="200.0" font-size="13" text-anchor="start" fill="#e3edfd" font-weight="bold">SCL</text>
+  <path d="M120,130 L120,108 L150,108 L150,130 L162,130 L162,130 L180,130 L180,130 L198,130 L198,108 L216,108 L216,108 L234,108 L234,130 L252,130 L252,130 L270,130 L270,108 L288,108 L288,108 L306,108 L306,130 L324,130 L324,130 L342,130 L342,108 L360,108 L360,108 L378,108 L378,108 L396,108 L396,130 L414,130 L414,130 L432,130 L432,130 L450,130 L450,108 L468,108 L468,130 L486,130 L486,130 L504,130 L504,130 L522,130 L522,130 L540,130 L540,108 L558,108 L558,130 L576,130 L576,108 L594,108 L594,108 L612,108 L612,108 L630,108 L630,108 L648,108 L648,108 L666,108 L666,108 L684,108 L684,130 L702,130 L702,108 L720,108 L720,130 L738,130 L738,130 L756,130 L756,130 L774,130 L774,108 L792,108 L792,130 L810,130 L810,108 L870,108" stroke="#7dd3fc" stroke-width="1.6" fill="none" stroke-linejoin="round"/>
+  <path d="M120,210 L120,188 L162,188 L162,210 L171,210 L171,188 L180,188 L180,210 L189,210 L189,188 L198,188 L198,210 L207,210 L207,188 L216,188 L216,210 L225,210 L225,188 L234,188 L234,210 L243,210 L243,188 L252,188 L252,210 L261,210 L261,188 L270,188 L270,210 L279,210 L279,188 L288,188 L288,210 L297,210 L297,188 L306,188 L306,210 L315,210 L315,188 L324,188 L324,210 L333,210 L333,188 L342,188 L342,210 L351,210 L351,188 L360,188 L360,210 L369,210 L369,188 L378,188 L378,210 L387,210 L387,188 L396,188 L396,210 L405,210 L405,188 L414,188 L414,210 L423,210 L423,188 L432,188 L432,210 L441,210 L441,188 L450,188 L450,210 L459,210 L459,188 L468,188 L468,210 L477,210 L477,188 L486,188 L486,210 L495,210 L495,188 L504,188 L504,210 L513,210 L513,188 L522,188 L522,210 L531,210 L531,188 L540,188 L540,210 L549,210 L549,188 L558,188 L558,210 L567,210 L567,188 L576,188 L576,210 L585,210 L585,188 L594,188 L594,210 L603,210 L603,188 L612,188 L612,210 L621,210 L621,188 L630,188 L630,210 L639,210 L639,188 L648,188 L648,210 L657,210 L657,188 L666,188 L666,210 L675,210 L675,188 L684,188 L684,210 L693,210 L693,188 L702,188 L702,210 L711,210 L711,188 L720,188 L720,210 L729,210 L729,188 L738,188 L738,210 L747,210 L747,188 L756,188 L756,210 L765,210 L765,188 L774,188 L774,210 L783,210 L783,188 L792,188 L792,210 L801,210 L801,188 L810,188 L810,188 L870,188" stroke="#fbbf24" stroke-width="1.6" fill="none" stroke-linejoin="round"/>
+  <rect x="120.0" y="250.0" width="40.0" height="26.0" rx="4" fill="#2f9e44" stroke="#2f9e44" stroke-width="1"/>
+  <text x="141.0" y="268.0" font-size="11" text-anchor="middle" fill="#ffffff" font-weight="bold">S</text>
+  <rect x="162.0" y="250.0" width="142.0" height="26.0" rx="4" fill="#2f6fdf" stroke="#2f6fdf" stroke-width="1"/>
+  <text x="234.0" y="268.0" font-size="11" text-anchor="middle" fill="#ffffff" font-weight="bold">0x76 W</text>
+  <rect x="306.0" y="250.0" width="16.0" height="26.0" rx="4" fill="#d9730d" stroke="#d9730d" stroke-width="1"/>
+  <text x="315.0" y="268.0" font-size="11" text-anchor="middle" fill="#ffffff" font-weight="bold">A</text>
+  <rect x="324.0" y="250.0" width="142.0" height="26.0" rx="4" fill="#2f6fdf" stroke="#2f6fdf" stroke-width="1"/>
+  <text x="396.0" y="268.0" font-size="11" text-anchor="middle" fill="#ffffff" font-weight="bold">0xD0</text>
+  <rect x="468.0" y="250.0" width="16.0" height="26.0" rx="4" fill="#d9730d" stroke="#d9730d" stroke-width="1"/>
+  <text x="477.0" y="268.0" font-size="11" text-anchor="middle" fill="#ffffff" font-weight="bold">A</text>
+  <rect x="486.0" y="250.0" width="16.0" height="26.0" rx="4" fill="#2f9e44" stroke="#2f9e44" stroke-width="1"/>
+  <text x="495.0" y="268.0" font-size="11" text-anchor="middle" fill="#ffffff" font-weight="bold">Sr</text>
+  <rect x="504.0" y="250.0" width="142.0" height="26.0" rx="4" fill="#2f6fdf" stroke="#2f6fdf" stroke-width="1"/>
+  <text x="576.0" y="268.0" font-size="11" text-anchor="middle" fill="#ffffff" font-weight="bold">0x76 R</text>
+  <rect x="648.0" y="250.0" width="16.0" height="26.0" rx="4" fill="#d9730d" stroke="#d9730d" stroke-width="1"/>
+  <text x="657.0" y="268.0" font-size="11" text-anchor="middle" fill="#ffffff" font-weight="bold">A</text>
+  <rect x="666.0" y="250.0" width="142.0" height="26.0" rx="4" fill="#d9730d" stroke="#d9730d" stroke-width="1"/>
+  <text x="738.0" y="268.0" font-size="11" text-anchor="middle" fill="#ffffff" font-weight="bold">0x60</text>
+  <rect x="810.0" y="250.0" width="16.0" height="26.0" rx="4" fill="#2f6fdf" stroke="#2f6fdf" stroke-width="1"/>
+  <text x="819.0" y="268.0" font-size="11" text-anchor="middle" fill="#ffffff" font-weight="bold">N</text>
+  <text x="60.0" y="268.0" font-size="12" text-anchor="start" fill="#c9d2dc" font-weight="bold">디코드</text>
+  <text x="450.0" y="318.0" font-size="13" text-anchor="middle" fill="#e3edfd" font-weight="bold">장치 0x76의 레지스터 0xD0(칩 ID)을 읽었고, 답은 0x60 (BME280)</text>
+  <text x="60.0" y="378.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="normal">① 시작(S)과 슬레이브 주소, W</text>
+  <text x="480.0" y="378.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="normal">② 주소 뒤에 ACK(A)가 왔는가? 없으면(NACK) 주소나 배선 문제</text>
+  <text x="60.0" y="400.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="normal">③ 반복 시작(Sr) 후 R로 다시 주소</text>
+  <text x="480.0" y="400.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="normal">④ 마지막 바이트 뒤 마스터의 NACK(N)과 정지(P)</text>
+</svg>

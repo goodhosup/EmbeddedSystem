@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="842" height="314" viewBox="0 0 842 314" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="421.0" y="24.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 15-8  클럭 스트레칭: 슬레이브가 SCL을 붙잡아 기다리게 한다</text>
+  <text x="126.0" y="93.0" font-size="14" text-anchor="end" fill="#1f2933" font-weight="bold">SCL (마스터)</text>
+  <text x="126.0" y="110.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">마스터의 의도</text>
+  <line x1="140.0" y1="106.0" x2="164.0" y2="106.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="164.0" y1="80.0" x2="164.0" y2="106.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="164.0" y1="80.0" x2="188.0" y2="80.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="188.0" y1="80.0" x2="188.0" y2="106.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="188.0" y1="106.0" x2="212.0" y2="106.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="212.0" y1="80.0" x2="212.0" y2="106.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="212.0" y1="80.0" x2="236.0" y2="80.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="236.0" y1="80.0" x2="236.0" y2="106.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="236.0" y1="106.0" x2="260.0" y2="106.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="260.0" y1="80.0" x2="260.0" y2="106.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="260.0" y1="80.0" x2="284.0" y2="80.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="284.0" y1="80.0" x2="284.0" y2="106.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="284.0" y1="106.0" x2="308.0" y2="106.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="308.0" y1="80.0" x2="308.0" y2="106.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="308.0" y1="80.0" x2="332.0" y2="80.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="332.0" y1="80.0" x2="332.0" y2="106.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="332.0" y1="106.0" x2="356.0" y2="106.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="356.0" y1="80.0" x2="356.0" y2="106.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="356.0" y1="80.0" x2="380.0" y2="80.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="380.0" y1="93.0" x2="644.0" y2="93.0" stroke="#616e7c" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="512.0" y="76.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">마스터는 놓았지만</text>
+  <line x1="638.0" y1="93.0" x2="644.0" y2="80.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="644.0" y1="80.0" x2="668.0" y2="80.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="668.0" y1="80.0" x2="668.0" y2="106.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="668.0" y1="106.0" x2="692.0" y2="106.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="692.0" y1="80.0" x2="692.0" y2="106.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="692.0" y1="80.0" x2="716.0" y2="80.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="716.0" y1="80.0" x2="716.0" y2="106.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="716.0" y1="106.0" x2="740.0" y2="106.0" stroke="#334e68" stroke-width="2"/>
+  <text x="126.0" y="151.0" font-size="14" text-anchor="end" fill="#1f2933" font-weight="bold">SCL (실제 선)</text>
+  <text x="126.0" y="168.0" font-size="11" text-anchor="end" fill="#616e7c" font-weight="normal">와이어드 AND 결과</text>
+  <line x1="140.0" y1="164.0" x2="164.0" y2="164.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="164.0" y1="138.0" x2="164.0" y2="164.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="164.0" y1="138.0" x2="188.0" y2="138.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="188.0" y1="138.0" x2="188.0" y2="164.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="188.0" y1="164.0" x2="212.0" y2="164.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="212.0" y1="138.0" x2="212.0" y2="164.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="212.0" y1="138.0" x2="236.0" y2="138.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="236.0" y1="138.0" x2="236.0" y2="164.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="236.0" y1="164.0" x2="260.0" y2="164.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="260.0" y1="138.0" x2="260.0" y2="164.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="260.0" y1="138.0" x2="284.0" y2="138.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="284.0" y1="138.0" x2="284.0" y2="164.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="284.0" y1="164.0" x2="308.0" y2="164.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="308.0" y1="138.0" x2="308.0" y2="164.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="308.0" y1="138.0" x2="332.0" y2="138.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="332.0" y1="138.0" x2="332.0" y2="164.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="332.0" y1="164.0" x2="356.0" y2="164.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="356.0" y1="138.0" x2="356.0" y2="164.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="356.0" y1="138.0" x2="380.0" y2="138.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="380.0" y1="138.0" x2="380.0" y2="164.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="380.0" y1="164.0" x2="404.0" y2="164.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="404.0" y1="164.0" x2="644.0" y2="164.0" stroke="#d9730d" stroke-width="2"/>
+  <text x="524.0" y="132.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">슬레이브가 Low로 붙잡음</text>
+  <line x1="644.0" y1="138.0" x2="644.0" y2="164.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="644.0" y1="138.0" x2="668.0" y2="138.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="668.0" y1="138.0" x2="668.0" y2="164.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="668.0" y1="164.0" x2="692.0" y2="164.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="692.0" y1="138.0" x2="692.0" y2="164.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="692.0" y1="138.0" x2="716.0" y2="138.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="716.0" y1="138.0" x2="716.0" y2="164.0" stroke="#334e68" stroke-width="2"/>
+  <line x1="716.0" y1="164.0" x2="740.0" y2="164.0" stroke="#334e68" stroke-width="2"/>
+  <text x="126.0" y="214.0" font-size="14" text-anchor="end" fill="#1f2933" font-weight="bold">SDA</text>
+  <line x1="140.0" y1="209.0" x2="164.0" y2="209.0" stroke="#616e7c" stroke-width="2" stroke-dasharray="6 4"/>
+  <polygon points="164.0,209.0 170.0,196.0 206.0,196.0 212.0,209.0 206.0,222.0 170.0,222.0" fill="#e3edfd" stroke="#334e68" stroke-width="1.5"/>
+  <text x="188.0" y="214.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">D</text>
+  <polygon points="212.0,209.0 218.0,196.0 254.0,196.0 260.0,209.0 254.0,222.0 218.0,222.0" fill="#e3edfd" stroke="#334e68" stroke-width="1.5"/>
+  <text x="236.0" y="214.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">D</text>
+  <polygon points="260.0,209.0 266.0,196.0 302.0,196.0 308.0,209.0 302.0,222.0 266.0,222.0" fill="#e3edfd" stroke="#334e68" stroke-width="1.5"/>
+  <text x="284.0" y="214.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">D</text>
+  <polygon points="308.0,209.0 314.0,196.0 350.0,196.0 356.0,209.0 350.0,222.0 314.0,222.0" fill="#e3edfd" stroke="#334e68" stroke-width="1.5"/>
+  <text x="332.0" y="214.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">D</text>
+  <polygon points="356.0,209.0 362.0,196.0 398.0,196.0 404.0,209.0 398.0,222.0 362.0,222.0" fill="#e1f4e5" stroke="#334e68" stroke-width="1.5"/>
+  <text x="380.0" y="214.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">ACK</text>
+  <line x1="404.0" y1="209.0" x2="644.0" y2="209.0" stroke="#616e7c" stroke-width="2" stroke-dasharray="6 4"/>
+  <polygon points="644.0,209.0 650.0,196.0 686.0,196.0 692.0,209.0 686.0,222.0 650.0,222.0" fill="#e3edfd" stroke="#334e68" stroke-width="1.5"/>
+  <text x="668.0" y="214.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">D</text>
+  <line x1="692.0" y1="209.0" x2="764.0" y2="209.0" stroke="#616e7c" stroke-width="2" stroke-dasharray="6 4"/>
+  <path d="M406.0,171.0 L406.0,176.0 L642.0,176.0 L642.0,171.0" stroke="#d9730d" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+  <text x="524.0" y="192.0" font-size="12" text-anchor="middle" fill="#d9730d" font-weight="bold">센서가 측정 중: 준비될 때까지 SCL을 Low로</text>
+  <text x="476.0" y="300.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">마스터는 SCL을 놓은 뒤 선을 다시 읽어, 실제로 High가 될 때까지 기다려야 한다</text>
+</svg>

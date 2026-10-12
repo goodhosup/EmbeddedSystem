@@ -74,6 +74,7 @@ static void run_command(char *line)
 int main(void)
 {
     char line[LINE_MAX];
+    int prev = 0;
     uint8_t len = 0;
 
     DDRB |= (1 << DDB5);
@@ -95,8 +96,13 @@ int main(void)
     for (;;) {
         int c = uart_getc();
         if (c < 0) {
-            continue;                            /* 받은 문자가 없으면 다른 일을 해도 된다 */
+            continue;
         }
+        if (c == '\n' && prev == '\r') {          /* CR+LF의 LF는 무시 */
+            prev = c;
+            continue;
+        }
+        prev = c;
         if (c == '\r' || c == '\n') {
             if (len > 0) {
                 line[len] = '\0';

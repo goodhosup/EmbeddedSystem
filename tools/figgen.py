@@ -2603,8 +2603,8 @@ def fig_14_7():
 
 
 def fig_14_5():
-    s = Svg(900, 400)
-    s.text(450, 30, "그림 14-5  보레이트 오차가 누적되어 프레임이 깨지는 모습", 16, weight="bold")
+    s = Svg(980, 400)
+    s.text(490, 30, "그림 14-5  보레이트 오차가 누적되어 프레임이 깨지는 모습", 16, weight="bold")
     x0, bw = 150, 66
     names = ["시작", "D0", "D1", "D2", "D3", "D4", "D5", "D6", "D7", "정지"]
 
@@ -2629,8 +2629,8 @@ def fig_14_5():
             s.line(ideal, y - 70 + (0 if k == 0 else -40), ideal, y - 4, "#c9d2dc", 1, "3 3")
             s.poly([(actual, y + 6), (actual - 6, y + 22), (actual + 6, y + 22)], c, c, 1)
         s.text(x0 + 10 * bw + 30, y + 20, "정지 비트 안" if k == 0 else "정지 비트 밖", 12, "start", col, "bold")
-    s.text(450, 340, "시작 비트의 하강 에지에서 맞춘 뒤로는 오차가 비트마다 쌓인다. 마지막 비트(정지)의 중앙까지 반 비트 이상 어긋나면 틀린다", 12, color=MUTED)
-    s.text(450, 360, "8N1 프레임(10비트)이면 9.5비트 동안 0.5비트 미만: 두 장치 오차의 합이 약 5% 미만이어야 한다 (실제로는 더 여유 있게)", 12, color=INK)
+    s.text(490, 340, "시작 비트의 하강 에지에서 맞춘 뒤로는 오차가 비트마다 쌓인다. 마지막 비트(정지)의 중앙까지 반 비트 이상 어긋나면 틀린다", 12, color=MUTED)
+    s.text(490, 360, "8N1 프레임(10비트)이면 9.5비트 동안 0.5비트 미만: 두 장치 오차의 합이 약 5% 미만이어야 한다 (실제로는 더 여유 있게)", 12, color=INK)
     s.save("ch14/fig14-5-baud-error.svg")
 
 
@@ -2681,7 +2681,8 @@ def fig_14_8():
             else:
                 s.line(xx, 112, xx, 138, LINE, 1.5, arrow=True)
             s.text(xx, 128, "", 1)
-        s.text(x + 60, 126, "TX · RX · 방향", 10, color=MUTED)
+        s.text(x + 126, 122, "TX ↓", 10, "start", MUTED)
+        s.text(x + 126, 136, "RX ↑ · DE ↓", 10, "start", MUTED)
         s.line(x + 40, 198, x + 40, yA - 2, BLUE, 2)
         s.line(x + 80, 198, x + 80, yB - 2, ORANGE, 2)
         dot(s, x + 40, yA, BLUE)
@@ -2726,7 +2727,7 @@ def fig_15_1():
     s.save("ch15/fig15-1-i2c-bus.svg")
 
 
-def fig_15_3_4():
+def fig_15_4():
     # 시작 조건 → 주소 7비트(0x76=1110110) + W(0) → ACK → 정지 조건
     addr = "1110110"
     bits = addr + "0"
@@ -2776,6 +2777,179 @@ def fig_15_6():
     s.text(60, 230, "A = ACK(0),  N = NACK(1): 마스터가 \"이제 그만 보내라\"고 알리는 마지막 응답", 12, "start", MUTED)
     s.text(60, 252, "예) 온도 센서 0x76의 0xFA번 레지스터 읽기 →  S 0x76 W A 0xFA A Sr 0x76 R A [값] N P", 12, "start", MUTED)
     s.save("ch15/fig15-6-i2c-register-read.svg")
+
+
+def fig_15_2():
+    s = Svg(900, 400)
+    s.text(450, 30, "그림 15-2  오픈 드레인 선의 와이어드 AND 동작", 16, weight="bold")
+    supply(s, 450, 70, "VDD")
+    resistor_v(s, 450, 70, 140, "풀업")
+    s.line(150, 160, 750, 160, BLUE, 3)
+    dot(s, 450, 160, BLUE)
+    s.line(450, 140, 450, 160, LINE, 2)
+    s.text(760, 165, "SDA", 13, "start", BLUE, "bold")
+    names = ["장치 A", "장치 B", "장치 C"]
+    for i, n in enumerate(names):
+        x = 220 + i * 230
+        s.line(x, 160, x, 200, LINE, 2)
+        dot(s, x, 160, BLUE)
+        s.rect(x - 50, 200, 100, 70, GRAY_BG, LINE, 8, 1.5)
+        s.text(x, 222, n, 13, weight="bold")
+        s.text(x, 244, "N-MOS", 11, color=MUTED)
+        s.line(x, 270, x, 290, LINE, 2)
+        ground(s, x, 290)
+    rows = [("A", "B", "C", "선"), ("꺼짐", "꺼짐", "꺼짐", "1 (풀업)"), ("켜짐", "꺼짐", "꺼짐", "0"),
+            ("꺼짐", "켜짐", "켜짐", "0")]
+    tx, ty = 250, 322
+    for r, row in enumerate(rows):
+        for c, v in enumerate(row):
+            x = tx + c * 100
+            y = ty + r * 0
+        pass
+    s.text(450, 340, "모두가 놓아 두면(꺼짐) 풀업 저항이 1을 만들고, 누구라도 끌어내리면(켜짐) 0이 된다", 13, weight="bold")
+    s.text(450, 362, "선 = A AND B AND C (각 장치가 \"1을 낸다\" = 놓아 둔다).  누가 무엇을 내든 단락은 생기지 않는다", 12, color=MUTED)
+    s.text(450, 384, "그래서 여러 장치가 같은 선을 쓰고, 보내는 장치가 선을 다시 읽어 충돌(중재 패배)을 알아챌 수 있다", 12, color=MUTED)
+    s.save("ch15/fig15-2-wired-and.svg")
+
+
+def fig_15_3():
+    t = Timing(12, 50, 110, 80, "그림 15-3  시작 조건과 정지 조건")
+    sda = [(1.5, "h", None, None), (2.25, "l", None, None), (1, "d", "데이터", BLUE_BG), (2.25, "l", None, None),
+           (5.0, "h", None, None)]
+    scl = [(2.5, "h", None, None), (0.5, "l", None, None), (0.5, "h", None, None), (0.5, "l", None, None),
+           (0.5, "h", None, None), (0.5, "l", None, None), (0.5, "h", None, None), (0.5, "l", None, None),
+           (6.0, "h", None, None)]
+    t.signal("SDA", sda)
+    t.signal("SCL", scl)
+    t.note("vline", t=1.5, label="시작(S)", color=GREEN, dy=10)
+    t.note("vline", t=7.0, label="정지(P)", color=GREEN, dy=10)
+    t.note("text", t=1.5, y=250, label="S: SCL High 동안 SDA 하강", size=12, anchor="start")
+    t.note("text", t=7.0, y=250, label="P: SCL High 동안 SDA 상승", size=12, anchor="start")
+    t.note("text", t=6.0, y=276, label="평소에는 SCL이 High인 동안 SDA가 바뀌면 안 된다. 그 규칙을 일부러 어기는 두 순간이 시작과 정지다", size=12)
+    t.render("ch15/fig15-3-start-stop.svg", 100)
+
+
+def fig_15_5():
+    s = Svg(900, 300)
+    s.text(450, 30, "그림 15-5  레지스터 쓰기 트랜잭션: 주소, 레지스터 번호, 값", 16, weight="bold")
+    cells = [("S", 34, GREEN_BG, GREEN), ("슬레이브 주소", 130, BLUE_BG, BLUE), ("W", 34, BLUE_BG, BLUE),
+             ("A", 34, ORANGE_BG, ORANGE), ("레지스터 번호", 130, BLUE_BG, BLUE), ("A", 34, ORANGE_BG, ORANGE),
+             ("값", 110, BLUE_BG, BLUE), ("A", 34, ORANGE_BG, ORANGE), ("P", 34, GREEN_BG, GREEN)]
+    x = 110
+    for lbl, w, f, st in cells:
+        s.rect(x, 80, w, 50, f, st, 3)
+        s.text(x + w / 2, 110, lbl, 13, weight="bold")
+        x += w
+    s.text(110 + 34 + 65, 150, "7비트", 11, color=MUTED)
+    s.text(110 + 34 + 130 + 68 + 65, 150, "8비트", 11, color=MUTED)
+    s.text(110 + 34 + 130 + 68 + 130 + 34 + 55, 150, "8비트", 11, color=MUTED)
+    s.rect(110, 180, 18, 18, BLUE_BG, BLUE, 3)
+    s.text(136, 194, "마스터가 보냄", 12, "start")
+    s.rect(250, 180, 18, 18, ORANGE_BG, ORANGE, 3)
+    s.text(276, 194, "슬레이브가 보냄 (ACK = 0)", 12, "start")
+    s.rect(470, 180, 18, 18, GREEN_BG, GREEN, 3)
+    s.text(496, 194, "버스 조건", 12, "start")
+    s.text(110, 232, "예) 센서 0x76의 0xF4번 레지스터(측정 제어)에 0x27을 쓰기 →  S 0x76 W A 0xF4 A 0x27 A P", 12, "start", MUTED)
+    s.text(110, 254, "값을 더 보내면 슬레이브가 레지스터 번호를 1씩 늘려 가며 연속으로 쓰는 장치가 많다 (자동 증가)", 12, "start", MUTED)
+    s.save("ch15/fig15-5-i2c-register-write.svg")
+
+
+def fig_15_7():
+    import math
+    s = Svg(900, 420)
+    s.text(450, 30, "그림 15-7  풀업 저항 값에 따른 상승 시간 비교 (버스 용량 200 pF 가정)", 16, weight="bold")
+    x0, y0, w, h = 120, 300, 700, 210
+    s.line(x0, y0, x0 + w + 10, y0, MUTED, 1.2, arrow=True)
+    s.line(x0, y0, x0, y0 - h - 20, MUTED, 1.2, arrow=True)
+    s.text(x0 - 10, y0 - h + 4, "VDD", 12, "end", MUTED)
+    s.text(x0 - 10, y0 + 4, "0", 12, "end", MUTED)
+    s.line(x0, y0 - 0.7 * h, x0 + w, y0 - 0.7 * h, RED, 1, "4 3")
+    s.text(x0 + w + 6, y0 - 0.7 * h + 4, "VIH (0.7 VDD)", 11, "start", RED)
+    s.text(x0 + w + 10, y0 + 36, "시간 (µs)", 12, "end", MUTED)
+    tmax = 5.0
+    for us in range(0, 6):
+        s.text(x0 + w * us / tmax, y0 + 18, str(us), 11, color=MUTED)
+    t_rel = 0.5
+    for k, (R, col, lbl) in enumerate(((1000, GREEN, "1 kΩ"), (4700, BLUE, "4.7 kΩ"), (10000, ORANGE, "10 kΩ"), (47000, RED, "47 kΩ"))):
+        tau = R * 200e-12 * 1e6     # µs
+        pts = [f"M{x0},{y0}", f"L{x0 + w * t_rel / tmax:.1f},{y0}"]
+        for i in range(1, 201):
+            t = t_rel + (tmax - t_rel) * i / 200
+            v = 1 - math.exp(-(t - t_rel) / tau)
+            pts.append(f"L{x0 + w * t / tmax:.1f},{y0 - v * h:.1f}")
+        s.path(" ".join(pts), col, 2.2)
+        lx = 140 + k * 180
+        s.line(lx, 346, lx + 26, 346, col, 2.5)
+        s.text(lx + 32, 350, f"{lbl} (τ = {tau:.2f} µs)", 11, "start", col, "bold")
+    s.text(450, 380, "표준 모드(100 kHz)는 상승 시간 1000 ns, 고속 모드(400 kHz)는 300 ns 이하여야 한다", 12, color=INK)
+    s.text(450, 400, "저항이 작을수록 빠르지만, 선을 0으로 끌어내릴 때 흐르는 전류(VDD ÷ R)가 커진다 (최대 3 mA 등 규격 제한)", 12, color=MUTED)
+    s.save("ch15/fig15-7-pullup-rise.svg")
+
+
+def fig_15_8():
+    t = Timing(14, 48, 140, 80, "그림 15-8  클럭 스트레칭: 슬레이브가 SCL을 붙잡아 기다리게 한다")
+    scl_m = [(0.5, "l", None, None)]
+    for _ in range(4):
+        scl_m += [(0.5, "h", None, None), (0.5, "l", None, None)]
+    scl_m += [(0.5, "h", None, None), (5.5, "z", "마스터는 놓았지만", None), (0.5, "h", None, None), (0.5, "l", None, None),
+              (0.5, "h", None, None), (0.5, "l", None, None)]
+    t.signal("SCL (마스터)", scl_m, sub="마스터의 의도")
+    scl = [(0.5, "l", None, None)]
+    for _ in range(4):
+        scl += [(0.5, "h", None, None), (0.5, "l", None, None)]
+    scl += [(0.5, "h", None, None), (0.5, "l", None, None), (5.0, "l", "슬레이브가 Low로 붙잡음", ORANGE),
+            (0.5, "h", None, None), (0.5, "l", None, None), (0.5, "h", None, None), (0.5, "l", None, None)]
+    t.signal("SCL (실제 선)", scl, sub="와이어드 AND 결과")
+    sda = [(0.5, "z", None, None)] + [(1, "d", "D", BLUE_BG) for _ in range(4)] + [(1, "d", "ACK", GREEN_BG), (5, "z", None, None),
+           (1, "d", "D", BLUE_BG), (1.5, "z", None, None)]
+    t.signal("SDA", sda)
+    t.note("span", row=1, t0=5.5, t1=10.5, label="센서가 측정 중: 준비될 때까지 SCL을 Low로", color=ORANGE)
+    t.note("text", t=7, y=300, label="마스터는 SCL을 놓은 뒤 선을 다시 읽어, 실제로 High가 될 때까지 기다려야 한다", size=12)
+    t.render("ch15/fig15-8-clock-stretching.svg", 60)
+
+
+def fig_15_9():
+    s = Svg(900, 420)
+    s.text(450, 30, "그림 15-9  로직 애널라이저 화면 해석 (레지스터 읽기의 예, 개념도)", 16, weight="bold")
+    s.rect(30, 50, 840, 300, "#1f2933", LINE, 8, 1.5)
+    # 신호 영역
+    def trace(y, segs, color):
+        x = 120
+        pts = [f"M{x},{y}"]
+        for length, lvl in segs:
+            yy = y - 22 if lvl else y
+            pts.append(f"L{x},{yy} L{x + length},{yy}")
+            x += length
+        s.path(" ".join(pts), color, 1.6)
+    s.text(60, 120, "SDA", 13, "start", "#e3edfd", "bold")
+    s.text(60, 200, "SCL", 13, "start", "#e3edfd", "bold")
+    import random
+    random.seed(3)
+    sda = [(30, 1), (12, 0)]
+    for _ in range(36):
+        sda.append((18, random.randint(0, 1)))
+    sda.append((60, 1))
+    trace(130, sda, "#7dd3fc")
+    scl = [(42, 1)]
+    for _ in range(36):
+        scl += [(9, 0), (9, 1)]
+    scl.append((60, 1))
+    trace(210, scl, "#fbbf24")
+    # 디코드 막대
+    dec = [(120, 42, "S", "#2f9e44"), (162, 144, "0x76 W", "#2f6fdf"), (306, 18, "A", "#d9730d"),
+           (324, 144, "0xD0", "#2f6fdf"), (468, 18, "A", "#d9730d"), (486, 18, "Sr", "#2f9e44"),
+           (504, 144, "0x76 R", "#2f6fdf"), (648, 18, "A", "#d9730d"), (666, 144, "0x60", "#d9730d"),
+           (810, 18, "N", "#2f6fdf")]
+    for x, w, lbl, col in dec:
+        s.rect(x, 250, w - 2, 26, col, col, 4, 1)
+        s.text(x + w / 2, 268, lbl, 11, color="#ffffff", weight="bold")
+    s.text(60, 268, "디코드", 12, "start", "#c9d2dc", "bold")
+    s.text(450, 318, "장치 0x76의 레지스터 0xD0(칩 ID)을 읽었고, 답은 0x60 (BME280)", 13, color="#e3edfd", weight="bold")
+    notes = ["① 시작(S)과 슬레이브 주소, W", "② 주소 뒤에 ACK(A)가 왔는가? 없으면(NACK) 주소나 배선 문제",
+             "③ 반복 시작(Sr) 후 R로 다시 주소", "④ 마지막 바이트 뒤 마스터의 NACK(N)과 정지(P)"]
+    for i, n in enumerate(notes):
+        s.text(60 + (i % 2) * 420, 378 + (i // 2) * 22, n, 12, "start", INK)
+    s.save("ch15/fig15-9-logic-analyzer.svg")
 
 
 # ---------------------------------------------------------------------------

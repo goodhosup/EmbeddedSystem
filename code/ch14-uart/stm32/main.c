@@ -132,6 +132,7 @@ static void run_command(char *line)
 int main(void)
 {
     char line[LINE_MAX];
+    int prev = 0;
     uint32_t len = 0;
 
     SYSTICK->LOAD = 16000u - 1u;
@@ -155,6 +156,11 @@ int main(void)
         if (c < 0) {
             continue;
         }
+        if (c == '\n' && prev == '\r') {          /* CR+LF의 LF는 무시 */
+            prev = c;
+            continue;
+        }
+        prev = c;
         if (c == '\r' || c == '\n') {
             if (len > 0) {
                 line[len] = '\0';
