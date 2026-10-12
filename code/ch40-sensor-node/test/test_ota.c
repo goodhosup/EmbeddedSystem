@@ -60,6 +60,24 @@ int main(void)
     CHECK(ota_end(&o) == OTA_E_VERIFY);
     CHECK(meta_load(&st) == -1);                                        /* 기록 없음 = 기존 상태 그대로 */
 
+    /* 스트림 읽기가 요청보다 적게 준 조각(87 B): 4의 배수가 아니므로 거부한다 */
+    fake_flash_reset();
+    ota_init(&o, fake_verify);
+    verify_result = 0;
+    CHECK(ota_begin(&o, 1, sizeof img, 0x010200) == OTA_OK);
+    CHECK(ota_chunk(&o, 0, img, 87) == OTA_E_SIZE);
+    CHECK(ota_chunk(&o, 0, img, 88) == OTA_OK);                          /* 4의 배수는 괜찮다 */
+    CHECK(ota_chunk(&o, 87, &img[87], 4) == OTA_E_OFFSET);
+    /* 마지막 조각은 4의 배수가 아니어도 된다 (3000 = 88 + ... + 나머지) */
+    uint32_t off = 88;
+    while (off < sizeof img) {
+        uint16_t n = (uint16_t)((sizeof img - off) > 124 ? 124 : (sizeof img - off));
+        CHECK(ota_chunk(&o, off, &img[off], n) == OTA_OK);
+        off += n;
+    }
+    CHECK(ota_end(&o) == OTA_OK);
+    CHECK(memcmp(fake_flash_mem(SLOT_B_ADDR), img, sizeof img) == 0);
+
     CHECK(ota_begin(&o, 2, 100, 0) == OTA_E_STATE);
     CHECK(ota_begin(&o, 0, SLOT_SIZE + 1, 0) == OTA_E_SIZE);
 

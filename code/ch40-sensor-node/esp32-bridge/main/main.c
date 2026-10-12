@@ -139,8 +139,15 @@ static void ota_task(void *arg)
         int r = (total > 0) ? send_reliable(&arq, &rx, MSG_OTA_BEGIN, hdr, sizeof hdr, 4000) : -3;   /* 노드가 128 KB 섹터를 지운다: 1~2 s */
         uint32_t off = 0;
         while (r == 0 && off < (uint32_t)total) {
-            int n = esp_http_client_read(http, (char *)&buf[4], CHUNK);
-            if (n <= 0) { r = -4; break; }
+            /* 스트림 읽기는 요청한 만큼 오지 않는다 (TLS 레코드, TCP 경계): CHUNK가 차거나 끝까지 반복 */
+            int want = (total - (int)off) < CHUNK ? (total - (int)off) : CHUNK;
+            int n = 0;
+            while (n < want) {
+                int k = esp_http_client_read(http, (char *)&buf[4 + n], want - n);
+                if (k <= 0) break;
+                n += k;
+            }
+            if (n != want) { r = -4; break; }
             memcpy(buf, &off, 4);
             r = send_reliable(&arq, &rx, MSG_OTA_CHUNK, buf, (uint16_t)(4 + n), 200);
             off += (uint32_t)n;
@@ -163,7 +170,8 @@ static void on_mqtt(void *arg, esp_event_base_t base, int32_t id, void *data)
     esp_mqtt_event_handle_t e = data;
     if (id == MQTT_EVENT_CONNECTED) {
         esp_mqtt_client_subscribe(mqtt, topic_ota, 1);
-    } else if (id == MQTT_EVENT_DATA && e->topic_len == (int)strlen(topic_ota) &&
+    } else if (id == MQTT_EVENT_DATA && e->data_len == e->total_data_len &&   /* 조각난 큰 메시지는 무시 */
+               e->topic_len == (int)strlen(topic_ota) &&
                strncmp(e->topic, topic_ota, e->topic_len) == 0) {
         cJSON *j = cJSON_ParseWithLength(e->data, e->data_len);    /* 바깥에서 온 데이터: 길이와 형식 확인 */
         const cJSON *url = cJSON_GetObjectItem(j, "url"), *ver = cJSON_GetObjectItem(j, "version");
