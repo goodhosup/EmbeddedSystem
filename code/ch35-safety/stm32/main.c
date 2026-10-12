@@ -19,19 +19,24 @@
 static volatile uint32_t ms;
 void SysTick_Handler(void) { ms++; }
 
-/* ---- 리셋 원인 ---- */
+/* ---- 리셋 원인 ----
+ * 플래그는 여러 개가 함께 선다: 내부 리셋(워치독, 소프트웨어, 저전력)도 NRST 핀을 당기므로 PINRSTF가 같이 서고,
+ * 전원 투입 때는 PORRSTF와 함께 BORRSTF, PINRSTF도 선다. 그래서 우선순위로 하나만 고른다. */
+static const char *reset_cause(uint32_t csr)
+{
+    if (csr & RCC_CSR_PORRSTF)  return "power-on";
+    if (csr & RCC_CSR_IWDGRSTF) return "INDEPENDENT-WATCHDOG";
+    if (csr & RCC_CSR_WWDGRSTF) return "window-watchdog";
+    if (csr & RCC_CSR_LPWRRSTF) return "low-power";
+    if (csr & RCC_CSR_SFTRSTF)  return "software";
+    if (csr & RCC_CSR_BORRSTF)  return "brown-out";
+    if (csr & RCC_CSR_PINRSTF)  return "reset-pin";       /* 다른 원인이 없을 때만 */
+    return "unknown";
+}
+
 static void report_reset_cause(void)
 {
-    uint32_t csr = RCC->CSR;
-    printf("\nreset cause:");
-    if (csr & RCC_CSR_LPWRRSTF) printf(" low-power");
-    if (csr & RCC_CSR_WWDGRSTF) printf(" window-watchdog");
-    if (csr & RCC_CSR_IWDGRSTF) printf(" INDEPENDENT-WATCHDOG");
-    if (csr & RCC_CSR_SFTRSTF)  printf(" software");
-    if (csr & RCC_CSR_PORRSTF)  printf(" power-on");
-    if (csr & RCC_CSR_PINRSTF)  printf(" reset-pin");
-    if (csr & RCC_CSR_BORRSTF)  printf(" brown-out");
-    printf("\n");
+    printf("\nreset cause: %s\n", reset_cause(RCC->CSR));
     RCC->CSR |= RCC_CSR_RMVF;           /* 플래그를 지워 두어야 다음 리셋의 원인을 구별할 수 있다 */
 }
 

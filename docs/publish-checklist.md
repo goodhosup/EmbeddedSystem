@@ -43,8 +43,10 @@
 | `chapters/ch33-embedded-security.md` | 260 | [확인 필요: 보드 실측] |
 | `chapters/ch34-performance.md` | 199 | [확인 필요: 출간 시점 CMSIS-DSP 저장소와 빌드 방법] |
 | `chapters/ch34-performance.md` | 224 | [확인 필요: 보드 실측값으로 표와 그림 34-2 갱신] |
+| `chapters/ch35-functional-safety.md` | 28 | [확인 필요] |
+| `chapters/ch35-functional-safety.md` | 46 | [확인 필요: 최신판과 규칙 번호 변경 여부] |
 | `chapters/ch35-functional-safety.md` | 147 | [확인 필요: 보드 실측] |
-| `chapters/ch35-functional-safety.md` | 203 | [확인 필요: 출간 시점 ST 클래스 B 라이브러리 이름과 지원 MCU] |
+| `chapters/ch35-functional-safety.md` | 211 | [확인 필요: 출간 시점 ST 클래스 B 라이브러리 이름과 지원 MCU] |
 | `code/ch18-usb/README.md` | 23 | [확인 필요: CN10 핀 번호] |
 | `code/ch18-usb/stm32/usb_descriptors.c` | 6 | [확인 필요: pid.codes 시험용 PID 정책] |
 | `code/ch19-wireless/esp32-arduino/ble_sensor/ble_sensor.ino` | 9 | [확인 필요: 코어 버전별 BLE 라이브러리 API] |
@@ -62,4 +64,4 @@
 | `code/ch34-performance/README.md` | 18 | [확인 필요: 보드 실측값 (34.7절 표)] |
 | `code/ch35-safety/README.md` | 21 | [확인 필요: 보드 실행 결과] |
 
-총 56건
+총 58건
