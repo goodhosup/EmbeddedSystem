@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="460" viewBox="0 0 900 460" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 26-2  태스크 상태 전이</text>
+  <rect x="120.0" y="180.0" width="170.0" height="60.0" rx="28" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.8"/>
+  <text x="205.0" y="206.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">Ready</text>
+  <text x="205.0" y="225.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">실행할 수 있음</text>
+  <rect x="560.0" y="180.0" width="170.0" height="60.0" rx="28" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.8"/>
+  <text x="645.0" y="206.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">Running</text>
+  <text x="645.0" y="225.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">지금 CPU를 씀 (코어당 하나)</text>
+  <rect x="340.0" y="340.0" width="170.0" height="60.0" rx="28" fill="#fdebd7" stroke="#d9730d" stroke-width="1.8"/>
+  <text x="425.0" y="366.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">Blocked</text>
+  <text x="425.0" y="385.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">무언가를 기다림</text>
+  <rect x="340.0" y="70.0" width="170.0" height="60.0" rx="28" fill="#eef1f4" stroke="#334e68" stroke-width="1.8"/>
+  <text x="425.0" y="96.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">Suspended</text>
+  <text x="425.0" y="115.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">멈춰 둠</text>
+  <line x1="292.0" y1="196.0" x2="556.0" y2="196.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="424.0" y="188.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="bold">스케줄러가 고름 (가장 높은 우선순위)</text>
+  <line x1="556.0" y1="226.0" x2="292.0" y2="226.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="424.0" y="244.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="bold">선점당함 / taskYIELD()</text>
+  <path d="M640,242 L640,370 L512,370" stroke="#d9730d" stroke-width="1.8" fill="none" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <text x="650.0" y="316.0" font-size="11" text-anchor="start" fill="#d9730d" font-weight="bold">vTaskDelay, 큐·세마포어 대기</text>
+  <path d="M340,370 L205,370 L205,244" stroke="#d9730d" stroke-width="1.8" fill="none" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <text x="196.0" y="316.0" font-size="11" text-anchor="end" fill="#d9730d" font-weight="bold">시간이 됨, 이벤트 도착</text>
+  <path d="M205,178 L205,100 L336,100" stroke="#334e68" stroke-width="1.4" fill="none" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <path d="M512,100 L640,100 L640,176" stroke="#334e68" stroke-width="1.4" fill="none" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <text x="205.0" y="90.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">vTaskSuspend()</text>
+  <text x="640.0" y="90.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">vTaskSuspend() (자기 자신)</text>
+  <path d="M425,132 L425,160 L292,180" stroke="#334e68" stroke-width="1.2" fill="none" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <text x="432.0" y="152.0" font-size="11" text-anchor="start" fill="#616e7c" font-weight="normal">vTaskResume()</text>
+  <text x="450.0" y="440.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">Blocked 태스크는 CPU를 전혀 쓰지 않는다. 대부분의 태스크는 대부분의 시간을 Blocked로 보낸다</text>
+</svg>

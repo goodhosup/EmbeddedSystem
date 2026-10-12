@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 26-3  컨텍스트 스위칭 시 스택에 저장되는 레지스터</text>
+  <text x="180.0" y="64.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">태스크 A의 스택</text>
+  <rect x="90.0" y="76.0" width="180.0" height="22.0" rx="0" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1"/>
+  <text x="180.0" y="92.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">xPSR</text>
+  <rect x="90.0" y="98.0" width="180.0" height="22.0" rx="0" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1"/>
+  <text x="180.0" y="114.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">PC</text>
+  <rect x="90.0" y="120.0" width="180.0" height="22.0" rx="0" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1"/>
+  <text x="180.0" y="136.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">LR</text>
+  <rect x="90.0" y="142.0" width="180.0" height="22.0" rx="0" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1"/>
+  <text x="180.0" y="158.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">R12</text>
+  <rect x="90.0" y="164.0" width="180.0" height="22.0" rx="0" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1"/>
+  <text x="180.0" y="180.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">R3</text>
+  <rect x="90.0" y="186.0" width="180.0" height="22.0" rx="0" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1"/>
+  <text x="180.0" y="202.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">R2</text>
+  <rect x="90.0" y="208.0" width="180.0" height="22.0" rx="0" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1"/>
+  <text x="180.0" y="224.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">R1</text>
+  <rect x="90.0" y="230.0" width="180.0" height="22.0" rx="0" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1"/>
+  <text x="180.0" y="246.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">R0</text>
+  <rect x="90.0" y="252.0" width="180.0" height="22.0" rx="0" fill="#fdebd7" stroke="#d9730d" stroke-width="1"/>
+  <text x="180.0" y="268.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">EXC_RETURN (LR)</text>
+  <rect x="90.0" y="274.0" width="180.0" height="22.0" rx="0" fill="#fdebd7" stroke="#d9730d" stroke-width="1"/>
+  <text x="180.0" y="290.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">R11</text>
+  <rect x="90.0" y="296.0" width="180.0" height="22.0" rx="0" fill="#fdebd7" stroke="#d9730d" stroke-width="1"/>
+  <text x="180.0" y="312.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">R10</text>
+  <rect x="90.0" y="318.0" width="180.0" height="22.0" rx="0" fill="#fdebd7" stroke="#d9730d" stroke-width="1"/>
+  <text x="180.0" y="334.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">R9</text>
+  <rect x="90.0" y="340.0" width="180.0" height="22.0" rx="0" fill="#fdebd7" stroke="#d9730d" stroke-width="1"/>
+  <text x="180.0" y="356.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">R8</text>
+  <rect x="90.0" y="362.0" width="180.0" height="22.0" rx="0" fill="#fdebd7" stroke="#d9730d" stroke-width="1"/>
+  <text x="180.0" y="378.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">R7</text>
+  <rect x="90.0" y="384.0" width="180.0" height="22.0" rx="0" fill="#fdebd7" stroke="#d9730d" stroke-width="1"/>
+  <text x="180.0" y="400.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">R6</text>
+  <rect x="90.0" y="406.0" width="180.0" height="22.0" rx="0" fill="#fdebd7" stroke="#d9730d" stroke-width="1"/>
+  <text x="180.0" y="422.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">R5</text>
+  <rect x="90.0" y="428.0" width="180.0" height="22.0" rx="0" fill="#fdebd7" stroke="#d9730d" stroke-width="1"/>
+  <text x="180.0" y="444.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">R4</text>
+  <text x="280.0" y="444.0" font-size="11" text-anchor="start" fill="#616e7c" font-weight="normal">← PSP (TCB에 저장)</text>
+  <line x1="70.0" y1="78.0" x2="70.0" y2="250.0" stroke="#2f6fdf" stroke-width="3"/>
+  <text x="62.0" y="169.0" font-size="11" text-anchor="end" fill="#2f6fdf" font-weight="bold">하드웨어</text>
+  <line x1="70.0" y1="254.0" x2="70.0" y2="448.0" stroke="#d9730d" stroke-width="3"/>
+  <text x="62.0" y="347.0" font-size="11" text-anchor="end" fill="#d9730d" font-weight="bold">PendSV</text>
+  <text x="62.0" y="363.0" font-size="11" text-anchor="end" fill="#d9730d" font-weight="bold">처리기</text>
+  <text x="380.0" y="100.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="normal">① 틱이나 API 호출이 PendSV를 요청 (가장 낮은 우선순위)</text>
+  <text x="380.0" y="140.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="normal">② 예외 진입: 하드웨어가 R0~R3, R12, LR, PC, xPSR을 PSP 스택에 쌓음</text>
+  <text x="380.0" y="180.0" font-size="12" text-anchor="start" fill="#d9730d" font-weight="bold">③ PendSV: (FPU를 썼다면 S16~S31,) EXC_RETURN, R4~R11을 같은 스택에 쌓음</text>
+  <text x="380.0" y="220.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="normal">④ 현재 PSP를 태스크 A의 TCB에 저장</text>
+  <text x="380.0" y="260.0" font-size="12" text-anchor="start" fill="#d9730d" font-weight="bold">⑤ 다음에 실행할 태스크 B를 고르고 B의 TCB에서 PSP를 꺼냄</text>
+  <text x="380.0" y="300.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="normal">⑥ B의 스택에서 R4~R11을 꺼내고 예외 복귀</text>
+  <text x="380.0" y="340.0" font-size="12" text-anchor="start" fill="#1f2933" font-weight="normal">⑦ 하드웨어가 나머지를 꺼냄 → B가 멈췄던 곳부터 계속</text>
+  <text x="450.0" y="496.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">태스크마다 자기 스택이 있고, 멈춘 순간의 레지스터가 그 스택에 보관된다. 그래서 각 태스크는 혼자 CPU를 쓰는 것처럼 보인다</text>
+</svg>

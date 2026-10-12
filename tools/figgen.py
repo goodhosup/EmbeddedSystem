@@ -4245,39 +4245,38 @@ def fig_26_2():
 
 
 def fig_26_3():
-    s = Svg(900, 500)
+    s = Svg(900, 520)
     s.text(450, 30, "그림 26-3  컨텍스트 스위칭 시 스택에 저장되는 레지스터", 16, weight="bold")
-    def stack(x, title, hw, sw, note, color):
-        s.text(x + 90, 64, title, 13, weight="bold")
-        y = 78
-        for r in hw:
-            s.rect(x, y, 180, 26, BLUE_BG, BLUE, 0, 1)
-            s.text(x + 90, y + 18, r, 12)
-            y += 26
-        for r in sw:
-            s.rect(x, y, 180, 26, color, ORANGE, 0, 1)
-            s.text(x + 90, y + 18, r, 12)
-            y += 26
-        s.text(x + 190, y - 6, "← PSP (TCB에 저장)", 11, "start", MUTED)
-        s.text(x + 90, y + 22, note, 11, color=MUTED)
-        return y
+    x, rh = 90, 22
+    s.text(x + 90, 64, "태스크 A의 스택", 13, weight="bold")
     hw = ["xPSR", "PC", "LR", "R12", "R3", "R2", "R1", "R0"]
-    sw = ["R11", "R10", "R9", "R8", "R7", "R6", "R5", "R4", "EXC_RETURN (LR)"]
-    stack(80, "태스크 A의 스택", hw, sw, "", ORANGE_BG)
-    s.rect(20, 86, 40, 26 * 8 - 16, BLUE_BG, BLUE, 4, 1)
-    s.text(40, 86 + 100, "하드웨어", 11, color=BLUE, weight="bold")
-    s.text(40, 330, "PendSV", 11, color=ORANGE, weight="bold")
-    s.text(40, 346, "처리기", 11, color=ORANGE, weight="bold")
+    sw = ["EXC_RETURN (LR)", "R11", "R10", "R9", "R8", "R7", "R6", "R5", "R4"]
+    y = 76
+    for r in hw:
+        s.rect(x, y, 180, rh, BLUE_BG, BLUE, 0, 1)
+        s.text(x + 90, y + 16, r, 12)
+        y += rh
+    y_sw = y
+    for r in sw:
+        s.rect(x, y, 180, rh, ORANGE_BG, ORANGE, 0, 1)
+        s.text(x + 90, y + 16, r, 12)
+        y += rh
+    s.text(x + 190, y - 6, "← PSP (TCB에 저장)", 11, "start", MUTED)
+    s.line(70, 78, 70, y_sw - 2, BLUE, 3)
+    s.text(62, (78 + y_sw) / 2 + 4, "하드웨어", 11, "end", BLUE, "bold")
+    s.line(70, y_sw + 2, 70, y - 2, ORANGE, 3)
+    s.text(62, (y_sw + y) / 2 - 4, "PendSV", 11, "end", ORANGE, "bold")
+    s.text(62, (y_sw + y) / 2 + 12, "처리기", 11, "end", ORANGE, "bold")
     steps = ["① 틱이나 API 호출이 PendSV를 요청 (가장 낮은 우선순위)",
              "② 예외 진입: 하드웨어가 R0~R3, R12, LR, PC, xPSR을 PSP 스택에 쌓음",
-             "③ PendSV: R4~R11(과 FPU를 썼다면 S16~S31)을 같은 스택에 쌓음",
+             "③ PendSV: (FPU를 썼다면 S16~S31,) EXC_RETURN, R4~R11을 같은 스택에 쌓음",
              "④ 현재 PSP를 태스크 A의 TCB에 저장",
              "⑤ 다음에 실행할 태스크 B를 고르고 B의 TCB에서 PSP를 꺼냄",
              "⑥ B의 스택에서 R4~R11을 꺼내고 예외 복귀",
              "⑦ 하드웨어가 나머지를 꺼냄 → B가 멈췄던 곳부터 계속"]
-    for i, t in enumerate(steps):
-        s.text(440, 100 + i * 36, t, 12, "start", INK if i not in (2, 4) else ORANGE, "bold" if i in (2, 4) else "normal")
-    s.text(450, 476, "태스크마다 자기 스택이 있고, 멈춘 순간의 레지스터가 그 스택에 보관된다. 그래서 각 태스크는 혼자 CPU를 쓰는 것처럼 보인다", 11, color=MUTED)
+    for k, t in enumerate(steps):
+        s.text(380, 100 + k * 40, t, 12, "start", ORANGE if k in (2, 4) else INK, "bold" if k in (2, 4) else "normal")
+    s.text(450, 496, "태스크마다 자기 스택이 있고, 멈춘 순간의 레지스터가 그 스택에 보관된다. 그래서 각 태스크는 혼자 CPU를 쓰는 것처럼 보인다", 11, color=MUTED)
     s.save("ch26/fig26-3-context-switch.svg")
 
 
@@ -4293,9 +4292,9 @@ def fig_26_4():
     lane_timeline(s, x0, 60, names, segs, 21, sc, 40)
     for t in (2, 10, 18):
         s.line(x0 + t * sc, 54, x0 + t * sc, 266, GREEN, 1.2, dash="3 3")
-    s.text(x0 + 2 * sc, 50, "10 ms", 10, color=GREEN)
-    s.text(x0 + 10 * sc, 50, "10 ms", 10, color=GREEN)
-    s.text(x0 + 18 * sc, 50, "10 ms", 10, color=GREEN)
+    s.text(x0 + 2 * sc, 50, "t", 10, color=GREEN)
+    s.text(x0 + 10 * sc, 50, "t + 10 ms", 10, color=GREEN)
+    s.text(x0 + 18 * sc, 50, "t + 20 ms", 10, color=GREEN)
     s.line(x0 + 7 * sc, 270, x0 + 7 * sc, 286, RED, 1.6)
     s.text(x0 + 7 * sc, 300, "hog 시작: Idle은 더 이상 실행되지 않음", 11, color=RED, weight="bold")
     s.text(x0 + 12.5 * sc, 320, "같은 우선순위(blink, hog)는 틱마다 번갈아 (타임 슬라이싱)", 11, color=MUTED)
