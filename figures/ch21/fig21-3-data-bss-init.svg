@@ -11,16 +11,16 @@
   <text x="640.0" y="98.0" font-size="12" text-anchor="middle" fill="#2f6fdf" font-weight="bold">SRAM</text>
   <rect x="560.0" y="110.0" width="200.0" height="30.0" rx="2" fill="#fdebd7" stroke="#334e68" stroke-width="1"/>
   <text x="660.0" y="130.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">07 00 00 00</text>
-  <text x="550.0" y="130.0" font-size="12" text-anchor="end" fill="#616e7c" font-weight="normal">count</text>
+  <text x="770.0" y="130.0" font-size="12" text-anchor="start" fill="#616e7c" font-weight="normal">count</text>
   <rect x="560.0" y="144.0" width="200.0" height="30.0" rx="2" fill="#fdebd7" stroke="#334e68" stroke-width="1"/>
   <text x="660.0" y="164.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">01 02 03 04</text>
-  <text x="550.0" y="164.0" font-size="12" text-anchor="end" fill="#616e7c" font-weight="normal">buf</text>
+  <text x="770.0" y="164.0" font-size="12" text-anchor="start" fill="#616e7c" font-weight="normal">buf</text>
   <rect x="560.0" y="178.0" width="200.0" height="30.0" rx="2" fill="#e3edfd" stroke="#334e68" stroke-width="1"/>
   <text x="660.0" y="198.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">00 00 00 00</text>
-  <text x="550.0" y="198.0" font-size="12" text-anchor="end" fill="#616e7c" font-weight="normal">total</text>
+  <text x="770.0" y="198.0" font-size="12" text-anchor="start" fill="#616e7c" font-weight="normal">total</text>
   <rect x="560.0" y="212.0" width="200.0" height="30.0" rx="2" fill="#e3edfd" stroke="#334e68" stroke-width="1"/>
   <text x="660.0" y="232.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">00 00 00 00</text>
-  <text x="550.0" y="232.0" font-size="12" text-anchor="end" fill="#616e7c" font-weight="normal">flags</text>
+  <text x="770.0" y="232.0" font-size="12" text-anchor="start" fill="#616e7c" font-weight="normal">flags</text>
   <line x1="262.0" y1="125.0" x2="556.0" y2="125.0" stroke="#d9730d" stroke-width="1.8" marker-end="url(#arrow)"/>
   <line x1="262.0" y1="159.0" x2="556.0" y2="159.0" stroke="#d9730d" stroke-width="1.8" marker-end="url(#arrow)"/>
   <text x="410.0" y="118.0" font-size="11" text-anchor="middle" fill="#d9730d" font-weight="bold">복사</text>

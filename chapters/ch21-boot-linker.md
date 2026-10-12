@@ -227,30 +227,55 @@ PC라면 스택이 넘치면 운영체제가 "스택 오버플로"로 프로그�
 ```
 $ arm-none-eabi-size build/ch21-boot.elf
    text    data     bss     dec     hex filename
-  10212      92     420   10724    29e4 build/ch21-boot.elf
+   8656     104     480    9240    2418 build/ch21-boot.elf
+
+$ arm-none-eabi-size -A build/ch21-boot.elf
+section        size        addr
+.isr_vector     408   134217728
+.text          8248   134218136
+.init_array       4   134226384
+.data           100   536870912
+.bss            480   536871012
+...
 ```
 
-- `text`: Flash에 들어가는 코드와 상수(`.isr_vector` + `.text` + `.rodata` + `.init_array`)
-- `data`: `.data`의 크기. **Flash와 SRAM을 둘 다 씁니다.**
+(arm-none-eabi-gcc 13.2.1, 이 책의 공통 Makefile 기준. 크기와 주소는 툴체인 버전과 옵션에 따라 달라집니다.)
+
+- `text`: 읽기만 하는 섹션(`.isr_vector` + `.text`, `.text` 안에 `.rodata` 포함)
+- `data`: 쓰기 가능하고 초기값이 있는 섹션. `.data`는 **Flash와 SRAM을 둘 다 씁니다.** `.init_array`도 쓰기 가능 섹션이라 `size`는 여기에 넣지만, 실제로는 Flash에만 있습니다(위 예에서 104 = `.data` 100 + `.init_array` 4).
 - `bss`: `.bss`의 크기. SRAM만 씁니다.
 
-그래서 Flash 사용량은 text + data, 정적 SRAM 사용량은 data + bss입니다(스택과 힙은 빠져 있습니다). `size -A`로 실행하면 섹션별로 더 자세히 보입니다.
+그래서 Flash 사용량은 대략 text + data, 정적 SRAM 사용량은 대략 data + bss입니다(스택과 힙은 빠져 있습니다). 다만 이 계산은 `.init_array`처럼 Flash에만 있는 쓰기 가능 섹션만큼 SRAM을 과대 계산하므로, 정확한 값은 `size -A`로 섹션별 크기를 보고 셉니다.
 
 ### nm
 
 ```
 $ arm-none-eabi-nm -n build/ch21-boot.elf
 08000000 R vector_table
-08000198 T Reset_Handler
+080003b8 T uart2_init
+08000504 T Reset_Handler
 ...
-20000000 D initialized
-20000004 d static_local.0
-2000005c B zeroed
+080021dc A _sidata
+20000000 d static_local.0
+20000004 D initialized
 ...
-20020000 A _estack
+2000006c B zeroed
+20000244 B _ebss
+20020000 R _estack
 ```
 
-`nm`은 기호와 주소를 보여 줍니다. 두 번째 글자가 섹션을 나타냅니다(T: .text, R: .rodata, D: .data, B: .bss, 소문자는 파일 안에서만 보이는 `static`). 주소 순(`-n`)이나 크기 순(`--size-sort`)으로 정렬하면 메모리를 많이 차지하는 범인을 찾을 수 있습니다.
+`nm`은 기호와 주소를 보여 줍니다. 두 번째 열의 글자가 기호의 종류를 나타냅니다.
+
+| 글자 | 뜻 |
+| --- | --- |
+| T | `.text` (코드) |
+| R | 읽기 전용 데이터 (`.rodata` 등) |
+| D | `.data` |
+| B | `.bss` |
+| A | 절대 기호: 섹션에 속하지 않고 값(주소)만 있는 기호. 링커 스크립트에서 섹션 밖에 정의한 기호가 흔히 이렇게 나온다 |
+| 소문자 | 파일 안에서만 보이는 `static` 기호 (예: `d`, `b`, `t`) |
+
+같은 링커 기호라도 어디에 정의했는지에 따라 종류가 다르게 나옵니다. `_estack`은 위 출력에서 R로 나왔습니다. 주소 순(`-n`)이나 크기 순(`--size-sort`)으로 정렬하면 메모리를 많이 차지하는 범인을 찾을 수 있습니다.
 
 ### 맵 파일
 
@@ -258,8 +283,8 @@ $ arm-none-eabi-nm -n build/ch21-boot.elf
 
 ```
 .text.uart2_init
-                0x080002a4       0x6c build/uart2.o
-                0x080002a4                uart2_init
+                0x080003b8       0x84 build/uart2.o
+                0x080003b8                uart2_init
 ```
 
 "Flash가 왜 이렇게 큰가?"라는 질문에 답할 때 맵 파일만큼 확실한 자료는 없습니다. 예를 들어 `printf` 한 번에 newlib의 부동소수점 처리, 메모리 할당, 로케일 처리 함수가 줄줄이 따라 들어온 것을 볼 수 있습니다. 22장에서 이 정보로 바이너리 크기를 줄이는 방법을 다룹니다.
@@ -271,25 +296,25 @@ $ arm-none-eabi-nm -n build/ch21-boot.elf
 ```
 ch21 boot & sections
 linker symbols:
-  _sidata (.data LMA)      0x0800283C  Flash
+  _sidata (.data LMA)      0x080021DC  Flash
   _sdata  (.data VMA)      0x20000000  SRAM
-  _edata                   0x2000005C  SRAM
-  _sbss                    0x2000005C  SRAM
-  _ebss / end (heap)       0x20000200  SRAM
+  _edata                   0x20000064  SRAM
+  _sbss                    0x20000064  SRAM
+  _ebss / end (heap)       0x20000244  SRAM
   _estack (initial SP)     0x20020000  SRAM
-  .data 92 bytes, .bss 420 bytes, constructors 1
+  .data 100 bytes, .bss 480 bytes, constructors 1
 objects:
-  main (function)          0x08000415  Flash
-  table (const)            0x08002780  Flash
-  initialized (.data)      0x20000000  SRAM
-  static_local (.data)     0x20000004  SRAM
-  zeroed (.bss)            0x20000064  SRAM
-  local (stack)            0x2001FFF4  SRAM
+  main (function)          0x0800....  Flash
+  table (const)            0x0800....  Flash
+  initialized (.data)      0x20000004  SRAM
+  static_local (.data)     0x20000000  SRAM
+  zeroed (.bss)            0x2000006C  SRAM
+  local (stack)            0x2001F...  SRAM
 values: initialized=0x12345678 zeroed=0 static_local=5
 constructor ran before main: yes
 ```
 
-(주소는 빌드에 따라 다릅니다.) 함수 `main`의 주소가 홀수(…15)인 것이 눈에 띌 것입니다. Cortex-M은 Thumb 명령어만 실행하는데, 함수 포인터의 최하위 비트를 1로 두어 "Thumb 코드"임을 표시하는 Arm의 규칙 때문입니다. 실제 코드는 그 바로 앞의 짝수 주소에 있습니다. 벡터 테이블의 주소들도 모두 홀수입니다.
+(arm-none-eabi-gcc 13.2.1 기준. 주소는 툴체인 버전과 옵션에 따라 달라지므로 "...."로 남긴 곳은 직접 실행해서 확인하세요.) 함수 `main`의 주소를 출력하면 홀수로 나오는 것이 눈에 띌 것입니다. Cortex-M은 Thumb 명령어만 실행하는데, 함수 포인터의 최하위 비트를 1로 두어 "Thumb 코드"임을 표시하는 Arm의 규칙 때문입니다. 실제 코드는 그 바로 앞의 짝수 주소에 있습니다. 벡터 테이블에 들어 있는 처리기 주소들도 모두 홀수입니다(0번 칸의 초기 SP 값은 주소가 아니라 스택 위치이므로 제외).
 
 함수 안의 `static` 변수(`static_local`)가 스택이 아니라 `.data`에 놓인 것도 확인하세요. `static` 지역 변수는 이름만 함수 안에서 보일 뿐, 수명과 위치는 전역 변수와 같습니다.
 

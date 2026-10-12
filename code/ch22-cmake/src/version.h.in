@@ -1,0 +1,8 @@
+/* CMake가 구성할 때 만드는 파일. 직접 고치지 않는다 (22.6절) */
+#ifndef VERSION_H
+#define VERSION_H
+
+#define FW_VERSION    "@FW_GIT_VERSION@"
+#define FW_BUILD_TYPE "@CMAKE_BUILD_TYPE@"
+
+#endif

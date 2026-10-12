@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="445" viewBox="0 0 900 445" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 22-2  CMake 프로젝트 구조와 타깃 의존 관계</text>
+  <rect x="40.0" y="70.0" width="220.0" height="60.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="150.0" y="97.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">CMakeLists.txt</text>
+  <text x="150.0" y="116.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">무엇을 만들지 (타깃)</text>
+  <rect x="40.0" y="150.0" width="220.0" height="60.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="150.0" y="177.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">arm-none-eabi.cmake</text>
+  <text x="150.0" y="196.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">툴체인 파일: 어떤 컴파일러로</text>
+  <line x1="262.0" y1="140.0" x2="320.0" y2="140.0" stroke="#334e68" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="324.0" y="110.0" width="150.0" height="60.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="399.0" y="137.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">cmake</text>
+  <text x="399.0" y="156.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">구성 단계</text>
+  <line x1="476.0" y1="140.0" x2="530.0" y2="140.0" stroke="#334e68" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="534.0" y="100.0" width="170.0" height="80.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="619.0" y="137.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">build-debug/</text>
+  <text x="619.0" y="156.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">Ninja 또는 Makefile</text>
+  <rect x="534.0" y="190.0" width="170.0" height="50.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="619.0" y="220.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">build-release/</text>
+  <text x="716.0" y="145.0" font-size="12" text-anchor="start" fill="#616e7c" font-weight="normal">→ ninja</text>
+  <text x="450.0" y="270.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">타깃 의존 관계</text>
+  <rect x="370.0" y="290.0" width="160.0" height="50.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="450.0" y="312.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">firmware</text>
+  <text x="450.0" y="331.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">실행 파일 (.elf)</text>
+  <rect x="130.0" y="360.0" width="180.0" height="46.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="220.0" y="380.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="bold">app</text>
+  <text x="220.0" y="399.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">정적 라이브러리 (보드 독립)</text>
+  <rect x="590.0" y="360.0" width="180.0" height="46.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="680.0" y="380.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="bold">board</text>
+  <text x="680.0" y="399.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">오브젝트 라이브러리 (startup 등)</text>
+  <line x1="410.0" y1="342.0" x2="260.0" y2="358.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <line x1="490.0" y1="342.0" x2="640.0" y2="358.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="220.0" y="428.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">app은 31장에서 PC용 테스트에도 그대로 쓴다</text>
+</svg>

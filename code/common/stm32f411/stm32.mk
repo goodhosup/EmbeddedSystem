@@ -12,7 +12,8 @@ OBJCOPY = arm-none-eabi-objcopy
 SIZE    = arm-none-eabi-size
 
 CPU     = -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard
-CFLAGS += $(CPU) -std=c11 -Og -g3 -Wall -Wextra \
+# -MMD -MP: 소스마다 .d 파일에 "어떤 헤더를 포함했는지" 적어 두어, 헤더만 고쳐도 다시 빌드되게 한다 (22장)
+CFLAGS += $(CPU) -std=c11 -Og -g3 -Wall -Wextra -MMD -MP \
           -ffunction-sections -fdata-sections \
           -fno-tree-loop-distribute-patterns -I$(COMMON_DIR)
 ifdef USE_NEWLIB
@@ -45,6 +46,8 @@ build/$(TARGET).bin: build/$(TARGET).elf
 
 build:
 	mkdir -p build
+
+-include $(OBJS:.o=.d)
 
 flash: build/$(TARGET).elf
 	openocd -f interface/stlink.cfg -f target/stm32f4x.cfg \

@@ -10,3 +10,4 @@ ch04-c-for-embedded/pitfalls
 ch13-error-detection/errdet
 */test/test_*
 !*/test/test_*.c
+build-*/

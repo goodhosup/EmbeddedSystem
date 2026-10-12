@@ -3764,7 +3764,7 @@ def fig_21_3():
     for i, (n, v, f) in enumerate(names):
         s.rect(560, 110 + i * 34, 200, 30, f, LINE, 2, 1)
         s.text(660, 130 + i * 34, v, 12, weight="bold")
-        s.text(550, 130 + i * 34, n, 12, "end", MUTED)
+        s.text(770, 130 + i * 34, n, 12, "start", MUTED)
     s.line(262, 125, 556, 125, ORANGE, 1.8, arrow=True)
     s.line(262, 159, 556, 159, ORANGE, 1.8, arrow=True)
     s.text(410, 118, "복사", 11, color=ORANGE, weight="bold")
@@ -3801,6 +3801,68 @@ def fig_21_4():
     s.text(170, 220, "경고 없이 서로를 덮어쓴다", 11, color=RED)
     s.text(450, 408, "MCU에는 이것을 막아 주는 운영체제가 없다. 크기를 계산하고 감시하는 방법은 25장에서 다룬다", 12, color=MUTED)
     s.save("ch21/fig21-4-stack-heap.svg")
+
+
+# ---------------------------------------------------------------------------
+# 22장 빌드
+# ---------------------------------------------------------------------------
+
+def fig_22_1():
+    s = Svg(900, 470)
+    s.text(450, 30, "그림 22-1  소스 파일에서 .bin까지 빌드 파이프라인", 16, weight="bold")
+    row = [("main.c", "소스", GREEN_BG, GREEN), ("main.i", "전처리 결과", "#ffffff", LINE),
+           ("main.s", "어셈블리", "#ffffff", LINE), ("main.o", "목적 파일", BLUE_BG, BLUE)]
+    tools = ["전처리 (-E)", "컴파일 (-S)", "어셈블 (-c)"]
+    for i, (a, b, f, st) in enumerate(row):
+        x = 40 + i * 215
+        s.box(x, 70, 150, 56, a, b, f, st, 14)
+        if i < 3:
+            s.line(x + 152, 98, x + 213, 98, LINE, 2, arrow=True)
+            s.text(x + 182, 90, tools[i], 10, color=MUTED)
+    s.text(450, 150, "#include와 매크로를 펼치고 → C를 Arm 어셈블리로 → 기계어와 기호 표로", 11, color=MUTED)
+    # 링크 입력
+    inputs = [("main.o", BLUE_BG, BLUE), ("uart2.o", BLUE_BG, BLUE), ("startup.o", BLUE_BG, BLUE),
+              ("libc_nano.a", GRAY_BG, LINE), ("libgcc.a", GRAY_BG, LINE)]
+    for i, (n, f, st) in enumerate(inputs):
+        y = 190 + i * 44
+        s.box(40, y, 140, 36, n, None, f, st, 12)
+        s.line(182, y + 18, 296, 300, LINE, 1.4)
+    s.box(40, 410, 140, 40, "stm32f411.ld", "링커 스크립트", ORANGE_BG, ORANGE, 11)
+    s.line(182, 430, 296, 312, ORANGE, 1.6)
+    s.rect(300, 270, 140, 70, ORANGE_BG, ORANGE, 8, 2)
+    s.text(370, 300, "링커 (ld)", 14, weight="bold")
+    s.text(370, 320, "주소 정하기, 기호 연결", 10, color=MUTED)
+    s.line(442, 305, 496, 305, LINE, 2, arrow=True)
+    s.box(500, 278, 130, 56, ".elf", "기계어 + 디버그 정보", GREEN_BG, GREEN, 14)
+    s.line(632, 305, 676, 305, LINE, 2, arrow=True)
+    s.text(654, 296, "objcopy", 10, color=MUTED)
+    s.box(680, 254, 170, 40, ".bin / .hex", "보드에 쓰는 이미지", GREEN_BG, GREEN, 12)
+    s.box(680, 318, 170, 40, ".map", "무엇이 어디에 (21장)", GRAY_BG, LINE, 12)
+    s.line(632, 320, 676, 338, LINE, 1.4, arrow=True)
+    s.text(565, 380, "디버거(GDB)는 .elf를, 업로드 도구는 .bin/.hex(또는 .elf)를 쓴다", 11, color=MUTED)
+    s.text(450, 460, "arm-none-eabi-gcc 하나가 이 단계들을 차례로 부른다. -v 옵션을 주면 실제로 실행되는 도구와 옵션이 모두 보인다", 11, color=INK)
+    s.save("ch22/fig22-1-build-pipeline.svg")
+
+
+def fig_22_2():
+    s = Svg(900, 445)
+    s.text(450, 30, "그림 22-2  CMake 프로젝트 구조와 타깃 의존 관계", 16, weight="bold")
+    s.box(40, 70, 220, 60, "CMakeLists.txt", "무엇을 만들지 (타깃)", BLUE_BG, BLUE, 13)
+    s.box(40, 150, 220, 60, "arm-none-eabi.cmake", "툴체인 파일: 어떤 컴파일러로", ORANGE_BG, ORANGE, 12)
+    s.line(262, 140, 320, 140, LINE, 2, arrow=True)
+    s.box(324, 110, 150, 60, "cmake", "구성 단계", GRAY_BG, LINE, 14)
+    s.line(476, 140, 530, 140, LINE, 2, arrow=True)
+    s.box(534, 100, 170, 80, "build-debug/", "Ninja 또는 Makefile", GRAY_BG, LINE, 13)
+    s.box(534, 190, 170, 50, "build-release/", None, GRAY_BG, LINE, 12)
+    s.text(716, 145, "→ ninja", 12, "start", MUTED)
+    s.text(450, 270, "타깃 의존 관계", 13, weight="bold")
+    s.box(370, 290, 160, 50, "firmware", "실행 파일 (.elf)", GREEN_BG, GREEN, 13)
+    s.box(130, 360, 180, 46, "app", "정적 라이브러리 (보드 독립)", BLUE_BG, BLUE, 11)
+    s.box(590, 360, 180, 46, "board", "오브젝트 라이브러리 (startup 등)", ORANGE_BG, ORANGE, 11)
+    s.line(410, 342, 260, 358, LINE, 1.8, arrow=True)
+    s.line(490, 342, 640, 358, LINE, 1.8, arrow=True)
+    s.text(220, 428, "app은 31장에서 PC용 테스트에도 그대로 쓴다", 11, color=MUTED)
+    s.save("ch22/fig22-2-cmake-targets.svg")
 
 
 if __name__ == "__main__":
