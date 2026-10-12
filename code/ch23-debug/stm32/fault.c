@@ -41,12 +41,14 @@ static void explain(uint32_t cfsr, uint32_t hfsr)
     if (cfsr & (1u << 16)) put_str("  UNDEFINSTR: 정의되지 않은 명령\n");
     if (cfsr & (1u << 15)) put_str("  BFARVALID: BFAR이 문제 주소\n");
     if (cfsr & (1u << 12)) put_str("  STKERR: 예외 진입 중 스택 오류 (스택 넘침?)\n");
+    if (cfsr & (1u << 11)) put_str("  UNSTKERR: 예외 복귀 중 스택 오류\n");
     if (cfsr & (1u << 10)) put_str("  IMPRECISERR: 부정확한 버스 오류 (PC는 근처일 뿐)\n");
     if (cfsr & (1u << 9))  put_str("  PRECISERR: 정확한 버스 오류 (PC의 명령이 원인)\n");
     if (cfsr & (1u << 8))  put_str("  IBUSERR: 명령 가져오기 버스 오류\n");
     if (cfsr & (1u << 7))  put_str("  MMARVALID: MMFAR이 문제 주소\n");
+    if (cfsr & (1u << 4))  put_str("  MSTKERR: 예외 진입 중 스택 접근이 MPU에 막힘\n");
     if (cfsr & (1u << 1))  put_str("  DACCVIOL: MPU 데이터 접근 위반\n");
-    if (cfsr & (1u << 0))  put_str("  IACCVIOL: MPU 실행 위반\n");
+    if (cfsr & (1u << 0))  put_str("  IACCVIOL: 실행 금지 영역에서 명령 실행\n");
     if (hfsr & (1u << 30)) put_str("  (FORCED: 위 폴트가 HardFault로 올라옴)\n");
     if (hfsr & (1u << 1))  put_str("  VECTTBL: 벡터 테이블 읽기 실패\n");
 }

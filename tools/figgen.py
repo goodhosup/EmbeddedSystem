@@ -3894,7 +3894,7 @@ def fig_23_1():
 def fig_23_2():
     s = Svg(900, 440)
     s.text(450, 30, "그림 23-2  HardFault가 일어났을 때의 예외 스택 프레임", 16, weight="bold")
-    frame = [("xPSR", "+0x1C", None), ("PC", "+0x18", "폴트가 난 명령의 주소"), ("LR", "+0x14", "그 함수를 부른 곳"),
+    frame = [("xPSR", "+0x1C", None), ("PC", "+0x18", "폴트가 난 명령의 주소"), ("LR", "+0x14", "폴트 난 함수의 복귀 주소 (오래된 값일 수 있음)"),
              ("R12", "+0x10", None), ("R3", "+0x0C", None), ("R2", "+0x08", None), ("R1", "+0x04", None), ("R0", "+0x00", "← SP")]
     x, w, h = 320, 200, 36
     for i, (n, off, note) in enumerate(frame):
@@ -3911,8 +3911,8 @@ def fig_23_2():
     s.text(160, 130, "0 → MSP,  1 → PSP", 12, weight="bold", color=BLUE)
     s.text(160, 152, "(RTOS 태스크는 PSP, 26장)", 10, color=MUTED)
     s.text(450, 380, "폴트 처리기에서 스택 프레임의 PC를 읽고, 그 주소를 addr2line이나 맵 파일로 소스 줄로 바꾼다", 12, color=INK)
-    s.text(450, 402, "arm-none-eabi-addr2line -e firmware.elf 0x080004a2  →  main.c:57", 12, color=BLUE, weight="bold")
-    s.text(450, 424, "FPU를 쓰던 코드라면 S0~S15, FPSCR이 더해진 확장 프레임이 된다", 11, color=MUTED)
+    s.text(450, 402, "arm-none-eabi-addr2line -e firmware.elf 0x08000204  →  main.c:40", 12, color=BLUE, weight="bold")
+    s.text(450, 424, "FPU를 쓰던 코드라면 S0~S15, FPSCR이 더해진 확장 프레임(26워드)이 되지만, 맨 앞 8워드의 배치는 같다", 11, color=MUTED)
     s.save("ch23/fig23-2-fault-frame.svg")
 
 
