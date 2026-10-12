@@ -20,3 +20,9 @@ ch33-security/keys/
 *.pem
 ch37-linux/gpio_button_led
 ch37-linux/bmp280_read
+ch38-drivers/*/*.ko
+ch38-drivers/*/*.o
+ch38-drivers/*/*.mod*
+ch38-drivers/*/.*.cmd
+ch38-drivers/*/Module.symvers
+ch38-drivers/*/modules.order

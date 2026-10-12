@@ -53,6 +53,9 @@
 | `chapters/ch37-embedded-linux.md` | 88 | [확인 필요: Pi 5 sysfs GPIO 번호 오프셋] |
 | `chapters/ch37-embedded-linux.md` | 140 | [확인 필요: 버튼과 LED를 연결한 실측] |
 | `chapters/ch37-embedded-linux.md` | 177 | [확인 필요: 센서 연결 실측] |
+| `chapters/ch38-linux-drivers.md` | 138 | [확인 필요: 모듈을 올린 실측] |
+| `chapters/ch38-linux-drivers.md` | 227 | [확인 필요: Pi 5에서 실행 중 오버레이 적용 동작] |
+| `chapters/ch38-linux-drivers.md` | 285 | [확인 필요: 센서와 오버레이를 적용한 실측] |
 | `code/ch18-usb/README.md` | 23 | [확인 필요: CN10 핀 번호] |
 | `code/ch18-usb/stm32/usb_descriptors.c` | 6 | [확인 필요: pid.codes 시험용 PID 정책] |
 | `code/ch19-wireless/esp32-arduino/ble_sensor/ble_sensor.ino` | 9 | [확인 필요: 코어 버전별 BLE 라이브러리 API] |
@@ -72,5 +75,6 @@
 | `code/ch36-cicd/README.md` | 23 | [확인 필요: 공장 시험 펌웨어의 보드 실행, GitHub Actions에서 firmware.yml 실행] |
 | `code/ch37-linux/README.md` | 18 | [확인 필요: 버튼·LED·BMP280을 연결한 실행 결과] |
 | `code/ch37-linux/gpio_button_led.c` | 21 | [확인 필요: 다른 모델·커널] |
+| `code/ch38-drivers/README.md` | 17 | [확인 필요: 모듈을 올리고 센서를 연결한 실행 결과] |
 
-총 67건
+총 71건

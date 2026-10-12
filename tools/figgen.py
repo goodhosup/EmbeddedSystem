@@ -5208,6 +5208,61 @@ def fig_37_3():
     s.save("ch37/fig37-3-device-tree.svg")
 
 
+# ---------------------------------------------------------------------------
+# 38장 리눅스 디바이스 드라이버
+# ---------------------------------------------------------------------------
+
+def fig_38_1():
+    s = Svg(900, 520)
+    s.text(450, 30, "그림 38-2  사용자 프로그램에서 하드웨어까지 호출 경로", 16, weight="bold")
+    layers = [("사용자 프로그램", "cat /sys/bus/iio/devices/iio:device0/in_temp_input", BLUE_BG, BLUE),
+              ("시스템 호출", "open(), read()", GRAY_BG, LINE),
+              ("VFS + sysfs", "파일 이름 → 속성 읽기 함수", ORANGE_BG, ORANGE),
+              ("IIO 서브시스템", "in_temp_input → read_raw(IIO_CHAN_INFO_PROCESSED)", ORANGE_BG, ORANGE),
+              ("우리 드라이버 (ch38_bmp280)", "read_temp_milli(): 보정 계산", GREEN_BG, GREEN),
+              ("I2C 코어", "i2c_smbus_read_i2c_block_data()", ORANGE_BG, ORANGE),
+              ("I2C 어댑터 드라이버", "i2c-designware: 레지스터, 인터럽트", ORANGE_BG, ORANGE),
+              ("하드웨어", "RP1의 I2C 컨트롤러 → SDA/SCL → BMP280", GRAY_BG, LINE)]
+    y = 56
+    for i, (n, d, f, c) in enumerate(layers):
+        s.rect(200, y, 500, 44, f, c, 6, 1.4)
+        s.text(216, y + 20, n, 13, "start", weight="bold")
+        s.text(216, y + 37, d, 10, "start", MUTED)
+        if i < len(layers) - 1:
+            s.line(450, y + 46, 450, y + 54, LINE, 1.6, arrow=True)
+        y += 54
+    s.text(186, 78, "사용자 공간", 11, "end", BLUE, "bold")
+    s.line(190, 106, 710, 106, RED, 1.4, dash="6 4")
+    s.text(186, 140, "커널 공간", 11, "end", ORANGE, "bold")
+    s.text(720, 300, "← 우리가 쓰는 부분은", 11, "start", GREEN, "bold")
+    s.text(720, 318, "   이 한 칸뿐", 11, "start", GREEN, "bold")
+    s.text(450, 506, "결과 \"24870\"(밀리도)이 같은 길을 거꾸로 올라간다. 위아래 계층은 커널이 이미 갖추고 있다", 11, color=MUTED)
+    s.save("ch38/fig38-2-call-path.svg")
+
+
+def fig_38_2():
+    s = Svg(900, 450)
+    s.text(450, 30, "그림 38-1  I2C 서브시스템 구조 (어댑터, 클라이언트, 드라이버)", 16, weight="bold")
+    s.rect(330, 70, 240, 70, ORANGE_BG, ORANGE, 10, 1.8)
+    s.text(450, 98, "I2C 코어", 15, weight="bold")
+    s.text(450, 120, "짝짓기, 전송 규칙, /dev/i2c-N", 11, color=MUTED)
+    s.box(40, 200, 250, 64, "어댑터 (버스)", "i2c-designware: 컨트롤러 하나 = i2c-1", GRAY_BG, LINE, 13)
+    s.box(325, 200, 250, 64, "클라이언트 (장치)", "주소 0x76의 장치 하나", BLUE_BG, BLUE, 13)
+    s.box(610, 200, 250, 64, "드라이버", "ch38_bmp280: 이 칩을 다루는 법", GREEN_BG, GREEN, 13)
+    s.line(165, 198, 380, 142, LINE, 1.4, arrow=True)
+    s.line(450, 198, 450, 142, LINE, 1.4, arrow=True)
+    s.line(735, 198, 520, 142, LINE, 1.4, arrow=True)
+    s.text(165, 290, "디바이스 트리의 i2c@74000 노드", 11, color=MUTED)
+    s.text(450, 290, "그 아래의 bmp280@76 노드 (오버레이)", 11, color=MUTED)
+    s.text(735, 290, "of_match: \"book,ch38-bmp280\"", 11, color=MUTED)
+    s.rect(200, 320, 500, 64, "#ffffff", GREEN, 8, 1.4)
+    s.text(450, 346, "클라이언트의 compatible = 드라이버의 compatible", 13, weight="bold", color=GREEN)
+    s.text(450, 368, "→ 커널이 probe(client)를 부른다 (모듈이 없으면 자동으로 올린다)", 12)
+    s.text(450, 418, "어댑터는 \"어떻게 보내는가\", 드라이버는 \"무엇을 보내는가\". 둘은 서로를 모르고 코어를 통해서만 만난다 (24장의 계층)", 11, color=INK)
+    s.text(450, 438, "같은 BMP280 드라이버가 어떤 SoC의 어떤 I2C 컨트롤러 위에서도 동작하는 이유", 11, color=MUTED)
+    s.save("ch38/fig38-1-i2c-subsystem.svg")
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("fig_") and callable(fn):

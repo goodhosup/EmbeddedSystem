@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="450" viewBox="0 0 900 450" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 38-1  I2C 서브시스템 구조 (어댑터, 클라이언트, 드라이버)</text>
+  <rect x="330.0" y="70.0" width="240.0" height="70.0" rx="10" fill="#fdebd7" stroke="#d9730d" stroke-width="1.8"/>
+  <text x="450.0" y="98.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">I2C 코어</text>
+  <text x="450.0" y="120.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">짝짓기, 전송 규칙, /dev/i2c-N</text>
+  <rect x="40.0" y="200.0" width="250.0" height="64.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="165.0" y="229.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">어댑터 (버스)</text>
+  <text x="165.0" y="248.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">i2c-designware: 컨트롤러 하나 = i2c-1</text>
+  <rect x="325.0" y="200.0" width="250.0" height="64.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="450.0" y="229.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">클라이언트 (장치)</text>
+  <text x="450.0" y="248.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">주소 0x76의 장치 하나</text>
+  <rect x="610.0" y="200.0" width="250.0" height="64.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="735.0" y="229.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">드라이버</text>
+  <text x="735.0" y="248.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">ch38_bmp280: 이 칩을 다루는 법</text>
+  <line x1="165.0" y1="198.0" x2="380.0" y2="142.0" stroke="#334e68" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <line x1="450.0" y1="198.0" x2="450.0" y2="142.0" stroke="#334e68" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <line x1="735.0" y1="198.0" x2="520.0" y2="142.0" stroke="#334e68" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <text x="165.0" y="290.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">디바이스 트리의 i2c@74000 노드</text>
+  <text x="450.0" y="290.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">그 아래의 bmp280@76 노드 (오버레이)</text>
+  <text x="735.0" y="290.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">of_match: "book,ch38-bmp280"</text>
+  <rect x="200.0" y="320.0" width="500.0" height="64.0" rx="8" fill="#ffffff" stroke="#2f9e44" stroke-width="1.4"/>
+  <text x="450.0" y="346.0" font-size="13" text-anchor="middle" fill="#2f9e44" font-weight="bold">클라이언트의 compatible = 드라이버의 compatible</text>
+  <text x="450.0" y="368.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">→ 커널이 probe(client)를 부른다 (모듈이 없으면 자동으로 올린다)</text>
+  <text x="450.0" y="418.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="normal">어댑터는 "어떻게 보내는가", 드라이버는 "무엇을 보내는가". 둘은 서로를 모르고 코어를 통해서만 만난다 (24장의 계층)</text>
+  <text x="450.0" y="438.0" font-size="11" text-anchor="middle" fill="#616e7c" font-weight="normal">같은 BMP280 드라이버가 어떤 SoC의 어떤 I2C 컨트롤러 위에서도 동작하는 이유</text>
+</svg>

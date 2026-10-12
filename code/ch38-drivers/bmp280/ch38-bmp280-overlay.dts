@@ -1,0 +1,23 @@
+// 38장: I2C1(헤더 3, 5번 핀)의 0x76에 BMP280이 있다고 커널에 알리는 오버레이
+//   dtc -@ -I dts -O dtb -o ch38-bmp280.dtbo ch38-bmp280-overlay.dts
+//   sudo cp ch38-bmp280.dtbo /boot/firmware/overlays/  그리고 config.txt에 dtoverlay=ch38-bmp280
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "brcm,bcm2712";
+
+	fragment@0 {
+		target = <&i2c_arm>;          /* Raspberry Pi의 헤더 I2C (Pi 5: RP1의 i2c@74000) */
+		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			status = "okay";
+
+			bmp280@76 {
+				compatible = "book,ch38-bmp280";
+				reg = <0x76>;
+			};
+		};
+	};
+};
