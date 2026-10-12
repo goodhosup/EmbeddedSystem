@@ -4599,6 +4599,106 @@ def fig_29_2():
     s.save("ch29/fig29-2-driver-model.svg")
 
 
+# ---------------------------------------------------------------------------
+# 30장 프로젝트: 데이터 로거
+# ---------------------------------------------------------------------------
+
+def fig_30_1():
+    s = Svg(900, 460)
+    s.text(450, 30, "그림 30-1  하드웨어 연결도", 16, weight="bold")
+    s.rect(330, 70, 240, 320, BLUE_BG, BLUE, 10, 2)
+    s.text(450, 96, "NUCLEO-F411RE", 15, weight="bold")
+    s.text(450, 114, "STM32F411RE, HSI 16 MHz", 11, color=MUTED)
+    # BMP280
+    s.box(40, 100, 180, 70, "BMP280 모듈", "I2C 주소 0x76 (SDO = GND)", GREEN_BG, GREEN, 13)
+    pins_l = [("SCL", "PB8 (D15)", 130), ("SDA", "PB9 (D14)", 150)]
+    for n, pin, y in pins_l:
+        s.line(222, y, 326, y, GREEN, 2)
+        s.text(274, y - 4, n, 10, weight="bold", color=GREEN)
+        s.text(338, y + 4, pin, 11, "start")
+    s.text(130, 190, "VCC 3.3 V, GND", 10, color=MUTED)
+    # SD
+    s.box(40, 230, 180, 110, "microSD 모듈", "SPI 모드", ORANGE_BG, ORANGE, 13)
+    pins_sd = [("SCK", "PA5 (D13)", 250), ("MISO", "PA6 (D12)", 270), ("MOSI", "PA7 (D11)", 290), ("CS", "PB6 (D10)", 310)]
+    for n, pin, y in pins_sd:
+        s.line(222, y, 326, y, ORANGE, 2)
+        s.text(274, y - 4, n, 10, weight="bold", color=ORANGE)
+        s.text(338, y + 4, pin, 11, "start")
+    s.text(130, 360, "VCC 3.3 V, GND (+ 100 µF 근처에)", 10, color=MUTED)
+    # UART
+    s.box(680, 160, 180, 70, "PC", "시리얼 터미널 115200", GRAY_BG, LINE, 13)
+    s.line(572, 195, 676, 195, LINE, 2, both=True)
+    s.text(624, 186, "USB (ST-LINK)", 10, color=MUTED)
+    s.text(560, 220, "USART2 PA2/PA3", 11, "end")
+    s.text(560, 236, "TX는 DMA1 스트림 6", 10, "end", MUTED)
+    s.text(560, 330, "PA5 = LD2와 같은 핀:", 10, "end", RED)
+    s.text(560, 346, "LED는 쓰지 않는다", 10, "end", RED)
+    s.text(450, 418, "15장의 BMP280과 16장의 SPI 연결을 그대로 쓴다. SD 카드는 쓰는 순간 수십 mA를 끌어가므로 전원선을 짧게, 커패시터를 가까이", 11, color=INK)
+    s.text(450, 438, "SD 모듈 중 5 V용 레귤레이터와 레벨 변환기가 달린 것은 3.3 V 전원에서 동작하는지 확인한다", 11, color=MUTED)
+    s.save("ch30/fig30-1-hardware.svg")
+
+
+def fig_30_2():
+    s = Svg(900, 440)
+    s.text(450, 30, "그림 30-2  태스크 구성과 큐 연결도", 16, weight="bold")
+    s.box(40, 80, 170, 60, "BMP280", "I2C1", GRAY_BG, LINE, 13)
+    s.box(260, 80, 190, 60, "sensor (3)", "1 s / 10 s 주기", GREEN_BG, GREEN, 14)
+    s.line(212, 110, 256, 110, LINE, 1.6, both=True)
+    # queue
+    qx = 500
+    for i in range(6):
+        s.rect(qx + i * 22, 92, 22, 36, ORANGE_BG if i >= 3 else "#ffffff", ORANGE, 0, 1.2)
+    s.text(qx + 66, 84, "msg_q (16)", 11, weight="bold")
+    s.text(qx + 66, 146, "기록 + 명령", 10, color=MUTED)
+    s.line(452, 110, 496, 110, LINE, 1.8, arrow=True)
+    s.text(474, 100, "대기 0", 9, color=RED)
+    s.line(634, 110, 678, 110, LINE, 1.8, arrow=True)
+    s.box(682, 80, 180, 60, "logger (2)", "logger.c → FatFs", BLUE_BG, BLUE, 14)
+    s.box(682, 200, 180, 60, "SD 카드", "SPI1: sd_spi.c", GRAY_BG, LINE, 13)
+    s.line(772, 142, 772, 196, LINE, 1.6, both=True)
+    s.box(260, 220, 190, 60, "console (1)", "명령 처리", GRAY_BG, LINE, 14)
+    s.path("M450,240 L566,240 L566,132", LINE, 1.4, arrow=True)
+    s.text(508, 232, "f, x, r", 10, color=MUTED)
+    s.box(40, 220, 170, 60, "UART RX ISR", "→ 큐 (32)", ORANGE_BG, ORANGE, 13)
+    s.line(212, 250, 256, 250, LINE, 1.6, arrow=True)
+    s.box(260, 330, 400, 50, "uart_dma.c: log_printf → DMA1 스트림 6 → USART2 TX", None, BLUE_BG, BLUE, 12)
+    s.line(355, 282, 355, 326, LINE, 1.4, arrow=True)
+    s.path("M682,128 L664,128 L664,350 L662,350", LINE, 1.2, arrow=True)
+    s.text(656, 316, "오류 메시지", 10, "end", MUTED)
+    s.text(450, 412, "하드웨어 자원마다 주인 태스크가 하나. 다른 태스크는 큐로 부탁한다 → 뮤텍스는 UART 송신 하나뿐", 12, color=INK)
+    s.save("ch30/fig30-2-tasks.svg")
+
+
+def fig_30_3():
+    s = Svg(900, 420)
+    s.text(450, 30, "그림 30-3  전류 프로파일 (예시)", 16, weight="bold")
+    x0, y0, W, H = 110, 330, 720, 250
+    s.line(x0, y0, x0 + W + 10, y0, LINE, 1.4, arrow=True)
+    s.line(x0, y0, x0, y0 - H - 10, LINE, 1.4, arrow=True)
+    s.text(x0 + W + 10, y0 + 20, "시간", 11, "end", MUTED)
+    s.text(x0 - 8, y0 - H - 4, "전류", 11, "end", MUTED)
+    def lvl(mA):
+        return y0 - mA * 3.0
+    # 기준선: 잠
+    pts = []
+    t = 0
+    segs = [(0, 70, 3), (70, 74, 8), (74, 76, 10), (76, 250, 3), (250, 254, 8), (254, 256, 10), (256, 430, 3),
+            (430, 434, 8), (434, 436, 10), (436, 460, 60), (460, 470, 30), (470, 610, 3), (610, 614, 8), (614, 616, 10), (616, 720, 3)]
+    d = f"M{x0},{lvl(3):.1f}"
+    for a, b, m in segs:
+        d += f" L{x0 + a},{lvl(m):.1f} L{x0 + b},{lvl(m):.1f}"
+    s.path(d, BLUE, 2)
+    s.text(x0 + 160, lvl(3) - 10, "잠 (틱 없는 Idle, WFI)", 11, color=BLUE)
+    s.text(x0 + 72, lvl(10) - 10, "측정", 10, color=GREEN, weight="bold")
+    s.text(x0 + 252, lvl(10) - 10, "측정", 10, color=GREEN, weight="bold")
+    s.text(x0 + 448, lvl(60) - 10, "SD 카드 쓰기 (f_sync)", 11, color=ORANGE, weight="bold")
+    s.line(x0 + 74, y0 + 14, x0 + 254, y0 + 14, LINE, 1, both=True)
+    s.text(x0 + 164, y0 + 30, "측정 주기 1 s", 10, color=MUTED)
+    s.text(450, 384, "평균 전류 ≈ 잠 전류 + (깨어 있는 시간 비율 × 깨어 있을 때 전류). 대부분 잠에서 보내므로 잠 전류와 SD 쓰기 빈도가 수명을 정한다", 11, color=INK)
+    s.text(450, 404, "그래프의 크기는 설명을 위한 예시다. 실제 값은 NUCLEO의 IDD 점퍼와 전류계로 잰다", 11, color=MUTED)
+    s.save("ch30/fig30-3-current.svg")
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("fig_") and callable(fn):

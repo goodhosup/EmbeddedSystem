@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="440" viewBox="0 0 900 440" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker></defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="30.0" font-size="16" text-anchor="middle" fill="#1f2933" font-weight="bold">그림 30-2  태스크 구성과 큐 연결도</text>
+  <rect x="40.0" y="80.0" width="170.0" height="60.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="125.0" y="107.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">BMP280</text>
+  <text x="125.0" y="126.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">I2C1</text>
+  <rect x="260.0" y="80.0" width="190.0" height="60.0" rx="8" fill="#e1f4e5" stroke="#2f9e44" stroke-width="1.5"/>
+  <text x="355.0" y="107.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">sensor (3)</text>
+  <text x="355.0" y="126.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">1 s / 10 s 주기</text>
+  <line x1="212.0" y1="110.0" x2="256.0" y2="110.0" stroke="#334e68" stroke-width="1.6" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+  <rect x="500.0" y="92.0" width="22.0" height="36.0" rx="0" fill="#ffffff" stroke="#d9730d" stroke-width="1.2"/>
+  <rect x="522.0" y="92.0" width="22.0" height="36.0" rx="0" fill="#ffffff" stroke="#d9730d" stroke-width="1.2"/>
+  <rect x="544.0" y="92.0" width="22.0" height="36.0" rx="0" fill="#ffffff" stroke="#d9730d" stroke-width="1.2"/>
+  <rect x="566.0" y="92.0" width="22.0" height="36.0" rx="0" fill="#fdebd7" stroke="#d9730d" stroke-width="1.2"/>
+  <rect x="588.0" y="92.0" width="22.0" height="36.0" rx="0" fill="#fdebd7" stroke="#d9730d" stroke-width="1.2"/>
+  <rect x="610.0" y="92.0" width="22.0" height="36.0" rx="0" fill="#fdebd7" stroke="#d9730d" stroke-width="1.2"/>
+  <text x="566.0" y="84.0" font-size="11" text-anchor="middle" fill="#1f2933" font-weight="bold">msg_q (16)</text>
+  <text x="566.0" y="146.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">기록 + 명령</text>
+  <line x1="452.0" y1="110.0" x2="496.0" y2="110.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="474.0" y="100.0" font-size="9" text-anchor="middle" fill="#d64545" font-weight="normal">대기 0</text>
+  <line x1="634.0" y1="110.0" x2="678.0" y2="110.0" stroke="#334e68" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <rect x="682.0" y="80.0" width="180.0" height="60.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="772.0" y="107.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">logger (2)</text>
+  <text x="772.0" y="126.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">logger.c → FatFs</text>
+  <rect x="682.0" y="200.0" width="180.0" height="60.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="772.0" y="227.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">SD 카드</text>
+  <text x="772.0" y="246.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">SPI1: sd_spi.c</text>
+  <line x1="772.0" y1="142.0" x2="772.0" y2="196.0" stroke="#334e68" stroke-width="1.6" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+  <rect x="260.0" y="220.0" width="190.0" height="60.0" rx="8" fill="#eef1f4" stroke="#334e68" stroke-width="1.5"/>
+  <text x="355.0" y="247.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">console (1)</text>
+  <text x="355.0" y="266.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">명령 처리</text>
+  <path d="M450,240 L566,240 L566,132" stroke="#334e68" stroke-width="1.4" fill="none" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <text x="508.0" y="232.0" font-size="10" text-anchor="middle" fill="#616e7c" font-weight="normal">f, x, r</text>
+  <rect x="40.0" y="220.0" width="170.0" height="60.0" rx="8" fill="#fdebd7" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="125.0" y="247.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">UART RX ISR</text>
+  <text x="125.0" y="266.0" font-size="12" text-anchor="middle" fill="#616e7c" font-weight="normal">→ 큐 (32)</text>
+  <line x1="212.0" y1="250.0" x2="256.0" y2="250.0" stroke="#334e68" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <rect x="260.0" y="330.0" width="400.0" height="50.0" rx="8" fill="#e3edfd" stroke="#2f6fdf" stroke-width="1.5"/>
+  <text x="460.0" y="360.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold">uart_dma.c: log_printf → DMA1 스트림 6 → USART2 TX</text>
+  <line x1="355.0" y1="282.0" x2="355.0" y2="326.0" stroke="#334e68" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <path d="M682,128 L664,128 L664,350 L662,350" stroke="#334e68" stroke-width="1.2" fill="none" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <text x="656.0" y="316.0" font-size="10" text-anchor="end" fill="#616e7c" font-weight="normal">오류 메시지</text>
+  <text x="450.0" y="412.0" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="normal">하드웨어 자원마다 주인 태스크가 하나. 다른 태스크는 큐로 부탁한다 → 뮤텍스는 UART 송신 하나뿐</text>
+</svg>

@@ -25,6 +25,9 @@
 | `chapters/ch28-realtime-analysis.md` | 259 | [확인 필요: 각 도구의 무료 사용 조건] |
 | `chapters/ch29-zephyr.md` | 31 | [확인 필요: 출간 시점 Zephyr 버전의 설치 명령] |
 | `chapters/ch29-zephyr.md` | 258 | [확인 필요: Zephyr v4.4 기준 빌드와 보드 실행] |
+| `chapters/ch30-project-data-logger.md` | 170 | [확인 필요: 출간 시점 exFAT 라이선스 조건] |
+| `chapters/ch30-project-data-logger.md` | 219 | [확인 필요: 이 구성의 잠, 측정, SD 쓰기 전류 실측값] |
+| `chapters/ch30-project-data-logger.md` | 293 | [확인 필요: 보드 실측] |
 | `code/ch18-usb/README.md` | 23 | [확인 필요: CN10 핀 번호] |
 | `code/ch18-usb/stm32/usb_descriptors.c` | 6 | [확인 필요: pid.codes 시험용 PID 정책] |
 | `code/ch19-wireless/esp32-arduino/ble_sensor/ble_sensor.ino` | 9 | [확인 필요: 코어 버전별 BLE 라이브러리 API] |
@@ -32,5 +35,9 @@
 | `code/ch27-sync/README.md` | 20 | [확인 필요: arm-none-eabi-gcc로 FreeRTOS 커널까지 포함한 전체 빌드의 경고 확인, r·i 명령의 보드 실측값] |
 | `code/ch28-realtime/README.md` | 31 | [확인 필요: arm-none-eabi-gcc로 FreeRTOS 커널까지 포함한 전체 빌드의 경고 확인] |
 | `code/ch29-zephyr/README.md` | 21 | [확인 필요: Zephyr v4.4 기준 west build와 보드 실행 확인 (외부 코드라 검토 환경에서 미빌드)] |
+| `code/ch30-logger/DESIGN.md` | 89 | [확인 필요: NUCLEO의 IDD 점퍼(JP6)로 MCU 전류, 카드 모듈 전원선으로 SD 전류 실측] |
+| `code/ch30-logger/DESIGN.md` | 100 | [확인 필요: 보드 실측] |
+| `code/ch30-logger/README.md` | 33 | [확인 필요: arm-none-eabi-gcc로 FreeRTOS와 FatFs까지 포함한 전체 빌드의 경고 확인, 보드 통합 시험(30.8절)] |
+| `code/ch30-logger/ffconf.h` | 4 | [확인 필요: 다른 버전을 쓸 때] |
 
-총 27건
+총 34건
