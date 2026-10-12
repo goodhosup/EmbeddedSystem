@@ -48,6 +48,7 @@ static void jump_to_app(uint32_t vt_addr)
 
     __asm volatile ("cpsid i" ::: "memory");
     SYSTICK->CTRL = 0;
+    SCB_ICSR = SCB_ICSR_PENDSTCLR;         /* 시스템 예외는 NVIC ICPR로 지워지지 않는다 */
     for (int i = 0; i < 8; i++) {
         NVIC->ICER[i] = 0xFFFFFFFFu;       /* 모든 인터럽트 금지 */
         NVIC->ICPR[i] = 0xFFFFFFFFu;       /* 대기 중인 것도 지움 */

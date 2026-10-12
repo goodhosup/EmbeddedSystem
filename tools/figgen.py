@@ -4807,8 +4807,8 @@ def fig_32_2():
         s.text(x + W / 2, y + 48, sub[n], 11, color=MUTED)
     s.line(262, 122, 346, 122, LINE, 1.8, arrow=True)
     s.text(304, 112, "u: 받기 시작", 11, weight="bold")
-    s.line(552, 122, 636, 122, LINE, 1.8, arrow=True)
-    s.text(594, 112, "CRC 확인 → 리셋", 11, weight="bold")
+    s.line(552, 122, 632, 122, LINE, 1.8, arrow=True)
+    s.text(594, 106, "CRC 확인 → 리셋", 11, weight="bold")
     s.path("M450,156 L450,200 L160,200 L160,158", RED, 1.4, arrow=True)
     s.text(305, 194, "받다가 끊김, 검증 실패: A 그대로", 11, color=RED, weight="bold")
     s.line(740, 156, 740, 296, GREEN, 1.8, arrow=True)
@@ -4851,6 +4851,95 @@ def fig_32_3():
     s.text(450, 448, "현재 슬롯은 끝까지 건드리지 않는다. 어느 단계에서 끊겨도 현재 이미지로 다시 부팅할 수 있다", 12, color=INK)
     s.text(450, 472, "ESP-IDF: esp_https_ota_begin → get_img_desc → perform → finish → esp_restart → mark_app_valid", 11, color=MUTED)
     s.save("ch32/fig32-3-ota-sequence.svg")
+
+
+# ---------------------------------------------------------------------------
+# 33장 임베디드 보안
+# ---------------------------------------------------------------------------
+
+def fig_33_1():
+    s = Svg(900, 500)
+    s.text(450, 30, "그림 33-1  임베디드 장치의 공격면", 16, weight="bold")
+    s.rect(300, 140, 300, 200, BLUE_BG, BLUE, 12, 2)
+    s.text(450, 168, "장치", 15, weight="bold")
+    inner = [("펌웨어 (Flash)", 200), ("키, 비밀 (Flash, OTP)", 230), ("RAM", 260), ("디버그 포트 (SWD)", 290)]
+    for t, y in inner:
+        s.text(450, y, t, 12, color=INK)
+    attacks = [
+        ("네트워크", "Wi-Fi, BLE, MQTT: 원격 공격", 60, 70, RED),
+        ("업데이트 통로", "가짜 펌웨어 설치 (32장)", 340, 60, RED),
+        ("외부 입력", "UART 명령, 파일, 센서 값", 640, 70, ORANGE),
+        ("디버그 포트", "SWD로 Flash 읽기, 실행 조작", 40, 300, ORANGE),
+        ("물리 접근", "Flash 칩 떼어 읽기, 버스 엿보기", 40, 400, ORANGE),
+        ("부채널", "전력, 전자파, 시간으로 키 추측", 640, 300, MUTED),
+        ("결함 주입", "전압, 클럭 글리치로 검사 건너뛰기", 640, 400, MUTED),
+    ]
+    for name, sub, x, y, c in attacks:
+        s.rect(x, y, 220, 50, "#ffffff", c, 8, 1.5)
+        s.text(x + 110, y + 21, name, 13, weight="bold", color=c)
+        s.text(x + 110, y + 39, sub, 10, color=MUTED)
+        cx, cy = x + 110, y + 25
+        tx = 300 if cx < 300 else (600 if cx > 600 else cx)
+        ty = 140 if cy < 140 else (340 if cy > 340 else cy)
+        s.line(cx + (110 if cx < 300 else (-110 if cx > 600 else 0)), cy + (25 if cy < 140 else 0), tx, ty, c, 1.4, arrow=True)
+    s.text(450, 484, "위에서 아래로 갈수록 공격에 장비와 기술이 더 필요하다. 위협 모델링은 이 중 무엇을 막을지 정하는 일이다", 12, color=INK)
+    s.save("ch33/fig33-1-attack-surface.svg")
+
+
+def fig_33_2():
+    s = Svg(900, 430)
+    s.text(450, 30, "그림 33-2  신뢰 체인 (ROM → 부트로더 → 애플리케이션 서명 검증)", 16, weight="bold")
+    stages = [("ROM 부트 코드", "바꿀 수 없음", "신뢰의 뿌리", GRAY_BG, LINE),
+              ("부트로더", "쓰기 보호", "공개 키 내장", ORANGE_BG, ORANGE),
+              ("애플리케이션", "서명된 이미지", "", GREEN_BG, GREEN)]
+    x = 60
+    for i, (n, a, b, f, c) in enumerate(stages):
+        s.rect(x, 90, 220, 110, f, c, 10, 2)
+        s.text(x + 110, 124, n, 15, weight="bold")
+        s.text(x + 110, 150, a, 12, color=MUTED)
+        if b:
+            s.text(x + 110, 172, b, 12, color=MUTED)
+        if i < 2:
+            s.line(x + 222, 145, x + 288, 145, LINE, 2, arrow=True)
+            s.text(x + 255, 134, "검증", 11, weight="bold", color=RED)
+            s.text(x + 255, 166, "후 실행", 11, weight="bold", color=RED)
+        x += 290
+    s.text(60, 230, "칩에 따라 ROM이 부트로더 서명을 검증하는 기능도 있다", 10, "start", MUTED)
+    s.text(60, 246, "(예: ESP32 Secure Boot, 일부 STM32의 보안 부트 기능)", 10, "start", MUTED)
+    s.rect(330, 270, 520, 100, "#ffffff", "#cbd2d9", 8, 1)
+    steps = ["1. 해시 = SHA-256(머리말 앞부분 || 이미지)",
+             "2. ECDSA 검증(공개 키, 해시, 서명) → 맞으면 다음",
+             "3. 보안 카운터 ≥ 장치에 기록된 값 → 아니면 롤백 거부",
+             "4. 통과하면 점프, 아니면 실행하지 않음 (이전 슬롯 또는 복구 모드)"]
+    for k, t in enumerate(steps):
+        s.text(346, 294 + k * 22, t, 12, "start", INK)
+    s.text(450, 400, "각 단계가 다음 단계를 검증한다. 맨 아래 뿌리가 바뀔 수 없으므로 전체를 믿을 수 있다", 12, color=INK)
+    s.text(450, 420, "개인 키는 장치에 없다: 장치는 공개 키로 확인만 하고, 서명은 회사의 보호된 서버가 한다", 11, color=MUTED)
+    s.save("ch33/fig33-2-chain-of-trust.svg")
+
+
+def fig_33_3():
+    s = Svg(900, 460)
+    s.text(450, 30, "그림 33-3  TrustZone-M 보안/비보안 영역 분리", 16, weight="bold")
+    s.rect(60, 70, 360, 300, GREEN_BG, GREEN, 12, 2)
+    s.text(240, 98, "보안 영역 (Secure)", 15, weight="bold", color=GREEN)
+    for k, t in enumerate(["보안 부트, 키 저장", "암호 서비스 (서명, 복호화)", "보안 Flash, 보안 RAM", "보안 주변장치 (암호 가속기 등)"]):
+        s.rect(90, 120 + k * 56, 300, 42, "#ffffff", GREEN, 6, 1.2)
+        s.text(240, 146 + k * 56, t, 12)
+    s.rect(480, 70, 360, 300, BLUE_BG, BLUE, 12, 2)
+    s.text(660, 98, "비보안 영역 (Non-secure)", 15, weight="bold", color=BLUE)
+    for k, t in enumerate(["애플리케이션, RTOS", "통신 스택 (Wi-Fi, BLE, TLS 상위)", "비보안 Flash, RAM", "일반 주변장치"]):
+        s.rect(510, 120 + k * 56, 300, 42, "#ffffff", BLUE, 6, 1.2)
+        s.text(660, 146 + k * 56, t, 12)
+    s.line(478, 160, 422, 160, LINE, 2, arrow=True)
+    s.text(450, 150, "NSC", 11, weight="bold")
+    s.text(450, 182, "함수 호출만", 10, color=MUTED)
+    s.line(422, 250, 478, 250, RED, 2, dash="6 4")
+    s.text(450, 240, "직접 접근", 10, color=RED, weight="bold")
+    s.text(450, 272, "→ 폴트", 10, color=RED, weight="bold")
+    s.text(450, 404, "비보안 코드가 해킹당해도 보안 영역의 키와 코드는 읽거나 바꿀 수 없다. 정해진 입구(NSC, SG 명령)로만 서비스를 부른다", 12, color=INK)
+    s.text(450, 426, "Armv8-M(Cortex-M23, M33, M55, M85)의 기능. 이 책의 STM32F411(Cortex-M4)에는 없다: STM32L5, U5, H5 등", 11, color=MUTED)
+    s.save("ch33/fig33-3-trustzone.svg")
 
 
 if __name__ == "__main__":

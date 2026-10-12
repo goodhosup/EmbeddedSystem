@@ -497,6 +497,8 @@ typedef struct {
 #define RTC_WKUP_IRQn        3
 
 /* ---- SCB 시스템 제어 레지스터 (0xE000 ED10) ---- */
+#define SCB_ICSR            (*(volatile uint32_t *)0xE000ED04u)
+#define SCB_ICSR_PENDSTCLR  (1u << 25)                               /* 대기 중인 SysTick 예외 지우기 */
 #define SCB_VTOR            (*(volatile uint32_t *)0xE000ED08u)   /* 벡터 테이블 위치 (32장) */
 #define SCB_AIRCR           (*(volatile uint32_t *)0xE000ED0Cu)
 #define SCB_AIRCR_SYSRESET  ((0x5FAu << 16) | (1u << 2))             /* VECTKEY + SYSRESETREQ */
