@@ -214,6 +214,13 @@ loopback: id=0x200 dlc=4 : DE AD BE EF
 normal mode, 500000 bps, node 0x200
 ```
 
+MCP2515와 통신이 되지 않으면 루프백 시험까지 가지 못하고 멈춥니다. 모듈을 연결하지 않은 우노에서 실제로 실행하면 다음과 같이 나옵니다.
+
+```
+ch17 CAN
+MCP2515 init failed (-1): check SPI wiring, CS, crystal
+```
+
 그다음 노멀 모드로 바꿔 0.5초마다 자기 식별자로 카운터 값을 보냅니다. 우노를 `NODE_ID=0x100`, NUCLEO를 `NODE_ID=0x200`으로 빌드하고, 두 모듈의 CANH끼리, CANL끼리 연결하고, 두 모듈의 종단 점퍼를 모두 켭니다(버스의 양 끝이므로).
 
 ```

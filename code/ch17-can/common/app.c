@@ -34,6 +34,7 @@ void app_run(void)
     can_frame_t tx = { .id = NODE_ID, .dlc = 4, .data = { 0xDE, 0xAD, 0xBE, 0xEF } };
     can_frame_t rx;
 
+    printf("ch17 CAN\n");
     int r = mcp2515_init(MCP_OSC_HZ, CAN_BITRATE, 1);
     if (r != MCP_OK) {
         printf("MCP2515 init failed (%d): check SPI wiring, CS, crystal\n", r);
