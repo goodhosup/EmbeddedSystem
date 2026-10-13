@@ -1,7 +1,7 @@
 /*
  * 30장: FatFs R0.15a 설정 (이 프로젝트용)
  * 각 항목의 뜻은 FatFs 배포본의 ffconf.h와 documents/doc/config.html을 참고한다.
- * FFCONF_DEF는 FatFs 버전과 맞아야 한다(R0.15a = 5380). [확인 필요: 다른 버전을 쓸 때]
+ * FFCONF_DEF는 FatFs 버전과 맞아야 한다(R0.15a = 5380). 다른 버전을 받으면 그 버전의 ffconf.h 값으로 바꾼다 (값이 다르면 ff.h가 #error로 알린다).
  */
 #define FFCONF_DEF          5380
 

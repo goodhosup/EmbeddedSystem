@@ -28,4 +28,4 @@ make flash     # 터미널 115200 bps
 | `r` | 태스크별 최대 응답 시간과 RTA 예측 |
 | `t` | 최근 문맥 전환 32개 |
 
-[확인 필요: arm-none-eabi-gcc로 FreeRTOS 커널까지 포함한 전체 빌드의 경고 확인]
+빌드 확인: arm-none-eabi-gcc 14.2.1, 경고 0 (FreeRTOS V11.1.0 포함, text 18,648 B). [확인 필요: 보드 실측값]

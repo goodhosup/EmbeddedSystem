@@ -20,4 +20,4 @@ cd ../stm32-node && make keys && make SLOT=A VER=1.0.0 && make SLOT=A VER=1.0.0 
 cd ../stm32-boot && make flash
 ```
 
-[확인 필요: 보안 부트로더 크기와 Flash 배치, 노드·연결부 빌드, 전체 시스템 OTA와 롤백 실측]
+빌드 확인: arm-none-eabi-gcc 14.2.1, 경고 0: 보안 부트로더 text 21,944 B + data 80 B(32 KB 영역 안, Flash 배치는 32장과 같음), 노드 text 32,288 B. [확인 필요: ESP32 연결부 빌드(ESP-IDF), 전체 시스템 OTA와 롤백 실측]

@@ -31,4 +31,4 @@ python3 ../../tools/send_update.py --port /dev/ttyACM0 build/app-B.img
 
 앱 명령: `s` 상태, `c` 확정, `u` 받기, `x` 멈춘 척(워치독 리셋), `r` 리셋
 
-[확인 필요: arm-none-eabi-gcc 빌드 경고, 보드에서 업데이트·롤백 실측, ESP-IDF 5.x 빌드와 OTA 실행]
+빌드 확인: arm-none-eabi-gcc 14.2.1, 경고 0 (부트로더 text 3,196 B, 앱 슬롯 A text 3,632 B). [확인 필요: 보드에서 업데이트·롤백 실측, ESP-IDF 5.x 빌드와 OTA 실행]

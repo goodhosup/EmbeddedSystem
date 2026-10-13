@@ -70,17 +70,16 @@
 | `code/ch18-usb/README.md` | 23 | [확인 필요: CN10 핀 번호] |
 | `code/ch18-usb/stm32/usb_descriptors.c` | 6 | [확인 필요: pid.codes 시험용 PID 정책] |
 | `code/ch19-wireless/esp32-arduino/ble_sensor/ble_sensor.ino` | 9 | [확인 필요: 코어 버전별 BLE 라이브러리 API] |
-| `code/ch26-freertos/README.md` | 18 | [확인 필요: arm-none-eabi-gcc로 FreeRTOS 커널까지 포함한 전체 빌드의 경고 확인 (외부 코드라 검토 환경에서 미빌드)] |
-| `code/ch27-sync/README.md` | 20 | [확인 필요: arm-none-eabi-gcc로 FreeRTOS 커널까지 포함한 전체 빌드의 경고 확인, r·i 명령의 보드 실측값] |
-| `code/ch28-realtime/README.md` | 31 | [확인 필요: arm-none-eabi-gcc로 FreeRTOS 커널까지 포함한 전체 빌드의 경고 확인] |
+| `code/ch26-freertos/README.md` | 18 | [확인 필요: 보드 실행 결과] |
+| `code/ch27-sync/README.md` | 20 | [확인 필요: r·i 명령의 보드 실측값] |
+| `code/ch28-realtime/README.md` | 31 | [확인 필요: 보드 실측값] |
 | `code/ch29-zephyr/README.md` | 21 | [확인 필요: Zephyr v4.4 기준 west build와 보드 실행 확인 (외부 코드라 검토 환경에서 미빌드)] |
 | `code/ch30-logger/DESIGN.md` | 89 | [확인 필요: NUCLEO의 IDD 점퍼(JP6)로 MCU 전류, 카드 모듈 전원선으로 SD 전류 실측] |
 | `code/ch30-logger/DESIGN.md` | 100 | [확인 필요: 보드 실측] |
-| `code/ch30-logger/README.md` | 33 | [확인 필요: arm-none-eabi-gcc로 FreeRTOS와 FatFs까지 포함한 전체 빌드의 경고 확인, 보드 통합 시험(30.8절)] |
-| `code/ch30-logger/ffconf.h` | 4 | [확인 필요: 다른 버전을 쓸 때] |
-| `code/ch31-testing/README.md` | 24 | [확인 필요: stm32 빌드(Unity 포함) 경고, 보드 실행 결과와 HIL 스크립트 동작] |
-| `code/ch32-bootloader/README.md` | 34 | [확인 필요: arm-none-eabi-gcc 빌드 경고, 보드에서 업데이트·롤백 실측, ESP-IDF 5.x 빌드와 OTA 실행] |
-| `code/ch33-security/README.md` | 25 | [확인 필요: arm-none-eabi-gcc 빌드(Mbed TLS 포함) 크기와 경고, 보드에서 검증 시간] |
+| `code/ch30-logger/README.md` | 33 | [확인 필요: 보드 통합 시험(30.8절)] |
+| `code/ch31-testing/README.md` | 24 | [확인 필요: 보드 실행 결과와 HIL 스크립트 동작] |
+| `code/ch32-bootloader/README.md` | 34 | [확인 필요: 보드에서 업데이트·롤백 실측, ESP-IDF 5.x 빌드와 OTA 실행] |
+| `code/ch33-security/README.md` | 25 | [확인 필요: 보드에서 검증 시간] |
 | `code/ch34-performance/README.md` | 18 | [확인 필요: 보드 실측값 (34.7절 표)] |
 | `code/ch35-safety/README.md` | 21 | [확인 필요: 보드 실행 결과] |
 | `code/ch36-cicd/README.md` | 23 | [확인 필요: 공장 시험 펌웨어의 보드 실행, GitHub Actions에서 firmware.yml 실행] |
@@ -88,7 +87,6 @@
 | `code/ch37-linux/gpio_button_led.c` | 21 | [확인 필요: 다른 모델·커널] |
 | `code/ch38-drivers/README.md` | 17 | [확인 필요: 모듈을 올리고 센서를 연결한 실행 결과] |
 | `code/ch39-rust/README.md` | 18 | [확인 필요: hal-blinky, embassy-async의 빌드와 보드 실행] |
-| `code/ch40-sensor-node/README.md` | 23 | [확인 필요: 보안 부트로더 크기와 Flash 배치, 노드·연결부 빌드, 전체 시스템 OTA와 롤백 실측] |
-| `code/ch40-sensor-node/stm32-boot/boot.ld` | 2 | [확인 필요: 실제 크기] |
+| `code/ch40-sensor-node/README.md` | 23 | [확인 필요: ESP32 연결부 빌드(ESP-IDF), 전체 시스템 OTA와 롤백 실측] |
 
-총 85건
+총 83건

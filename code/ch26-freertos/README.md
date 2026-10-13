@@ -15,4 +15,4 @@ make flash               # 터미널 115200 bps
 
 hog를 켜면 Idle 훅 카운터가 멈추고 blink는 hog와 번갈아 실행되지만, 더 높은 우선순위의 sample과 console은 영향을 거의 받지 않습니다.
 
-[확인 필요: arm-none-eabi-gcc로 FreeRTOS 커널까지 포함한 전체 빌드의 경고 확인 (외부 코드라 검토 환경에서 미빌드)]
+빌드 확인: arm-none-eabi-gcc 14.2.1, 경고 0 (FreeRTOS V11.1.0 포함, text 17,028 B, bss 25,704 B). [확인 필요: 보드 실행 결과]

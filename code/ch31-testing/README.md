@@ -21,4 +21,4 @@ cd ../stm32 && make flash   # 보드
 python3 ../hil/run_on_target.py --port /dev/ttyACM0 --flash
 ```
 
-[확인 필요: stm32 빌드(Unity 포함) 경고, 보드 실행 결과와 HIL 스크립트 동작]
+빌드 확인: arm-none-eabi-gcc 14.2.1, 경고 0 (Unity v2.6.1 포함, text 10,404 B). [확인 필요: 보드 실행 결과와 HIL 스크립트 동작]

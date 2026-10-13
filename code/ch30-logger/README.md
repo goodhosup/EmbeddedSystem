@@ -30,4 +30,4 @@ cd ../stm32 && make flash                              # 보드
 
 명령 (115200 bps): `s` 상태, `f` 지금 저장, `x` 파일 닫기(카드 빼기 전), `r` 새 파일로 다시 시작, `p` 주기 1 s ↔ 10 s
 
-[확인 필요: arm-none-eabi-gcc로 FreeRTOS와 FatFs까지 포함한 전체 빌드의 경고 확인, 보드 통합 시험(30.8절)]
+빌드 확인: arm-none-eabi-gcc 14.2.1, 경고 0 (FreeRTOS V11.1.0, FatFs R0.15a 포함, text 26,464 B). [확인 필요: 보드 통합 시험(30.8절)]

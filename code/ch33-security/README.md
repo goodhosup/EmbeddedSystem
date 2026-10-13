@@ -22,4 +22,4 @@ cd ../stm32 && make keys && make flash && make signed-test
 
 개인 키(`*.pem`, `keys/`)는 `.gitignore`로 막아 두었습니다. 저장소에 올리지 마세요.
 
-[확인 필요: arm-none-eabi-gcc 빌드(Mbed TLS 포함) 크기와 경고, 보드에서 검증 시간]
+빌드 확인: arm-none-eabi-gcc 14.2.1, 경고 0 (Mbed TLS 3.6.7 포함, `-Og`로 text 28,284 B). [확인 필요: 보드에서 검증 시간]
