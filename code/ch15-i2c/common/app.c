@@ -36,6 +36,7 @@ void app_run(void)
     bmp280_t dev;
     int r;
 
+    printf("ch15 I2C\n");
     scan_bus();
 
     if ((r = bmp280_init(&dev, BMP280_ADDR_LOW)) != 0 &&
